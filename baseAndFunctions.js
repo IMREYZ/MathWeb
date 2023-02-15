@@ -81,7 +81,20 @@ const allProblems =
     {problem: '10.6', answer: -10},
     {problem: '10.7', answer: -7},
     {problem: '10.8', answer: -11},
-    
+    {problem: '11.2', answer: 8},
+    {problem: '11.3', answer: 10},
+    {problem: '11.4', answer: -15},
+    {problem: '11.5', answer: 10},
+    {problem: '11.6', answer: 2},
+    {problem: '11.7', answer: -4},
+    {problem: '11.8', answer: 2},
+    {problem: '11.9', answer: 20},
+    {problem: '11.10', answer: 4},
+    {problem: '11.11', answer: -4.5},
+    {problem: '11.12', answer: -2.5},
+    {problem: '11.13', answer: -6},
+    {problem: '11.14', answer: 1},
+    {problem: '11.15', answer: 1}
 ]   
 
 const imgGit = ''
