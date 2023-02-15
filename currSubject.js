@@ -7,8 +7,8 @@ if (window.location.pathname === `${ifGit}/currSubject.html`){
     const name = JSON.parse(localStorage.getItem('nameProblem')) 
 
     // Все input и все submit
-    const inputAll = [...document.querySelectorAll('input')]
-    const submitAll = [...document.querySelectorAll('submit')]
+    const inputAll = document.getElementsByClassName('input')
+    const submitAll = document.getElementsByClassName('submit')
     
     // Имя задачи и контейнер html разметки
     const allConteynerProblem = document.querySelector('.allConteynerPr')
