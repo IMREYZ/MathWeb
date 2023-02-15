@@ -84,8 +84,8 @@ const allProblems =
     
 ]   
 
-const imgGit = 'img/'
-const ifGit = ''
+const imgGit = ''
+const ifGit = '/MathTest'
 
 // Все задания по номерам
 let problems = ['-', [], [], [], [], [], [], [], [], [], [], []]
