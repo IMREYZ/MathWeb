@@ -97,8 +97,8 @@ const allProblems =
     {problem: '11.15', answer: 1}
 ]   
 
-const imgGit = 'img/'
-const ifGit = ''
+const imgGit = ''
+const ifGit = '/MathTest'
 
 // Все задания по номерам
 let problems = ['-', [], [], [], [], [], [], [], [], [], [], []]
