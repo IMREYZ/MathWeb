@@ -260,7 +260,7 @@ function time(allProblemsMain){
                     node.innerHTML = text + `, дедлайн: ${getLocalStorage('deadLine')}`
                 }
                 // Конец дедлайна
-                if (getLocalStorage('againVariant') != 'afk' && +addZero(date.getHours()) === +deadLine(t).split(':')[0] && +addZero(date.getMinutes()) === +deadLine(t).split(':')[1] & +addZero(date.getSeconds()) === +deadLine(t).split(':')[2]){
+                if (getLocalStorage('againVariant') != 'afk' && +addZero(date.getHours()) === +deadLine(t).split(':')[0] && +addZero(date.getMinutes()) === +deadLine(t).split(':')[1] & +addZero(date.getSeconds()) - +deadLine(t).split(':')[2] <= 1){
                     alert('Закончилось время!')
 
                     // Убираем timePlace и inputVariant - все HTML поля input
