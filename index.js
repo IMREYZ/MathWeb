@@ -1,5 +1,6 @@
 // Если на странице index
 if (window.location.pathname === `${ifGit}/index.html` || window.location.pathname === `${ifGit}/`){
+    console.log(document.querySelector('.variantBTN').innerHTML)
     
     // Находим 3 нижние кнопки + все имена 
     // Делаем скрытую кнопку variant

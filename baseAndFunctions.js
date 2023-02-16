@@ -94,11 +94,13 @@ const allProblems =
     {problem: '11.12', answer: -2.5},
     {problem: '11.13', answer: -6},
     {problem: '11.14', answer: 1},
-    {problem: '11.15', answer: 1}
+    {problem: '11.15', answer: 1},
+    {problem: '6.2', answer: 14},
+    {problem: '9.2', answer: 15}
 ]   
 
-const imgGit = ''
-const ifGit = '/MathTest'
+const imgGit = 'img/'
+const ifGit = ''
 
 // Все задания по номерам
 let problems = ['-', [], [], [], [], [], [], [], [], [], [], []]
@@ -232,7 +234,7 @@ function timeToArray(time){
 // Доп функция для времени 2
 function deadLine(time){
     const hoursMinuteSecondArray = timeToArray(time)
-    return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 30)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 30) % 60)}:${addZero(hoursMinuteSecondArray[2])}`
+    return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 30)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 1) % 30)}:${addZero(hoursMinuteSecondArray[2])}`
 }
 
 // Доп функция для времени 3
@@ -260,7 +262,8 @@ function time(allProblemsMain){
                     node.innerHTML = text + `, дедлайн: ${getLocalStorage('deadLine')}`
                 }
                 // Конец дедлайна
-                if (getLocalStorage('againVariant') != 'afk' && +addZero(date.getHours()) === +deadLine(t).split(':')[0] && +addZero(date.getMinutes()) === +deadLine(t).split(':')[1] & Math.abs( +addZero(date.getSeconds()) - +deadLine(t).split(':')[2] )){
+                
+                if (getLocalStorage('againVariant') != 'afk' && +addZero(date.getHours()) === +deadLine(t).split(':')[0] && +addZero(date.getMinutes()) === +deadLine(t).split(':')[1] && Math.abs( +addZero(date.getSeconds()) - +deadLine(t).split(':')[2] ) <= 1){
                     alert('Закончилось время!')
 
                     // Убираем timePlace и inputVariant - все HTML поля input
