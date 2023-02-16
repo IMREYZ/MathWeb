@@ -29,7 +29,7 @@ const allProblems =
     {problem: '1.26', answer: 119},
     {problem: '1.27', answer: 3},
     {problem: '1.28', answer: 2},
-    {problem: '1.29', answer: 125},
+    {problem: '1.29', answer: 130},
     {problem: '1.30', answer: 5},
     {problem: '2.1', answer: 75},
     {problem: '3.1', answer: 0.6},
@@ -260,7 +260,7 @@ function time(allProblemsMain){
                     node.innerHTML = text + `, дедлайн: ${getLocalStorage('deadLine')}`
                 }
                 // Конец дедлайна
-                if (getLocalStorage('againVariant') != 'afk' && +addZero(date.getHours()) === +deadLine(t).split(':')[0] && +addZero(date.getMinutes()) === +deadLine(t).split(':')[1] & +addZero(date.getSeconds()) - +deadLine(t).split(':')[2] <= 1){
+                if (getLocalStorage('againVariant') != 'afk' && +addZero(date.getHours()) === +deadLine(t).split(':')[0] && +addZero(date.getMinutes()) === +deadLine(t).split(':')[1] & Math.abs( +addZero(date.getSeconds()) - +deadLine(t).split(':')[2] )){
                     alert('Закончилось время!')
 
                     // Убираем timePlace и inputVariant - все HTML поля input
