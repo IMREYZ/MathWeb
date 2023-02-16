@@ -11,7 +11,7 @@ if (window.location.pathname === `${ifGit}/index.html` || window.location.pathna
     variant.disabled = true
 
     // Удаляем данные с LocalStr
-     localStorage.clear()
+    localStorage.clear()
 
     // К названиям задач прибавляем кол-во этих задач
     const DOMarrayName = ['-', ...namesProblem]

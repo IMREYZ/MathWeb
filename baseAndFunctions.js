@@ -97,8 +97,8 @@ const allProblems =
     {problem: '11.15', answer: 1}
 ]   
 
-const imgGit = ''
-const ifGit = '/MathTest'
+const imgGit = 'img/'
+const ifGit = ''
 
 // Все задания по номерам
 let problems = ['-', [], [], [], [], [], [], [], [], [], [], []]
@@ -264,7 +264,7 @@ function time(allProblemsMain){
                     alert('Закончилось время!')
 
                     // Убираем timePlace и inputVariant - все HTML поля input
-                    timePlace.innerHTML = ''
+                    timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
                     const inputVariant = [...document.getElementsByClassName('input')]
                     
                     // answer - список ответов

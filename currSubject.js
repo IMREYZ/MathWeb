@@ -37,7 +37,6 @@ if (window.location.pathname === `${ifGit}/currSubject.html`){
         // Если верно, то: цвет фона - зеленый, input - только чтение, submit - нельзя нажимать + убираем hover. 
         // Иначе: цвет фона - красный
         if (String(answerRight) === answerInput) {
-
             background('green', id)
             inputAll[id].readOnly = true
             submitAll[id].disabled = true

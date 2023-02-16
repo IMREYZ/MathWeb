@@ -1,6 +1,6 @@
 // Если на странице variant
 if (window.location.pathname === `${ifGit}/variant.html`){
-
+    
     // Кнопка подтверждения; Контейнер всех заданий; Место времени; Кнопка "назад"; Имя варианта
     const acceptBtn = document.querySelector('.accept')
     const allConteynerVariant = document.querySelector('.allConteynerVar')
@@ -59,7 +59,7 @@ if (window.location.pathname === `${ifGit}/variant.html`){
             setLocalStorage('againVariant', 'afk')
 
             // Удаление времени
-            timePlace.innerHTML = ''
+            timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
 
             // Введенные ответы
             inputVariant.forEach(element => answer.push(element.value))
