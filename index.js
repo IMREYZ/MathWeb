@@ -36,6 +36,9 @@ if (window.location.pathname === `${ifGit}/index.html` || window.location.pathna
 
         // Все countProblem = 0
         countProblemToNumber(0)
+
+        variant.innerHTML = `Составить вариант (Выбрано заданий: 0)`
+        variant.disabled = true
     })
 
 
@@ -67,6 +70,7 @@ if (window.location.pathname === `${ifGit}/index.html` || window.location.pathna
         
         // Смена кнопки "Составить вариант"
         changeBtnVariant()
+
     })
             
 
@@ -79,6 +83,7 @@ if (window.location.pathname === `${ifGit}/index.html` || window.location.pathna
         
         // Смена кнопки "Составить вариант"
         changeBtnVariant()
+
     })
 
 
@@ -112,6 +117,9 @@ if (window.location.pathname === `${ifGit}/index.html` || window.location.pathna
 
         //Все countProblem = 0
         countProblemToNumber(0)
+
+        variant.innerHTML = `Составить вариант (Выбрано заданий: 0)`
+        variant.disabled = true
     })
 }
 
