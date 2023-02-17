@@ -99,8 +99,8 @@ const allProblems =
     {problem: '9.2', answer: 15}
 ]   
 
-const imgGit = ''
-const ifGit = '/MathTest'
+const imgGit = 'img/'
+const ifGit = ''
 
 // Все задания по номерам
 let problems = ['-', [], [], [], [], [], [], [], [], [], [], []]
@@ -199,6 +199,14 @@ function countProblemToNumber(value){
     for (i = 0; i <= 10; i++) document.getElementsByClassName('countProblem')[i].value = value
 }
 
+function defaultBtnVariant(){
+    const variant = document.querySelector('.variantBTN')
+
+    variant.innerHTML = `Составить вариант (Выбрано заданий: 0)`
+    variant.disabled = true
+    variant.classList.add('animation:hover')
+}
+
 // Смена кнопки "Вариант"
 function changeBtnVariant(){
     const variant = document.querySelector('.variantBTN')
@@ -211,6 +219,8 @@ function changeBtnVariant(){
     for (let i = 1; i <= 11; i++) {
         if (+problems[i].length < arrayCountProblem[i]) variant.disabled = true
     }
+
+    variant.disabled ? variant.classList.add('boom') : variant.classList.remove('boom')
 }
 
 // Доп функция для времени 1
@@ -234,7 +244,8 @@ function timeToArray(time){
 // Доп функция для времени 2
 function deadLine(time){
     const hoursMinuteSecondArray = timeToArray(time)
-    return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 30)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 1) % 30)}:${addZero(hoursMinuteSecondArray[2])}`
+    return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 50)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 10) % 60)}:${addZero(hoursMinuteSecondArray[2])}`
+    
 }
 
 // Доп функция для времени 3
@@ -262,9 +273,9 @@ function time(allProblemsMain){
                     node.innerHTML = text + `, дедлайн: ${getLocalStorage('deadLine')}`
                 }
                 // Конец дедлайна
-                
-                if (getLocalStorage('againVariant') != 'afk' && +addZero(date.getHours()) === +deadLine(t).split(':')[0] && +addZero(date.getMinutes()) === +deadLine(t).split(':')[1] && Math.abs( +addZero(date.getSeconds()) - +deadLine(t).split(':')[2] ) <= 1){
-                    alert('Закончилось время!')
+                console.log(+addZero(date.getSeconds()), +deadLine(t).split(':')[2])
+                if (getLocalStorage('againVariant') != 'afk ' && +addZero(date.getHours()) === +deadLine(t).split(':')[0] && +addZero(date.getMinutes()) === +deadLine(t).split(':')[1] && Math.abs( +addZero(date.getSeconds()) - +deadLine(t).split(':')[2] ) <= 1){
+                    alert(`Закончилось время! ${addZero(date.getSeconds())}`)
 
                     // Убираем timePlace и inputVariant - все HTML поля input
                     timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
@@ -296,7 +307,7 @@ function time(allProblemsMain){
 
 
                 }
-            }, 1000);
+            }, 250);
         }
     }
 

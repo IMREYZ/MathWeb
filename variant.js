@@ -14,10 +14,13 @@ if (window.location.pathname === `${ifGit}/variant.html`){
     let allProblemsMain = []
     let allProblemsHelp = []
 
-    // Формируем список объектов задач: если в LocalStr есть variant или , то в allProblemsMain variant из LocalStr
+    // Формируем список объектов задач: если в LocalStr есть variant или то в allProblemsMain variant из LocalStr
     // Иначе: в arrayCountProblem кладем countProblem из LocalStr
-    if (getLocalStorage('variant') || getLocalStorage('againVariant')){
+    if (getLocalStorage('variant')){
         allProblemsMain = getLocalStorage('variant')
+    
+        if (getLocalStorage('againVariant') === 'afk') removeLocalStorage('answers')
+        
     } else {
         for (let i = 1; i <= 11; i++){ allProblemsHelp.push(randomProblem(i, arrayCountProblem[i])) }
         allProblemsHelp.forEach(elementFirst => elementFirst.forEach(elementSecond => allProblemsMain.push(elementSecond)))
@@ -27,6 +30,17 @@ if (window.location.pathname === `${ifGit}/variant.html`){
     // Выводим задания на страницу
     allProblemsMain.forEach(elementFirst => allConteynerVariant.innerHTML += problemHTMLvariant(elementFirst))
 
+    // Сохранение ответов
+    if (getLocalStorage('answers')){
+        const LocalStrAnswer = getLocalStorage('answers')
+
+        const inputVariant = [...document.getElementsByClassName('input')]
+
+        inputVariant.forEach((element, i) => element.value = LocalStrAnswer[i])
+
+    }
+
+
     // Записываем список объектов задач в LocalStr в variant (для случая обновления страницы)
     setLocalStorage('variant', allProblemsMain)
 
@@ -35,7 +49,6 @@ if (window.location.pathname === `${ifGit}/variant.html`){
     // Проверяем, вариант формата ЕГЭ или нет
     let isVariant = true
     arrayCountProblem.forEach(element => {if (element != '-' && element != 1) isVariant = false})
-
 
 
     // Если формат ЕГЭ, то работаем c time; заголовок
@@ -49,6 +62,7 @@ if (window.location.pathname === `${ifGit}/variant.html`){
 
         // Забираем все input ответы пользоватлея
         const inputVariant = [...document.getElementsByClassName('input')]
+        console.log(inputVariant)
 
 
 
@@ -87,6 +101,13 @@ if (window.location.pathname === `${ifGit}/variant.html`){
     // Ограничение на input
     document.addEventListener('input', (event) => {
         if (event.target.classList[0] != 'input') return
+
+        event.target.value = event.target.value.replace(/[^0123456789,-]/g, '')
+
+        let answer = []
+        const inputVariant = [...document.getElementsByClassName('input')]
+        inputVariant.forEach(element => answer.push(element.value))
+        setLocalStorage('answers', answer)
+    })
         
-        event.target.value = event.target.value.replace(/[^0123456789,-]/g, '')})
 }

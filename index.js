@@ -1,6 +1,5 @@
 // Если на странице index
 if (window.location.pathname === `${ifGit}/index.html` || window.location.pathname === `${ifGit}/`){
-    console.log(document.querySelector('.variantBTN').innerHTML)
     
     // Находим 3 нижние кнопки + все имена 
     // Делаем скрытую кнопку variant
@@ -37,8 +36,7 @@ if (window.location.pathname === `${ifGit}/index.html` || window.location.pathna
         // Все countProblem = 0
         countProblemToNumber(0)
 
-        variant.innerHTML = `Составить вариант (Выбрано заданий: 0)`
-        variant.disabled = true
+        defaultBtnVariant()
     })
 
 
@@ -116,10 +114,10 @@ if (window.location.pathname === `${ifGit}/index.html` || window.location.pathna
         setLocalStorage('countProblem', arrayCountProblem)
 
         //Все countProblem = 0
-        countProblemToNumber(0)
 
-        variant.innerHTML = `Составить вариант (Выбрано заданий: 0)`
-        variant.disabled = true
+        countProblemToNumber(0)
+        
+        defaultBtnVariant()
     })
 }
 
