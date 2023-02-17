@@ -1,16 +1,6 @@
 // Объекты - задачи
 const allProblems = 
 [
-
-
-
-
-
-
-
-
-
-    
     {problem: '1.1', answer: 102 },
     {problem: '1.2', answer: 0.9},
     {problem: '1.3', answer: 128},
@@ -109,7 +99,7 @@ const allProblems =
     {problem: '9.2', answer: 15}
 ]   
 
-const imgGit = ''
+const imgGit = '/img'
 const ifGit = '/MathTest'
 
 // Все задания по номерам
