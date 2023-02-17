@@ -14,10 +14,12 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     let allProblemsMain = []
     let allProblemsHelp = []
 
-    // Формируем список объектов задач: если в LocalStr есть variant или то в allProblemsMain variant из LocalStr
-    // Иначе: в arrayCountProblem кладем countProblem из LocalStr
+    // Убирание заглушки, из-за которой не выходят много "результатов"
     removeLocalStorage('flagEndVariant')
-    
+
+    // Формируем список объектов задач: если в LocalStr есть variant, то в allProblemsMain variant из LocalStr
+    // И если состояние варианта afk, то удаляем ответы из LocalStr
+    // Иначе: в arrayCountProblem кладем countProblem из LocalStr
     if (getLocalStorage('variant')){
         allProblemsMain = getLocalStorage('variant')
     
@@ -72,9 +74,10 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
             // Смена режима в afk
             setLocalStorage('againVariant', 'afk')
 
-            // Удаление времени
+            // Уведомление для пользователей за место времени
             timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
 
+            // Текст иконки
             document.querySelector('.titleVariant').innerHTML = 'Результат'
 
             // Введенные ответы
@@ -96,7 +99,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
             for (let i = 0; i < answer.length ; i ++) document.getElementsByClassName("input")[i].readOnly = true
 
             // Результат теста
-            alert(` Всего заданий: ${answer.length} \n Выполнено заданий: ${rightAnswers} \n Не выполнено заданий: ${answer.length - rightAnswers} \n Процент выполнения: ${rounded(rightAnswers / answer.length * 100)}%`)
+            alert(` Всего заданий: ${answer.length} \n Верно решено: ${rightAnswers} \n Неверно решено: ${answer.length - rightAnswers} \n Процент выполнения: ${rounded(rightAnswers / answer.length * 100)}%`)
         }
     })
 
@@ -106,6 +109,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
 
         event.target.value = event.target.value.replace(/[^0123456789,-]/g, '')
 
+        // Сохраняем ответы в LocalStr
         let answer = []
         const inputVariant = [...document.getElementsByClassName('input')]
         inputVariant.forEach(element => answer.push(element.value))
