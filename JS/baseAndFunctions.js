@@ -293,7 +293,6 @@ function timeToArray(time){
 function deadLine(time){
     const hoursMinuteSecondArray = timeToArray(time)
     return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 30)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 30) % 60)}:${addZero(hoursMinuteSecondArray[2])}`
-    
 }
 
 // Доп функция для времени 3
@@ -306,7 +305,7 @@ function titleTime(thisTime, deadLine){
 
     thisTime = thisTime.split(':')
     deadLine = deadLine.split(':')
-    if (deadLine[0] === '00') deadLine[0] = '24'
+    if (deadLine[0] === '00' && thisTime[0] != '00') deadLine[0] = '24'
 
     const second = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1
     const result = `Вариант: ${addZero(parseInt(second / 60))}:${addZero(second % 60)} осталось`
@@ -320,7 +319,7 @@ function deadLineNew(){
 
     thisTime = +thisTime.replaceAll(':', '')
     deadLine = +deadLine.replaceAll(':', '')
-    if (deadLine < 10000) deadLine += 240000
+    if (deadLine < 10000 && thisTime > 10000) deadLine += 240000
     return deadLine - thisTime <= 0
 }
 
