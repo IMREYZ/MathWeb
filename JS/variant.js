@@ -1,5 +1,5 @@
 // Если на странице variant
-if (window.location.pathname === `/MathTest/HTML/variant.html`){
+if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     
     // Кнопка подтверждения; Контейнер всех заданий; Место времени; Кнопка "назад"; Имя варианта
     const acceptBtn = document.querySelector('.accept')

@@ -1,5 +1,5 @@
 // Если на странице currSubject
-if (window.location.pathname === `/MathTest/HTML/currSubject.html`){
+if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
     // Считываем номер задания и имя задания
     const id = JSON.parse(localStorage.getItem('idProblem'))

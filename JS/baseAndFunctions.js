@@ -133,7 +133,7 @@ function randomProblem(problem, countPr) {
 function problemHTMLvariant(probl) {
     return `<div class="conteyner">
     <div class="number gray" > <spam class='idInfo'>Номер ${probl.number} №${probl.id} </spam></div>
-        <img src='/MathTest/img/${probl.problem}.jpg' >
+        <img src='/MathWeb/img/${probl.problem}.jpg' >
         <div class="answer">Введите ответ: <input class='input'> </div>
     </div>`
 } 
@@ -143,7 +143,7 @@ function problemHTMLvariant(probl) {
 function problemHTMLcurr(probl, id) {
     return `<div id = ${id} class="conteyner" >
     <div class="number gray" > <spam class='idInfo'>Номер ${probl.number} №${probl.id} </spam></div>
-        <img src='/MathTest/img/${probl.problem}.jpg'>
+        <img src='/MathWeb/img/${probl.problem}.jpg'>
 
         <div class="answer">Введите ответ: <input class='input'> <button class="submit"> Ответить </button> </div>
     </div>`
