@@ -1,5 +1,5 @@
 // Если на странице index
-if (window.location.pathname === `/MathTest/HTML/index.html` || window.location.pathname === `/MathTest/HTML/`){
+if (window.location.pathname === `/index.html` || window.location.pathname === `/MathTest/`){
     
     // Находим 3 нижние кнопки + все имена 
     // Делаем скрытую кнопку variant
