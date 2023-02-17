@@ -99,7 +99,7 @@ const allProblems =
     {problem: '9.2', answer: 15}
 ]   
 
-const imgGit = '/img'
+const imgGit = 'img/'
 const ifGit = '/MathTest'
 
 // Все задания по номерам
@@ -244,7 +244,7 @@ function timeToArray(time){
 // Доп функция для времени 2
 function deadLine(time){
     const hoursMinuteSecondArray = timeToArray(time)
-    return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 50)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 10) % 60)}:${addZero(hoursMinuteSecondArray[2])}`
+    return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 30)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 30) % 60)}:${addZero(hoursMinuteSecondArray[2])}`
     
 }
 
