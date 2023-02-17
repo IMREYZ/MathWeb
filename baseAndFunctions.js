@@ -99,8 +99,8 @@ const allProblems =
     {problem: '9.2', answer: 15}
 ]   
 
-const imgGit = 'img/'
-const ifGit = ''
+const imgGit = ''
+const ifGit = 'MathTest'
 
 // Все задания по номерам
 let problems = ['-', [], [], [], [], [], [], [], [], [], [], []]
