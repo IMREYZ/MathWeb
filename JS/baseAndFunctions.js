@@ -243,7 +243,7 @@ function timeToArray(time){
 // Доп функция для времени 2
 function deadLine(time){
     const hoursMinuteSecondArray = timeToArray(time)
-    return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 59)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 1) % 60)}:${addZero(hoursMinuteSecondArray[2])}`
+    return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 30)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 30) % 60)}:${addZero(hoursMinuteSecondArray[2])}`
     
 }
 
@@ -255,7 +255,7 @@ function titleTime(thisTime, deadLine){
     deadLine = deadLine.split(':')
     const second = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1
     const result = `Вариант: ${addZero(parseInt(second / 60))}:${addZero(second % 60)} осталось`
-    return result
+    return second > 0 ? result : 'Время закончилось!' 
 }
 
 function deadLineNew(){
@@ -281,10 +281,10 @@ function time(allProblemsMain){
             let flagTest = true
             const _this = this;
             setInterval(function() {
+                const title = document.querySelector('.titleVariant')
                 const date = new Date();
                 const text = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${_this.month[date.getMonth()]} ${date.getFullYear()}`
                 if (flagTest && getLocalStorage('againVariant') === 'deadLinePicked'){
-                    const title = document.querySelector('.titleVariant')
 
                     title.innerHTML = titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine'))
 
@@ -292,7 +292,10 @@ function time(allProblemsMain){
                 }
                 // Конец дедлайна
                 while (getLocalStorage('againVariant') != 'afk ' && deadLineNew() && !getLocalStorage('flagEndVariant')){
-                    alert(`Закончилось время! ${addZero(date.getSeconds())}`)
+                    const title = document.querySelector('.titleVariant')
+                    title.innerHTML = 'ВРЕМЯ ВЫШЛО'
+
+                    alert('Время закончилось!')
 
                     // Убираем timePlace и inputVariant - все HTML поля input
                     timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
@@ -323,7 +326,7 @@ function time(allProblemsMain){
                     setLocalStorage('againVariant', 'afk')
                     setLocalStorage('flagEndVariant', 'что-то')
 
-                    document.querySelector('.titleVariant').innerHTML = 'Результат'
+                    title.innerHTML = 'Результат'
 
 
                 }
