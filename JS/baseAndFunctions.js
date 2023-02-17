@@ -300,8 +300,14 @@ function deadLine(time){
 function addZero(node){ return +node < 10 ? '0' + node : node }
 
 function titleTime(thisTime, deadLine){
+    if (Number(deadLine) < 10000) Number(deadLine) += 240000
+    deadLine = String(deadLine)
+
+
     thisTime = thisTime.split(':')
     deadLine = deadLine.split(':')
+    if (deadLine[0] === '00') deadLine[0] = '24'
+    
     const second = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1
     const result = `Вариант: ${addZero(parseInt(second / 60))}:${addZero(second % 60)} осталось`
     return second > 0 ? result : 'Время закончилось!' 
@@ -314,7 +320,7 @@ function deadLineNew(){
 
     thisTime = +thisTime.replaceAll(':', '')
     deadLine = +deadLine.replaceAll(':', '')
-
+    if (deadLine < 10000) deadLine += 240000
     return deadLine - thisTime <= 0
 }
 
@@ -341,6 +347,7 @@ function time(allProblemsMain){
                 }
                 // Конец дедлайна
                 while (getLocalStorage('againVariant') != 'afk ' && deadLineNew() && !getLocalStorage('flagEndVariant')){
+                    console.log(getLocalStorage('againVariant') != 'afk ', deadLineNew(), !getLocalStorage('flagEndVariant'))
                     const title = document.querySelector('.titleVariant')
                     title.innerHTML = 'ВРЕМЯ ВЫШЛО'
 
