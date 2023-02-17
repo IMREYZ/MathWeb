@@ -145,8 +145,7 @@ const allProblems =
     {problem: '3.16', answer: 0.994},
     {problem: '9.9', answer: 55},
     {problem: '6.9', answer: 11},
-    {problem: '2.13', answer: 60},
-
+    {problem: '2.13', answer: 60}
 ]   
 
 
