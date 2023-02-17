@@ -16,6 +16,8 @@ if (window.location.pathname === `/MathTest/HTML/variant.html`){
 
     // Формируем список объектов задач: если в LocalStr есть variant или то в allProblemsMain variant из LocalStr
     // Иначе: в arrayCountProblem кладем countProblem из LocalStr
+    removeLocalStorage('flagEndVariant')
+    
     if (getLocalStorage('variant')){
         allProblemsMain = getLocalStorage('variant')
     

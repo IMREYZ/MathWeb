@@ -1,10 +1,12 @@
 // Если на странице currSubject
 if (window.location.pathname === `/MathTest/HTML/currSubject.html`){
 
-
     // Считываем номер задания и имя задания
     const id = JSON.parse(localStorage.getItem('idProblem'))
-    const name = JSON.parse(localStorage.getItem('nameProblem')) 
+    const name = JSON.parse(localStorage.getItem('nameProblem'))
+    
+    const title = document.querySelector('.title')
+    title.innerHTML = `${name}`
 
     // Все input и все submit
     const inputAll = document.getElementsByClassName('input')
