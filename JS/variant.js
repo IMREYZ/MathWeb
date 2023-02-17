@@ -73,6 +73,8 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
             setLocalStorage('againVariant', 'afk')
 
             // Удаление времени
+            document.querySelector('.titleVariant').innerHTML = 'Результат'
+
             timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
 
             // Введенные ответы
