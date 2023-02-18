@@ -169,7 +169,7 @@ a {
 }
 
 .boom:active{
-    animation: shake 1.25s;
+    animation: shake 2s;
     animation-iteration-count: infinite;
 }
 
