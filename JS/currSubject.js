@@ -11,6 +11,8 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
     // Все input и все submit
     const inputAll = document.getElementsByClassName('input')
     const submitAll = document.getElementsByClassName('submit')
+
+    
     
     // Имя задачи и контейнер html разметки
     const allConteynerProblem = document.querySelector('.allConteynerPr')
@@ -18,9 +20,26 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
     
     // Формируем страницу HTML
     nameProblem.innerHTML = name
-    const thisProblems = problems[id]
+    let thisProblems = problems[id]
     thisProblems.forEach((element, index) => allConteynerProblem.innerHTML += problemHTMLcurr(element, index))
 
+    const optionCurr = document.querySelector('.optionCurr')
+    optionCurr.addEventListener('click', () => {
+        thisOption = optionCurr.value
+
+        if (thisOption === 'oldToNew'){ 
+            thisProblems.sort((a, b) => a.id - b.id)
+        } else if (thisOption === 'newToOld'){ 
+            thisProblems.sort((a, b) => b.id - a.id)
+        } else if (thisOption === 'easyToHard'){ 
+            thisProblems.sort((a, b) => a.procent - b.procent)
+        } else if (thisOption === 'hardToEasy'){ 
+            thisProblems.sort((a, b) => b.procent - a.procent)
+        } 
+
+        allConteynerProblem.innerHTML = ''
+        thisProblems.forEach((element, index) => allConteynerProblem.innerHTML += problemHTMLcurr(element, index))
+    })
 
 
     // Сверка ответа на задачу, где была нажата кнопка "Ответить"

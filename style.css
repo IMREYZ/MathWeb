@@ -3,7 +3,7 @@ body{
     min-width: 1500px;
 }
 
-button, input{
+button, input, header{
     font-family: 'PT Serif', serif;
 }
 
@@ -101,13 +101,13 @@ img{
 [data-button='plus']{
     margin-right: 30px;
     font-size: 20px;
-    border-radius: 50%;
+    border-radius: 100%;
     background-color: greenyellow;
 }
 
 [data-button='minus']{
     font-size: 20px;
-    border-radius: 50%;
+    border-radius: 100%;
     background-color: rgb(251, 134, 134);
 }
 
@@ -168,7 +168,7 @@ a {
     background-color: rgb(247, 243, 243);
 }
 
-.boom:hover{
+.boom:active{
     animation: shake 0.5s;
     animation-iteration-count: infinite;
 }
@@ -260,6 +260,7 @@ td{
     padding: 0px;
     font-size: 20px;
     text-align: center;
+    border-radius: 60%;
 }
 
 .link2 {
@@ -288,6 +289,15 @@ body {
     
 }
 
+.greenColor{
+    color: rgb(46, 222, 46)
+}
+.redColor{
+    color: red
+}
+.yellowColor{
+    color: yellow
+}
 .allConteynerPr{
     font-size: 30px;
     text-align: center;
@@ -313,7 +323,15 @@ body {
 }
 
 
-
+.optionCurr{
+    font-family: 'PT Serif', serif;
+    font-size: 23px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    background-color: rgb(254, 254, 242);
+    width: 300px;
+    text-align: center;
+}
 
 .conteyner{
     border: 5px double black;
@@ -321,6 +339,7 @@ body {
     margin: 0 auto;
     margin-bottom: 60px;
     background-color: white;
+    
 }
 
 body.variant{

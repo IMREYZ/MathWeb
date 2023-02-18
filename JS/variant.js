@@ -99,7 +99,8 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
             for (let i = 0; i < answer.length ; i ++) document.getElementsByClassName("input")[i].readOnly = true
 
             // Результат теста
-            alert(` Всего заданий: ${answer.length} \n Верно решено: ${rightAnswers} \n Неверно решено: ${answer.length - rightAnswers} \n Процент выполнения: ${rounded(rightAnswers / answer.length * 100)}%`)
+            const secondBall = isVariant ? `Вторичных баллов: ${secondBallArray[rightAnswers]}` : null
+            alert(` Всего заданий: ${answer.length} \n Верно решено: ${rightAnswers} \n Неверно решено: ${answer.length - rightAnswers} \n Процент выполнения: ${rounded(rightAnswers / answer.length * 100)}% \n ${secondBall}`)
         }
     })
 
