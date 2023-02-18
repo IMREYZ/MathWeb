@@ -388,7 +388,7 @@ function time(allProblemsMain){
         }
     }
 
-    var date = new Date();
+    const date = new Date();
     const t = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`;
     if (!getLocalStorage('deadLine') || getLocalStorage('againVariant') != 'deadLinePicked'){
         setLocalStorage('deadLine', deadLine(t))
