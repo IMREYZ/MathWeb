@@ -78,7 +78,7 @@ const allProblems =
     {problem: '10.3', answer: -0.2, procent: 65},
     {problem: '10.4', answer: 0.15, procent: 50},
     {problem: '10.5', answer: 61, procent: 60},
-    {problem: '10.6', answer: -10, procent: 65},
+    {problem: '10.6', answer: 5, procent: 65},
     {problem: '10.7', answer: -7, procent: 35},
     {problem: '10.8', answer: -11, procent: 45},
     {problem: '11.2', answer: 8, procent: 40},
