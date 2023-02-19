@@ -344,7 +344,7 @@ function addPopUp(thisTextPopUp, answer, rightAnswers, secondBall){
     const popUpBody = document.querySelector('.pop_up_body')
     const popUp = document.querySelector('.pop_up') 
     
-    popUpBody.innerHTML = thisTextPopUp(answer, rightAnswers, secondBall)
+    popUpBody.innerHTML += thisTextPopUp(answer, rightAnswers, secondBall)
     popUp.classList.add('active')
 
 

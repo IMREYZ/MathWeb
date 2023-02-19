@@ -83,6 +83,7 @@ img{
     padding: 10px 15px 20px 15px;
     text-align: left;
     font-size: 25px;
+    position: relative;
 }
 
 .pop_up_body1{
