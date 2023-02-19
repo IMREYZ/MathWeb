@@ -340,6 +340,51 @@ function deadLineNew(){
     return deadLine - thisTime <= 0
 }
 
+function addPopUp(thisTextPopUp, answer, rightAnswers, secondBall){
+    const popUpBody = document.querySelector('.pop_up_body')
+    const popUp = document.querySelector('.pop_up') 
+    
+    popUpBody.innerHTML = thisTextPopUp(answer, rightAnswers, secondBall)
+    popUp.classList.add('active')
+
+
+    const closePopUp = document.querySelector('.pop_up_close')
+
+    closePopUp && closePopUp.addEventListener('click', () => {
+        popUp.classList.remove('active')
+    })
+
+    document.addEventListener('click', (event) => {
+        if (event.target.classList[0] === 'pop_up_container'){
+            popUp.classList.remove('active')
+        }
+    })
+}
+
+function textPopUpFull(answer, rightAnswers, secondBallArray){
+            return `<div class='testEnd'> Тест завершен! </div> 
+            <hr/>
+            <div class='statsForEge1'>Общая информация</div>
+            <div>Всего заданий: ${answer.length} </div> 
+            <div>Верно решено: ${rightAnswers} </div>
+            <div>Неверно решено: ${answer.length - rightAnswers} </div>
+            <div>Процент выполнения: ${rounded(rightAnswers / answer.length * 100)}% </div>
+            <div class='statsForEge'>Статистика по «ЕГЭ профиль (1-11)»</div>
+            <div>Первичных баллов: ${rightAnswers} </div>
+            <div>Вторичных баллов: ${secondBallArray[rightAnswers]} </div>`
+}
+
+function textPopUp(answer, rightAnswers){
+    return `<div class='testEnd'> Тест завершен! </div> 
+    <hr/>
+    <div class='statsForEge1'>Общая информация</div>
+    <div>Всего заданий: ${answer.length} </div> 
+    <div>Верно решено: ${rightAnswers} </div>
+    <div>Неверно решено: ${answer.length - rightAnswers} </div>
+    <div>Процент выполнения: ${rounded(rightAnswers / answer.length * 100)}% </div>`
+}
+
+
 function time(allProblemsMain){
     const acceptBtn = document.querySelector('.accept')
     
@@ -364,9 +409,8 @@ function time(allProblemsMain){
                 // Конец дедлайна
                 while (getLocalStorage('againVariant') != 'afk ' && deadLineNew() && !getLocalStorage('flagEndVariant')){
                     const title = document.querySelector('.titleVariant')
-                    title.innerHTML = 'ВРЕМЯ ВЫШЛО'
+                    title.innerHTML = 'Время вышло!'
 
-                    alert('Время закончилось!')
 
                     // Убираем timePlace и inputVariant - все HTML поля input
                     timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
@@ -390,8 +434,8 @@ function time(allProblemsMain){
 
 
                     for (let i = 0; i < answer.length ; i ++) inputVariant[i].readOnly = true
-                    alert(` Всего заданий: ${answer.length} \n Выполнено заданий: ${rightAnswers} \n Не выполнено заданий: ${answer.length - 
-                        rightAnswers} \n Процент выполнения: ${rounded(rightAnswers / answer.length * 100)}% \n Вторичных баллов: ${secondBallArray[rightAnswers]}`)
+
+                    addPopUp(textPopUpFull, answer, rightAnswers, secondBallArray)
 
                     flagTest = false
 
@@ -419,3 +463,4 @@ function time(allProblemsMain){
         datetime.show(timePlace);
     }
 }
+

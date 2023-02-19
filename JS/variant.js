@@ -59,51 +59,61 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     isVariant ? time(allProblemsMain) : null
     isVariant ? nameVariant.innerHTML += ' (вариант формата ЕГЭ)' : nameVariant.innerHTML += ' (вариант НЕ формата ЕГЭ)'
         
-
+    const popUp = document.querySelector('.pop_up1')
+    const yesBtn = document.querySelector('.yesBtn')
+    const cancelBtn = document.querySelector('.cancelBtn')
 
     // Нажатие на "закончить"
     acceptBtn.addEventListener('click', () => {
-
         // Забираем все input ответы пользоватлея
-        const inputVariant = [...document.getElementsByClassName('input')]
-
-
-        if (confirm('Вы действительно хотите закончить выполнение работы?')) {
-            let answer = []
-
-            // Смена режима в afk
-            setLocalStorage('againVariant', 'afk')
-
-            // Уведомление для пользователей за место времени
-            timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
-
-            // Текст иконки
-            document.querySelector('.titleVariant').innerHTML = 'Результат'
-
-            // Введенные ответы
-            inputVariant.forEach(element => answer.push(element.value))
-            
-            // Проверка на правильность ответа
-            let rightAnswers = 0
-            answer.forEach((element, index) => {
-                if (element != ''){ 
-                    if (element.replace(',', '.') === String(allProblemsMain[index].answer)){
-                        rightAnswers ++
-                        background('green', index)
-                    } else background('red', index)
-                } else background('red', index)
-            })
-
-            // Блокируем "завершить работу" и все инпуты
-            acceptBtn.disabled = true
-            for (let i = 0; i < answer.length ; i ++) document.getElementsByClassName("input")[i].readOnly = true
-
-            // Результат теста
-            const secondBall = isVariant ? `Вторичных баллов: ${secondBallArray[rightAnswers]}` : null
-            alert(` Всего заданий: ${answer.length} \n Верно решено: ${rightAnswers} \n Неверно решено: ${answer.length - rightAnswers} \n Процент выполнения: ${rounded(rightAnswers / answer.length * 100)}% \n ${secondBall}`)
-        }
+        popUp.classList.add('active')
+    })
+    
+    cancelBtn.addEventListener('click', () => {
+        popUp.classList.remove('active')
     })
 
+
+    yesBtn.addEventListener('click', () => {
+        const inputVariant = [...document.getElementsByClassName('input')]
+        let answer = []
+
+        // Смена режима в afk
+        setLocalStorage('againVariant', 'afk')
+
+        // Уведомление для пользователей за место времени
+        timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
+
+        // Текст иконки
+        document.querySelector('.titleVariant').innerHTML = 'Результат'
+
+        // Введенные ответы
+        inputVariant.forEach(element => answer.push(element.value))
+            
+        // Проверка на правильность ответа
+        let rightAnswers = 0
+        answer.forEach((element, index) => {
+            if (element != ''){ 
+                if (element.replace(',', '.') === String(allProblemsMain[index].answer)){
+                    rightAnswers ++
+                    background('green', index)
+                } else background('red', index)
+            } else background('red', index)
+        })
+
+        // Блокируем "завершить работу" и все инпуты
+        acceptBtn.disabled = true
+        for (let i = 0; i < answer.length ; i ++) document.getElementsByClassName("input")[i].readOnly = true
+
+ 
+        isVariant ? addPopUp(textPopUpFull, answer, rightAnswers, secondBallArray) : addPopUp(textPopUp, answer, rightAnswers)
+        popUp.classList.remove('active')
+    })
+
+
+    
+
+             
     // Ограничение на input
     document.addEventListener('input', (event) => {
         if (event.target.classList[0] != 'input') return
