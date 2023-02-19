@@ -65,19 +65,16 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
 
     // Нажатие на "закончить"
     acceptBtn.addEventListener('click', () => {
-        console.log(111)
         // Забираем все input ответы пользоватлея
         popUp.classList.add('active')
     })
     
     cancelBtn.addEventListener('click', () => {
-        console.log(222)
         popUp.classList.remove('active')
     })
 
 
     yesBtn.addEventListener('click', () => {
-        console.log(333)
         const inputVariant = [...document.getElementsByClassName('input')]
         let answer = []
 
