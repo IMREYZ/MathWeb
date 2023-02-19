@@ -366,8 +366,8 @@ function textPopUpFull(answer, rightAnswers, secondBallArray){
             <hr/>
             <div class='statsForEge1'>Общая информация</div>
             <div>Всего заданий: ${answer.length} </div> 
-            <div>Верно решено: ${rightAnswers} </div>
-            <div>Неверно решено: ${answer.length - rightAnswers} </div>
+            <div>Решено верно:  <span class="greenColor"> ${rightAnswers} </span> </div>
+            <div>Решено неверно: <span class="redColor"> ${answer.length - rightAnswers} </span></div>
             <div>Процент выполнения: ${rounded(rightAnswers / answer.length * 100)}% </div>
             <div class='statsForEge'>Статистика по «ЕГЭ профиль (1-11)»</div>
             <div>Первичных баллов: ${rightAnswers} </div>
