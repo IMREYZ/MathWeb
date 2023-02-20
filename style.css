@@ -1,7 +1,13 @@
+html, body { 
+    scroll-behavior: smooth
+  }
+
 body{
     font-family: 'PT Serif', serif;
     min-width: 1500px;
 }
+
+
 
 button, input, header{
     font-family: 'PT Serif', serif;
@@ -201,11 +207,61 @@ img{
     left: 73px;
 }
 
+.rules{
+    text-align: left;
+    font-size: 24px;
+    margin-left: 20px;
+    
+}
 
+.toStress{
+    margin-top: 40px;
+    font-size: 30px;
+    background-color: white;
+    border-radius: 12px;
+    text-align: center;
+    width: 300px;
+    margin-bottom: 100px;
+}
 
-.text-center {
+.toStress:hover{
+    background-color: rgb(247, 243, 243);
+    font-weight: 900;
+}
+
+.first{
+    font-size: 21px;
     position: relative;
     left: 100px;
+}
+
+
+.text{
+    left: 35px;
+    position: relative;
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+.head{
+    z-index: 10000;
+    text-align: center;
+    width: 100%;
+    height: 150px;
+    background-color: white;
+
+    margin-bottom: 60px;
+    box-shadow: 0 4px 10px rgb(64, 0, 255);
+    font-size: 25px;
+    display: block;
+}
+
+
+
+.Stress{
+    text-align: center;
+}
+.text-center {
+
     text-align: center;
     font-weight: 900;
   }
@@ -246,9 +302,11 @@ img{
 
 [data-button='plus']:hover{
     background-color: green;
+    font-weight: 900
 }
 [data-button='minus']:hover{
     background-color: red;
+    font-weight: 900
 }
 .submit{
     border-radius: 12px;
@@ -258,6 +316,7 @@ img{
 
 .submit:hover{
     background-color: rgb(146, 142, 141);
+    font-weight: 900;
 }
 .exam {
     border-radius: 12px;
@@ -286,6 +345,7 @@ a {
     color:gray;
     background-size: 100% 3px;
     border-bottom-style: none;
+    font-weight: 900;
 }
 .variantBTN{
     border-radius: 12px;
@@ -299,6 +359,7 @@ a {
 }
 .exam:hover{
     background-color: rgb(247, 243, 243);
+    font-weight: 900;
 }
 
 .boom:active{
@@ -309,7 +370,7 @@ a {
 .vk{
     width: 50px;
     position: relative;
-    left:50px;
+    left:150px;
     top: 17px;
     margin-right: 15px;
 }
@@ -329,9 +390,11 @@ a {
 
 .variantBTN:hover{
     background-color: rgb(247, 243, 243);
+    font-weight: 900;
 }
 .clear:hover{
     background-color: rgb(247, 243, 243);
+    font-weight: 900;
 }
 
 .accept{
@@ -353,13 +416,16 @@ a {
 }
 .back:hover{
     background-color: rgb(247, 243, 243);
+    font-weight: 900;
 }
 .accept:hover{
     background-color: rgb(247, 243, 243);
+    font-weight: 900;
 }
 .end{
     text-align: center;
-    margin-top: 40px; 
+    margin-top: 40px;
+    margin-bottom: 100px; 
 }
 
 input::-webkit-outer-spin-button,
@@ -372,6 +438,7 @@ input::-webkit-inner-spin-button {
 td{
     text-align: center;
 }
+
 
 
 .name{
@@ -403,6 +470,14 @@ td{
     border-radius: 60%;
 }
 
+.font-weight{
+    font-weight: 900
+}
+
+.countProblem:hover{
+    font-weight: 900;
+}
+
 .link2 {
     text-decoration: none;
     color: white;
@@ -421,13 +496,44 @@ td{
  }
  .link2:hover {
     background-size: 100% 3px;
+    
  }
 
 body {
     font-size: 30px;
-    background: url(img/back.png)
-    
+    background: url(img/back.png);
+    text-align: center; 
+
+    max-width: 1200px;
+    padding-left: 10px; 
+    padding-right: 10px;
+    margin: 0 auto;
 }
+
+
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: 70px;
+   
+}
+
+.rt:hover{
+    font-weight: 900;
+
+}
+
+.rt{
+    margin-right: 70px;
+    border-bottom: 2px solid rgb(64, 0, 255);
+    cursor: pointer;
+    font-size: 27px;
+
+}
+
+
+
 
 .greenColor{
     color: rgb(46, 222, 46)
@@ -457,6 +563,7 @@ body {
 
 .leave:hover{
     background-color: rgb(247, 243, 243);
+    font-weight: 900;
 }
 .problemVar{
     background-color: white;
@@ -510,6 +617,7 @@ body.curr{
     width: 140px;
     margin-right: 30px;
 }
+
 
 .number{
     color: white

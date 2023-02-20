@@ -52,6 +52,11 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         const parent = event.target.closest('.fullProblem')
         const input = parent.querySelector('.countProblem')
 
+        const allCountProblem = [...document.getElementsByClassName('countProblem')]
+        allCountProblem.forEach(element => element.classList.remove('font-weight'))
+
+        input.classList.add('font-weight')
+
         // Изменяем значение input
         event.target.dataset.button === 'plus' ? input.value ++ : (input.value >= 1 ? input.value -- : null)
         
@@ -67,6 +72,9 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         // Все countProblem = 1
         countProblemToNumber(1)
         
+        const allCountProblem = [...document.getElementsByClassName('countProblem')]
+        allCountProblem.forEach(element => element.classList.remove('font-weight'))
+
         // Смена кнопки "Составить вариант"
         changeBtnVariant()
 
@@ -80,6 +88,9 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         // Все countProblem = 0
         countProblemToNumber(0)
         
+        const allCountProblem = [...document.getElementsByClassName('countProblem')]
+        allCountProblem.forEach(element => element.classList.remove('font-weight'))
+
         // Смена кнопки "Составить вариант"
         changeBtnVariant()
 
@@ -96,6 +107,11 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         // Смена кнопки "Составить вариант"
         changeBtnVariant()
 
+        const allCountProblem = [...document.getElementsByClassName('countProblem')]
+        allCountProblem.forEach(element => element.classList.remove('font-weight'))
+
+        event.target.classList.add('font-weight')
+
         // Регулярное выражение для фильтрации input
         event.target.value = event.target.value.replace(/[-]/g, '')
         
@@ -109,6 +125,9 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
         // Удаляем данные с LocalStr
         localStorage.clear()
+
+        const allCountProblem = [...document.getElementsByClassName('countProblem')]
+        allCountProblem.forEach(element => element.classList.remove('font-weight'))
 
         // Добавление в localStorage массив значений количества заданий и обнуление value
         const arrayCountProblem = pushArrayCountProblem()

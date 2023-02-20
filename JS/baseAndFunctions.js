@@ -1,4 +1,4 @@
-// Объекты - задачиoptionCurr
+// Объекты - задачи
 const allProblems = 
 [
     {problem: '1.1', answer: 102, procent: 15},
@@ -163,6 +163,8 @@ allProblems.forEach(el => {
     problems[el.number].push(el)
 })
 
+
+// Словарь перевода баллов из первичной во вторичную
 const secondBallArray = {
     0: 0, 1: 6, 2: 11, 3: 17, 4: 22, 5: 27,
     6: 34, 7: 40, 8: 46, 9: 52, 10: 58,
@@ -184,11 +186,14 @@ function randomProblem(problem, countPr) {
     return result
 }
 
+// Цвет задачи
 function colorProcent(procent){
     if (procent < 30) return 'greenColor'
     if (procent < 70) return 'yellowColor'
     return 'redColor'
 }
+
+
 // Вывод задания на HTML на вкладку variant
 function problemHTMLvariant(probl) {
     return `<div class="conteyner">
@@ -216,14 +221,19 @@ function problemHTMLcurr(probl, id) {
 }
 
 
+// Запись в LocalStr
 function setLocalStorage(nameLocal, value){
     localStorage.setItem(nameLocal, JSON.stringify(value))
 }
 
+
+// Получение из LocalStr
 function getLocalStorage(value){
     return JSON.parse(localStorage.getItem(value))
 }
 
+
+// Удаление из LocalStr
 function removeLocalStorage(value){
     localStorage.removeItem(value)
 }
@@ -259,11 +269,13 @@ function rounded(number){
     return +number.toFixed(2);
 }
 
+
 // Присваение все input в index значение = value
 function countProblemToNumber(value){
     for (i = 0; i <= 10; i++) document.getElementsByClassName('countProblem')[i].value = value
 }
 
+// Изменение кнопки variantBTN в обычную
 function defaultBtnVariant(){
     const variant = document.querySelector('.variantBTN')
 
@@ -272,7 +284,8 @@ function defaultBtnVariant(){
     variant.classList.add('animation:hover')
 }
 
-// Смена кнопки "Вариант"
+
+// Смена кнопки "Вариант" (изменение количества заданий + нажимаемость)
 function changeBtnVariant(){
     const variant = document.querySelector('.variantBTN')
     const arrayCountProblem = pushArrayCountProblem()
@@ -288,7 +301,8 @@ function changeBtnVariant(){
     variant.disabled ? variant.classList.add('boom') : variant.classList.remove('boom')
 }
 
-// Доп функция для времени 1
+// Функция для времени №1
+// '4:30:20 12 Февраля 2023' --> [4, 30, 20]
 function timeToArray(time){
     let timeNew = ''
     let index = 0
@@ -306,29 +320,38 @@ function timeToArray(time){
     return timeArray
 }
 
-// Доп функция для времени 2
+
+// Функция для времени №2
+// '23:40:20 12 Февраля 2023' --> '00:10:20'
 function deadLine(time){
     const hoursMinuteSecondArray = timeToArray(time)
     return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 30)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 30) % 60)}:${addZero(hoursMinuteSecondArray[2])}`
 }
 
-// Доп функция для времени 3
+
+// Функция для времени №3
+// '4' --> '04'; '23' --> '23'
 function addZero(node){ return +node < 10 ? '0' + node : node }
 
+
+// Обратный отсчет времени
+// ('23:58:04', '00:03:50') --> 'Вариант: 05:46 осталось'
 function titleTime(thisTime, deadLine){
-    if (Number(deadLine) < 10000) Number(deadLine) += 240000
-    deadLine = String(deadLine)
-
-
     thisTime = thisTime.split(':')
     deadLine = deadLine.split(':')
-    if (deadLine[0] === '00' && thisTime[0] != '00') deadLine[0] = '24'
 
+    if (deadLine[0] === '00' && thisTime[0] != '00') deadLine[0] = '24' 
+    
     const second = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1
     const result = `Вариант: ${addZero(parseInt(second / 60))}:${addZero(second % 60)} осталось`
+    
     return second > 0 ? result : 'Время закончилось!' 
 }
 
+
+// Прошел ли дедлайн?
+// Если прошел, то true
+// Если еще нет, то false
 function deadLineNew(){
     const date = new Date();
     let thisTime = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`
@@ -340,13 +363,14 @@ function deadLineNew(){
     return deadLine - thisTime <= 0
 }
 
+
+// Добавление PopUp на страницу
 function addPopUp(thisTextPopUp, answer, rightAnswers, secondBall){
     const popUpBody = document.querySelector('.pop_up_body')
     const popUp = document.querySelector('.pop_up') 
     
     popUpBody.innerHTML += thisTextPopUp(answer, rightAnswers, secondBall)
     popUp.classList.add('active')
-
 
     const closePopUp = document.querySelector('.pop_up_close')
 
@@ -361,6 +385,8 @@ function addPopUp(thisTextPopUp, answer, rightAnswers, secondBall){
     })
 }
 
+
+// HTML контент для "формата ЕГЭ"
 function textPopUpFull(answer, rightAnswers, secondBallArray){
             return `<div class='testEnd'> Тест завершен! </div> 
             <hr/>
@@ -374,6 +400,8 @@ function textPopUpFull(answer, rightAnswers, secondBallArray){
             <div>Вторичных баллов: ${secondBallArray[rightAnswers]} </div>`
 }
 
+
+// HTML контент для НЕ "формата ЕГЭ"
 function textPopUp(answer, rightAnswers){
     return `<div class='testEnd'> Тест завершен! </div> 
     <hr/>
@@ -385,6 +413,9 @@ function textPopUp(answer, rightAnswers){
 }
 
 
+
+
+// Глобальная функция времени
 function time(allProblemsMain){
     const acceptBtn = document.querySelector('.accept')
     
@@ -392,7 +423,6 @@ function time(allProblemsMain){
         const timePlace = document.querySelector('.time')
         const datetime = {
         month: ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'],
-        day: ['Воскрсенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
         show: function(node) {
             let flagTest = true
             const _this = this;
@@ -446,18 +476,18 @@ function time(allProblemsMain){
 
 
                 }
-            }, 250);
+            }, 1000);
         }
     }
 
     const date = new Date();
-    const t = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`;
+    const time = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`;
     if (!getLocalStorage('deadLine') || getLocalStorage('againVariant') != 'deadLinePicked'){
-        setLocalStorage('deadLine', deadLine(t))
+        setLocalStorage('deadLine', deadLine(time))
         setLocalStorage('againVariant', 'deadLinePicked')
     }
 
-    timePlace.innerHTML += deadLine(t)
+    timePlace.innerHTML += deadLine(time)
 
     window.onload = function() {
         datetime.show(timePlace);

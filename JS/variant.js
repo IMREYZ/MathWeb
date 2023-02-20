@@ -49,7 +49,6 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     setLocalStorage('variant', allProblemsMain)
 
 
-
     // Проверяем, вариант формата ЕГЭ или нет
     let isVariant = true
     arrayCountProblem.forEach(element => {if (element != '-' && element != 1) isVariant = false})
@@ -58,22 +57,28 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     // Если формат ЕГЭ, то работаем c time; заголовок
     isVariant ? time(allProblemsMain) : null
     isVariant ? nameVariant.innerHTML += ' (вариант формата ЕГЭ)' : nameVariant.innerHTML += ' (вариант НЕ формата ЕГЭ)'
-        
+    
+    // PopUp элементы
     const popUp = document.querySelector('.pop_up1')
     const yesBtn = document.querySelector('.yesBtn')
     const cancelBtn = document.querySelector('.cancelBtn')
 
+
     // Нажатие на "закончить"
     acceptBtn.addEventListener('click', () => {
-        // Забираем все input ответы пользоватлея
+        // Открывает PopUp
         popUp.classList.add('active')
     })
     
+
+    // Нажатие на "отмена" в PopUp
     cancelBtn.addEventListener('click', () => {
+        // Закрываем PopUp
         popUp.classList.remove('active')
     })
 
 
+    // Нажатие на "Да" в PopUp
     yesBtn.addEventListener('click', () => {
         const inputVariant = [...document.getElementsByClassName('input')]
         let answer = []
@@ -105,15 +110,13 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
         acceptBtn.disabled = true
         for (let i = 0; i < answer.length ; i ++) document.getElementsByClassName("input")[i].readOnly = true
 
- 
+        
+        // Смотрим на формат варианта, такой PopUp и выдаем (с "формат ЕГЭ (1-11) или без")
         isVariant ? addPopUp(textPopUpFull, answer, rightAnswers, secondBallArray) : addPopUp(textPopUp, answer, rightAnswers)
         popUp.classList.remove('active')
     })
 
-
-    
-
-             
+            
     // Ограничение на input
     document.addEventListener('input', (event) => {
         if (event.target.classList[0] != 'input') return
