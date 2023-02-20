@@ -24,7 +24,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
     thisProblems.forEach((element, index) => allConteynerProblem.innerHTML += problemHTMLcurr(element, index))
 
     const optionCurr = document.querySelector('.optionCurr')
-    optionCurr.addEventListener('click', () => {
+    optionCurr.addEventListener('change', () => {
         thisOption = optionCurr.value
 
         if (thisOption === 'oldToNew'){ 
@@ -38,6 +38,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         } 
 
         allConteynerProblem.innerHTML = ''
+        console.log(thisProblems)
         thisProblems.forEach((element, index) => allConteynerProblem.innerHTML += problemHTMLcurr(element, index))
     })
 
@@ -63,7 +64,13 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
             submitAll[id].disabled = true
             submitAll[id].classList.remove('button:hover')
             
-        } else background('red', id) 
+        } else background('red', id)
+
+        /// Сохранение при смене
+       /// const qqq = [...document.querySelectorAll('.number')]
+        ///let www = []
+        ///qqq.forEach(el => {www.push(el.classList[1])})
+        ///console.log(www)
     })
 
     // Ограничение на input
