@@ -584,8 +584,7 @@ body {
 
 .conteyner{
     border: 5px double black;
-    width: 1370px;
-    margin: 0 auto; 
+
     margin-bottom: 60px;
     background-color: white;
 }
