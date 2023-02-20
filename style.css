@@ -1,10 +1,11 @@
-html, body { 
+9html, body { 
     scroll-behavior: smooth
   }
 
 body{
     font-family: 'PT Serif', serif;
-    min-width: 1500px;
+    width: 1370px;
+    margin: 0 auto;
 }
 
 
@@ -584,7 +585,8 @@ body {
 
 .conteyner{
     border: 5px double black;
-
+    width: 1370px;
+    margin: 0 auto;
     margin-bottom: 60px;
     background-color: white;
 }
