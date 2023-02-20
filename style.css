@@ -209,9 +209,16 @@ img{
 
 .rules{
     text-align: left;
-    font-size: 24px;
+    font-size: 22px;
     margin-left: 20px;
     
+}
+
+hr{
+    background-color: rgb(64, 0, 255);
+    color: rgb(64, 0, 255);
+    height: 1.5px;
+    border: 0px;
 }
 
 .toStress{
@@ -245,7 +252,9 @@ img{
 .head{
     z-index: 10000;
     text-align: center;
-    width: 100%;
+    width: 97%;
+    position: relative;
+    left: 23px;
     height: 150px;
     background-color: white;
 
@@ -253,17 +262,24 @@ img{
     box-shadow: 0 4px 10px rgb(64, 0, 255);
     font-size: 25px;
     display: block;
+
+    
 }
 
+footer{
+    font-size: 16px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
 
 
 .Stress{
     text-align: center;
 }
 .text-center {
-
     text-align: center;
     font-weight: 900;
+    
   }
 
 .HeadPart123{
@@ -277,17 +293,21 @@ img{
   }
 
 .table{
-    margin: auto
+    margin: auto;
+    margin-bottom: 100px;
 }
 .conteynerMain{
     display: block;
     position: relative;
-    right: 80px;
+    width: 1200px;
+    margin-right: 0px;
+    margin-left: 0px;;
 }
 
 
 .main{
-    margin:0 auto;
+    margin: 0 auto;
+    width: 1300px;
 }
 
 [data-button='plus']{
@@ -506,10 +526,8 @@ body {
     background: url(img/back.png);
     text-align: center; 
 
-    padding-left: 10px; 
-    padding-right: 10px;
+
     margin: 0 auto;
-    max-width: 2000px;
 }
 
 
