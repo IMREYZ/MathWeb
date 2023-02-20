@@ -163,6 +163,9 @@ allProblems.forEach(el => {
     problems[el.number].push(el)
 })
 
+const timeOnProblem = {
+    1: [1, 0]
+}
 
 // Словарь перевода баллов из первичной во вторичную
 const secondBallArray = {
@@ -323,9 +326,9 @@ function timeToArray(time){
 
 // Функция для времени №2
 // '23:40:20 12 Февраля 2023' --> '00:10:20'
-function deadLine(time){
+function deadLine(time, minute, second){
     const hoursMinuteSecondArray = timeToArray(time)
-    return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= 30)) % 24)}:${addZero((hoursMinuteSecondArray[1] + 30) % 60)}:${addZero(hoursMinuteSecondArray[2])}`
+    return `${addZero((hoursMinuteSecondArray[0] + Number(hoursMinuteSecondArray[1] >= (60 - minute))) % 24)}:${addZero((hoursMinuteSecondArray[1] + minute + Number(hoursMinuteSecondArray[2] >= (60 - second))) % 60)}:${addZero((hoursMinuteSecondArray[2] + second) % 60)}`
 }
 
 
@@ -483,11 +486,11 @@ function time(allProblemsMain){
     const date = new Date();
     const time = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`;
     if (!getLocalStorage('deadLine') || getLocalStorage('againVariant') != 'deadLinePicked'){
-        setLocalStorage('deadLine', deadLine(time))
+        setLocalStorage('deadLine', deadLine(time, 30, 0))
         setLocalStorage('againVariant', 'deadLinePicked')
     }
 
-    timePlace.innerHTML += deadLine(time)
+    timePlace.innerHTML += deadLine(time, 30, 0)
 
     window.onload = function() {
         datetime.show(timePlace);
