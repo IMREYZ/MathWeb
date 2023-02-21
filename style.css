@@ -221,6 +221,11 @@ img{
     
 }
 
+.sest{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 .ddd{
     margin-left: 25px;
     margin-right: 25px;
@@ -234,13 +239,13 @@ hr{
 }
 
 .toStress{
-    margin-top: 40px;
+    margin-bottom: 0px;
     font-size: 30px;
     background-color: white;
     border-radius: 12px;
     text-align: center;
     width: 300px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .toStress:hover{
@@ -287,28 +292,35 @@ footer{
 
 .Stress{
     text-align: center;
+    margin-bottom: 70px;
 }
 .text-center {
     text-align: center;
     font-weight: 900;
     position: relative;
     right: 10px;
+    margin-top: 50px;
     
   }
 
-.HeadPart123{
-    text-align: center;
+.fire{
+    width: 40px;
+    height: 40px;
+    position: relative;
+    right: 680px;
+    bottom: 38px;
 }
 
 .HeadPart{
     text-align: center;
     font-weight: 900;
-    margin-top: 100px;
+    margin-top: 120px;
   }
 
 .table{
     margin: auto;
     margin-bottom: 100px;
+    margin-top: 30px;
 }
 .conteynerMain{
     display: block;
@@ -318,10 +330,31 @@ footer{
     margin-left: 0px;;
 }
 
+.contEge{
+    margin: 0 auto;
+    width: 250px;
+}
+
+.doEge{
+    margin: 0 auto;
+    border: 2px solid rgb(64, 0, 255);
+    border-radius: 12px;
+    background-color: white;
+    margin-top: 30px;
+}
+
+.day{
+    color: red
+}
+
+
 
 .main{
-    margin: 0 auto;
+    margin-left: 0;
     width: 1300px;
+    margin-right: 0;
+    text-align: center;
+    margin: 0 auto;
 }
 
 [data-button='plus']{
@@ -461,7 +494,7 @@ a {
 .end{
     text-align: center;
     margin-top: 40px;
-    margin-bottom: 100px; 
+    margin-bottom: 140px; 
 }
 
 input::-webkit-outer-spin-button,
@@ -478,13 +511,9 @@ td{
 
 
 .name{
-    text-align: center;
+    
+    margin: 0 auto;
     margin-top: 40px;
-    font-size: 30px;
-    font-weight: 900;
-    margin-bottom: 20px;
-    position: relative;
-    left: 100px;
 }
 
 
@@ -582,14 +611,18 @@ body {
     text-align: center;
 }
 
+.flitr{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
 .leave{
     border-radius: 12px;
     width: 370px;
     height: 60px;
     font-size: 30px;
-    margin-bottom: 20px;
-    position: relative;
-    left: 140px;
+    margin-bottom: 30px;
+    margin-top: 30px;
     background-color: white;
 
 }
@@ -608,7 +641,6 @@ body {
     font-size: 23px;
     margin-bottom: 30px;
     border-radius: 12px;
-    background-color: rgb(254, 254, 242);
     width: 300px;
     text-align: center;
 }

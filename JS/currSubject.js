@@ -2,8 +2,8 @@
 if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
     // Считываем номер задания и имя задания
-    const id = JSON.parse(localStorage.getItem('idProblem'))
-    const name = JSON.parse(localStorage.getItem('nameProblem'))
+    const id = getLocalStorage('idProblem')
+    const name = getLocalStorage('nameProblem')
     
     const title = document.querySelector('.title')
     title.innerHTML = `${name}`
@@ -18,28 +18,50 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
     const allConteynerProblem = document.querySelector('.allConteynerPr')
     const nameProblem = document.querySelector('.name')
     
+
     // Формируем страницу HTML
     nameProblem.innerHTML = name
     let thisProblems = problems[id]
+
+    const thisSelect = getLocalStorage('select')
+    if (thisSelect){
+        if (thisSelect === 'oldToNew') thisProblems.sort((a, b) => a.id - b.id)
+        else if (thisSelect === 'newToOld') thisProblems.sort((a, b) => b.id - a.id)
+        else if (thisSelect === 'easyToHard') thisProblems.sort((a, b) => a.procent - b.procent)
+        else if (thisSelect === 'hardToEasy') thisProblems.sort((a, b) => b.procent - a.procent)
+
+        const optionCurr = document.querySelector('.optionCurr')
+        optionCurr.querySelector(`[value=${thisSelect}]`).selected="selected"
+
+
+    }
+
     thisProblems.forEach((element, index) => allConteynerProblem.innerHTML += problemHTMLcurr(element, index))
+
+    currColor(thisProblems, inputAll, submitAll)
+
+    currInput(thisProblems, inputAll)
 
     const optionCurr = document.querySelector('.optionCurr')
     optionCurr.addEventListener('change', () => {
         thisOption = optionCurr.value
 
-        if (thisOption === 'oldToNew'){ 
-            thisProblems.sort((a, b) => a.id - b.id)
-        } else if (thisOption === 'newToOld'){ 
-            thisProblems.sort((a, b) => b.id - a.id)
-        } else if (thisOption === 'easyToHard'){ 
-            thisProblems.sort((a, b) => a.procent - b.procent)
-        } else if (thisOption === 'hardToEasy'){ 
-            thisProblems.sort((a, b) => b.procent - a.procent)
-        } 
+        if (thisOption === 'oldToNew') thisProblems.sort((a, b) => a.id - b.id)
+        else if (thisOption === 'newToOld') thisProblems.sort((a, b) => b.id - a.id)
+        else if (thisOption === 'easyToHard') thisProblems.sort((a, b) => a.procent - b.procent)
+        else if (thisOption === 'hardToEasy') thisProblems.sort((a, b) => b.procent - a.procent)
+
+        setLocalStorage('select', thisOption)
+        document.querySelector(`[value=${thisOption}]`).selected="selected"
+
 
         allConteynerProblem.innerHTML = ''
-        console.log(thisProblems)
         thisProblems.forEach((element, index) => allConteynerProblem.innerHTML += problemHTMLcurr(element, index))
+
+        currColor(thisProblems, inputAll, submitAll)
+
+        currInput(thisProblems, inputAll)
+
     })
 
 
@@ -62,19 +84,26 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
             background('green', id)
             inputAll[id].readOnly = true
             submitAll[id].disabled = true
-            submitAll[id].classList.remove('button:hover')
-            
+            submitAll[id].classList.remove('button:hover')         
         } else background('red', id)
 
-        /// Сохранение при смене
-       /// const qqq = [...document.querySelectorAll('.number')]
-        ///let www = []
-        ///qqq.forEach(el => {www.push(el.classList[1])})
-        ///console.log(www)
+
+        /// Сохранение цветов при нажатии на ответ в LocakStr
+        const classesWithColor = [...document.querySelectorAll('.number')]
+        let colorArray = {}
+        classesWithColor.forEach((element, index) => colorArray[thisProblems[index].id] = element.classList[1])
+        setLocalStorage('color', colorArray)
     })
+
 
     // Ограничение на input
     document.addEventListener('input', (event) => {
+
+        // Сохранение input в LocakStr
+        const inputDOM = [...document.querySelectorAll('.input')]
+        let inputArray = {}
+        inputDOM.forEach((element, index) => inputArray[thisProblems[index].id] = element.value)
+        setLocalStorage('inputCurr', inputArray)
 
         // Если событие - не кнопка input, то выходим
         if (event.target.classList[0] != 'input') return 

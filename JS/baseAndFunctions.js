@@ -346,7 +346,7 @@ function titleTime(thisTime, deadLine){
     if (deadLine[0] === '00' && thisTime[0] != '00') deadLine[0] = '24' 
     
     const second = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1
-    const result = `Вариант: ${addZero(parseInt(second / 60))}:${addZero(second % 60)} осталось`
+    const result = `${addZero(parseInt(second / 60))}:${addZero(second % 60)} осталось`
     
     return second > 0 ? result : 'Время закончилось!' 
 }
@@ -435,9 +435,9 @@ function time(allProblemsMain){
                 const text = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${_this.month[date.getMonth()]} ${date.getFullYear()}`
                 if (flagTest && getLocalStorage('againVariant') === 'deadLinePicked'){
 
-                    title.innerHTML = titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine'))
+                    title.innerHTML = 'Вариант: ' + titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine'))
 
-                    node.innerHTML = text + `, дедлайн: ${getLocalStorage('deadLine')}`
+                    node.innerHTML = text + `, дедлайн: ${getLocalStorage('deadLine')} (${titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine'))})`
                 }
                 // Конец дедлайна
                 while (getLocalStorage('againVariant') != 'afk ' && deadLineNew() && !getLocalStorage('flagEndVariant')){
@@ -496,4 +496,30 @@ function time(allProblemsMain){
         datetime.show(timePlace);
     }
 }
+
+
+function currColor(thisProblems, inputAll, submitAll){
+    if (getLocalStorage('color')){
+        thisProblems.forEach((element, id) => {       
+            const thisColor = getLocalStorage('color')[element.id]
+
+            if (thisColor === 'green'){
+                background('green', id)
+                inputAll[id].readOnly = true
+                submitAll[id].disabled = true
+                submitAll[id].classList.remove('button:hover')
+            } else background(thisColor, id)
+        })
+    }
+}
+
+function currInput(thisProblems, inputAll){
+    if (getLocalStorage('inputCurr')){
+        thisProblems.forEach((element, id) => {  
+            const thisInput = getLocalStorage('inputCurr')[element.id]
+            inputAll[id].value = thisInput 
+        })
+    }
+}
+
 

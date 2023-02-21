@@ -25,6 +25,9 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
         if (event.target.classList[0] != 'nameProblem') return 
 
+        // Удаляем данные с LocalStr
+        localStorage.clear()
+
         // Устанавливаем номер и имя задачи
         const parent = event.target.closest('.fullProblem')
         const id = +parent.dataset.number
