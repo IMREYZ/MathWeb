@@ -1,5 +1,6 @@
 // Если на странице index
 if (window.location.pathname === `/MathWeb/index.html` || window.location.pathname === `/MathWeb/`){
+    console.log(111)
     
     // Находим 3 нижние кнопки + все имена 
     // Делаем скрытую кнопку variant
