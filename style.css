@@ -35,6 +35,29 @@ img{
 }
 
 
+
+.netTabl{
+    border-bottom: 2px dashed rgb(64, 0, 255);
+    width: 550px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 120px;
+}
+
+.netTabl:hover{
+    font-weight: 900;
+    color:rgba(0, 0, 0, .8)
+}
+
+.score{
+    margin-right: 50px;
+    margin-bottom: 100px;
+    font-size: 35px;
+}
+
+.fff{
+    margin-bottom: 20px;
+}
 .testEnd{
     position: relative;
     left: 170px;
@@ -322,6 +345,45 @@ footer{
     margin-bottom: 100px;
     margin-top: 30px;
 }
+
+.table2{
+    text-align: center;
+    margin: 0 auto;
+    font-size: 22px;
+    width: 1300px;
+    background-color: white;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.zhir{
+    font-weight: 900;
+}
+
+.vsego{
+    width: 200px;
+}
+
+.show{
+    display: block;
+}
+
+.close{
+    display: none;
+}
+
+.defaultStats{
+    height: 4е0px;
+}
+
+.tablePar{
+    margin: auto;
+    text-align: center;
+}
+
 .conteynerMain{
     display: block;
     position: relative;
@@ -343,7 +405,7 @@ footer{
     margin-top: 30px;
 }
 
-.day{
+.dayLeft{
     color: red
 }
 
@@ -425,6 +487,7 @@ a {
     border-radius: 12px;
     font-size: 25px;
     background-color: white;
+    margin-bottom: 100px;
 }
 .exam:hover{
     background-color: rgb(247, 243, 243);
@@ -511,9 +574,13 @@ td{
 
 
 .name{
-    
     margin: 0 auto;
     margin-top: 40px;
+}
+
+.name1{
+    margin: 0 auto;
+    margin-top: 10px;
 }
 
 
@@ -590,7 +657,7 @@ body {
     margin-right: 70px;
     border-bottom: 2px solid rgb(64, 0, 255);
     cursor: pointer;
-    font-size: 31px;
+    font-size: 22px;
 
 }
 
@@ -624,7 +691,16 @@ body {
     margin-bottom: 30px;
     margin-top: 30px;
     background-color: white;
+}
 
+.leave1{
+    border-radius: 12px;
+    width: 350px;
+    height: 60px;
+    font-size: 25px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    background-color: white;
 }
 
 .leave:hover{
@@ -635,6 +711,9 @@ body {
     background-color: white;
 }
 
+.time{
+    font-size: 35px;
+}
 
 .optionCurr{
     font-family: 'PT Serif', serif;
@@ -645,13 +724,31 @@ body {
     text-align: center;
 }
 
+.time1{
+    color: red;
+    margin-bottom: 30px;
+}
+
+.thisScore{
+    font-weight: 900;
+
+}
+
 .conteyner{
     border: 5px double black;
     width: 1370px;
     margin: 0 auto;
     margin-bottom: 60px;
     background-color: white;
-    
+    text-align: center;   
+}
+
+.conteynerStress{
+    border: 5px double black;
+    width: 1370px;
+    margin: 0 auto;
+    background-color: white;
+    text-align: center;   
 }
 
 body.variant{

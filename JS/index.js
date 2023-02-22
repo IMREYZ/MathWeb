@@ -10,13 +10,89 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
     variant.disabled = true
 
+    const dayLeft = document.querySelector('.dayLeft')
+    dayLeft.innerHTML = daysBeforeExam()
+
     
-    // Удаляем данные с LocalStr
-    localStorage.clear()
 
     // К названиям задач прибавляем кол-во этих задач
     const DOMarrayName = ['-', ...namesProblem]
     DOMarrayName.forEach((element, i) => {if (i != 0) element.innerHTML += ` (Всего задач: ${problems[i].length})`})
+
+    // ТАБЛИЦА
+    const deleteTable = document.querySelector('.deleteStats')
+    const tableInfo = document.querySelector('.table2')
+    const netTabl = document.querySelector('.netTabl')
+
+    deleteTable.addEventListener('click', () => {
+        removeLocalStorage('stats')
+        tableInfo.classList.remove('show')
+        tableInfo.classList.add('close')
+        netTabl.classList.remove('close')
+        netTabl.classList.add('show')
+        deleteTable.classList.remove('show')
+        deleteTable.classList.add('close')
+    })
+
+    if (getLocalStorage('stats')){
+
+
+        netTabl.classList.add('close')
+
+        let textHTML
+        const infoAll = [
+            {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0},
+            {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}
+        ]
+
+        getLocalStorage('stats').forEach((element, index) => {
+
+            textHTML = `<tr class='defaultStats'> <td> Вариант ${index + 1} </td>`
+            element.forEach((elementElement, index) => {
+                if (index != 11) {
+                    textHTML += `<td>${elementElement.right} / ${elementElement.count}</td>`
+                    infoAll[index].right += elementElement.right
+                    infoAll[index].all += elementElement.count
+
+                } else {
+                    textHTML += `<td class='zhir'>${elementElement.right} / ${elementElement.count} (${rounded(elementElement.right / elementElement.count * 100)}%)</td>`
+                    console.log(elementElement)
+                    infoAll[index].right += elementElement.right
+                    infoAll[index].all += elementElement.count
+                }
+            })
+        
+
+            textHTML += '</tr>'
+ 
+            tableInfo.innerHTML += textHTML
+        })
+
+        textHTML = `<tr> <td class='zhir'> Общая информация </td>`
+            infoAll.forEach(element => {
+                const final = element.all === 0 ? '???' : rounded(element.right / element.all * 100)
+                textHTML += `<td class='zhir'>${element.right} / ${element.all} \n (${final}%)</td>`
+                console.log(element.right, element.all, rounded(element.right / element.all * 100))
+            })
+
+        textHTML += '</tr>'
+        tableInfo.innerHTML += textHTML    
+    } else {
+        tableInfo.classList.add('close')
+        netTabl.classList.add('show')
+        deleteTable.classList.add('close')
+    }
+
+    
+
+    const stress = document.querySelector('.toStress')
+    stress.addEventListener('click', () => {
+        removeLocalStorage('deadLine')
+        removeLocalStorage('infoStress')
+        removeLocalStorage('randomProblem')
+        removeLocalStorage('thisScore')
+        removeLocalStorage('timer')
+    })
 
 
 
@@ -26,7 +102,8 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         if (event.target.classList[0] != 'nameProblem') return 
 
         // Удаляем данные с LocalStr
-        localStorage.clear()
+        removeLocalStorage('idProblem')
+        removeLocalStorage('nameProblem')
 
         // Устанавливаем номер и имя задачи
         const parent = event.target.closest('.fullProblem')
@@ -127,7 +204,11 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
     variant.addEventListener('click', () => {
 
         // Удаляем данные с LocalStr
-        localStorage.clear()
+        removeLocalStorage('countProblem')
+        removeLocalStorage('variant')
+        removeLocalStorage('deadLine')
+        removeLocalStorage('againVariant')
+        removeLocalStorage('answers')
 
         const allCountProblem = [...document.getElementsByClassName('countProblem')]
         allCountProblem.forEach(element => element.classList.remove('font-weight'))

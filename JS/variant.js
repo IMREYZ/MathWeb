@@ -94,21 +94,38 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
 
         // Введенные ответы
         inputVariant.forEach(element => answer.push(element.value))
-            
+
+        // Количество верных задач
+        let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         // Проверка на правильность ответа
         let rightAnswers = 0
         answer.forEach((element, index) => {
             if (element != ''){ 
                 if (element.replace(',', '.') === String(allProblemsMain[index].answer)){
                     rightAnswers ++
+                    countRightAnswer[allProblemsMain[index].number] ++
                     background('green', index)
                 } else background('red', index)
             } else background('red', index)
         })
 
+        let infoLocalStorage = []
+        for (let i = 1; i <= 11; i++){
+            infoLocalStorage.push({right: countRightAnswer[i], count: arrayCountProblem[i]})
+        }
+        infoLocalStorage.push({right: rightAnswers, count: answer.length})
+
+        let arrayInfo = []
+        if (getLocalStorage('stats')) {
+            getLocalStorage('stats').forEach(element => arrayInfo.push(element))
+        }
+
+        arrayInfo.push(infoLocalStorage)
+        setLocalStorage('stats', arrayInfo)
+
         // Блокируем "завершить работу" и все инпуты
         acceptBtn.disabled = true
-        for (let i = 0; i < answer.length ; i ++) document.getElementsByClassName("input")[i].readOnly = true
+        for (let i = 0; i < answer.length ; i++) document.getElementsByClassName("input")[i].readOnly = true
 
         
         // Смотрим на формат варианта, такой PopUp и выдаем (с "формат ЕГЭ (1-11) или без")

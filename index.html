@@ -33,11 +33,18 @@
             <a href="#ball">
                 <span class="rt"> Разбалловка первой части </span>
             </a>
+            <a href="#variant">
+                <span class="rt"> Статистика вариантов </span>
+            </a>
         </div>
+
+        
+
+
         <img class="fire" src="/MathWeb/img/i.webp" alt="">
     </header>
     <div class="contEge">
-        <p class="doEge"> до ЕГЭ осталось <span class="day"> 120 </span> дней</p>
+        <p class="doEge"> до ЕГЭ осталось <span class="dayLeft"> </span> дней</p>
     </div>
 
         <p id="generator1" class="text-center">
@@ -125,14 +132,50 @@
 
         <hr />
 
-        <p id="str" class="HeadPart"> Стресс-тест ЕГЭ по профильной математике</p>
+        <p id='variant' class="HeadPart"> Статистика вариантов </p>
+        <div class="rules">
+            <p class="ddd"> Прорешивайте варианты, количество каждого задания Вы можете выбирать сами. При выборе варианта "формата ЕГЭ" 
+                (11 заданий по одному из каждого номера) у Вас будет ограниченность во времени, а именно 30 минут. При нажатии на конкретный предмет, Вы можете отфильтровать задания по Вашему желанию.
+            </p>
+        </div>
+        <div class="tablePar">
+            <table class="table2" border="2" width="50px">
+                <tr>
+                    <td> № </td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td class="vsego">Всего</td>
+                </tr>
+        </div>
+        <div class="net">
+            <a id='variant' href="#generator1">
+                <div class="netTabl"> Здесь могла бы быть Ваша статистика </div>
+            </a>
+        </div>
+        
+        </table>
+
+        <button class="deleteStats clear"> Удалить историю Ваших резульатов</button>
+        
+        <hr />
+
+        <p id="str" class="stress HeadPart"> Стресс-тест ЕГЭ по профильной математике</p>
         <div class="rules">
             <p class="ddd"> Прорешивайте варианты, количество каждого задания Вы можете выбирать сами. При выборе варианта "формата ЕГЭ" 
                 (11 заданий по одному из каждого номера) у Вас будет ограниченность во времени, а именно 30 минут. При нажатии на конкретный предмет, Вы можете отфильтровать задания по Вашему желанию.
             </p>
         </div>
         <div class="Stress">
-            <button class="toStress"> Начать стресс-тест </button>
+            <a href="/MathWeb/HTML/stress.html"> <button  class="toStress"> Начать стресс-тест </button> </a>
         </div>
 
         <hr />
@@ -209,6 +252,7 @@
 
       <script src="/MathWeb/JS/baseAndFunctions.js"></script>
       <script src="/MathWeb/JS/index.js"></script>
+      <script src="/MathWeb/JS/stress.js"></script>
       <script src="/MathWeb/JS/variant.js"></script>
       <script src="/MathWeb/JS/currSubject.js"></script>
 

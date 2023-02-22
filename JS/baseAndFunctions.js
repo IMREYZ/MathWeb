@@ -24,7 +24,7 @@ const allProblems =
     {problem: '1.21', answer: 0.6, procent: 30},
     {problem: '1.22', answer: 25, procent: 60},
     {problem: '1.23', answer: 1, procent: 25},
-    {problem: '1.24', answer: 13, procent: 40},
+    {problem: '1.24', answer: 24, procent: 40},
     {problem: '1.25', answer: 64, procent: 30},
     {problem: '1.26', answer: 119, procent: 60},
     {problem: '1.27', answer: 3, procent: 30},
@@ -150,6 +150,7 @@ const allProblems =
 ]   
 
 
+
 // Все задания по номерам
 let problems = ['-', [], [], [], [], [], [], [], [], [], [], []]
 
@@ -164,7 +165,7 @@ allProblems.forEach(el => {
 })
 
 const timeOnProblem = {
-    1: [1, 0]
+    1: [1, 0], 2: [2, 0], 3: [1, 39], 4: [0, 30], 5: [0, 40], 6: [10, 0], 7: [14, 0], 8: [11, 0], 9: [14, 0], 10: [14, 0], 11: [11, 0],
 }
 
 // Словарь перевода баллов из первичной во вторичную
@@ -223,6 +224,17 @@ function problemHTMLcurr(probl, id) {
     </div>`
 }
 
+function problemHTMLstress(probl, id) {
+    return `<div id = ${id} class="conteynerStress" >
+    <div class="number gray" > 
+        <span class='idInfo'>Номер ${probl.number} №${probl.id} </span> 
+        <span class='${colorProcent(probl.procent)}'> (Сложность: ${probl.procent}%) </span> 
+    </div>
+        <img src='/MathWeb/img/${probl.problem}.jpg'>
+
+        <div class="answer">Введите ответ: <input class='input'> <button class="submit"> Ответить </button> </div>
+    </div>`
+}
 
 // Запись в LocalStr
 function setLocalStorage(nameLocal, value){
@@ -346,7 +358,7 @@ function titleTime(thisTime, deadLine){
     if (deadLine[0] === '00' && thisTime[0] != '00') deadLine[0] = '24' 
     
     const second = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1
-    const result = `${addZero(parseInt(second / 60))}:${addZero(second % 60)} осталось`
+    const result = `${addZero(parseInt(second / 60))}:${addZero(second % 60)}`
     
     return second > 0 ? result : 'Время закончилось!' 
 }
@@ -363,7 +375,7 @@ function deadLineNew(){
     thisTime = +thisTime.replaceAll(':', '')
     deadLine = +deadLine.replaceAll(':', '')
     if (deadLine < 10000 && thisTime > 10000) deadLine += 240000
-    return deadLine - thisTime <= 0
+    return deadLine - thisTime < 0
 }
 
 
@@ -421,67 +433,81 @@ function textPopUp(answer, rightAnswers){
 // Глобальная функция времени
 function time(allProblemsMain){
     const acceptBtn = document.querySelector('.accept')
-    
+    const timePlace = document.querySelector('.time')
     let answer = []
-        const timePlace = document.querySelector('.time')
-        const datetime = {
-        month: ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'],
-        show: function(node) {
-            let flagTest = true
-            const _this = this;
-            setInterval(function() {
-                const title = document.querySelector('.titleVariant')
-                const date = new Date();
-                const text = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${_this.month[date.getMonth()]} ${date.getFullYear()}`
-                if (flagTest && getLocalStorage('againVariant') === 'deadLinePicked'){
+    const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
+    let flagTest = true
+            
+    setInterval(function() {
+        const title = document.querySelector('.titleVariant')
+        const date = new Date();
+        const text = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()}`
+        
+        if (flagTest && getLocalStorage('againVariant') === 'deadLinePicked'){
 
-                    title.innerHTML = 'Вариант: ' + titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine'))
+            title.innerHTML = 'Вариант: ' + titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine')) + ' осталось'
 
-                    node.innerHTML = text + `, дедлайн: ${getLocalStorage('deadLine')} (${titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine'))})`
-                }
-                // Конец дедлайна
-                while (getLocalStorage('againVariant') != 'afk ' && deadLineNew() && !getLocalStorage('flagEndVariant')){
-                    const title = document.querySelector('.titleVariant')
-                    title.innerHTML = 'Время вышло!'
-
-
-                    // Убираем timePlace и inputVariant - все HTML поля input
-                    timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
-                    const inputVariant = [...document.getElementsByClassName('input')]
-                    
-                    // answer - список ответов
-                    inputVariant.forEach(element => answer.push(element.value))
-                    let rightAnswers = 0
-
-                    // Считаем кол-во правильных ответов
-                    answer.forEach((element, index) => {
-                        if (element != ''){ 
-                            if (element.replace(',', '.') === String(allProblemsMain[index].answer)){
-                                rightAnswers ++
-                                background('green', index)
-                            } else background('red', index)
-                        } else background('red', index)
-                    })
-
-                    acceptBtn.disabled = true
-
-
-                    for (let i = 0; i < answer.length ; i ++) inputVariant[i].readOnly = true
-
-                    addPopUp(textPopUpFull, answer, rightAnswers, secondBallArray)
-
-                    flagTest = false
-
-                    setLocalStorage('againVariant', 'afk')
-                    setLocalStorage('flagEndVariant', 'что-то')
-
-                    title.innerHTML = 'Результат'
-
-
-                }
-            }, 1000);
+            timePlace.innerHTML = text + `, дедлайн: ${getLocalStorage('deadLine')} (${titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine'))} осталось)`
         }
-    }
+            
+            // Конец дедлайна
+            while (getLocalStorage('againVariant') != 'afk ' && deadLineNew() && !getLocalStorage('flagEndVariant')){
+                const title = document.querySelector('.titleVariant')
+                title.innerHTML = 'Время вышло!'
+
+
+                // Убираем timePlace и inputVariant - все HTML поля input
+                timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
+                const inputVariant = [...document.getElementsByClassName('input')]
+                    
+                // answer - список ответов
+                inputVariant.forEach(element => answer.push(element.value))
+                let rightAnswers = 0
+
+                let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                const arrayCountProblem = getLocalStorage('countProblem')
+
+                // Считаем кол-во правильных ответов
+                answer.forEach((element, index) => {
+                    if (element != ''){ 
+                        if (element.replace(',', '.') === String(allProblemsMain[index].answer)){
+                            rightAnswers ++
+                            background('green', index)
+                        } else background('red', index)
+                    } else background('red', index)
+                })
+
+                acceptBtn.disabled = true
+
+
+                for (let i = 0; i < answer.length ; i ++) inputVariant[i].readOnly = true
+
+                addPopUp(textPopUpFull, answer, rightAnswers, secondBallArray)
+
+                flagTest = false
+
+                setLocalStorage('againVariant', 'afk')
+                setLocalStorage('flagEndVariant', 'что-то')
+
+                title.innerHTML = 'Результат'
+
+                let infoLocalStorage = []
+                for (let i = 1; i <= 11; i++){
+                    infoLocalStorage.push({right: countRightAnswer[i], count: arrayCountProblem[i]})
+                }
+                infoLocalStorage.push({right: rightAnswers, count: answer.length})
+
+                let arrayInfo = []
+                if (getLocalStorage('stats')) {
+                    getLocalStorage('stats').forEach(element => arrayInfo.push(element))
+                }
+
+                arrayInfo.push(infoLocalStorage)
+                setLocalStorage('stats', arrayInfo)
+
+
+            }
+    }, 1000);
 
     const date = new Date();
     const time = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`;
@@ -489,14 +515,19 @@ function time(allProblemsMain){
         setLocalStorage('deadLine', deadLine(time, 30, 0))
         setLocalStorage('againVariant', 'deadLinePicked')
     }
-
+    
     timePlace.innerHTML += deadLine(time, 30, 0)
-
-    window.onload = function() {
-        datetime.show(timePlace);
-    }
 }
 
+function daysBeforeExam(){
+    const EXAM = {month: 6, day: 1}
+
+    const date = new Date();
+    const thisDay = {month: +date.getMonth(), day: +date.getDate()}
+
+    const dayLeft = (EXAM.month - thisDay.month) * 30 + (EXAM.day - thisDay.day)
+    return dayLeft
+}
 
 function currColor(thisProblems, inputAll, submitAll){
     if (getLocalStorage('color')){
@@ -522,4 +553,4 @@ function currInput(thisProblems, inputAll){
     }
 }
 
-
+function randomStress() {return Math.floor(Math.random() * allProblems.length)}
