@@ -1,6 +1,5 @@
 // Если на странице index
 if (window.location.pathname === `/MathWeb/index.html` || window.location.pathname === `/MathWeb/`){
-    console.log(111)
     
     // Находим 3 нижние кнопки + все имена 
     // Делаем скрытую кнопку variant
@@ -105,6 +104,9 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         // Удаляем данные с LocalStr
         removeLocalStorage('idProblem')
         removeLocalStorage('nameProblem')
+        removeLocalStorage('inputCurr')
+        removeLocalStorage('color')
+        removeLocalStorage('select')
 
         // Устанавливаем номер и имя задачи
         const parent = event.target.closest('.fullProblem')

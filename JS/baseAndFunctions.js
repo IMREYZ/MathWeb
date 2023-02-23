@@ -165,7 +165,8 @@ allProblems.forEach(el => {
 })
 
 const timeOnProblem = {
-    1: [1, 0], 2: [2, 0], 3: [1, 39], 4: [0, 30], 5: [0, 40], 6: [10, 0], 7: [14, 0], 8: [11, 0], 9: [14, 0], 10: [14, 0], 11: [11, 0],
+    1: [1, 0], 2: [2, 0], 3: [1, 39], 4: [0, 30], 5: [0, 40], 6: [10, 0], 
+    7: [14, 0], 8: [11, 0], 9: [14, 0], 10: [14, 0], 11: [11, 0]
 }
 
 // Словарь перевода баллов из первичной во вторичную
@@ -230,11 +231,14 @@ function problemHTMLstress(probl, id) {
         <span class='idInfo'>Номер ${probl.number} №${probl.id} </span> 
         <span class='${colorProcent(probl.procent)}'> (Сложность: ${probl.procent}%) </span> 
     </div>
-        <img src='/MathWeb/img/${probl.problem}.jpg'>
+        <img class='imgStress' src='/MathWeb/img/${probl.problem}.jpg'>
 
         <div class="answer">Введите ответ: <input class='input'> <button class="submit"> Ответить </button> </div>
     </div>`
 }
+
+
+
 
 // Запись в LocalStr
 function setLocalStorage(nameLocal, value){

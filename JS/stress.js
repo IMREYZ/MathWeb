@@ -5,6 +5,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
     const score = document.querySelector('.score')
     const place = document.querySelector('.place')
     const refreshInfo = document.querySelector('.time1')
+
     
     refreshInfo.classList.add('close')
     setLocalStorage('timer', false)
@@ -32,6 +33,9 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
     }
     // Закидываем задачу на страницу
     place.innerHTML = problemHTMLstress(getLocalStorage('randomProblem'))
+
+
+    document.querySelector('.input').focus()
 
     
 
@@ -63,7 +67,8 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
 
                 // Задаём новое случайное задание и выводим на страницу новое
                 setLocalStorage('randomProblem', allProblems[randomStress()])
-                place.innerHTML = problemHTMLstress(getLocalStorage('randomProblem'))
+
+
 
                 // Узнаем текущее время
                 const date = new Date();
@@ -115,6 +120,9 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
                 // Делаем заглушку на 0,85 сек
                 setTimeout(function(){
                     place.innerHTML = problemHTMLstress(getLocalStorage('randomProblem'))
+
+
+                    document.querySelector('.input').focus()
                     removeLocalStorage('pause')
                 }, 850)
 
@@ -137,8 +145,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
                 background('red', 0)
                 setLocalStorage('pause', true)
 
-                // Берем новую задачу
-                setLocalStorage('randomProblem', allProblems[randomStress()])
+                
 
                 // Делаем заглушку на 0,85 сек
                 setTimeout(function(){
@@ -147,11 +154,16 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
                     timePlace.innerHTML = `Ваш Результат за эту попытку: <span class='thisScore'>${scored}</span> (Рекорд: <span class='thisScore'>${getLocalStorage('record')}</span>)`
                     score.innerHTML = ''
 
+
+
+
                     setLocalStorage('timer', true)
 
                     refreshInfo.classList.remove('close')
                 }, 1050)
 
+                // Берем новую задачу
+                setLocalStorage('randomProblem', allProblems[randomStress()])
 
 
                 

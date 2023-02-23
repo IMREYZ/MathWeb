@@ -495,8 +495,18 @@ a {
 }
 
 .boom:active{
-    animation: shake 0.02s;
+    animation: shake 0.01s;
     animation-iteration-count: infinite;
+}
+
+.imgStress{
+    max-height: 350px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.imgStressEnd{
+    max-height: 300px;
 }
 
 .vk{
@@ -736,7 +746,7 @@ body {
 
 .conteyner{
     border: 5px double black;
-    width: 1370px;
+    width: 1420px;
     margin: 0 auto;
     margin-bottom: 60px;
     background-color: white;
@@ -782,11 +792,15 @@ body.curr{
 
 
 .number{
-    color: white
+    color: white;
 }
 
 .answer{
     background-color: rgb(241, 241, 241);
     margin-top: 0;
     font-size: 30px;
+}
+
+img{
+    margin-bottom: 0;
 }
