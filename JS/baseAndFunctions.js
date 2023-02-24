@@ -150,7 +150,6 @@ const allProblems =
 ]   
 
 
-
 // Все задания по номерам
 let problems = ['-', [], [], [], [], [], [], [], [], [], [], []]
 
@@ -164,10 +163,13 @@ allProblems.forEach(el => {
     problems[el.number].push(el)
 })
 
+
+// Время на задачу с каким-то номером
 const timeOnProblem = {
     1: [1, 0], 2: [2, 0], 3: [1, 39], 4: [0, 30], 5: [0, 40], 6: [10, 0], 
-    7: [14, 0], 8: [11, 0], 9: [14, 0], 10: [14, 0], 11: [11, 0]
+    7: [1, 0], 8: [11, 0], 9: [14, 0], 10: [14, 0], 11: [11, 0]
 }
+
 
 // Словарь перевода баллов из первичной во вторичную
 const secondBallArray = {
@@ -190,6 +192,7 @@ function randomProblem(problem, countPr) {
     }
     return result
 }
+
 
 // Цвет задачи
 function colorProcent(procent){
@@ -220,11 +223,12 @@ function problemHTMLcurr(probl, id) {
         <span class='${colorProcent(probl.procent)}'> (Сложность: ${probl.procent}%) </span> 
     </div>
         <img src='/MathWeb/img/${probl.problem}.jpg'>
-
         <div class="answer">Введите ответ: <input class='input'> <button class="submit"> Ответить </button> </div>
     </div>`
 }
 
+
+// Вывод задание на HTML на вкладку stress
 function problemHTMLstress(probl, id) {
     return `<div id = ${id} class="conteynerStress" >
     <div class="number gray" > 
@@ -236,8 +240,6 @@ function problemHTMLstress(probl, id) {
         <div class="answer">Введите ответ: <input class='input'> <button class="submit"> Ответить </button> </div>
     </div>`
 }
-
-
 
 
 // Запись в LocalStr
@@ -294,6 +296,7 @@ function countProblemToNumber(value){
     for (i = 0; i <= 10; i++) document.getElementsByClassName('countProblem')[i].value = value
 }
 
+
 // Изменение кнопки variantBTN в обычную
 function defaultBtnVariant(){
     const variant = document.querySelector('.variantBTN')
@@ -319,6 +322,7 @@ function changeBtnVariant(){
 
     variant.disabled ? variant.classList.add('boom') : variant.classList.remove('boom')
 }
+
 
 // Функция для времени №1
 // '4:30:20 12 Февраля 2023' --> [4, 30, 20]
@@ -364,7 +368,7 @@ function titleTime(thisTime, deadLine){
     const second = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1
     const result = `${addZero(parseInt(second / 60))}:${addZero(second % 60)}`
     
-    return second > 0 ? result : 'Время закончилось!' 
+    return result 
 }
 
 
@@ -405,7 +409,7 @@ function addPopUp(thisTextPopUp, answer, rightAnswers, secondBall){
 }
 
 
-// HTML контент для "формата ЕГЭ"
+// HTML PopUp контент для "формата ЕГЭ"
 function textPopUpFull(answer, rightAnswers, secondBallArray){
             return `<div class='testEnd'> Тест завершен! </div> 
             <hr/>
@@ -420,7 +424,7 @@ function textPopUpFull(answer, rightAnswers, secondBallArray){
 }
 
 
-// HTML контент для НЕ "формата ЕГЭ"
+// HTML PopUp контент для НЕ "формата ЕГЭ"
 function textPopUp(answer, rightAnswers){
     return `<div class='testEnd'> Тест завершен! </div> 
     <hr/>
@@ -432,47 +436,64 @@ function textPopUp(answer, rightAnswers){
 }
 
 
-
-
-// Глобальная функция времени
+// Глобальная функция времени (variant)
 function time(allProblemsMain){
+    // Забираем со страницы кнопку "завершить"; "место времени"; "верхнюю надпись"
     const acceptBtn = document.querySelector('.accept')
     const timePlace = document.querySelector('.time')
-    let answer = []
-    const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
-    let flagTest = true
-            
-    setInterval(function() {
-        const title = document.querySelector('.titleVariant')
-        const date = new Date();
-        const text = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()}`
-        
-        if (flagTest && getLocalStorage('againVariant') === 'deadLinePicked'){
+    const title = document.querySelector('.titleVariant')
 
+    // answerUser - список ответов
+    // month - по индексу забираем месяц
+    let answerUser = []
+    const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
+    
+    
+    // Устанавилваем Date(); определяем текущее время
+    const date = new Date();
+    const timeFull = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} `;
+    // Если нет deadLine или againVariant === afk, ставим новый deadLine и afk ==> deadLinePicked
+    if (!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk'){
+        setLocalStorage('deadLine', deadLine(timeFull, 30, 4))
+        setLocalStorage('againVariant', 'deadLinePicked')
+    }
+
+    // setInterval раз в секунду
+    setInterval(() => {
+        // Устанавливаем Date
+        const date = new Date();
+        
+        // Если сейчас идет вариант (если нет, то "afk")
+        if (getLocalStorage('againVariant') === 'deadLinePicked'){
+
+            // устанавливаем "верхнюю надпись"
             title.innerHTML = 'Вариант: ' + titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine')) + ' осталось'
 
-            timePlace.innerHTML = text + `, дедлайн: ${getLocalStorage('deadLine')} (${titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine'))} осталось)`
+            // устанавливаем "место времени" 
+            const textFull = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()}`
+            timePlace.innerHTML = textFull + `, дедлайн: ${getLocalStorage('deadLine')} (${titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine'))} осталось)`
         }
             
             // Конец дедлайна
-            while (getLocalStorage('againVariant') != 'afk ' && deadLineNew() && !getLocalStorage('flagEndVariant')){
-                const title = document.querySelector('.titleVariant')
-                title.innerHTML = 'Время вышло!'
+            // 1 условие - если закончился дедлайн; 2 условие - чтоб вызвался 1 раз
+            if (deadLineNew() && getLocalStorage('againVariant') != 'afk'){
 
+                // Заголовок = 'Время вышло!'
+                title.innerHTML = 'Время вышло!'
 
                 // Убираем timePlace и inputVariant - все HTML поля input
                 timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
-                const inputVariant = [...document.getElementsByClassName('input')]
+                const inputVariant = document.querySelectorAll('input')
                     
-                // answer - список ответов
-                inputVariant.forEach(element => answer.push(element.value))
+                // В answerUser все ответы пользователя; количетво правильных ответов; количество верных ответов какого-то задания
+                // Количество верных ответов какого-то задания; количество заданий какого-то задания
+                inputVariant.forEach(element => answerUser.push(element.value))
                 let rightAnswers = 0
-
                 let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 const arrayCountProblem = getLocalStorage('countProblem')
 
-                // Считаем кол-во правильных ответов
-                answer.forEach((element, index) => {
+                // Считаем кол-во правильных ответов + делаем background
+                answerUser.forEach((element, index) => {
                     if (element != ''){ 
                         if (element.replace(',', '.') === String(allProblemsMain[index].answer)){
                             rightAnswers ++
@@ -481,63 +502,69 @@ function time(allProblemsMain){
                     } else background('red', index)
                 })
 
+                // disabled кнопки "принять"
                 acceptBtn.disabled = true
 
+                // "Режим чтения" всем кнопкам
+                inputVariant.forEach(el => el.readOnly = true)
 
-                for (let i = 0; i < answer.length ; i ++) inputVariant[i].readOnly = true
+                // Вызываем PopUpFull 
+                addPopUp(textPopUpFull, answerUser, rightAnswers, secondBallArray)
 
-                addPopUp(textPopUpFull, answer, rightAnswers, secondBallArray)
-
-                flagTest = false
-
+                // Замораживаем вариант
                 setLocalStorage('againVariant', 'afk')
-                setLocalStorage('flagEndVariant', 'что-то')
 
+                // Заголовок = 'Результат'
                 title.innerHTML = 'Результат'
 
+                // infoLocalStorage - узнаем количество верных/всего заданий + всего верно и всего задач
                 let infoLocalStorage = []
-                for (let i = 1; i <= 11; i++){
-                    infoLocalStorage.push({right: countRightAnswer[i], count: arrayCountProblem[i]})
-                }
-                infoLocalStorage.push({right: rightAnswers, count: answer.length})
+                for (let i = 1; i <= 11; i++) infoLocalStorage.push({right: countRightAnswer[i], count: arrayCountProblem[i]})
+                infoLocalStorage.push({right: rightAnswers, count: answerUser.length})
 
+                // arrayInfo - вспомогательный массив. Делаем stats вида: [{1 Вариант}, {2 Вариант}, {3 Вариант}, {4 Вариант}...]
                 let arrayInfo = []
-                if (getLocalStorage('stats')) {
-                    getLocalStorage('stats').forEach(element => arrayInfo.push(element))
-                }
-
+                if (getLocalStorage('stats')) getLocalStorage('stats').forEach(element => arrayInfo.push(element))             
                 arrayInfo.push(infoLocalStorage)
                 setLocalStorage('stats', arrayInfo)
-
-
             }
     }, 1000);
 
-    const date = new Date();
-    const time = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`;
-    if (!getLocalStorage('deadLine') || getLocalStorage('againVariant') != 'deadLinePicked'){
-        setLocalStorage('deadLine', deadLine(time, 30, 0))
-        setLocalStorage('againVariant', 'deadLinePicked')
-    }
     
-    timePlace.innerHTML += deadLine(time, 30, 0)
 }
 
+
+// Дней до экзамена
 function daysBeforeExam(){
+    // Костанта - день экзамена
     const EXAM = {month: 6, day: 1}
 
+    // Формируем текущий день
     const date = new Date();
     const thisDay = {month: +date.getMonth(), day: +date.getDate()}
 
+    // Сколько дней осталось
     const dayLeft = (EXAM.month - thisDay.month) * 30 + (EXAM.day - thisDay.day)
     return dayLeft
 }
 
-function currColor(thisProblems, inputAll, submitAll){
+
+// Появление цвета в currSubject в случае обновления страницы
+function currColor(thisProblems){
+    // Берем все input и submit со страницы
+    const inputAll = document.querySelectorAll('.input')
+    const submitAll = document.querySelectorAll('.submit')
+
+    // Если до этого были цвета карточек
     if (getLocalStorage('color')){
-        thisProblems.forEach((element, id) => {       
+        // Перебираем все текущие задания (могут быть в любом порядке)
+        // Забираем цвет карточки очередного задания через getLocalStorage('color')
+        // {9001: "red", 9002: "red", 9003: "gray", 9004: "gray", 9005: "gray"}
+        thisProblems.forEach((element, id) => {  
+            // Текущий цвет
             const thisColor = getLocalStorage('color')[element.id]
 
+            // Если верно, то зеленый + другое, иначе: НЕ зеленый цвет
             if (thisColor === 'green'){
                 background('green', id)
                 inputAll[id].readOnly = true
@@ -548,13 +575,27 @@ function currColor(thisProblems, inputAll, submitAll){
     }
 }
 
-function currInput(thisProblems, inputAll){
+
+// Появление input в currSubject в случае обновления страницы
+function currInput(thisProblems){
+    // Берем все input со страницы
+    const inputAll = document.querySelectorAll('.input')
+
+    // Если до этого были введены ответы 
     if (getLocalStorage('inputCurr')){
+
+        // Перебираем все текущие задания (могут быть в любом порядке)
+        // Забираем значение input очередного задания через getLocalStorage('inputCurr')
+        // {4001: "1", 4002: "", 4003: ""}
         thisProblems.forEach((element, id) => {  
             const thisInput = getLocalStorage('inputCurr')[element.id]
+
+            // Передаем сохраненное значение
             inputAll[id].value = thisInput 
         })
     }
 }
 
+
+// Рандоиный индекс массива allProblems (для stress)
 function randomStress() {return Math.floor(Math.random() * allProblems.length)}

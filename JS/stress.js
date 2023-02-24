@@ -17,7 +17,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
     // Если нет, то score в LocalStr, иначе записываем в счёт (если обновление страницы)
     !getLocalStorage('thisScore') ? setLocalStorage('thisScore', 0) : score.innerHTML = `Текущий счёт: <span class='thisScore'>${getLocalStorage('thisScore')}</span>`
     score.innerHTML += ` (Рекорд: <span class='thisScore'>${getLocalStorage('record')}</span>)`
-
+     
     
 
     // Если нет задачи в LocalStr
@@ -163,12 +163,14 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
                 }, 1050)
 
                 // Берем новую задачу
-                setLocalStorage('randomProblem', allProblems[randomStress()])
-
-
-                
-                
+                setLocalStorage('randomProblem', allProblems[randomStress()])    
             }
         }
+    })
+
+    document.addEventListener('input', (event) => {
+        if (event.target.classList[0] != 'input') return
+
+        event.target.value = event.target.value.replace(/[^0123456789,-]/g, '')
     })
 }

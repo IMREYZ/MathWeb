@@ -56,7 +56,6 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
                 } else {
                     textHTML += `<td class='zhir'>${elementElement.right} / ${elementElement.count} (${rounded(elementElement.right / elementElement.count * 100)}%)</td>`
-                    console.log(elementElement)
                     infoAll[index].right += elementElement.right
                     infoAll[index].all += elementElement.count
                 }

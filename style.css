@@ -717,6 +717,12 @@ body {
     background-color: rgb(247, 243, 243);
     font-weight: 900;
 }
+
+.leave1:hover{
+    background-color: rgb(247, 243, 243);
+    font-weight: 900;
+}
+
 .problemVar{
     background-color: white;
 }

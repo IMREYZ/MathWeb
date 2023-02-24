@@ -38,9 +38,9 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
     thisProblems.forEach((element, index) => allConteynerProblem.innerHTML += problemHTMLcurr(element, index))
 
-    currColor(thisProblems, inputAll, submitAll)
+    currColor(thisProblems)
 
-    currInput(thisProblems, inputAll)
+    currInput(thisProblems)
 
     const optionCurr = document.querySelector('.optionCurr')
     optionCurr.addEventListener('change', () => {
@@ -58,9 +58,9 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         allConteynerProblem.innerHTML = ''
         thisProblems.forEach((element, index) => allConteynerProblem.innerHTML += problemHTMLcurr(element, index))
 
-        currColor(thisProblems, inputAll, submitAll)
+        currColor(thisProblems)
 
-        currInput(thisProblems, inputAll)
+        currInput(thisProblems)
 
     })
 
