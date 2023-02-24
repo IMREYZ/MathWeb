@@ -252,6 +252,7 @@ img{
 .ddd{
     margin-left: 25px;
     margin-right: 25px;
+    text-align: center;
 }
 
 hr{
@@ -344,6 +345,35 @@ footer{
     margin: auto;
     margin-bottom: 100px;
     margin-top: 30px;
+    width: 1100px;
+    height: 100px;
+    
+}
+
+.tdN{
+    width: 260px;
+}
+
+.td1{
+    width: 50px;
+}
+
+
+
+table{
+    border: 2px solid rgb(64, 0, 255);
+    border-radius: 10px;
+    background-color: rgb(245, 249, 252);
+}
+
+.table3{
+    margin: auto;
+    margin-top: 10px;
+    background-color: rgb(245, 249, 252);
+}
+
+.center{
+    text-align: center;
 }
 
 .table2{
@@ -723,6 +753,9 @@ body {
     font-weight: 900;
 }
 
+.w900{
+    font-weight: 900;
+}
 .problemVar{
     background-color: white;
 }
@@ -761,7 +794,7 @@ body {
 
 .conteynerStress{
     border: 5px double black;
-    width: 1370px;
+    width: 1430px;
     margin: 0 auto;
     background-color: white;
     text-align: center;   
@@ -778,15 +811,20 @@ body.curr{
 
 
 .gray{
-    background-color: gray;
+    background-color: grey;
 }
 
 .red{
-    background-color: rgb(246, 141, 141);
+    background-color: rgb(219, 176, 176);
 }
 
 .green{
-    background-color: rgb(149, 214, 149);
+    background-color: rgb(197, 241, 197);
+}
+
+
+.gray1{
+    background-color: rgb(241, 241, 241);
 }
 
 .input{
@@ -802,7 +840,6 @@ body.curr{
 }
 
 .answer{
-    background-color: rgb(241, 241, 241);
     margin-top: 0;
     font-size: 30px;
 }

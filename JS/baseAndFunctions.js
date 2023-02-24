@@ -166,8 +166,8 @@ allProblems.forEach(el => {
 
 // Время на задачу с каким-то номером
 const timeOnProblem = {
-    1: [1, 0], 2: [2, 0], 3: [1, 39], 4: [0, 30], 5: [0, 40], 6: [10, 0], 
-    7: [1, 0], 8: [11, 0], 9: [14, 0], 10: [14, 0], 11: [11, 0]
+    1: [1, 1], 2: [1, 21], 3: [0, 31], 4: [1, 31], 5: [0, 46], 6: [1, 11], 
+    7: [0, 41], 8: [2, 1], 9: [3, 1], 10: [2, 1], 11: [1, 21]
 }
 
 
@@ -210,7 +210,7 @@ function problemHTMLvariant(probl) {
         <span class='${colorProcent(probl.procent)}'> (Сложность: ${probl.procent}%) </span> 
     </div>
         <img src='/MathWeb/img/${probl.problem}.jpg' >
-        <div class="answer">Введите ответ: <input class='input'> </div>
+        <div class="answer gray1">Введите ответ: <input class='input'> </div>
     </div>`
 } 
 
@@ -223,7 +223,7 @@ function problemHTMLcurr(probl, id) {
         <span class='${colorProcent(probl.procent)}'> (Сложность: ${probl.procent}%) </span> 
     </div>
         <img src='/MathWeb/img/${probl.problem}.jpg'>
-        <div class="answer">Введите ответ: <input class='input'> <button class="submit"> Ответить </button> </div>
+        <div class="answer gray1">Введите ответ: <input class='input'> <button class="submit"> Ответить </button> </div>
     </div>`
 }
 
@@ -237,7 +237,7 @@ function problemHTMLstress(probl, id) {
     </div>
         <img class='imgStress' src='/MathWeb/img/${probl.problem}.jpg'>
 
-        <div class="answer">Введите ответ: <input class='input'> <button class="submit"> Ответить </button> </div>
+        <div class="answer gray1">Введите ответ: <input class='input'> <button class="submit"> Ответить </button> </div>
     </div>`
 }
 
@@ -262,8 +262,12 @@ function removeLocalStorage(value){
 
 // Смена background цвета
 function background(color, index) {
-    document.getElementsByClassName("number")[index].classList.remove('gray', 'green', 'red')
-    document.getElementsByClassName("number")[index].classList.add(color)
+    document.querySelectorAll(".number")[index].classList.remove('gray', 'green', 'red')
+    document.querySelectorAll(".number")[index].classList.add(color)
+    
+    document.querySelectorAll(".answer")[index].classList.remove('gray1', 'green', 'red')
+    if (color === 'gray') color = 'gray1'
+    document.querySelectorAll(".answer")[index].classList.add(color)
 }
 
 
@@ -376,8 +380,7 @@ function titleTime(thisTime, deadLine){
 // Если прошел, то true
 // Если еще нет, то false
 function deadLineNew(){
-    const date = new Date();
-    let thisTime = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`
+    let thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')}`
     let deadLine = getLocalStorage('deadLine')
 
     thisTime = +thisTime.replaceAll(':', '')
@@ -449,9 +452,8 @@ function time(allProblemsMain){
     const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
     
     
-    // Устанавилваем Date(); определяем текущее время
-    const date = new Date();
-    const timeFull = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} `;
+    // Определяем текущее время
+    const timeFull = `${getTime('h')}:${getTime('m')}:${getTime('s')} `;
     // Если нет deadLine или againVariant === afk, ставим новый deadLine и afk ==> deadLinePicked
     if (!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk'){
         setLocalStorage('deadLine', deadLine(timeFull, 30, 4))
@@ -460,18 +462,16 @@ function time(allProblemsMain){
 
     // setInterval раз в секунду
     setInterval(() => {
-        // Устанавливаем Date
-        const date = new Date();
         
         // Если сейчас идет вариант (если нет, то "afk")
         if (getLocalStorage('againVariant') === 'deadLinePicked'){
 
             // устанавливаем "верхнюю надпись"
-            title.innerHTML = 'Вариант: ' + titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine')) + ' осталось'
+            title.innerHTML = 'Вариант: ' + titleTime(`${getTime('h')}:${getTime('m')}:${getTime('s')}`, getLocalStorage('deadLine')) + ' осталось'
 
             // устанавливаем "место времени" 
-            const textFull = `${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())} ${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()}`
-            timePlace.innerHTML = textFull + `, дедлайн: ${getLocalStorage('deadLine')} (${titleTime(`${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}`, getLocalStorage('deadLine'))} осталось)`
+            const textFull = `${getTime('h')}:${getTime('m')}:${getTime('s')} ${getTime('d')} ${month[getTime('mo')]} ${getTime('y')}`
+            timePlace.innerHTML = textFull + `, дедлайн: ${getLocalStorage('deadLine')} (${titleTime(`${getTime('h')}:${getTime('m')}:${getTime('s')}`, getLocalStorage('deadLine'))} осталось)`
         }
             
             // Конец дедлайна
@@ -599,3 +599,17 @@ function currInput(thisProblems){
 
 // Рандоиный индекс массива allProblems (для stress)
 function randomStress() {return Math.floor(Math.random() * allProblems.length)}
+
+
+// Возвращение времени
+function getTime(value){
+    const date = new Date()
+
+    if (value === 's') return addZero(date.getSeconds())
+    else if (value === 'm') return addZero(date.getMinutes())
+    else if (value === 'h') return addZero(date.getHours())
+    else if (value === 'd') return addZero(date.getDay())
+    else if (value === 'mo') return date.getMonth()
+    else if (value === 'y') return addZero(date.getFullYear())
+
+}
