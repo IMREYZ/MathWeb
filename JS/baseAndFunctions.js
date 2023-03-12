@@ -259,6 +259,47 @@ const allProblems =
 
 
 
+    {problem: '3.1', answer: 0.8, procent: 20},
+    {problem: '3.2', answer: 0.74, procent: 30},
+    {problem: '3.3', answer: 0.2, procent: 35},
+    {problem: '3.4', answer: 0.16, procent: 45},
+    {problem: '3.5', answer: 0.4, procent: 50},
+    {problem: '3.6', answer: 0.25, procent: 35},
+    {problem: '3.7', answer: 0.97, procent: 55},
+    {problem: '3.8', answer: 0.55, procent: 30},
+    {problem: '3.9', answer: 0.3, procent: 75},
+    {problem: '3.10', answer: 0.35, procent: 75},
+    {problem: '3.11', answer: 0.2, procent: 65},
+    {problem: '3.12', answer: 0.92, procent: 40},
+    {problem: '3.13', answer: 0.88, procent: 70},
+    {problem: '3.14', answer: 0.97, procent: 90},
+    {problem: '3.15', answer: 0.6, procent: 25},
+    {problem: '3.16', answer: 0.75, procent: 40},
+    {problem: '3.17', answer: 0.05, procent: 40},
+    {problem: '3.18', answer: 0.08, procent: 95},
+    {problem: '3.19', answer: 0.5, procent: 65},
+    {problem: '3.20', answer: 0.4, procent: 20},
+    {problem: '3.21', answer: 0.65, procent: 30},
+    {problem: '3.22', answer: 0.25, procent: 35},
+    {problem: '3.23', answer: 0.4, procent: 45},
+    {problem: '3.24', answer: 0.25, procent: 50},
+    {problem: '3.25', answer: 0.25, procent: 35},
+    {problem: '3.26', answer: 0.996, procent: 55},
+    {problem: '3.27', answer: 0.46, procent: 30},
+    {problem: '3.28', answer: 0.4, procent: 75},
+    {problem: '3.29', answer: 0.2, procent: 75},
+    {problem: '3.30', answer: 0.25, procent: 65},
+    {problem: '3.31', answer: 0.86, procent: 40},
+    {problem: '3.32', answer: 0.89, procent: 70},
+    {problem: '3.33', answer: 0.98, procent: 90},
+    {problem: '3.34', answer: 0.5, procent: 25},
+    {problem: '3.35', answer: 0.25, procent: 40},
+    {problem: '3.36', answer: 0.2, procent: 40},
+    {problem: '3.37', answer: 0.2, procent: 95},
+    {problem: '3.38', answer: 0.25, procent: 65},
+
+
+
     {problem: '4.1', answer: 0.1, procent: 45},
     {problem: '4.2', answer: 0.96, procent: 75},
     {problem: '4.3', answer: 0.55, procent: 10},
@@ -539,6 +580,174 @@ const allProblems =
     {problem: '7.72', answer: 24, procent: 80},
     {problem: '7.73', answer: 6.75, procent: 100},
     {problem: '7.74', answer: 4.95, procent: 100},
+
+
+    {problem: '8.1', answer: 25, procent: 40},
+    {problem: '8.2', answer: 6, procent: 80},
+    {problem: '8.3', answer: 4.27, procent: 75},
+    {problem: '8.4', answer: 48, procent: 50},
+    {problem: '8.5', answer: 1.4, procent: 55},
+    {problem: '8.6', answer: 6, procent: 90},
+    {problem: '8.7', answer: 5, procent: 85},
+    {problem: '8.8', answer: 17, procent: 25},
+    {problem: '8.9', answer: 4, procent: 35},
+    {problem: '8.10', answer: 88, procent: 20},
+    {problem: '8.11', answer: 340, procent: 45},
+    {problem: '8.12', answer: 312, procent: 50},
+    {problem: '8.13', answer: 506, procent: 60},
+    {problem: '8.14', answer: 220.5, procent: 65},
+    {problem: '8.15', answer: 12, procent: 35},
+    {problem: '8.16', answer: 12, procent: 90},
+    {problem: '8.17', answer: 5500, procent: 40},
+    {problem: '8.18', answer: 0.72, procent: 45},
+    {problem: '8.19', answer: 320, procent: 60},
+    {problem: '8.20', answer: 15, procent: 55},
+    {problem: '8.21', answer: 8, procent: 95},
+    {problem: '8.22', answer: 9.2, procent: 100},
+    {problem: '8.23', answer: 7, procent: 60},
+    {problem: '8.24', answer: 33, procent: 65},
+    {problem: '8.25', answer: 8.5, procent: 85},
+    {problem: '8.26', answer: 30, procent: 60},
+    {problem: '8.27', answer: 60, procent: 70},
+    {problem: '8.28', answer: 60, procent: 70},
+    {problem: '8.29', answer: 42, procent: 65},
+    {problem: '8.30', answer: 8, procent: 50},
+    {problem: '8.31', answer: 14, procent: 50},
+    {problem: '8.32', answer: 0.18, procent: 85},
+    {problem: '8.33', answer: 24, procent: 90},
+    {problem: '8.34', answer: 6000, procent: 90},
+    {problem: '8.35', answer: 0.79, procent: 80},
+    {problem: '8.36', answer: 0.265, procent: 70},
+
+    {problem: '8.37', answer: 30, procent: 40},
+    {problem: '8.38', answer: 20, procent: 80},
+    {problem: '8.39', answer: 3.79, procent: 75},
+    {problem: '8.40', answer: 42, procent: 50},
+    {problem: '8.41', answer: 0.4, procent: 55},
+    {problem: '8.42', answer: 1, procent: 90},
+    {problem: '8.43', answer: 4, procent: 85},
+    {problem: '8.44', answer: 9, procent: 25},
+    {problem: '8.45', answer: 2.8, procent: 35},
+    {problem: '8.46', answer: 27.5, procent: 20},
+    {problem: '8.47', answer: 260, procent: 45},
+    {problem: '8.48', answer: 319, procent: 50},
+    {problem: '8.49', answer: 753, procent: 60},
+    {problem: '8.50', answer: 253, procent: 65},
+    {problem: '8.51', answer: 45, procent: 35},
+    {problem: '8.52', answer: 3.5, procent: 90},
+    {problem: '8.53', answer: 0.9, procent: 40},
+    {problem: '8.54', answer: 0.98, procent: 45},
+    {problem: '8.55', answer: 20, procent: 60},
+    {problem: '8.56', answer: 10, procent: 55},
+    {problem: '8.57', answer: 125, procent: 95},
+    {problem: '8.58', answer: 9.9, procent: 100},
+    {problem: '8.59', answer: 2.5, procent: 60},
+    {problem: '8.60', answer: 33, procent: 65},
+    {problem: '8.61', answer: 5.5, procent: 85},
+    {problem: '8.62', answer: 90, procent: 60},
+    {problem: '8.63', answer: 90, procent: 70},
+    {problem: '8.64', answer: 60, procent: 70},
+    {problem: '8.65', answer: 2.1, procent: 65},
+    {problem: '8.66', answer: 10, procent: 50},
+    {problem: '8.67', answer: 12, procent: 50},
+    {problem: '8.68', answer: 0.38, procent: 85},
+    {problem: '8.69', answer: 105, procent: 90},
+    {problem: '8.70', answer: 5000, procent: 90},
+    {problem: '8.71', answer: 0.47, procent: 80},
+    {problem: '8.72', answer: 0.445, procent: 70},
+
+
+
+    {problem: '9.1', answer: 14, procent: 20},
+    {problem: '9.2', answer: 10, procent: 20},
+    {problem: '9.3', answer: 11, procent: 35},
+    {problem: '9.4', answer: 17, procent: 35},
+    {problem: '9.5', answer: 10, procent: 45},
+    {problem: '9.6', answer: 5, procent: 50},
+    {problem: '9.7', answer: 15, procent: 55},
+    {problem: '9.8', answer: 50, procent: 45},
+    {problem: '9.9', answer: 1, procent: 65},
+    {problem: '9.10', answer: 240, procent: 95},
+    {problem: '9.11', answer: 14, procent: 40},
+    {problem: '9.12', answer: 2, procent: 35},
+    {problem: '9.13', answer: 9, procent: 45},
+    {problem: '9.14', answer: 2, procent: 40},
+    {problem: '9.15', answer: 3, procent: 55},
+    {problem: '9.16', answer: 20, procent: 55},
+    {problem: '9.17', answer: 756, procent: 80},
+    {problem: '9.18', answer: 7, procent: 65},
+    {problem: '9.19', answer: 20, procent: 70},
+    {problem: '9.20', answer: 55, procent: 50},
+    {problem: '9.21', answer: 90, procent: 50},
+    {problem: '9.22', answer: 18, procent: 40},
+    {problem: '9.23', answer: 16, procent: 55},
+    {problem: '9.24', answer: 18, procent: 70},
+    {problem: '9.25', answer: 18, procent: 75},
+    {problem: '9.26', answer: 30, procent: 75},
+    {problem: '9.27', answer: 15, procent: 90},
+    {problem: '9.28', answer: 28, procent: 85},
+    {problem: '9.29', answer: 15, procent: 90},
+    {problem: '9.30', answer: 10, procent: 30},
+    {problem: '9.31', answer: 27, procent: 80},
+    {problem: '9.32', answer: 189, procent: 100},
+    {problem: '9.33', answer: 20, procent: 45},
+    {problem: '9.34', answer: 10, procent: 25},
+    {problem: '9.35', answer: 16, procent: 25},
+    {problem: '9.36', answer: 14, procent: 25},
+    {problem: '9.37', answer: 10, procent: 65},
+    {problem: '9.38', answer: 10, procent: 25},
+    {problem: '9.39', answer: 25, procent: 65},
+    {problem: '9.40', answer: 8, procent: 70},
+    {problem: '9.41', answer: 30, procent: 65},
+    {problem: '9.42', answer: 10, procent: 55},
+    {problem: '9.43', answer: 78, procent: 75},
+    {problem: '9.44', answer: 8.4, procent: 85},
+    {problem: '9.45', answer: 14, procent: 20},
+    {problem: '9.46', answer: 60, procent: 20},
+    {problem: '9.47', answer: 9, procent: 35},
+    {problem: '9.48', answer: 19, procent: 35},
+    {problem: '9.49', answer: 10, procent: 45},
+    {problem: '9.50', answer: 3, procent: 50},
+    {problem: '9.51', answer: 15, procent: 55},
+    {problem: '9.52', answer: 60, procent: 45},
+    {problem: '9.53', answer: 1, procent: 65},
+    {problem: '9.54', answer: 360, procent: 95},
+    {problem: '9.55', answer: 13, procent: 40},
+    {problem: '9.56', answer: 3, procent: 35},
+    {problem: '9.57', answer: 20, procent: 45},
+    {problem: '9.58', answer: 1, procent: 40},
+    {problem: '9.59', answer: 1, procent: 55},
+    {problem: '9.60', answer: 20, procent: 55},
+    {problem: '9.61', answer: 630, procent: 80},
+    {problem: '9.62', answer: 6, procent: 65},
+    {problem: '9.63', answer: 22, procent: 70},
+    {problem: '9.64', answer: 90, procent: 50},
+    {problem: '9.65', answer: 80, procent: 50},
+    {problem: '9.66', answer: 13, procent: 40},
+    {problem: '9.67', answer: 7, procent: 55},
+    {problem: '9.68', answer: 63, procent: 70},
+    {problem: '9.69', answer: 12, procent: 75},
+    {problem: '9.70', answer: 35, procent: 75},
+    {problem: '9.71', answer: 40, procent: 90},
+    {problem: '9.72', answer: 14, procent: 85},
+    {problem: '9.73', answer: 35, procent: 90},
+    {problem: '9.74', answer: 35, procent: 30},
+    {problem: '9.75', answer: 43, procent: 80},
+    {problem: '9.76', answer: 36, procent: 100},
+    {problem: '9.77', answer: 10, procent: 45},
+    {problem: '9.78', answer: 11, procent: 25},
+    {problem: '9.79', answer: 11, procent: 25},
+    {problem: '9.80', answer: 31, procent: 25},
+    {problem: '9.81', answer: 20, procent: 65},
+    {problem: '9.82', answer: 15, procent: 25},
+    {problem: '9.83', answer: 25, procent: 65},
+    {problem: '9.84', answer: 9, procent: 70},
+    {problem: '9.85', answer: 26, procent: 65},
+    {problem: '9.86', answer: 6, procent: 55},
+    {problem: '9.87', answer: 72, procent: 75},
+    {problem: '9.88', answer: 5.6, procent: 85},
+
+    
 
 
 
@@ -1013,7 +1222,7 @@ function textPopUp(answer, rightAnswers){
 function time(allProblemsMain){
     // Забираем со страницы кнопку "завершить"; "место времени"; "верхнюю надпись"
     const acceptBtn = document.querySelector('.accept')
-    const timePlace = document.querySelector('.time')
+    const timePlace = document.querySelector('.time1')
     const title = document.querySelector('.titleVariant')
 
     // answerUser - список ответов
@@ -1026,7 +1235,7 @@ function time(allProblemsMain){
     const timeFull = `${getTime('h')}:${getTime('m')}:${getTime('s')} `;
     // Если нет deadLine или againVariant === afk, ставим новый deadLine и afk ==> deadLinePicked
     if (!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk'){
-        setLocalStorage('deadLine', deadLine(timeFull, 30, 0))
+        setLocalStorage('deadLine', deadLine(timeFull, 30, 1))
         setLocalStorage('againVariant', 'deadLinePicked')
     }
 
@@ -1041,6 +1250,8 @@ function time(allProblemsMain){
 
             // устанавливаем "место времени" 
             const textFull = `${getTime('h')}:${getTime('m')}:${getTime('s')} ${getTime('d')} ${month[getTime('mo')]} ${getTime('y')}`
+            //console.log(`${getTime('h')}:${getTime('m')}:${getTime('s')} ${getTime('d')} ${month[getTime('mo')]} ${getTime('y')}`);
+            
             timePlace.innerHTML = textFull + `, дедлайн: ${getLocalStorage('deadLine')} (${titleTime(`${getTime('h')}:${getTime('m')}:${getTime('s')}`, getLocalStorage('deadLine'))} осталось)`
         }
             
@@ -1122,8 +1333,7 @@ function daysBeforeExam(){
     const EXAM = {month: 6, day: 1}
 
     // Формируем текущий день
-    const date = new Date();
-    const thisDay = {month: +date.getMonth() + 1, day: +date.getDate()}
+    const thisDay = {month: getTime('mo') + 1, day: getTime('d')}
 
     // Сколько дней осталось
     const pogresh = 2
@@ -1208,7 +1418,7 @@ function getTime(value){
     if (value === 's') return addZero(date.getSeconds())
     else if (value === 'm') return addZero(date.getMinutes())
     else if (value === 'h') return addZero(date.getHours())
-    else if (value === 'd') return addZero(date.getDay())
+    else if (value === 'd') return addZero(date.getDate())
     else if (value === 'mo') return date.getMonth()
     else if (value === 'y') return addZero(date.getFullYear())
 
