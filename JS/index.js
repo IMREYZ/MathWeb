@@ -7,11 +7,16 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
     const clear = document.querySelector('.clear')
     const variant = document.querySelector('.variantBTN')
     const namesProblem = document.querySelectorAll('.nameProblem')
+    const allProblemHTML = document.querySelector('.vsegoProblems')
 
+    // Скрываем кнопку "вариант"
     variant.disabled = true
 
+    // Количество дней до ЕГЭ   
     const dayLeft = document.querySelector('.dayLeft')
     dayLeft.innerHTML = daysBeforeExam()
+
+    allProblemHTML.innerHTML = `Всего задач в банке: <span class='w900'>${allProblems.length}</span>`
 
     
 
@@ -19,71 +24,82 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
     const DOMarrayName = ['-', ...namesProblem]
     DOMarrayName.forEach((element, i) => {if (i != 0) element.innerHTML += ` (Всего задач: ${problems[i].length})`})
 
+
+
     // ТАБЛИЦА
+
+    // Кнопка "удалить"; контейнер таблицы; "Здесь могла бы быть ваша статистика"
     const deleteTable = document.querySelector('.deleteStats')
     const tableInfo = document.querySelector('.table2')
     const netTabl = document.querySelector('.netTabl')
 
+    // Нажатие на "deleteTable"
     deleteTable.addEventListener('click', () => {
+
+        // Удаляем данные из LocalStr; закрываем таблицу; открываем заглушку; закрываем кнопку "удалить"
         removeLocalStorage('stats')
-        tableInfo.classList.remove('show')
+
         tableInfo.classList.add('close')
+
         netTabl.classList.remove('close')
         netTabl.classList.add('show')
-        deleteTable.classList.remove('show')
+
         deleteTable.classList.add('close')
     })
 
-    if (getLocalStorage('stats')){
+    // Вся статистика  вариантов
+    const statsAboutVariants = getLocalStorage('stats')
 
+    // Если есть, то
+    if (statsAboutVariants){
 
+        // Закрываем заглушку
         netTabl.classList.add('close')
 
+        // HTML текст для tableInfo
         let textHTML
-        const infoAll = [
-            {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0},
-            {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}, {right: 0, all: 0}
-        ]
+        // Массив всех заданий
+        let infoAll = []
+        for (let i = 0; i <= 11; i ++) infoAll.push({right: 0, all: 0})
 
-        getLocalStorage('stats').forEach((element, index) => {
-
+        statsAboutVariants.forEach((element, index) => {
+            // Начало HTML
             textHTML = `<tr class='defaultStats'> <td> Вариант ${index + 1} </td>`
+            
+            // Заполняем вариант
             element.forEach((elementElement, index) => {
-                if (index != 11) {
-                    textHTML += `<td>${elementElement.right} / ${elementElement.count}</td>`
-                    infoAll[index].right += elementElement.right
-                    infoAll[index].all += elementElement.count
+                const resultVariantHTML = ` (${parseInt(elementElement.right / elementElement.count * 100)}%)</td>`
+                textHTML += `<td>${elementElement.right} / ${elementElement.count}` + (index === 11 ? resultVariantHTML : '</td>')
 
-                } else {
-                    textHTML += `<td class='zhir'>${elementElement.right} / ${elementElement.count} (${rounded(elementElement.right / elementElement.count * 100)}%)</td>`
-                    infoAll[index].right += elementElement.right
-                    infoAll[index].all += elementElement.count
-                }
+                infoAll[index].right += elementElement.right
+                infoAll[index].all += elementElement.count
             })
-        
 
             textHTML += '</tr>'
- 
+            
+            // Выврдим вариант
             tableInfo.innerHTML += textHTML
         })
-
+        
+        // Заполняем итоговую статистику
         textHTML = `<tr> <td class='zhir'> Общая информация </td>`
             infoAll.forEach(element => {
-                const final = element.all === 0 ? '???' : rounded(element.right / element.all * 100)
+                const final = element.all === 0 ? '???' : parseInt(element.right / element.all * 100)
                 textHTML += `<td class='zhir'>${element.right} / ${element.all} \n (${final}%)</td>`
-                console.log(element.right, element.all, rounded(element.right / element.all * 100))
             })
 
         textHTML += '</tr>'
-        tableInfo.innerHTML += textHTML    
+        tableInfo.innerHTML += textHTML 
+
+    // Если нет варианта в LocalStr
     } else {
         tableInfo.classList.add('close')
         netTabl.classList.add('show')
         deleteTable.classList.add('close')
     }
 
-    
 
+    // Нажатие на стресс-тест
     const stress = document.querySelector('.toStress')
     stress.addEventListener('click', () => {
         removeLocalStorage('deadLine')
@@ -119,6 +135,8 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         // Все countProblem = 0
         countProblemToNumber(0)
 
+
+        // Смена кнопки "Составить вариант"
         defaultBtnVariant()
     })
 
@@ -134,9 +152,11 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         const parent = event.target.closest('.fullProblem')
         const input = parent.querySelector('.countProblem')
 
+        // Удаляем жирность всем кнопкам
         const allCountProblem = [...document.getElementsByClassName('countProblem')]
         allCountProblem.forEach(element => element.classList.remove('font-weight'))
 
+        // Толстая кнопка при нажатии
         input.classList.add('font-weight')
 
         // Изменяем значение input
@@ -154,6 +174,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         // Все countProblem = 1
         countProblemToNumber(1)
         
+        // Удаляем жирность всем кнопкам
         const allCountProblem = [...document.getElementsByClassName('countProblem')]
         allCountProblem.forEach(element => element.classList.remove('font-weight'))
 
@@ -170,6 +191,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         // Все countProblem = 0
         countProblemToNumber(0)
         
+        // Удаляем жирность всем кнопкам
         const allCountProblem = [...document.getElementsByClassName('countProblem')]
         allCountProblem.forEach(element => element.classList.remove('font-weight'))
 
@@ -189,6 +211,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         // Смена кнопки "Составить вариант"
         changeBtnVariant()
 
+        // Удаляем жирность всем кнопкам
         const allCountProblem = [...document.getElementsByClassName('countProblem')]
         allCountProblem.forEach(element => element.classList.remove('font-weight'))
 
@@ -212,6 +235,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         removeLocalStorage('againVariant')
         removeLocalStorage('answers')
 
+        // Удаляем жирность всем кнопкам
         const allCountProblem = [...document.getElementsByClassName('countProblem')]
         allCountProblem.forEach(element => element.classList.remove('font-weight'))
 
@@ -219,10 +243,10 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         const arrayCountProblem = pushArrayCountProblem()
         setLocalStorage('countProblem', arrayCountProblem)
 
-        //Все countProblem = 0
-
+        // Все countProblem = 0
         countProblemToNumber(0)
         
+        // Смена кнопки "Составить вариант"
         defaultBtnVariant()
     })
 }

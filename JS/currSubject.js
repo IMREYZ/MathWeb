@@ -11,7 +11,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
     // Все input и все submit
     const inputAll = document.getElementsByClassName('input')
     const submitAll = document.getElementsByClassName('submit')
-
+    const conteynersRightAnswers = document.getElementsByClassName('conteynerRightAnswer')    
     
     
     // Имя задачи и контейнер html разметки
@@ -77,24 +77,41 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         const id = +parent.id
         const answerRight = thisProblems[id].answer
 
+        
+        const thisConteyner = parent.querySelector('.conteynerRightAnswer')
 
         // Если верно, то: цвет фона - зеленый, input - только чтение, submit - нельзя нажимать + убираем hover. 
         // Иначе: цвет фона - красный
-        if (String(answerRight) === answerInput) {
-            background('green', id)
-            inputAll[id].readOnly = true
-            submitAll[id].disabled = true
-            submitAll[id].classList.remove('button:hover')         
-        } else background('red', id)
+        if (answerInput != ''){
+                if (String(answerRight) === answerInput) {
+                    background('green', id)
+                    inputAll[id].readOnly = true
+                    submitAll[id].disabled = true
+                    submitAll[id].classList.remove('button:hover')
+
+                    thisConteyner.innerHTML = ''
+                
+                } else {
+                    background('red', id)
+
+                    thisConteyner.innerHTML = getRightAnswerHTML(thisProblems[id])
+                    const rightAnswer = thisConteyner.querySelector('.showRightAnswer')
+
+                    rightAnswer.classList.remove('close')
+                    rightAnswer.classList.add('show')
+
+            }
+        }
 
 
-        /// Сохранение цветов при нажатии на ответ в LocakStr
+        /// Сохранение цветов при нажатии на ответ в LocalStr
         const classesWithColor = [...document.querySelectorAll('.number')]
         let colorArray = {}
         classesWithColor.forEach((element, index) => colorArray[thisProblems[index].id] = element.classList[1])
         setLocalStorage('color', colorArray)
     })
 
+    showRightAnswerHTML()
 
     // Ограничение на input
     document.addEventListener('input', (event) => {

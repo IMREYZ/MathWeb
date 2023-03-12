@@ -57,6 +57,7 @@ img{
 
 .fff{
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 .testEnd{
     position: relative;
@@ -173,7 +174,6 @@ img{
 
 
 
-
 .fullProblem{
     text-align: center;
     margin: 0 auto;
@@ -218,7 +218,7 @@ img{
 
 .prob9{
     position: relative;
-    left: 17px;
+    left: 25px;
 }
 
 .prob10{
@@ -398,16 +398,13 @@ table{
 }
 
 .show{
-    display: block;
+    visibility: visible;
 }
 
 .close{
-    display: none;
+    display:none;
 }
 
-.defaultStats{
-    height: 4е0px;
-}
 
 .tablePar{
     margin: auto;
@@ -512,6 +509,7 @@ a {
     border-radius: 12px;
     font-size: 25px;
     background-color: white;
+    cursor: pointer
 }
 .clear {
     border-radius: 12px;
@@ -529,15 +527,8 @@ a {
     animation-iteration-count: infinite;
 }
 
-.imgStress{
-    max-height: 350px;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-}
 
-.imgStressEnd{
-    max-height: 300px;
-}
+
 
 .vk{
     width: 50px;
@@ -738,7 +729,7 @@ body {
     width: 350px;
     height: 60px;
     font-size: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     margin-top: 30px;
     background-color: white;
 }
@@ -762,6 +753,7 @@ body {
 
 .time{
     font-size: 35px;
+
 }
 
 .optionCurr{
@@ -773,6 +765,10 @@ body {
     text-align: center;
 }
 
+.conteynerTime1{
+    color: red;
+    margin-bottom: 30px;
+}
 .time1{
     color: red;
     margin-bottom: 30px;
@@ -785,7 +781,7 @@ body {
 
 .conteyner{
     border: 5px double black;
-    width: 1420px;
+    width: 94%;
     margin: 0 auto;
     margin-bottom: 60px;
     background-color: white;
@@ -844,6 +840,32 @@ body.curr{
     font-size: 30px;
 }
 
+.vsego{
+    width: 200px;
+}
+
+.vsegoProblems{
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+}
+
+.showRightAnswer{
+    margin-left: 150px;
+}
+
+.pokOtw{
+    cursor: pointer;
+}
+
+.pokOtw:hover{
+    font-weight: 900;
+}
+
 img{
     margin-bottom: 0;
+
+    
 }

@@ -4,7 +4,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     // Кнопка подтверждения; Контейнер всех заданий; Место времени; Кнопка "назад"; Имя варианта
     const acceptBtn = document.querySelector('.accept')
     const allConteynerVariant = document.querySelector('.allConteynerVar')
-    const timePlace = document.querySelector('.time')
+    const timePlace = document.querySelector('.time1')
     const nameVariant = document.querySelector('.nameVariant') 
 
     // Считываем кол-во выбранных номеров
@@ -19,20 +19,20 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
 
     // Формируем список объектов задач: если в LocalStr есть variant, то в allProblemsMain variant из LocalStr
     // И если состояние варианта afk, то удаляем ответы из LocalStr
-    // Иначе: в arrayCountProblem кладем countProblem из LocalStr
+    // Иначе: в allProblemsHelp кладем рандочные задания (кол-во каждого задания - arrayCountProblem[i]))
     if (getLocalStorage('variant')){
         allProblemsMain = getLocalStorage('variant')
     
         if (getLocalStorage('againVariant') === 'afk') removeLocalStorage('answers')
         
     } else {
-        for (let i = 1; i <= 11; i++){ allProblemsHelp.push(randomProblem(i, arrayCountProblem[i])) }
+        for (let i = 1; i <= 11; i++) allProblemsHelp.push(randomProblem(i, arrayCountProblem[i])) 
         allProblemsHelp.forEach(elementFirst => elementFirst.forEach(elementSecond => allProblemsMain.push(elementSecond)))
     }
 
 
     // Выводим задания на страницу
-    allProblemsMain.forEach(elementFirst => allConteynerVariant.innerHTML += problemHTMLvariant(elementFirst))
+    allProblemsMain.forEach((elementFirst, id) => allConteynerVariant.innerHTML += problemHTMLvariant(elementFirst, id))
 
     // Сохранение ответов
     if (getLocalStorage('answers')){
@@ -97,28 +97,38 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
 
         // Количество верных задач
         let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        
+        // Все контейнеры
+        const allParents = document.getElementsByClassName('conteyner')
+
         // Проверка на правильность ответа
         let rightAnswers = 0
         answer.forEach((element, index) => {
-            if (element != ''){ 
-                if (element.replace(',', '.') === String(allProblemsMain[index].answer)){
-                    rightAnswers ++
-                    countRightAnswer[allProblemsMain[index].number] ++
-                    background('green', index)
-                } else background('red', index)
-            } else background('red', index)
+            if (element != '' && element.replace(',', '.') === String(allProblemsMain[index].answer)){
+                rightAnswers ++
+                countRightAnswer[allProblemsMain[index].number] ++
+                background('green', index)
+            } else {
+                background('red', index)
+
+                // Берем из текущего контейнера контейнер ответов и записываем туда getRightAnswerHTML()
+                const thisConteyner = allParents[index].querySelector('.conteynerRightAnswer')
+                thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index])
+                
+                // showRightAnswer - весь блок answer -> делаем show
+                const rightAnswer = thisConteyner.querySelector('.showRightAnswer')
+                rightAnswer.classList.remove('close')
+                rightAnswer.classList.add('show')
+
+            }
         })
 
         let infoLocalStorage = []
-        for (let i = 1; i <= 11; i++){
-            infoLocalStorage.push({right: countRightAnswer[i], count: arrayCountProblem[i]})
-        }
+        for (let i = 1; i <= 11; i++) infoLocalStorage.push({right: countRightAnswer[i], count: arrayCountProblem[i]})
         infoLocalStorage.push({right: rightAnswers, count: answer.length})
 
         let arrayInfo = []
-        if (getLocalStorage('stats')) {
-            getLocalStorage('stats').forEach(element => arrayInfo.push(element))
-        }
+        if (getLocalStorage('stats')) getLocalStorage('stats').forEach(element => arrayInfo.push(element))
 
         arrayInfo.push(infoLocalStorage)
         setLocalStorage('stats', arrayInfo)
@@ -133,6 +143,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
         popUp.classList.remove('active')
     })
 
+    showRightAnswerHTML()
             
     // Ограничение на input
     document.addEventListener('input', (event) => {

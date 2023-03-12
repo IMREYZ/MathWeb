@@ -6,8 +6,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
     const place = document.querySelector('.place')
 
     // Место красного счёта (изначально скрываем)
-    const refreshInfo = document.querySelector('.time1') 
-    refreshInfo.classList.add('close')
+    const refreshInfo = document.querySelector('.conteynerTime1') 
 
     // При обновлении меняем timer на false
     setLocalStorage('timer', false)
@@ -17,7 +16,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
 
     // Если нет, то score в LocalStr, иначе записываем в счёт (если обновление страницы)
     // Дописываем рекорд
-    !getLocalStorage('thisScore') ? setLocalStorage('thisScore', 0) : score.innerHTML = `Текущий счёт: <span class='thisScore'>${getLocalStorage('thisScore')}</span>`
+    !getLocalStorage('thisScore') ? setLocalStorage('thisScore', 0) : score.innerHTML = `Текущий счёт: <span class='thisScore'>${getLocalStorage('thisScore')}</span> `
     score.innerHTML += `(Рекорд: <span class='thisScore'>${getLocalStorage('record')}</span>)`
   
     // Если проиграл
@@ -32,6 +31,15 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
         background('red', 0)
         setLocalStorage('pause', true)
 
+        const thisConteyner = document.querySelector('.conteynerRightAnswer')
+        thisConteyner.innerHTML = getRightAnswerHTML(getLocalStorage('randomProblem'))
+
+        const rightAnswer = document.querySelector('.showRightAnswer')
+        rightAnswer.classList.remove('close')
+        rightAnswer.classList.add('show')
+
+        showRightAnswerHTML()
+
         // Делаем заглушку на 0,2 сек
         setTimeout(function(){
             removeLocalStorage('pause')
@@ -44,7 +52,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
             setLocalStorage('timer', true)
 
             // Показываем "красное инфо"
-            refreshInfo.classList.remove('close')
+            refreshInfo.innerHTML = `<span class='time1'>Для повторного прохождения этого варианта обновите страницу </span>`
         }, 350)
 
         // Удаляем задачу из LocalStr
@@ -70,7 +78,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
         setLocalStorage('deadLine', deadLine(thisTime, time[0], time[1]))
     }
 
-    // Закидываем задачу на страницу
+    // Закидываем задачу на страницу (даже при обновлении)
     place.innerHTML = problemHTMLstress(getLocalStorage('randomProblem'))
 
     // Фокус на input
@@ -92,70 +100,68 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
         }
     }, 1000)   
 
+    function sendAsnwer(){
+        
+        // Узнаем введенный ответ; текущий счет
+        const inputAnswer = +document.querySelector('.input').value.replaceAll(',', '.')
+        const scored = +getLocalStorage('thisScore')
+
+
+        // Если ответ ВЕРНЫЙ
+        if (inputAnswer === getLocalStorage('randomProblem').answer){
+            setLocalStorage('thisScore', scored + 1)
+
+            if (getLocalStorage('thisScore') > getLocalStorage('record')) setLocalStorage('record', +getLocalStorage('thisScore'))
+
+            // Меняем текущий счет
+            score.innerHTML = `Счет: <span class='thisScore'>${scored + 1}</span> (Рекорд: <span class='thisScore'>${getLocalStorage('record')}</span>)`
+            
+
+
+            // Берем новую задачу
+            setLocalStorage('randomProblem', allProblems[randomStress()])
+
+            // Ставим зеленый фон + пауза
+            background('green', 0)
+            setLocalStorage('pause', true)
+
+            // Делаем заглушку на 0,85 сек
+            setTimeout(function(){
+                place.innerHTML = problemHTMLstress(getLocalStorage('randomProblem'))
+
+                document.querySelector('.input').focus()
+                removeLocalStorage('pause')
+            }, 350)
+
+            // Формируем дату для дедлайна (текущее время)
+            const thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')} `
+            
+            // Узнаем deadLine новой задачи
+            const randomProblem = getLocalStorage('randomProblem').number
+            const time = timeOnProblem[randomProblem]
+            setLocalStorage('deadLine', deadLine(thisTime, time[0], time[1]))
+
+            // disabled
+            const inputAll = document.querySelector('.input')
+            const submitAll = document.querySelector('.submit')
+
+            inputAll.readOnly = true
+            submitAll.disabled = true
+            submitAll.classList.remove('button:hover')
+
+        // Если ответ НЕВЕРНЫЙ    
+        } else endGame()
+    }
     
     // Если событие - кнопка submit
-    document.addEventListener('click', (event) => {
-        if (event.target.classList[0] === 'submit'){
+    document.addEventListener('click', (event) => { if (event.target.classList[0] === 'submit') sendAsnwer() })
 
-            // Узнаем введенный ответ; текущий счет
-            const inputAnswer = +document.querySelector('.input').value.replaceAll(',', '.')
-            const scored = +getLocalStorage('thisScore')
-
-
-            // Если ответ ВЕРНЫЙ
-            if (inputAnswer === getLocalStorage('randomProblem').answer){
-                setLocalStorage('thisScore', scored + 1)
-
-                if (getLocalStorage('thisScore') > getLocalStorage('record')) setLocalStorage('record', +getLocalStorage('thisScore'))
-
-                // Меняем текущий счет
-                score.innerHTML = `Счет: <span class='thisScore'>${scored + 1}</span> (Рекорд: <span class='thisScore'>${getLocalStorage('record')}</span>)`
-                
-
-
-                // Берем новую задачу
-                setLocalStorage('randomProblem', allProblems[randomStress()])
-
-                // Ставим зеленый фон + пауза
-                background('green', 0)
-                setLocalStorage('pause', true)
-
-                // Делаем заглушку на 0,85 сек
-                setTimeout(function(){
-                    place.innerHTML = problemHTMLstress(getLocalStorage('randomProblem'))
-
-
-                    document.querySelector('.input').focus()
-                    removeLocalStorage('pause')
-                }, 350)
-
-                // Формируем дату
-                const thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')} `
-                
-                // Узнаем deadLine новой задачи
-                const randomProblem = getLocalStorage('randomProblem').number
-                const time = timeOnProblem[randomProblem]
-                setLocalStorage('deadLine', deadLine(thisTime, time[0], time[1]))
-
-                // disabled
-                const inputAll = document.querySelector('.input')
-                const submitAll = document.querySelector('.submit')
-
-                inputAll.readOnly = true
-                submitAll.disabled = true
-                submitAll.classList.remove('button:hover')
-                
-
-            // Если ответ НЕВЕРНЫЙ    
-            } else endGame()
-        }
-    })
+    // Обработка по кнопке Enter
+    document.addEventListener('keydown', (btn) => { if (btn.key === 'Enter') sendAsnwer() })
 
 
     // Ограничение на input
     document.addEventListener('input', (event) => {
-        if (event.target.classList[0] != 'input') return
-
-        event.target.value = event.target.value.replace(/[^0123456789,-]/g, '')
+        if (event.target.classList[0] === 'input') event.target.value = event.target.value.replace(/[^0123456789,-]/g, '') 
     })
 }
