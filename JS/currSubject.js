@@ -10,8 +10,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
     // Все input и все submit
     const inputAll = document.getElementsByClassName('input')
-    const submitAll = document.getElementsByClassName('submit')
-    const conteynersRightAnswers = document.getElementsByClassName('conteynerRightAnswer')    
+    const submitAll = document.getElementsByClassName('submit') 
     
     
     // Имя задачи и контейнер html разметки

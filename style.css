@@ -38,7 +38,7 @@ img{
 
 .netTabl{
     border-bottom: 2px dashed rgb(64, 0, 255);
-    width: 550px;
+    width: 450px;
     margin: 0 auto;
     text-align: center;
     margin-bottom: 120px;
@@ -430,6 +430,7 @@ table{
     border-radius: 12px;
     background-color: white;
     margin-top: 30px;
+    width: 200px;
 }
 
 .dayLeft{
@@ -470,7 +471,7 @@ table{
 .submit{
     border-radius: 12px;
     background-color: rgb(199, 196, 195);
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .submit:hover{
@@ -606,7 +607,7 @@ td{
 
 .name{
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .name1{
@@ -663,7 +664,7 @@ td{
  }
 
 body {
-    font-size: 30px;
+    font-size: 25px;
     background: url(img/back.png);
     text-align: center; 
 
@@ -692,7 +693,15 @@ body {
 
 }
 
-
+.greenColor1{
+    background-color: rgb(46, 222, 46)
+}
+.redColor1{
+    background-color: red
+}
+.yellowColor1{
+    background-color: orange
+}
 
 
 .greenColor{
@@ -702,10 +711,10 @@ body {
     color: red
 }
 .yellowColor{
-    color: yellow
+    color: orange
 }
 .allConteynerPr{
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
 }
 
@@ -772,6 +781,7 @@ body {
 .time1{
     color: red;
     margin-bottom: 30px;
+    font-weight: 900;
 }
 
 .thisScore{
@@ -781,7 +791,7 @@ body {
 
 .conteyner{
     border: 5px double black;
-    width: 94%;
+    width: 1400px;
     margin: 0 auto;
     margin-bottom: 60px;
     background-color: white;
@@ -824,20 +834,42 @@ body.curr{
 }
 
 .input{
-    width: 70px;
-    font-size: 30px;
+    font-size: 23px;
     width: 140px;
     margin-right: 30px;
+    border-radius: 12px;
 }
 
+.idInfo{
+    text-align: center;
+    position: relative;
+    left: 50px;
+    
+}
 
 .number{
     color: white;
+    font-size: 20px;
+    height: 30px;
+}
+
+.lvll{
+    position: relative;
+    left: 500px;
 }
 
 .answer{
     margin-top: 0;
-    font-size: 30px;
+    font-size: 20px;
+}
+
+.proc{
+    border: 2px solid white;
+    border-radius: 12px;
+    color: white;
+    width: 70px;
+    display: inline-block;
+    font-size: 18px;
 }
 
 .vsego{

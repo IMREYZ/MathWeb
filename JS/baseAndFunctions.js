@@ -364,8 +364,8 @@ const allProblems =
     {problem: '5.5', answer: 0.4, procent: 45},
     {problem: '5.6', answer: 12, procent: 30},
     {problem: '5.7', answer: 122, procent: 35},
-    {problem: '5.8', answer: -4, procent: 10},
-    {problem: '5.9', answer: -18, procent: 20},
+    {problem: '5.8', answer: 8, procent: 90},
+    {problem: '5.9', answer: -25, procent: 20},
     {problem: '5.10', answer: -1, procent: 45},
     {problem: '5.11', answer: 2, procent: 25},
     {problem: '5.12', answer: -42, procent: 50},
@@ -384,19 +384,19 @@ const allProblems =
     {problem: '5.25', answer: -9, procent: 45},
     {problem: '5.26', answer: -9, procent: 40},
     {problem: '5.27', answer: 25, procent: 35},
-    {problem: '5.28', answer: 6, procent: 10},
-    {problem: '5.29', answer: -9, procent: 20},
-    {problem: '5.30', answer: 12, procent: 45},
-    {problem: '5.31', answer: -9.5, procent: 25},
+    {problem: '5.28', answer: 6, procent: 95},
+    {problem: '5.29', answer: -9, procent: 95},
+    {problem: '5.30', answer: 12, procent: 20},
+    {problem: '5.31', answer: -9.5, procent: 45},
     {problem: '5.32', answer: -96, procent: 50},
-    {problem: '5.33', answer: 3, procent: 60},
-    {problem: '5.34', answer: -14, procent: 80},
-    {problem: '5.35', answer: 7, procent: 40},
+    {problem: '5.33', answer: 3, procent: 45},
+    {problem: '5.34', answer: -14, procent: 65},
+    {problem: '5.35', answer: 7, procent: 80},
     {problem: '5.36', answer: 6, procent: 50},
     {problem: '5.37', answer: 1, procent: 40},
     {problem: '5.38', answer: -1, procent: 55},
-    {problem: '5.39', answer: 1.5, procent: 70},
-    {problem: '5.40', answer: 0.4, procent: 75},
+    {problem: '5.39', answer: 1.5, procent: 50},
+    {problem: '5.40', answer: 0.4, procent: 45},
     {problem: '5.41', answer: -508, procent: 45},
     {problem: '5.42', answer: -1, procent: 30},
     {problem: '5.43', answer: 7, procent: 25},
@@ -940,9 +940,9 @@ function randomProblem(problem, countPr) {
 
 // Цвет задачи
 function colorProcent(procent){
-    if (procent < 30) return 'greenColor'
-    if (procent < 70) return 'yellowColor'
-    return 'redColor'
+    if (procent < 30) return 'greenColor1'
+    if (procent < 70) return 'yellowColor1'
+    return 'redColor1'
 }
 
 
@@ -950,8 +950,10 @@ function colorProcent(procent){
 function problemHTMLvariant(probl, id) {
     return `<div id = ${id} class="conteyner">
     <div class="number gray" > 
-        <span class='idInfo'>Номер ${probl.number} №${probl.id} </span> 
-        <span class='${colorProcent(probl.procent)}'> (Сложность: ${probl.procent}%) </span> 
+        <span class='idInfo'>Номер ${probl.number} (№${probl.id}) </span> 
+        <span class='lvll'>
+            Сложность: <span class='${colorProcent(probl.procent)} proc'> ${probl.procent}% </span> 
+        </span>
     </div>
         <img src='/MathWeb/img/${probl.problem}.jpg' >
         <div class="answer gray1">
@@ -967,8 +969,10 @@ function problemHTMLvariant(probl, id) {
 function problemHTMLcurr(probl, id) {
     return `<div id = ${id} class="conteyner" >
     <div class="number gray" > 
-        <span class='idInfo'>Номер ${probl.number} №${probl.id} </span> 
-        <span class='${colorProcent(probl.procent)}'> (Сложность: ${probl.procent}%) </span> 
+        <span class='idInfo'>Номер ${probl.number} (№${probl.id}) </span> 
+        <span class='lvll'>
+            Сложность: <span class='${colorProcent(probl.procent)} proc'> ${probl.procent}% </span> 
+        </span>
     </div>
         <img src='/MathWeb/img/${probl.problem}.jpg'>
         <div class="answer gray1">
@@ -984,7 +988,7 @@ function getRightAnswerHTML(probl){
     return `<span class='showRightAnswer close'> 
         <span class='pokOtw'>Показать ответ: </span> 
         <span class='conteynerRightAnswer'> </span>
-        <span class='rightAnswer close'>${probl.answer} </span>
+        <span class='rightAnswer close'>${String(probl.answer).replace('.', ',')} </span>
     </span>`
 }
 
@@ -992,8 +996,10 @@ function getRightAnswerHTML(probl){
 function problemHTMLstress(probl, id) {
     return `<div class="conteynerStress" >
     <div class="number gray" > 
-        <span class='idInfo'>Номер ${probl.number} №${probl.id} </span> 
-        <span class='${colorProcent(probl.procent)}'> (Сложность: ${probl.procent}%) </span> 
+        <span class='idInfo'>Номер ${probl.number} (№${probl.id}) </span> 
+        <span class='lvll'>
+            Сложность: <span class='${colorProcent(probl.procent)} proc'> ${probl.procent}% </span> 
+        </span>
     </div>
         <img class='imgStress' src='/MathWeb/img/${probl.problem}.jpg'>
         <div class="answer gray1">
@@ -1022,6 +1028,8 @@ function showRightAnswerHTML(){
         }
     })
 }
+
+
 
 // Запись в LocalStr
 function setLocalStorage(nameLocal, value){
