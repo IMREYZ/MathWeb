@@ -1014,19 +1014,87 @@ function problemHTMLstress(probl, id) {
 // Показ правильного ответа
 function showRightAnswerHTML(){
     document.addEventListener('click', (event) => {
+        // Если не кнопка "показать ответ" - выходим
         if (event.target.classList[0] != 'pokOtw') return
+        
 
-        const conteynerAnswer = event.target.closest('.showRightAnswer')
+        // Контейнер правильного ответа; сам ответ
+        const conteynerAnswer = event.target.closest('.conteynerRightAnswer')
         const rightAnswer = conteynerAnswer.querySelector('.rightAnswer')
 
+        // close <--> show
         if (rightAnswer.classList[1] === 'close'){
             rightAnswer.classList.remove('close')
             rightAnswer.classList.add('show')
+            
         } else {
             rightAnswer.classList.remove('show')
             rightAnswer.classList.add('close')
         }
+
+
     })
+}
+// Создание и/или сохрание нажатия на "показать ответ"
+function createAndSaveInfoAnswers(thisProblems){
+    document.addEventListener('click', (event) => {
+        // Если не кнопка "показать ответ" - выходим 
+        if (event.target.classList[0] != 'pokOtw') return
+
+        // Если нет в LocalStr currInfoShowRightAnswer, добавить
+        if (!getLocalStorage('currInfoShowRightAnswer')){
+            const array = {}
+            for (let i = 0; i < thisProblems.length; i++) array[thisProblems[i].id] = false
+    
+            setLocalStorage('currInfoShowRightAnswer', array)    
+        }
+
+        // Контейнер всего задания; верный ответ HTML
+        const conteynerFull = event.target.closest('.conteyner')
+        const rightAnswer = conteynerFull.querySelector('.rightAnswer')
+
+        // Объект {4001: true, 4002: false, 4003: false...}
+        const objInfo = getLocalStorage('currInfoShowRightAnswer')
+        // Id этой "карточки" - индекс в массиве thisProblem 
+        // (Если задача была 1ой, то id = 0, если задача стала 7ой, то id = 6 (в thisProblem задача стоит на 6 индексе))
+        const idThisProblemHTML = conteynerFull.id
+        // Сама задача по индексу 
+        const thisProblem = thisProblems[idThisProblemHTML]
+        // id этой задачи
+        const idThisProblem = thisProblem.id
+
+        // Изменение этой задачи; сохранение в LocalStr
+        objInfo[idThisProblem] = rightAnswer.classList[1] === 'show'
+        setLocalStorage('currInfoShowRightAnswer', objInfo) 
+    })
+}
+
+// Обновление информации "показать ответ" при обновлении
+function currInfoShowRightAnswer(thisProblems){
+    // Если в LocalStr есть currInfoShowRightAnswer
+    if (getLocalStorage('currInfoShowRightAnswer')){
+        // Контейнеры всех задач
+        const allConteynerRightAnswer = document.querySelectorAll('.conteyner')
+
+        // Проходимся по всем задачам
+        thisProblems.forEach((element, id) => { 
+            // Значение: true/false
+            const thisBoolean = getLocalStorage('currInfoShowRightAnswer')[element.id]
+
+            // Если true, то
+            if (thisBoolean){
+                // Текущий контейнер; ответ-HTML этого контейнера
+                const thisConteyner = allConteynerRightAnswer[id]
+                const thisInfoAnswer = thisConteyner.querySelector('.rightAnswer')
+
+                // close --> show
+                thisInfoAnswer.classList.remove('close')
+                thisInfoAnswer.classList.add('show')
+            } 
+        })
+
+    }
+
 }
 
 
@@ -1258,7 +1326,7 @@ function time(allProblemsMain){
 
             // устанавливаем "место времени" 
             const textFull = `${getTime('h')}:${getTime('m')}:${getTime('s')} ${getTime('d')} ${month[getTime('mo')]} ${getTime('y')}`
-            //console.log(`${getTime('h')}:${getTime('m')}:${getTime('s')} ${getTime('d')} ${month[getTime('mo')]} ${getTime('y')}`);
+
             
             timePlace.innerHTML = textFull + `, дедлайн: ${getLocalStorage('deadLine')} (${titleTime(`${getTime('h')}:${getTime('m')}:${getTime('s')}`, getLocalStorage('deadLine'))} осталось)`
         }
@@ -1354,41 +1422,42 @@ function daysBeforeExam(){
 // Появление цвета в currSubject в случае обновления страницы
 function currColor(thisProblems){
 
-    // Берем все input и submit со страницы
+    // Берем все input и submit со страницы; все контейнеры родителей
     const inputAll = document.querySelectorAll('.input')
     const submitAll = document.querySelectorAll('.submit')
+    const allParents = document.getElementsByClassName('conteyner')
 
     // Если до этого были цвета карточек
     if (getLocalStorage('color')){
         // Перебираем все текущие задания (могут быть в любом порядке)
         // Забираем цвет карточки очередного задания через getLocalStorage('color')
-        // {9001: "red", 9002: "red", 9003: "gray", 9004: "gray", 9005: "gray"}
-        const allParents = document.getElementsByClassName('conteyner') 
+        // {9001: "red", 9002: "red", 9003: "gray", 9004: "gray", 9005: "gray"} 
 
         thisProblems.forEach((element, id) => {  
-            // Текущий цвет
+            // Текущий цвет; берем контейнер "показать ответ" у контейнера всей задачи
             const thisColor = getLocalStorage('color')[element.id]
-            const thisConteyner = allParents[id].querySelector('.conteynerRightAnswer')
+            const conteynerRightAnswer = allParents[id].querySelector('.conteynerRightAnswer')
             
 
-            // Если верно, то зеленый + другое, иначе: НЕ зеленый цвет
+            // Если зеленый
             if (thisColor === 'green'){
                 background('green', id)
                 inputAll[id].readOnly = true
                 submitAll[id].disabled = true
                 submitAll[id].classList.remove('button:hover')
-
+            
+            // Если красный, 
             } else if (thisColor === 'red') {
                 background('red', id)
+                // Добавляем "показать ответ"
+                conteynerRightAnswer.innerHTML = getRightAnswerHTML(thisProblems[id])
                 
-                thisConteyner.innerHTML = getRightAnswerHTML(thisProblems[id])
-                
-                const rightAnswer = thisConteyner.querySelector('.showRightAnswer')
+                // close --> show
+                const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer')
                 rightAnswer.classList.remove('close')
                 rightAnswer.classList.add('show')
 
-            } else background('gray', id)
-                
+            } else background('gray', id)           
         })
     }
 }

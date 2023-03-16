@@ -121,7 +121,8 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         removeLocalStorage('nameProblem')
         removeLocalStorage('inputCurr')
         removeLocalStorage('color')
-        removeLocalStorage('select')
+        removeLocalStorage('select') 
+        removeLocalStorage('currInfoShowRightAnswer')
 
         // Устанавливаем номер и имя задачи
         const parent = event.target.closest('.fullProblem')
