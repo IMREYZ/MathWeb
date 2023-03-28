@@ -27,7 +27,7 @@ const allProblems =
     {problem: '1.22', answer: 30.25, procent: 70},
     {problem: '1.23', answer: 20, procent: 35},
     {problem: '1.24', answer: 3.5, procent: 70},
-    {problem: '1.25', answer: 64, procent: 30},
+    {problem: '1.25', answer: 96, procent: 30},
     {problem: '1.26', answer: 119, procent: 65},
     {problem: '1.27', answer: 0.5, procent: 30},
     {problem: '1.28', answer: 0.4, procent: 35},
