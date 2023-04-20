@@ -220,7 +220,7 @@ img{
 .fullProblem{
     text-align: center;
     margin: 0 auto;
-
+    margin-bottom: 5px;
 
 }
 
@@ -620,7 +620,8 @@ a {
 
 .min{
     position: relative;
-    left: 4px
+    left: 4px;
+    margin-bottom: 3px;
 }
 
 .finish {
