@@ -1,11 +1,19 @@
 // Если на странице index
 if (window.location.pathname === `/MathWeb/index.html` || window.location.pathname === `/MathWeb/`){
     
+    if (!getLocalStorage('special')){
+        let result = {}
+        allProblems.forEach(element => result[element.id] = false)
+        
+        setLocalStorage('special', result)
+    }
+
     // Находим 3 нижние кнопки + все имена 
     // Делаем скрытую кнопку variant
     const exam = document.querySelector('.exam')
-    const clear = document.querySelector('.clear')
+    const clear = document.querySelector('.clearAll')
     const variant = document.querySelector('.variantBTN')
+    const special = document.querySelector('.toStress1')
     const namesProblem = document.querySelectorAll('.nameProblem')
     const allProblemHTML = document.querySelector('.vsegoProblems')
 
@@ -13,8 +21,9 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
     variant.disabled = true
 
     // Количество дней до ЕГЭ   
-    const dayLeft = document.querySelector('.dayLeft')
-    dayLeft.innerHTML = daysBeforeExam()
+    const dayLeft = document.querySelector('.doEge')
+    const dayLeftCount = daysBeforeExam()
+    dayLeft.innerHTML = getFullDaysBeforeExam(dayLeftCount)
 
     allProblemHTML.innerHTML = `Всего задач в банке: <span class='w900'>${allProblems.length}</span>`
 
@@ -22,7 +31,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
     // К названиям задач прибавляем кол-во этих задач
     const DOMarrayName = ['-', ...namesProblem]
-    DOMarrayName.forEach((element, i) => {if (i != 0) element.innerHTML += ` (Всего задач: ${problems[i].length})`})
+    DOMarrayName.forEach((element, index) => {if (index != 0) element.innerHTML += ` (Всего задач: ${problems[index].length})`})
 
 
 
@@ -62,12 +71,17 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         let infoAll = []
         for (let i = 0; i <= 11; i ++) infoAll.push({right: 0, all: 0})
 
-        statsAboutVariants.forEach((element, index) => {
+        statsAboutVariants.forEach(element => {
             // Начало HTML
-            textHTML = `<tr class='defaultStats'> <td> Вариант ${index + 1} </td>`
+           
+            let textHTML = `<td class='AAAA' class='nameVariantIndex' > 
+                                <span class='indexText' id = ${element.idVariant}>
+                                ${element.name}
+                                </span>
+                            </td>`
             
             // Заполняем вариант
-            element.forEach((elementElement, index) => {
+            element.stats.forEach((elementElement, index) => {
                 const resultVariantHTML = ` (${parseInt(elementElement.right / elementElement.count * 100)}%)</td>`
                 textHTML += `<td>${elementElement.right} / ${elementElement.count}` + (index === 11 ? resultVariantHTML : '</td>')
 
@@ -77,7 +91,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
             textHTML += '</tr>'
             
-            // Выврдим вариант
+            // Выводим вариант
             tableInfo.innerHTML += textHTML
         })
         
@@ -101,13 +115,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
     // Нажатие на стресс-тест
     const stress = document.querySelector('.toStress')
-    stress.addEventListener('click', () => {
-        removeLocalStorage('deadLine')
-        removeLocalStorage('infoStress')
-        removeLocalStorage('randomProblem')
-        removeLocalStorage('thisScore')
-        removeLocalStorage('timer')
-    })
+    stress.addEventListener('click', () => cleanUpLocalStorage())
 
 
 
@@ -117,12 +125,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         if (event.target.classList[0] != 'nameProblem') return 
 
         // Удаляем данные с LocalStr
-        removeLocalStorage('idProblem')
-        removeLocalStorage('nameProblem')
-        removeLocalStorage('inputCurr')
-        removeLocalStorage('color')
-        removeLocalStorage('select') 
-        removeLocalStorage('currInfoShowRightAnswer')
+        cleanUpLocalStorage()
 
         // Устанавливаем номер и имя задачи
         const parent = event.target.closest('.fullProblem')
@@ -135,7 +138,6 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
         // Все countProblem = 0
         countProblemToNumber(0)
-
 
         // Смена кнопки "Составить вариант"
         defaultBtnVariant()
@@ -207,7 +209,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
     document.addEventListener('input', (event) => {
 
         // Если event - не countProblem, выходим
-        if (event.target.classList[0] != 'countProblem') return 
+        if (event.target.classList[0] !== 'countProblem') return 
 
         // Смена кнопки "Составить вариант"
         changeBtnVariant()
@@ -220,7 +222,39 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
         // Регулярное выражение для фильтрации input
         event.target.value = event.target.value.replace(/[-]/g, '')
+        event.target.value = withOutBadZero(event.target.value)
+        if (+event.target.value >= 200) event.target.value = 100
         
+    })
+
+
+    document.addEventListener('input', (event) => {
+
+        if (!['start', 'finish'].includes(event.target.classList[0])) return 
+
+        event.target.value = event.target.value.replace(/[-]/g, '')
+        event.target.value = withOutBadZero(event.target.value)
+        if (+event.target.value > 100) event.target.value = 100
+        
+        
+        changeBtnVariant()
+
+    })
+
+    document.addEventListener('click', (event) => {
+        if (['start', 'finish'].includes(event.target.classList[0])) return
+
+        const startBtn = document.querySelector('.start')
+        const finishBtn = document.querySelector('.finish')
+        const valueStart = +startBtn.value
+        const valueFinish = +finishBtn.value
+
+        if (valueStart > valueFinish) {
+            startBtn.value = 0
+            finishBtn.value = 100
+        }
+
+
     })
 
 
@@ -230,11 +264,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
     variant.addEventListener('click', () => {
 
         // Удаляем данные с LocalStr
-        removeLocalStorage('countProblem')
-        removeLocalStorage('variant')
-        removeLocalStorage('deadLine')
-        removeLocalStorage('againVariant')
-        removeLocalStorage('answers')
+        cleanUpLocalStorage()
 
         // Удаляем жирность всем кнопкам
         const allCountProblem = [...document.getElementsByClassName('countProblem')]
@@ -249,7 +279,32 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         
         // Смена кнопки "Составить вариант"
         defaultBtnVariant()
+
+        setLocalStorage('numberVariant', 0)
+
+        const startBtnValue = +document.querySelector('.start').value
+        const finishBtnValue = +document.querySelector('.finish').value
+        setLocalStorage('fromAndTo', {start: startBtnValue, finish: finishBtnValue})
     })
+
+    special.addEventListener('click', () => {
+        
+        // Удаляем данные с LocalStr
+        cleanUpLocalStorage()
+    })
+
+    document.addEventListener('click', event => {
+        if (event.target.classList[0] !== 'indexText') return
+        
+
+        cleanUpLocalStorage()
+
+        setLocalStorage('fromStats', 1)
+        setLocalStorage('idVariant', +event.target.id)
+        window.location.pathname = `/MathWeb/HTML/variant.html`
+    })
+
 }
+
 
 

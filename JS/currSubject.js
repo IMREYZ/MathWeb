@@ -9,29 +9,116 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
     const title = document.querySelector('.title')
     title.innerHTML = `${name}`
 
-    // Все input и все submit
-    const inputAll = document.getElementsByClassName('input')
-    const submitAll = document.getElementsByClassName('submit') 
-    
     
     // Имя задачи и контейнер html разметки
     const allConteynerProblem = document.querySelector('.allConteynerPr')
     const nameProblem = document.querySelector('.name')
-    
+     
 
-    // Формируем страницу HTML
+    // Устанавливаем название; все задачи
     nameProblem.innerHTML = name
-    let thisProblems = problems[id]
+    let allProblems = problems[id]
+
+
+    // Если в LocalStr нет текущих задач - добавляем все задачи
+    if (!getLocalStorage('thisProblems')) setLocalStorage('thisProblems', allProblems)
+
+
+    // Добавляем Checkbox на страницу
+    const filterConteyner = document.querySelector('.flitrConteynerByBox')
+    const themeThisProblem = themeProblems[id]
+    let thisTypes = []
+    for (let index = 0; index < themeThisProblem.length; index ++) thisTypes.push(themeThisProblem[index].name)
+
+    let text = ``
+    themeThisProblem.forEach(element => text += `<div class='SSS'> <input class='checkbox' type='checkbox' id='${getNormalClass(element.name)}'> <span class='${getNormalClass(element.name)}'>${element.name} (${element.count} шт.)</span> </div>`)
+    filterConteyner.innerHTML += text
+
+    // Все checkbox в HTML
+    const allCheckbox = document.querySelectorAll('.checkbox')
 
     
 
-    function sortProblem(thisSelect){
-        if (thisSelect === 'oldToNew') thisProblems.sort((a, b) => a.id - b.id)
-        else if (thisSelect === 'newToOld') thisProblems.sort((a, b) => b.id - a.id)
-        else if (thisSelect === 'easyToHard') thisProblems.sort((a, b) => a.procent - b.procent)
-        else if (thisSelect === 'hardToEasy') thisProblems.sort((a, b) => b.procent - a.procent)
+    // Если в LocalStr был checkbox  (в случае обновления страницы)
+    if (getLocalStorage('checkbox')){
+        // Массив checkbox
+        const arrayCheckbox = getLocalStorage('checkbox')
 
+        // Проходимся по всем checkbox HTML
+        allCheckbox.forEach(element => {
+            // Если id in arrayCheckbox, то
+           
+            
+            if (arrayCheckbox.includes(element.id)) {
+
+                // Делаем checked = true; добавляем w900
+                element.checked = true
+                addW900(`.${element.id}`, true)
+            }
+        })
+        
+    // Если не было в LocalStr
+    } else {
+        // Проходимся по всем checkbox HTML
+        allCheckbox.forEach(element => {
+            // Ставим всем w900 и checked
+            element.checked = true 
+            addW900(`.${element.id}`, true)
+        })
     }
+
+
+    
+    // Обработка события нажатия на checkbox
+    document.addEventListener('click', (event) => {
+        // Если не checkbox - выходим
+        if (event.target.classList[0] != 'checkbox') return
+
+        // Если checkbox нет в LocalStr - пустой массив
+        if (!getLocalStorage('checkbox')) setLocalStorage('checkbox', [])
+
+        // Массив значений checkbox
+        let checkboxArray = []
+
+        // Проходимся по всем checkbox HTML
+        allCheckbox.forEach(element => {
+            // Если checked
+            if (element.checked) {
+                // Добавляем в массив id; добавляем w900
+                checkboxArray.push(element.id)
+                addW900(`.${element.id}`, true)
+
+            // Иначе убираем w900
+            } else addW900(`.${element.id}`, false)
+        })
+
+        // Устанавлием checkbox в LocalStr
+        setLocalStorage('checkbox', checkboxArray)
+
+        // Массив новых задач
+        let newThisProblems = []
+
+        // Проходимся по базовому массиву всех задач
+        for (let i = 0; i < allProblems.length; i ++){
+            // Если type задачи in checkboxArray: добавляем задачу в новый массив
+            if (checkboxArray.includes(getNormalClass(allProblems[i].type))) newThisProblems.push(allProblems[i])
+        }
+
+        // Обновляем текущие задачи; сортируем эти задачи
+        setLocalStorage('thisProblems', newThisProblems)
+        sortProblem(getLocalStorage('select'))
+    
+        // Выводим задания
+        allConteynerProblem.innerHTML = ''
+        getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element))
+
+        // Возвращаем цвета; инпуты; инфу об "показать ответ"
+        currColor(getThisProblems())
+        currInput(getThisProblems())
+        currInfoShowRightAnswer(getThisProblems())
+    })
+
+
 
     // Забираем из LocalStr select; текущий select
     const thisSelect = getLocalStorage('select')
@@ -46,18 +133,21 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         optionCurr.querySelector(`[value=${thisSelect}]`).selected="selected"
     }
 
-    // Выводим задания
-    thisProblems.forEach((element, index) => allConteynerProblem.innerHTML += problemHTMLcurr(element, index))
+    // Первый вывод заданий 
+    if (getLocalStorage('thisProblems')) getLocalStorage('thisProblems').forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element))
+    else allProblems.forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element))
 
-    // Возвращаем цвета и инпуты в случае инпута
-    currColor(thisProblems)
-    currInput(thisProblems)
-    currInfoShowRightAnswer(thisProblems)
 
+    // Возвращаем цвета; инпуты; инфу об "показать ответ"
+    currColor(getThisProblems())
+    currInput(getThisProblems())
+    currInfoShowRightAnswer(getThisProblems())
+
+    // Обработка события "Сортировка"
     optionCurr.addEventListener('change', () => {
         // Текущий пик
         const thisOption = optionCurr.value
-
+        
         // Сортируем по новому изменению
         sortProblem(thisOption)
 
@@ -66,67 +156,18 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
         // Образовываем обновленную страницу
         allConteynerProblem.innerHTML = ''
-        thisProblems.forEach((element, index) => allConteynerProblem.innerHTML += problemHTMLcurr(element, index))
+        getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element))
 
         // Возвращаем цвета и инпуты в случае инпута
-        currColor(thisProblems)
-        currInput(thisProblems)
-        currInfoShowRightAnswer(thisProblems)
-
+        currColor(getThisProblems())
+        currInput(getThisProblems())
+        currInfoShowRightAnswer(getThisProblems())
     })
 
 
-    // Сверка ответа на задачу, где была нажата кнопка "Ответить"
-    document.addEventListener('click', (event) => {
+    // Нажатие на "Ответить"
+    eventSendAnswer()
 
-        // Если событие - не кнопка sumbit, то выходим
-        if (event.target.classList[0] != 'submit') return
-
-        // Находим родителей кнопки; находим семейный input и меняем в нем , на .; берем id из родителя; берем правильный ответ; контейнер правильного ответа
-        const parent = event.target.closest('.conteyner')
-        const answerInput = parent.querySelector('.input').value.replace(',', '.')
-        const id = +parent.id
-        const answerRight = thisProblems[id].answer
-        const conteynerRightAnswer = parent.querySelector('.conteynerRightAnswer')
-
-        // Если верно, то: цвет фона - зеленый, input - только чтение, submit - нельзя нажимать + убираем hover. 
-        // Иначе: цвет фона - красный
-        if (answerInput != ''){
-                if (String(answerRight) === answerInput) {
-                    background('green', id)
-                    inputAll[id].readOnly = true
-                    submitAll[id].disabled = true
-                    submitAll[id].classList.remove('button:hover')
-
-                    conteynerRightAnswer.innerHTML = ''
-                
-                } else {
-                    background('red', id)
-
-                    // В контейнер правильного ответа добавляем текст
-                    conteynerRightAnswer.innerHTML = getRightAnswerHTML(thisProblems[id])
-
-                    // show "Показать ответ"
-                    const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer')
-                    rightAnswer.classList.remove('close')
-                    rightAnswer.classList.add('show')
-
-            }
-        }
-
-
-        /// Сохранение цветов при нажатии на ответ в LocalStr
-        const classesWithColor = [...document.querySelectorAll('.number')]
-        let colorArray = {}
-        classesWithColor.forEach((element, index) => colorArray[thisProblems[index].id] = element.classList[1])
-        setLocalStorage('color', colorArray)
-    })
-
-
-    // Показывание правильного ответа
-    showRightAnswerHTML()
-
-    createAndSaveInfoAnswers(thisProblems)
 
 
     // Ограничение на input
@@ -135,12 +176,14 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         // Если событие - не кнопка input, то выходим
         if (event.target.classList[0] != 'input') return 
 
-        // Сохранение input в LocalStr
-        const inputDOM = [...document.querySelectorAll('.input')]
-        let inputArray = {}
-        inputDOM.forEach((element, index) => inputArray[thisProblems[index].id] = element.value)
-        setLocalStorage('inputCurr', inputArray)
-
         // Регулярное выражение для фильтрации input
-        event.target.value = event.target.value.replace(/[^0123456789,-]/g, '')})
+        event.target.value = event.target.value.replace(/[^0123456789,-]/g, '')
+    })
+    
+
+
+    // Создание и/или сохранение 1) цветов 2) "показать ответ"  3) input
+    createAndSaveColors(getThisProblems()) 
+    createAndSaveInfoAnswers(getThisProblems())
+    createAndSaveInputs(getThisProblems())
 }

@@ -7,11 +7,16 @@ body{
     min-width: 1500px;
 }
 
+.curr{
+    max-width: 1500px;
+}
+
 
 
 button, input, header{
     font-family: 'PT Serif', serif;
 }
+
 
 img{
     margin: 0;
@@ -34,7 +39,15 @@ img{
     font-weight: 500;
 }
 
+.star{
+    position: relative;
+    left: 460px;
+    font-size: 20px;
+}
 
+.star:hover{
+    cursor: pointer;
+}
 
 .netTabl{
     border-bottom: 2px dashed rgb(64, 0, 255);
@@ -91,6 +104,18 @@ img{
     z-index: 2;
 }
 
+.pop_up1{
+    transform: translateY(-44.5%) scale(0);
+    transition: .4s ease-in-out;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+    z-index: 2;
+}
+
 .pop_up_container{
     display: flex;
     width: 100%;
@@ -124,8 +149,13 @@ img{
     position: relative;
     text-align: left;
     font-size: 25px;
+    width: 800px;
 }
 
+.testEnd1{
+    position: relative;
+    left: 80px;
+}
 .pop_up_body p{
     font-size: 28px;
     font-weight: 600;
@@ -139,9 +169,14 @@ img{
     transform: translateY(0%) scale(100%);
 }
 
+.pop_up1.active{
+    background-color: rgba(0, 0, 0, .8);
+    transform: translateY(0%) scale(100%);
+}
+
 .pop_up_body1 button{
     position: relative;
-    left: 230px;
+    left: 300px;
     text-align: center;
     cursor: pointer;
     width: 100px;
@@ -156,6 +191,14 @@ img{
 }
 
 .pop_up_close{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.pop_up_close1{
     position: absolute;
     top: 15px;
     right: 15px;
@@ -255,6 +298,11 @@ img{
     text-align: center;
 }
 
+.iinf{
+    position: relative;
+    left: 70px;
+}
+
 hr{
     background-color: rgb(64, 0, 255);
     color: rgb(64, 0, 255);
@@ -269,10 +317,27 @@ hr{
     border-radius: 12px;
     text-align: center;
     width: 300px;
+    cursor: pointer;
     margin-bottom: 50px;
 }
 
 .toStress:hover{
+    background-color: rgb(247, 243, 243);
+    font-weight: 900;
+}
+
+.toStress1{
+    margin-bottom: 0px;
+    font-size: 30px;
+    background-color: white;
+    border-radius: 12px;
+    text-align: center;
+    width: 300px;
+    margin-bottom: 100px;
+    cursor: pointer
+}
+
+.toStress1:hover{
     background-color: rgb(247, 243, 243);
     font-weight: 900;
 }
@@ -296,7 +361,7 @@ hr{
     width: 97%;
     position: relative;
     left: 23px;
-    height: 150px;
+    height: 200px;
     background-color: white;
 
     margin-bottom: 60px;
@@ -331,8 +396,8 @@ footer{
     width: 40px;
     height: 40px;
     position: relative;
-    right: 680px;
-    bottom: 38px;
+    right: 280px;
+    bottom: 105px;
 }
 
 .HeadPart{
@@ -376,6 +441,9 @@ table{
     text-align: center;
 }
 
+.AAAA{
+    height: 40px;
+}
 .table2{
     text-align: center;
     margin: 0 auto;
@@ -482,12 +550,26 @@ table{
     border-radius: 12px;
     font-size: 25px;
     background-color: white;
+    cursor: pointer
 
 }
 a {
     text-decoration:none;
     color: black
   }
+
+.indexText{
+    cursor: pointer;
+    
+
+}
+
+.indexText{
+    border-bottom: 0.1rem dashed;
+}
+.indexText:hover{
+    font-weight: 900;
+}
 .nameProblem{
    text-decoration: none;
    color: black;
@@ -516,8 +598,43 @@ a {
     border-radius: 12px;
     font-size: 25px;
     background-color: white;
-    margin-bottom: 100px;
+    margin-bottom: 100px; 
+    cursor: pointer
 }
+
+.clearAll {
+    border-radius: 12px;
+    font-size: 25px;
+    background-color: white;
+    margin-bottom: 3px; 
+    cursor: pointer
+}
+
+.start {
+    border-radius: 12px;
+    font-size: 25px;
+    background-color: rgb(238, 235, 235);
+    width: 50px;
+    text-align: center;
+}
+
+.min{
+    position: relative;
+    left: 4px
+}
+
+.finish {
+    border-radius: 12px;
+    font-size: 25px;
+    background-color: rgb(238, 235, 235);
+    width: 50px;
+    text-align: center;
+}
+
+.r{
+    font-size: 24px;
+}
+
 .exam:hover{
     background-color: rgb(247, 243, 243);
     font-weight: 900;
@@ -561,6 +678,11 @@ a {
     font-weight: 900;
 }
 
+.clearAll:hover{
+    background-color: rgb(247, 243, 243);
+    font-weight: 900;
+}
+
 .accept{
     border-radius: 12px;
     font-size: 30px;
@@ -588,8 +710,12 @@ a {
 }
 .end{
     text-align: center;
-    margin-top: 40px;
-    margin-bottom: 140px; 
+    margin-top: 40px; 
+    margin-bottom: 40px;
+}
+
+.lvl{
+    margin-bottom: 50px;
 }
 
 input::-webkit-outer-spin-button,
@@ -671,12 +797,31 @@ body {
     margin: 0 auto;
 }
 
+.rt2{
+    position: relative;
+    left: 50px;
+}
+
+.rt1{
+    position: relative;
+    left: 60px;
+}
+
+.rt4{
+    position: relative;
+    left: 30px;
+}
+.rt5{
+    position: relative;
+    right: 30px;
+}
 
 .menu{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     margin-left: 70px;
+    margin-bottom: 20px;
    
 }
 
@@ -689,7 +834,7 @@ body {
     margin-right: 70px;
     border-bottom: 2px solid rgb(64, 0, 255);
     cursor: pointer;
-    font-size: 22px;
+    font-size: 25px;
 
 }
 
@@ -719,10 +864,28 @@ body {
 }
 
 .flitr{
-    text-align: center;
-    margin-bottom: 50px;
+    display: flex;
+    position: relative;
+    left: 400px;
+    margin-bottom: 70px;
+    margin-top: 10px;
+    width: 100px;
 }
 
+.flitrConteynerByBox{
+    margin-left: 200px;
+}
+
+.SSS{
+    text-align: left;
+    width: 500px;
+
+}
+
+.fil{
+    position: relative;
+    right: 100px;
+}
 .leave{
     border-radius: 12px;
     width: 370px;
@@ -855,7 +1018,7 @@ body.curr{
 
 .lvll{
     position: relative;
-    left: 500px;
+    left: 480px;
 }
 
 .answer{

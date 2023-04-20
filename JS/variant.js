@@ -1,149 +1,197 @@
-// Если на странице variant
 if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     
-    // Кнопка подтверждения; Контейнер всех заданий; Место времени; Кнопка "назад"; Имя варианта
-    const acceptBtn = document.querySelector('.accept')
-    const allConteynerVariant = document.querySelector('.allConteynerVar')
-    const timePlace = document.querySelector('.time1')
-    const nameVariant = document.querySelector('.nameVariant') 
+    const acceptBtn = document.querySelector('.accept') // Кнопка подтверждения
+    const allConteynerVariant = document.querySelector('.allConteynerVar') // Контейнер всех заданий
+    const timePlace = document.querySelector('.time1') // Место времени
+    const nameVariant = document.querySelector('.nameVariant') // Имя варианта
+    const arrayCountProblem = getLocalStorage('countProblem') // Считываем кол-во выбранных номеров 
+    const iconText = document.querySelector('.titleVariant') // Текст иконки
+    const numberVariant = getLocalStorage('numberVariant') // id Варианта
+    let allProblemsMain = [] // Массив, состоящий из объектов заданий
 
-    // Считываем кол-во выбранных номеров
-    const arrayCountProblem = getLocalStorage('countProblem')
+    removeLocalStorage('flagEndVariant') // Убирание заглушки, из-за которой не выходят много "результатов"
 
-    // Массив, состоящий из объектов заданий 
-    let allProblemsMain = []
-    let allProblemsHelp = []
-
-    // Убирание заглушки, из-за которой не выходят много "результатов"
-    removeLocalStorage('flagEndVariant')
-
-    // Формируем список объектов задач: если в LocalStr есть variant, то в allProblemsMain variant из LocalStr
-    // И если состояние варианта afk, то удаляем ответы из LocalStr
-    // Иначе: в allProblemsHelp кладем рандочные задания (кол-во каждого задания - arrayCountProblem[i]))
-    if (getLocalStorage('variant')){
-        allProblemsMain = getLocalStorage('variant')
     
-        if (getLocalStorage('againVariant') === 'afk') removeLocalStorage('answers')
-        
+    
+    
+    if (getLocalStorage('variant')){ // Если уже есть вариант
+        allProblemsMain = getLocalStorage('variant') // Массив заданий при обновлении   
+        if (getLocalStorage('againVariant') === 'afk') removeLocalStorage('answers') // Стирание ответов при новом старом вариате       
+    } else if (getLocalStorage('fromStats') !== 1) { // Если только создался
+        numberVariant === 0 ? allProblemsMain = randomVariant(arrayCountProblem) : allProblemsMain = getArrayObjectForSpecialVariants(numberVariant)
     } else {
-        for (let i = 1; i <= 11; i++) allProblemsHelp.push(randomProblem(i, arrayCountProblem[i])) 
-        allProblemsHelp.forEach(elementFirst => elementFirst.forEach(elementSecond => allProblemsMain.push(elementSecond)))
-    }
-
-
-    // Выводим задания на страницу
-    allProblemsMain.forEach((elementFirst, id) => allConteynerVariant.innerHTML += problemHTMLvariant(elementFirst, id))
-
-    // Сохранение ответов
-    if (getLocalStorage('answers')){
-        const LocalStrAnswer = getLocalStorage('answers')
-
-        const inputVariant = [...document.getElementsByClassName('input')]
-
-        inputVariant.forEach((element, i) => element.value = LocalStrAnswer[i])
-
-    }
-
-
-    // Записываем список объектов задач в LocalStr в variant (для случая обновления страницы)
-    setLocalStorage('variant', allProblemsMain)
-
-
-    // Проверяем, вариант формата ЕГЭ или нет
-    let isVariant = true
-    arrayCountProblem.forEach(element => {if (element != '-' && element != 1) isVariant = false})
-
-
-    // Если формат ЕГЭ, то работаем c time; заголовок
-    isVariant ? time(allProblemsMain) : null
-    isVariant ? nameVariant.innerHTML += ' (вариант формата ЕГЭ)' : nameVariant.innerHTML += ' (вариант НЕ формата ЕГЭ)'
+        const idPreviousVariant = getLocalStorage('idVariant')
+        const objectVariant = getLocalStorage('stats')[idPreviousVariant - 1]
+        const myVariant = objectVariant.problems
+        allProblemsMain = myVariant
+    }        
     
-    // PopUp элементы
-    const popUp = document.querySelector('.pop_up1')
+    allProblemsMain.forEach((elementFirst, id) => allConteynerVariant.innerHTML += problemHTMLvariant(elementFirst, id)) // Выводим задания на страницу
+    setLocalStorage('variant', allProblemsMain) // Записываем список объектов задач в LocalStr в variant (для случая обновления страницы)
+
+
+    if (getLocalStorage('fromStats') !== null){
+
+        if (getLocalStorage('fromStats') === 0.5) setLocalStorage('fromStats', 0)
+
+        if (getLocalStorage('fromStats') === 1) {
+            setLocalStorage('againVariant', 'afk')
+            setLocalStorage('fromStats', 0.5)
+
+            timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
+            iconText.innerHTML = 'Результат' 
+
+            const idPreviousVariant = getLocalStorage('idVariant')
+            const objectVariant = getLocalStorage('stats')[idPreviousVariant - 1]
+            const myVariant = objectVariant.problems
+            const myColors = objectVariant.colors
+            const inputVariant = [...document.querySelectorAll('.input')]
+            setLocalStorage('variant', myVariant)
+
+            const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
+            for (let index = 0; index < myVariant.length; index ++){
+                background(myColors[index], index)
+                inputVariant[index].readOnly = true
+
+                const thisParent = allParents[index] // Родитель этой задачи
+                const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
+                thisStar.classList.remove('close') // Удаляем close звезде
+
+                if (myColors[index] === 'red'){
+                    const thisConteyner = thisParent.querySelector('.conteynerRightAnswer') // Текущий контейнер ответов
+                    thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index]) // Записываем туда getRightAnswerHTML()
+                    const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show
+                    rightAnswer.classList.remove('close')
+                    rightAnswer.classList.add('show')
+                }
+            }
+            
+            acceptBtn.disabled = true // Блокируем "завершить работу"
+
+        }
+    }
+
+
+    // Вывод ответов
+    const LocalStrAnswer = getLocalStorage('answers')
+    if (LocalStrAnswer){
+        const inputVariant = [...document.querySelectorAll('.input')]
+        inputVariant.forEach((element, index) => element.value = LocalStrAnswer[index])
+    }
+
+    let isVariant = true // Флаг
+    if (getLocalStorage('fromStats') === null) arrayCountProblem.forEach(element => {if (element != '-' && element != 1) isVariant = false}) // Проверяем, вариант формата ЕГЭ или нет
+    
+    
+
+    if (isVariant) time(allProblemsMain) // Если формат ЕГЭ, то работаем c time
+
+    if (numberVariant === 0) nameVariant.innerHTML = 'Тестовая часть'
+    else if (getLocalStorage('fromStats') !== null) {
+        let thisName = getLocalStorage('stats')[getLocalStorage('idVariant') - 1].name
+        nameVariant.innerHTML = thisName    
+    }
+    else nameVariant.innerHTML = specialVariants[numberVariant].name
+
+    //numberVariant === 0 ? nameVariant.innerHTML = 'Тестовая часть' : nameVariant.innerHTML = specialVariants[numberVariant].name // Заголовок
+    isVariant ? nameVariant.innerHTML += ' (вариант формата ЕГЭ)' : nameVariant.innerHTML += ' (вариант НЕ формата ЕГЭ)' // Заголовок 
+ 
+
+    // popUp
+    const popUpMain = document.querySelector('.pop_up')
+    const popUpSecond = document.querySelector('.pop_up1')
     const yesBtn = document.querySelector('.yesBtn')
     const cancelBtn = document.querySelector('.cancelBtn')
 
+    acceptBtn.addEventListener('click', () => { popUpSecond.classList.add('active') }) // Нажатие на "закончить" // Открывает PopUp
+    cancelBtn.addEventListener('click', () => {popUpSecond.classList.remove('active') }) // Нажатие на "отмена" в PopUp // Закрываем PopUp
+  
+    document.addEventListener('click', (event) => {
+        // Выход из PopUp
 
-    // Нажатие на "закончить"
-    acceptBtn.addEventListener('click', () => {
-        // Открывает PopUp
-        popUp.classList.add('active')
-    })
-    
+        if (!event.target.classList[0] || !event.target.classList[0].includes('pop_up')) return // Если не popUp - выходим
 
-    // Нажатие на "отмена" в PopUp
-    cancelBtn.addEventListener('click', () => {
-        // Закрываем PopUp
-        popUp.classList.remove('active')
+        const popUpArrayClassList = ['pop_up', 'pop_up_container', 'pop_up_close']
+        const popUp1ArrayClassList = ['pop_up1', 'pop_up_container1', 'pop_up_close1']
+        const classThisElement = event.target.classList[0]
+
+        if (popUpArrayClassList.includes(classThisElement)) popUpMain.classList.remove('active')
+        if (popUp1ArrayClassList.includes(classThisElement)) popUpSecond.classList.remove('active')
     })
 
 
     // Нажатие на "Да" в PopUp
     yesBtn.addEventListener('click', () => {
-        const inputVariant = [...document.getElementsByClassName('input')]
-        let answer = []
+        const inputVariant = [...document.querySelectorAll('.input')] // HTML input
+        const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
 
-        // Смена режима в afk
-        setLocalStorage('againVariant', 'afk')
+        let answer = [] // Массив input ответов
+        inputVariant.forEach(element => answer.push(element.value)) // Введенные ответы
 
-        // Уведомление для пользователей за место времени
-        timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
+        let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // Количество верных задач
+        let rightAnswers = 0 // Количество правильных ответов
+  
+        setLocalStorage('againVariant', 'afk') // Смена режима в afk
 
-        // Текст иконки
-        document.querySelector('.titleVariant').innerHTML = 'Результат'
+        timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу' // Уведомление для пользователей за место времени
+        iconText.innerHTML = 'Результат' 
 
-        // Введенные ответы
-        inputVariant.forEach(element => answer.push(element.value))
-
-        // Количество верных задач
-        let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        
-        // Все контейнеры
-        const allParents = document.getElementsByClassName('conteyner')
-
-        // Проверка на правильность ответа
-        let rightAnswers = 0
+        let arrayColors = []
+        // Проходимся по массиву answer
         answer.forEach((element, index) => {
-            if (element != '' && element.replace(',', '.') === String(allProblemsMain[index].answer)){
+            const thisObject = allProblemsMain[index] // Текущая задача
+            const thisParent = allParents[index] // Родитель этой задачи
+            const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
+            thisStar.classList.remove('close') // Удаляем close звезде
+
+            // Проверка на правильность ответа
+            if (element !== '' && +element.replace(',', '.') === thisObject.answer){
                 rightAnswers ++
-                countRightAnswer[allProblemsMain[index].number] ++
+                countRightAnswer[thisObject.number] ++
                 background('green', index)
+                arrayColors.push('green')
             } else {
                 background('red', index)
+                arrayColors.push('red')
 
-                // Берем из текущего контейнера контейнер ответов и записываем туда getRightAnswerHTML()
-                const thisConteyner = allParents[index].querySelector('.conteynerRightAnswer')
-                thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index])
+                const thisConteyner = thisParent.querySelector('.conteynerRightAnswer') // Текущий контейнер ответов
+                thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index]) // Записываем туда getRightAnswerHTML()
                 
-                // showRightAnswer - весь блок answer -> делаем show
-                const rightAnswer = thisConteyner.querySelector('.showRightAnswer')
+                const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show
                 rightAnswer.classList.remove('close')
                 rightAnswer.classList.add('show')
-
             }
         })
 
-        let infoLocalStorage = []
-        for (let i = 1; i <= 11; i++) infoLocalStorage.push({right: countRightAnswer[i], count: arrayCountProblem[i]})
-        infoLocalStorage.push({right: rightAnswers, count: answer.length})
+        setLocalStorage('colors', arrayColors)
 
-        let arrayInfo = []
+
+        // Сохранение для stats
+
+        let infoLocalStorageObject = {} // Объект текущего варианта
+        let arrayRightAnswer = [] // Массив статистики
+        for (let i = 1; i <= 11; i++) arrayRightAnswer.push({right: countRightAnswer[i], count: arrayCountProblem[i]})
+        arrayRightAnswer.push({right: rightAnswers, count: answer.length})
+        //infoLocalStorageObject.name = specialVariants[numberVariant].name
+
+        infoLocalStorageObject.stats = arrayRightAnswer // Добавляем в объект варианта статистику варианта
+        infoLocalStorageObject.problems = getLocalStorage('variant')
+        infoLocalStorageObject.colors = getLocalStorage('colors')
+        infoLocalStorageObject.idVariant = getLocalStorage('stats') ? getLocalStorage('stats').length + 1 : 1
+        numberVariant !== 0 && numberVariant ? infoLocalStorageObject.name = specialVariants[numberVariant].name : infoLocalStorageObject.name = `Вариант ${infoLocalStorageObject.idVariant}`
+
+        let arrayInfo = [] // Проходимся по всем прошлым вариантам 
         if (getLocalStorage('stats')) getLocalStorage('stats').forEach(element => arrayInfo.push(element))
+        arrayInfo.push(infoLocalStorageObject) // Добавялем текущий вариант
+        setLocalStorage('stats', arrayInfo) // В LocalStr
 
-        arrayInfo.push(infoLocalStorage)
-        setLocalStorage('stats', arrayInfo)
+        acceptBtn.disabled = true // Блокируем "завершить работу"
+        for (let i = 0; i < answer.length ; i++) inputVariant[i].readOnly = true // Блокируем все input
 
-        // Блокируем "завершить работу" и все инпуты
-        acceptBtn.disabled = true
-        for (let i = 0; i < answer.length ; i++) document.getElementsByClassName("input")[i].readOnly = true
-
-        
         // Смотрим на формат варианта, такой PopUp и выдаем (с "формат ЕГЭ (1-11) или без")
         isVariant ? addPopUp(textPopUpFull, answer, rightAnswers, secondBallArray) : addPopUp(textPopUp, answer, rightAnswers)
-        popUp.classList.remove('active')
+        popUpSecond.classList.remove('active')
     })
-
-    showRightAnswerHTML()
             
     // Ограничение на input
     document.addEventListener('input', (event) => {
@@ -153,9 +201,8 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
 
         // Сохраняем ответы в LocalStr
         let answer = []
-        const inputVariant = [...document.getElementsByClassName('input')]
+        const inputVariant = [...document.querySelectorAll('.input')]
         inputVariant.forEach(element => answer.push(element.value))
         setLocalStorage('answers', answer)
-    })
-        
+    })       
 }

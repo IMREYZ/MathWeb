@@ -11,6 +11,8 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
     // При обновлении меняем timer на false
     setLocalStorage('timer', false)
 
+    if (getLocalStorage('pause')) removeLocalStorage('pause')
+
     // Если нет рекорда, рекорд = 0
     if (!getLocalStorage('record')) setLocalStorage('record', 0)
 
@@ -18,7 +20,12 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
     // Дописываем рекорд
     !getLocalStorage('thisScore') ? setLocalStorage('thisScore', 0) : score.innerHTML = `Текущий счёт: <span class='thisScore'>${getLocalStorage('thisScore')}</span> `
     score.innerHTML += `(Рекорд: <span class='thisScore'>${getLocalStorage('record')}</span>)`
-  
+    
+
+    // timer = false, когда пауза, иначе = true
+    // pause - 0,35 сек
+
+
     // Если проиграл
     function endGame(){
         // Узнаем текущий счет
@@ -38,9 +45,8 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
         rightAnswer.classList.remove('close')
         rightAnswer.classList.add('show')
 
-        showRightAnswerHTML()
 
-        // Делаем заглушку на 0,2 сек
+        // Делаем заглушку на 0,35 сек
         setTimeout(function(){
             removeLocalStorage('pause')
 
@@ -53,7 +59,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
 
             // Показываем "красное инфо"
             refreshInfo.innerHTML = `<span class='time1'>Для повторного прохождения этого варианта обновите страницу </span>`
-        }, 350)
+        }, 500)
 
         // Удаляем задачу из LocalStr
         removeLocalStorage('randomProblem')
@@ -69,7 +75,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
 
     // Если нет задачи в LocalStr
     if (!getLocalStorage('randomProblem')) {
-        setLocalStorage('randomProblem', allProblems[randomStress()])
+        setLocalStorage('randomProblem', randomStress())
 
         // Добавляем deadLine 
         const thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')} `
@@ -119,7 +125,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
 
 
             // Берем новую задачу
-            setLocalStorage('randomProblem', allProblems[randomStress()])
+            setLocalStorage('randomProblem', randomStress())
 
             // Ставим зеленый фон + пауза
             background('green', 0)
@@ -131,7 +137,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
 
                 document.querySelector('.input').focus()
                 removeLocalStorage('pause')
-            }, 350)
+            }, 500)
 
             // Формируем дату для дедлайна (текущее время)
             const thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')} `
@@ -153,6 +159,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
         } else endGame()
     }
     
+
     // Если событие - кнопка submit
     document.addEventListener('click', (event) => { if (event.target.classList[0] === 'submit') sendAsnwer() })
 
