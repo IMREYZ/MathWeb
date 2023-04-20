@@ -922,7 +922,6 @@ allProblems.forEach(element => {
     }
 })
 
-console.log(themeProblems)
 
 
 function getNormalClass(text){
