@@ -4,10 +4,15 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     const allConteynerVariant = document.querySelector('.allConteynerVar') // Контейнер всех заданий
     const timePlace = document.querySelector('.time1') // Место времени
     const nameVariant = document.querySelector('.nameVariant') // Имя варианта
-    const arrayCountProblem = getLocalStorage('countProblem') // Считываем кол-во выбранных номеров 
     const iconText = document.querySelector('.titleVariant') // Текст иконки
     const numberVariant = getLocalStorage('numberVariant') // id Варианта
     let allProblemsMain = [] // Массив, состоящий из объектов заданий
+
+    let arrayCountProblem // Считываем кол-во выбранных номеров  getLocalStorage('countProblem')
+    if (getLocalStorage('numberVariant') === 0 && getLocalStorage('fromStats') === null) {
+        arrayCountProblem = getLocalStorage('countProblem')
+    } else if (getLocalStorage('fromStats') === null) arrayCountProblem = getLocalStorage('stats')[getLocalStorage('idVariant') - 1].countProblem
+    else if (getLocalStorage('numberVariant') !== 0) arrayCountProblem = 'DEMO'
 
     removeLocalStorage('flagEndVariant') // Убирание заглушки, из-за которой не выходят много "результатов"
 
@@ -170,6 +175,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
 
         let infoLocalStorageObject = {} // Объект текущего варианта
         let arrayRightAnswer = [] // Массив статистики
+        
         for (let i = 1; i <= 11; i++) arrayRightAnswer.push({right: countRightAnswer[i], count: arrayCountProblem[i]})
         arrayRightAnswer.push({right: rightAnswers, count: answer.length})
         //infoLocalStorageObject.name = specialVariants[numberVariant].name
@@ -178,6 +184,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
         infoLocalStorageObject.problems = getLocalStorage('variant')
         infoLocalStorageObject.colors = getLocalStorage('colors')
         infoLocalStorageObject.idVariant = getLocalStorage('stats') ? getLocalStorage('stats').length + 1 : 1
+        infoLocalStorageObject.countProblem = arrayCountProblem
         numberVariant !== 0 && numberVariant ? infoLocalStorageObject.name = specialVariants[numberVariant].name : infoLocalStorageObject.name = `Вариант ${infoLocalStorageObject.idVariant}`
 
         let arrayInfo = [] // Проходимся по всем прошлым вариантам 
