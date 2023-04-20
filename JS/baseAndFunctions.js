@@ -1,5 +1,9 @@
-// Объекты - задачи
+// Объекты - задачи1
 const allProblems = 
+
+
+
+
 [   
     {problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник'},
     {problem: '1.2', answer: 0.9, procent: 35, type: 'Прямоугольный треугольник'},
