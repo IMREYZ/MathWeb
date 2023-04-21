@@ -1246,6 +1246,7 @@ function currColor(thisProblems){
     const inputAll = document.querySelectorAll('.input') // Все input
     const submitAll = document.querySelectorAll('.submit') // Все sumbit
     const allParents = document.querySelectorAll('.conteyner') // Все контейнеры
+    const allAnswer = document.querySelectorAll('.answer') // Все контейнеры
 
     if (getLocalStorage('color')){ // Если до этого были цвета карточек
 
@@ -1261,8 +1262,10 @@ function currColor(thisProblems){
                 inputAll[count].readOnly = true // Работаем с input и sumbit [count]
                 submitAll[count].disabled = true // Работаем с input и sumbit [count]
                 submitAll[count].classList.remove('button:hover') // Работаем с input и sumbit [count]
+                allAnswer[count].classList.add('white')
              
             } else if (thisColor === 'red') { // Если красный
+                allAnswer[count].classList.add('white')
                 backgroundByCurr(idProblem, 'red') // Устанавливаем красный цвет для задачи с id контейнера
                 conteynerRightAnswer.innerHTML = getRightAnswerHTML(thisProblems[count]) // Добавляем 'показать ответ'
                 
@@ -1337,10 +1340,11 @@ function eventSendAnswer(){
     document.addEventListener('click', (event) => {
 
         // Если событие - не кнопка sumbit, то выходим
-        if (event.target.classList[0] != 'submit') return
+        if (event.target.classList[0] !== 'submit') return
 
         // Находим родителей кнопки; находим дочерний input; находим value этого input; находим дочерний sumbit; дочерний контейнер "правильного ответа"
         const parent = event.target.closest('.conteyner')
+        const answerText = parent.querySelector('.answer')
         const answer = parent.querySelector('.input')
         const answerInput = answer.value.replace(',', '.')
         const submit = parent.querySelector('.submit')
@@ -1355,6 +1359,7 @@ function eventSendAnswer(){
         // Если верно, то: цвет фона - зеленый, input - только чтение, submit - нельзя нажимать + убираем hover. 
         // Иначе: цвет фона - красный
         if (answerInput != ''){
+                answerText.classList.add('')
                 if (String(answerRight) === answerInput) {
                     // Ставим зеленый фон задаче с id как у контейнера; меняем дочерний элементы; убираем "показать ответ"
                     backgroundByCurr(id, 'green')

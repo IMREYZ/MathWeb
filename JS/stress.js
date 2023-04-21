@@ -112,7 +112,9 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
         const inputAnswer = +document.querySelector('.input').value.replaceAll(',', '.')
         const scored = +getLocalStorage('thisScore')
 
-
+        const answerText = document.querySelector('.answer')
+        answerText.classList.add('white')
+        
         // Если ответ ВЕРНЫЙ
         if (inputAnswer === getLocalStorage('randomProblem').answer){
             setLocalStorage('thisScore', scored + 1)

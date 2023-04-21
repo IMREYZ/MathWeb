@@ -129,6 +129,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     yesBtn.addEventListener('click', () => {
         const inputVariant = [...document.querySelectorAll('.input')] // HTML input
         const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
+        const allAnswer = document.querySelectorAll('.answer') 
 
         let answer = [] // Массив input ответов
         inputVariant.forEach(element => answer.push(element.value)) // Введенные ответы
@@ -149,6 +150,9 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
             const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
             thisStar.classList.remove('close') // Удаляем close звезде
 
+            const thisAnswer = allAnswer[index]
+            thisAnswer.classList.add('white')
+            
             // Проверка на правильность ответа
             if (element !== '' && +element.replace(',', '.') === thisObject.answer){
                 rightAnswers ++

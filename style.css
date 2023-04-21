@@ -985,7 +985,7 @@ body.curr{
 }
 
 .red{
-    background-color: #d93838
+    background-color: #e05959
 }
 
 .green{
@@ -1027,6 +1027,10 @@ body.curr{
     font-size: 20px;
 }
 
+.white{
+    color: white
+}
+
 .proc{
     border: 2px solid white;
     border-radius: 12px;
@@ -1050,6 +1054,7 @@ body.curr{
 
 .showRightAnswer{
     margin-left: 150px;
+    color: white;
 }
 
 .pokOtw{
