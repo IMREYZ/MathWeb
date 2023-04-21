@@ -53,10 +53,12 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
             const inputVariant = [...document.querySelectorAll('.input')]
             setLocalStorage('variant', myVariant)
 
-            const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
+            const allParents = [...document.querySelectorAll('.conteyner')] 
+            const allAnswer = [...document.querySelectorAll('.answer')] // Все контейнеры
             for (let index = 0; index < myVariant.length; index ++){
                 background(myColors[index], index)
                 inputVariant[index].readOnly = true
+                allAnswer[index].classList.add('white')
 
                 const thisParent = allParents[index] // Родитель этой задачи
                 const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
