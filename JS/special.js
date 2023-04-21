@@ -16,5 +16,11 @@ if (window.location.pathname === `/MathWeb/HTML/special.html`){
     currColor(getSpecialObject())
     currInput(getSpecialObject())
     currInfoShowRightAnswer(getSpecialObject())
+
+    document.addEventListener('input', (event) => {
+        if (event.target.classList[0] != 'input') return
+
+        event.target.value = event.target.value.replace(/[^0123456789,-]/g, '')
+    })    
       
 }

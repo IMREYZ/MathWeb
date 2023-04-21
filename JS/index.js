@@ -303,8 +303,9 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         setLocalStorage('idVariant', +event.target.id)
         window.location.pathname = `/MathWeb/HTML/variant.html`
     })
-
 }
+
+
 
 
 

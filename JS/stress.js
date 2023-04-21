@@ -161,6 +161,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
         } else endGame()
     }
     
+    //refreshInfo.addEventListener('click', () => { location.reload() })
 
     // Если событие - кнопка submit
     document.addEventListener('click', (event) => { if (event.target.classList[0] === 'submit') sendAsnwer() })
