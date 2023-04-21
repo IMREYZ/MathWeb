@@ -1359,7 +1359,7 @@ function eventSendAnswer(){
         // Если верно, то: цвет фона - зеленый, input - только чтение, submit - нельзя нажимать + убираем hover. 
         // Иначе: цвет фона - красный
         if (answerInput != ''){
-                answerText.classList.add('')
+                answerText.classList.add('white')
                 if (String(answerRight) === answerInput) {
                     // Ставим зеленый фон задаче с id как у контейнера; меняем дочерний элементы; убираем "показать ответ"
                     backgroundByCurr(id, 'green')
