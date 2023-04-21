@@ -529,7 +529,7 @@ table{
 }
 
 [data-button='plus']:hover{
-    background-color: green;
+    background-color: rgb(46, 222, 46);
     font-weight: 900
 }
 [data-button='minus']:hover{
@@ -745,11 +745,11 @@ td{
 
 
 .smallRed{
-    background-color: rgb(248, 182, 182);
+    background-color: rgb(206, 117, 117)
 }
 
 .smallGreen{
-    background-color: rgb(197, 246, 202);
+    background-color: rgb(155, 243, 155)
 }
 
 .countProblem{
@@ -843,7 +843,7 @@ body {
     background-color: rgb(46, 222, 46)
 }
 .redColor1{
-    background-color: red
+    background-color: #e05959
 }
 .yellowColor1{
     background-color: orange
@@ -854,7 +854,7 @@ body {
     color: rgb(46, 222, 46)
 }
 .redColor{
-    color: red
+    color: #e05959
 }
 .yellowColor{
     color: orange
@@ -879,7 +879,7 @@ body {
 
 .SSS{
     text-align: left;
-    width: 500px;
+    width: 600px;
 
 }
 
@@ -985,11 +985,11 @@ body.curr{
 }
 
 .red{
-    background-color: rgb(219, 176, 176);
+    background-color: #d93838
 }
 
 .green{
-    background-color: rgb(197, 241, 197);
+    background-color: rgb(46, 222, 46)
 }
 
 

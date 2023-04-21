@@ -378,10 +378,10 @@ const allProblems =
     {problem: '5.21', answer: -18, procent: 15, type: 'Линейные уравнения'},
     {problem: '5.22', answer: 1, procent: 40, type: 'Степенные уравнения'},
     {problem: '5.23', answer: 12, procent: 30, type: 'Степенные уравнения'},
-    {problem: '5.24', answer: 1, procent: 20, type: 'Степенные уравнения'},
+    {problem: '5.24', answer: -9, procent: 20, type: 'Степенные уравнения'},
     {problem: '5.25', answer: -9, procent: 45, type: 'Линейные уравнения'},
-    {problem: '5.26', answer: -9, procent: 40, type: 'Иррациональные уравнения'},
-    {problem: '5.27', answer: 25, procent: 35, type: 'Иррациональные уравнения'},
+    {problem: '5.26', answer: 25, procent: 40, type: 'Иррациональные уравнения'},
+    {problem: '5.27', answer: 67, procent: 35, type: 'Иррациональные уравнения'},
     {problem: '5.28', answer: 6, procent: 95, type: 'Иррациональные уравнения'},
     {problem: '5.29', answer: -9, procent: 95, type: 'Иррациональные уравнения'},
     {problem: '5.30', answer: 12, procent: 20, type: 'Логарифмические уравнения'},
@@ -1033,6 +1033,16 @@ function colorProcent(procent){
 
 }
 
+function deleteOldStats(){
+    const stats = getLocalStorage('stats')
+
+    if (stats){
+        const firstStats = stats[0]
+        if (!firstStats.countProblem) removeLocalStorage('stats')
+    }
+}
+
+deleteOldStats()
 
 // Вывод задания на HTML на вкладку variant
 function problemHTMLvariant(probl) {
