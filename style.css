@@ -582,6 +582,7 @@ a {
    background-size: 0 3px;
    background-position: 0 100%;
    background-repeat: no-repeat;
+   width: 100px;
 }
 .nameProblem:hover{
     background-size: 100% 3px;
@@ -949,8 +950,8 @@ body {
 }
 
 .time2{
-    border-radius: 12px;
-    width: 350px;
+     border-radius: 12px;
+    width: 200px;
     height: 60px;
     font-size: 25px;
     background-color: white;
