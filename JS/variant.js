@@ -43,7 +43,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
             setLocalStorage('againVariant', 'afk')
             setLocalStorage('fromStats', 0.5)
 
-            timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
+            timePlace.innerHTML = `<button class='time2'>Начать заново </button>`
             iconText.innerHTML = 'Результат' 
 
             const idPreviousVariant = getLocalStorage('idVariant')
@@ -141,7 +141,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
   
         setLocalStorage('againVariant', 'afk') // Смена режима в afk
 
-        timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу' // Уведомление для пользователей за место времени
+        timePlace.innerHTML = `<button class='time2'>Начать заново </button>`// Уведомление для пользователей за место времени
         iconText.innerHTML = 'Результат' 
 
         let arrayColors = []
@@ -205,7 +205,13 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
         isVariant ? addPopUp(textPopUpFull, answer, rightAnswers, secondBallArray) : addPopUp(textPopUp, answer, rightAnswers)
         popUpSecond.classList.remove('active')
     })
-            
+    
+
+    document.addEventListener('click', event => {
+        if (event.target.classList[0] === 'time2') location.reload()
+    })
+
+
     // Ограничение на input
     document.addEventListener('input', (event) => {
         if (event.target.classList[0] != 'input') return

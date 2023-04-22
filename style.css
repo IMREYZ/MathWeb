@@ -948,6 +948,29 @@ body {
     font-weight: 900;
 }
 
+.time2{
+    border-radius: 12px;
+    width: 350px;
+    height: 60px;
+    font-size: 25px;
+    background-color: white;
+}
+
+.time3{
+    border-radius: 12px;
+    width: 200px;
+    height: 60px;
+    font-size: 25px;
+    background-color: white;
+}
+
+.time3:hover{
+    font-weight: 900;
+}
+
+.time2:hover{
+    font-weight: 900;
+}
 .thisScore{
     font-weight: 900;
 
@@ -1029,6 +1052,42 @@ body.curr{
 
 .white{
     color: white
+}
+
+.filT{
+    position: relative;
+    right: 203px;
+}
+
+.plusBox{
+    border-radius: 12px;
+    width: 230px;
+    height: 40px;
+    font-size: 23px;
+    background-color: white;
+    position: relative;
+    right: 140px;
+    margin-top: 20px;
+}
+
+.minusBox{
+    border-radius: 12px;
+    width: 230px;
+    height: 40px;
+    font-size: 23px;
+    background-color: white;
+    position: relative;
+    right: 130px
+}
+
+.plusBox:hover{
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.minusBox:hover{
+    font-weight: 900;
+    cursor: pointer;
 }
 
 .proc{

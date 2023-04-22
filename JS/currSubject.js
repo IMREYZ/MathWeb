@@ -25,7 +25,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
 
     // Добавляем Checkbox на страницу
-    const filterConteyner = document.querySelector('.flitrConteynerByBox')
+    const filterConteyner = document.querySelector('.fil')
     const themeThisProblem = themeProblems[id]
     let thisTypes = []
     for (let index = 0; index < themeThisProblem.length; index ++) thisTypes.push(themeThisProblem[index].name)
@@ -36,6 +36,9 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
     // Все checkbox в HTML
     const allCheckbox = document.querySelectorAll('.checkbox')
+
+    const minusBox = document.querySelector('.minusBox')
+    const plusBox = document.querySelector('.plusBox')
 
     
 
@@ -104,7 +107,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
             if (checkboxArray.includes(getNormalClass(allProblems[i].type))) newThisProblems.push(allProblems[i])
         }
 
-        // Обновляем текущие задачи; сортируем эти задачи
+        // Обновляем текущие задачи; сортируем эти задачи\     
         setLocalStorage('thisProblems', newThisProblems)
         sortProblem(getLocalStorage('select'))
     
@@ -167,6 +170,54 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
     // Нажатие на "Ответить"
     eventSendAnswer()
+
+    minusBox.addEventListener('click', () => {
+        // Если checkbox нет в LocalStr - пустой массив
+        if (!getLocalStorage('checkbox')) setLocalStorage('checkbox', [])
+
+        // Проходимся по всем checkbox HTML
+        allCheckbox.forEach(element => {
+            element.checked = false
+            addW900(`.${element.id}`, false)
+        })
+
+
+        // Обновляем текущие задачи; сортируем эти задачи
+        setLocalStorage('thisProblems', [])
+    
+        // Выводим задания
+        allConteynerProblem.innerHTML = ''
+
+        // Возвращаем цвета; инпуты; инфу об "показать ответ"
+        currColor(getThisProblems())
+        currInput(getThisProblems())
+        currInfoShowRightAnswer(getThisProblems())
+    })
+
+    plusBox.addEventListener('click', () => {
+        // Если checkbox нет в LocalStr - пустой массив
+        if (!getLocalStorage('checkbox')) setLocalStorage('checkbox', [])
+
+        // Проходимся по всем checkbox HTML
+        allCheckbox.forEach(element => {
+            element.checked = true
+            addW900(`.${element.id}`, true)
+        })
+
+
+        // Обновляем текущие задачи; сортируем эти задачи
+        setLocalStorage('thisProblems', allProblems)
+        sortProblem(getLocalStorage('select'))
+    
+        // Выводим задания
+        allConteynerProblem.innerHTML = ''
+        getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element))
+
+        // Возвращаем цвета; инпуты; инфу об "показать ответ"
+        currColor(getThisProblems())
+        currInput(getThisProblems())
+        currInfoShowRightAnswer(getThisProblems())
+    })
 
 
 

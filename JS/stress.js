@@ -6,7 +6,8 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
     const place = document.querySelector('.place')
 
     // Место красного счёта (изначально скрываем)
-    const refreshInfo = document.querySelector('.conteynerTime1') 
+    const refreshInfoText = document.querySelector('.conteynerTime1') 
+    const refreshButton = document.querySelector('.time1') 
 
     // При обновлении меняем timer на false
     setLocalStorage('timer', false)
@@ -58,7 +59,7 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
             setLocalStorage('timer', true)
 
             // Показываем "красное инфо"
-            refreshInfo.innerHTML = `<span class='time1'>Для повторного прохождения этого варианта обновите страницу </span>`
+            refreshInfoText.innerHTML = `<button class='time3'>Начать заново </button>`
         }, 500)
 
         // Удаляем задачу из LocalStr
@@ -125,7 +126,6 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
             score.innerHTML = `Счет: <span class='thisScore'>${scored + 1}</span> (Рекорд: <span class='thisScore'>${getLocalStorage('record')}</span>)`
             
 
-
             // Берем новую задачу
             setLocalStorage('randomProblem', randomStress())
 
@@ -162,6 +162,11 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
     }
     
     //refreshInfo.addEventListener('click', () => { location.reload() })
+
+    document.addEventListener('click', event => {
+        if (event.target.classList[0] === 'time3') location.reload()
+    })
+
 
     // Если событие - кнопка submit
     document.addEventListener('click', (event) => { if (event.target.classList[0] === 'submit') sendAsnwer() })
