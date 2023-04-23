@@ -1052,8 +1052,9 @@ function deleteOldStats(){ // Удаление плохой статистики
         })
 
         setLocalStorage('stats', newStats)
-    }
 
+        if (stats.length === 0) removeLocalStorage('stats')
+    }
 }
 
 
