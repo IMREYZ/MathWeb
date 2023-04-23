@@ -1750,9 +1750,6 @@ function time(allProblemsMain){
             // Убираем timePlace и inputVariant - все HTML поля input
             timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
             const inputVariant = document.querySelectorAll('input')
-                
-            // Все контейнеры
-            const allParents = document.getElementsByClassName('conteyner')
 
             // В answerUser все ответы пользователя; количетво правильных ответов; количество верных ответов какого-то задания
             // Количество верных ответов какого-то задания; количество заданий какого-то задания
@@ -1760,10 +1757,25 @@ function time(allProblemsMain){
             let rightAnswers = 0
             let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             const arrayCountProblem = getLocalStorage('countProblem')
+            const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
+            const allAnswer = document.querySelectorAll('.answer')  
+
+            //const thisAnswer = allAnswer[index]
+           // thisAnswer.classList.add('white')
 
             // Считаем кол-во правильных ответов + делаем background
             answerUser.forEach((element, index) => {
-                if (element != '' && element.replace(',', '.') === String(allProblemsMain[index].answer)){ 
+                const thisObject = allProblemsMain[index] // Текущая задача
+                const thisParent = allParents[index] // Родитель этой задачи
+                const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
+                thisStar.classList.remove('close') // Удаляем close звезде
+
+                const thisAnswer = allAnswer[index]
+                thisAnswer.classList.add('white')
+
+
+
+                if (element != '' && element.replace(',', '.') === String(thisObject.answer)){ 
                     rightAnswers ++
                     background('green', index)
                 } else {
