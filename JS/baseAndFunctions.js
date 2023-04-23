@@ -1,4 +1,4 @@
-// Объекты - задачи1
+// Объекты - задачи
 const allProblems = 
 
 [   
@@ -887,32 +887,32 @@ const allProblems =
     {problem: '11.76', answer: -10, procent: 60, type: 'Частное'},
 ]   
 
-const themeProblems = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 
+
+
+const themeProblems = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], // Темы каждой задачи
     7: [], 8: [], 9: [], 10: [], 11: []}
 
 
-// Все задания по номерам
-let problems = ['-', [], [], [], [], [], [], [], [], [], [], []]
 
-
-// Распределение по ключу number
-allProblems.forEach(element => {
-    const problemSplit = element.problem.split('.')
-
-    element.id = +problemSplit[0] * 1000 + (+problemSplit[1])
-    element.number = +problemSplit[0]
-
-    problems[element.number].push(element)
+const problems = ['-', [], [], [], [], [], [], [], [], [], [], []] // Все задания по номерам
 
 
 
-    const thisType = element.type
-    const thisThemeObject = themeProblems[element.number]
-    let thisTypes = []
-    for (let index = 0; index < thisThemeObject.length; index ++) thisTypes.push(thisThemeObject[index].name)
+allProblems.forEach(element => { // Распределение по ключу number
+    const problemSplit = element.problem.split('.') // problem = 3.25 --> [3, 25]
+
+    element.id = +problemSplit[0] * 1000 + (+problemSplit[1]) // id = 3025
+    element.number = +problemSplit[0] // 3
+    problems[element.number].push(element) // problem[3].push(obj)
+
+
+    const thisType = element.type // Тип задачи
+    const thisThemeObject = themeProblems[element.number] // Массив тем этой задачи [{name: 'уравнение', count: 3}, {name: 'неравенство', count: 4}...]
+    let thisTypes = [] // Массив, где будут все текущие типы, которые были добавлены на данных момент
+    for (let index = 0; index < thisThemeObject.length; index ++) thisTypes.push(thisThemeObject[index].name) // Добавляем имена
     
-    if (!thisTypes.includes(thisType)) thisThemeObject.push({name: thisType, count: 1})
-    else {
+    if (!thisTypes.includes(thisType)) thisThemeObject.push({name: thisType, count: 1}) // Если новый тип - {name: 'НАЗВАНИЕ', count: 1}
+    else { // Иначе перебираем все прошлые темы - ищем эту неновую тему и делаем ++
         for (let index = 0; index < thisThemeObject.length; index ++) {
             if (thisType === thisThemeObject[index].name) thisThemeObject[index].count ++ 
         }
@@ -921,34 +921,33 @@ allProblems.forEach(element => {
 
 
 
-function getNormalClass(text){
-    const splitText = text.split(' ')
-    if (splitText.length === 1) return text
-    
-    let result = ''
-    splitText.forEach((element, index) => result += element + (index !== splitText.length - 1 ? '_' : ''))
-    result = result.replaceAll(',', 'L')
+function getNormalClass(text){ // Функция, которая возвращает класс без пробелов ('ААА, БББ' --> 'АААL_БББ')
+    const splitText = text.split(' ') // Разделяем по пробелам
+    if (splitText.length === 1) return text // |text| === 1 
+
+    let result = '' 
+    splitText.forEach((element, index) => result += element + (index !== splitText.length - 1 ? '_' : '')) // К каждому слову добавялем _, если слово не в конце
+    result = result.replaceAll(',', 'L') // , --> L
     return result
 }
 
-function getSpecialClass(text){
-    return text.replaceAll('_', ' ').replaceAll('L', ',')
-}
+
+
+function getSpecialClass(text){ return text.replaceAll('_', ' ').replaceAll('L', ',') } // 'АААL_БББ' --> 'ААА, БББ'
 
 
 
-const specialVariants = ['-', 
+const specialVariants = ['-', // Специальные варианты
                         {variant: ['1.1', '2.13', '3.1', '4.2', '5.1', '6.2', '7.1', '8.51', '9.1', '10.2', '11.30'], name: 'СТАТГРАД'}]
 
 
 
-
-function getArrayObjectForSpecialVariants(numberVariant){
+function getArrayObjectForSpecialVariants(numberVariant){ // ['1.21', '3.32'] -> [{problem: '1.21' ....}, {problem: '3.32'....}]
     let resultArray = []
-    const thisIdArray = specialVariants[numberVariant].variant
+    const thisIdArray = specialVariants[numberVariant].variant // Массив строк id задач
 
-    allProblems.forEach(element => {
-        thisIdArray.includes(element.problem) && resultArray.push(element)
+    allProblems.forEach(element => { // Проходимся по всем задачам
+        if (thisIdArray.includes(element.problem)) resultArray.push(element) // Если {n.m} in thisIdArray, добавляем задачу в thisIdArray
     })
 
     return resultArray
@@ -957,41 +956,42 @@ function getArrayObjectForSpecialVariants(numberVariant){
 
 
 
-// Время на задачу с каким-то номером
-const timeOnProblem = {
+const timeOnProblem = { // Время на задачу с каким-то номером
     1: [1, 1], 2: [1, 21], 3: [0, 31], 4: [1, 31], 5: [0, 46], 6: [1, 11], 
     7: [0, 41], 8: [2, 1], 9: [3, 1], 10: [2, 1], 11: [1, 21]
 }
 
 
-// Словарь перевода баллов из первичной во вторичную
-const secondBallArray = {
+
+const secondBallArray = { // Словарь перевода баллов из первичной во вторичную
     0: 0, 1: 6, 2: 11, 3: 17, 4: 22, 5: 27,
     6: 34, 7: 40, 8: 46, 9: 52, 10: 58,
     11: 64
 }
 
 
-// thisCountProblem неповторяющих элементов из массива problems[thisIndexProblem]
-function randomProblem(thisIndexProblem, thisCountProblem) {
+
+function randomProblem(thisIndexProblem, thisCountProblem) { // thisCountProblem неповторяющих элементов из массива problems[thisIndexProblem]
     let result = []
-    const myArray = problems[thisIndexProblem]
+    const myArray = problems[thisIndexProblem] // Масссив задач этого номера
 
-    const start = getLocalStorage('fromAndTo').start
-    const finish = getLocalStorage('fromAndTo').finish
+    const start = getLocalStorage('fromAndTo').start // Min сложность
+    const finish = getLocalStorage('fromAndTo').finish // Max сложномть
     
 
-    function getRandomInt(numberIndex) { return Math.floor(Math.random() * Math.floor(numberIndex)) }
+    function getRandomInt(numberIndex) { return Math.floor(Math.random() * Math.floor(numberIndex)) } // Рандомный индекс
     
-    while (result.length !== thisCountProblem) {
-        const randomIndex = getRandomInt(myArray.length) 
-        const randomElement = myArray[randomIndex]
-        const procentThis = randomElement.procent
-        result.push(randomElement) 
-        result = result.filter((element, index) => result.indexOf(element) === index && procentThis >= start && procentThis <= finish) // Убираем неповторяющиеся элементы
+    while (result.length !== thisCountProblem) { // Пока не хватает задач
+        const randomIndex = getRandomInt(myArray.length) // Забираем индекс
+        const randomElement = myArray[randomIndex] // Случайная задачи
+        const procentThis = randomElement.procent // сложность этой задачи
+        result.push(randomElement) // Добавляем задачу (задача остается, если: 1) result = set(result)   2) start <= procentThis <= finish)
+        result = result.filter((element, index) => result.indexOf(element) === index && procentThis >= start && procentThis <= finish)
     }
     return result
 }
+
+
 
 function getObjectsFromAndTo(thisIndexProblem, start, finish){
     let result = []
@@ -1006,60 +1006,72 @@ function getObjectsFromAndTo(thisIndexProblem, start, finish){
 }
 
 
-function withOutBadZero(text){ 
-    if (!text) return ''
-    else return String(+text) }
 
-function randomVariant(countProblem){
+function withOutBadZero(text){ // Функция, которая убирает незнач. нули
+    const resultText = text ? +text : ''
+    return resultText
+}
+
+
+
+function randomVariant(countProblem){ // Генератор рандомного варинта
     let result = []
-    for (let i = 1; i <= 11; i ++){
-        const randomProblemArray = randomProblem(i, countProblem[i])
-        randomProblemArray.forEach(element => result.push(element))
+    for (let index = 1; index <= 11; index ++){
+        const randomProblemArray = randomProblem(index, countProblem[index]) // Массив задач номера i
+        randomProblemArray.forEach(element => result.push(element)) // Добавляем все эти задачи в итоговый массив
     }
 
     return result
 }
 
-function getStar(boolean){
+
+
+function getStar(boolean){ // Функция, которая возвращает нужную звезду
     if (boolean) return '&#9733'
     else return '&#10032' 
 }
 
-// Цвет задачи
-function colorProcent(procent){
+
+
+function colorProcent(procent){ // Цвет задачи
     if (procent < 30) return 'greenColor1'
     else if (procent < 70) return 'yellowColor1'
     else return 'redColor1'
 
 }
 
-function deleteOldStats(){
-    const stats = getLocalStorage('stats')
 
-    if (stats){
-        const firstStats = stats[0]
-        if (!firstStats.countProblem) removeLocalStorage('stats')
+
+function deleteOldStats(){ // Удаление плохой статистики
+    const stats = getLocalStorage('stats') // Наша статистика
+    let newStats = []
+
+    if (stats){ // Если статистика есть
+        stats.forEach(element => {
+            if (element.countProblem) newStats.push(stats)
+        })
     }
+
+    setLocalStorage('stats', newStats)
 }
 
-deleteOldStats()
 
-// Вывод задания на HTML на вкладку variant
-function problemHTMLvariant(probl) {
-    const id = probl.id
-    const objSpecial = getLocalStorage('special')
-    const thisBoolean = objSpecial[id]
-    const textHTML = getStar(thisBoolean)
+
+function problemHTMLvariant(problem) { // Вывод задания на HTML на вкладку variant
+    const id = problem.id // id Задачи
+    const objSpecial = getLocalStorage('special') // Массив избранных задач
+    const thisBoolean = objSpecial[id] // Избранная задача или нет
+    const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
 
     return `<div id = ${id} class="conteyner">
     <div class="number gray" > 
-        <span class='idInfo'>Номер ${probl.number} (№${probl.id}) </span> 
+        <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
         <span title='Избранное задание' class="star close"> ${textHTML} </span>
         <span class='lvll'>
-            Сложность: <span class='${colorProcent(probl.procent)} proc'> ${probl.procent}% </span> 
+            Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
         </span>
     </div>
-        <img src='/MathWeb/img/${probl.problem}.jpg' >
+        <img src='/MathWeb/img/${problem.problem}.jpg' >
         <div class="answer gray1">
             Введите ответ: 
             <input class='input'> 
@@ -1069,31 +1081,34 @@ function problemHTMLvariant(probl) {
 } 
 
 
-// Добавление "правильный ответ"
-function getRightAnswerHTML(probl){
+
+function getRightAnswerHTML(problem){ // Добавление "правильный ответ"
+    const rightAnswer = String(problem.answer).replace('.', ',') // Правильный ответ
+
     return `<span class='showRightAnswer close'> 
         <span class='pokOtw'>Показать ответ: </span> 
         <span class='conteynerRightAnswer'> </span>
-        <span class='rightAnswer close'>${String(probl.answer).replace('.', ',')} </span>
+        <span class='rightAnswer close'>${rightAnswer} </span>
     </span>`
 }
 
-// Вывод задание на HTML на вкладку stress
-function problemHTMLstress(probl) {
-    const id = probl.id
-    const objSpecial = getLocalStorage('special')
-    const thisBoolean = objSpecial[id]
-    const textHTML = getStar(thisBoolean)
+
+
+function problemHTMLstress(problem) { // Вывод задание на HTML на вкладку stress
+    const id = problem.id // id Задачи
+    const objSpecial = getLocalStorage('special') // Массив избранных задач
+    const thisBoolean = objSpecial[id] // Избранная задача или нет
+    const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
 
     return `<div id = ${id} class="conteynerStress" >
     <div class="number gray" > 
-        <span class='idInfo'>Номер ${probl.number} (№${probl.id}) </span> 
+        <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
         <span title='Избранное задание' class="star"> ${textHTML} </span>
         <span class='lvll'>
-            Сложность: <span class='${colorProcent(probl.procent)} proc'> ${probl.procent}% </span> 
+            Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
         </span>
     </div>
-        <img class='imgStress' src='/MathWeb/img/${probl.problem}.jpg'>
+        <img class='imgStress' src='/MathWeb/img/${problem.problem}.jpg'>
         <div class="answer gray1">
             Введите ответ: 
             <input class='input'> 
@@ -1103,124 +1118,126 @@ function problemHTMLstress(probl) {
     </div>`
 }
 
-// Показ правильного ответа
-function showRightAnswerHTML(){
-    document.addEventListener('click', (event) => {
-        // Если не кнопка "показать ответ" - выходим
-        if (event.target.classList[0] != 'pokOtw') return
-        
 
-        // Контейнер правильного ответа; сам ответ
-        const conteynerAnswer = event.target.closest('.conteynerRightAnswer')
-        const rightAnswer = conteynerAnswer.querySelector('.rightAnswer')
-        const showAnswer = conteynerAnswer.querySelector('.pokOtw')
+
+function problemHTMLcurr(problem) { // Вывод задания на HTML на вкладку currSubject
+    const id = problem.id // id Задачи
+    const objSpecial = getLocalStorage('special') // Массив избранных задач
+    const thisBoolean = objSpecial[id] // Избранная задача или нет
+    const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
+    
+
+    return `<div id = ${id} class="conteyner" >
+    <div class="number gray" > 
+        <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
+        <span title='Избранное задание' class="star"> ${textHTML} </span>
+        <span class='lvll'>
+            Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
+        </span>
+    </div>
+        <img src='/MathWeb/img/${problem.problem}.jpg'>
+        <div class="answer gray1">
+            Введите ответ: 
+            <input class='input'> 
+            <button class="submit"> Ответить </button>
+            <span class='conteynerRightAnswer'></span>
+        </div>
+    </div>`
+}
+
+
+
+function showRightAnswerHTML(){ // Показ правильного ответа
+    document.addEventListener('click', (event) => { // Обработка события - нажание на "показать правильный ответ"
+        if (event.target.classList[0] !== 'pokOtw') return // Если не кнопка "показать ответ" - выходим
+
+        const conteynerAnswer = event.target.closest('.conteynerRightAnswer') // Контейнер правильного ответа
+        const rightAnswer = conteynerAnswer.querySelector('.rightAnswer') // Правильный ответ (14, -4.51)
+        const showAnswer = conteynerAnswer.querySelector('.pokOtw') // Текст-кнопка (Показать/Скрыть ответ)
 
 
         // close <--> show
         if (rightAnswer.classList[1] === 'close'){
             rightAnswer.classList.remove('close')
             rightAnswer.classList.add('show')
+            showAnswer.innerHTML = 'Скрыть ответ: '  
 
-            showAnswer.innerHTML = 'Скрыть ответ: '
-                  
         } else {
             rightAnswer.classList.remove('show')
             rightAnswer.classList.add('close')
-
             showAnswer.innerHTML = 'Показать ответ: '
         }
-
-
     })
 }
 
-showRightAnswerHTML()
 
-// Вывод задания на HTML на вкладку currSubject
-function problemHTMLcurr(probl) {
-    const id = probl.id
-    const objSpecial = getLocalStorage('special')
-    const thisBoolean = objSpecial[id]
-    const textHTML = getStar(thisBoolean)
-    
 
-    return `<div id = ${id} class="conteyner" >
-    <div class="number gray" > 
-        <span class='idInfo'>Номер ${probl.number} (№${probl.id}) </span> 
-        <span title='Избранное задание' class="star"> ${textHTML} </span>
-        <span class='lvll'>
-            Сложность: <span class='${colorProcent(probl.procent)} proc'> ${probl.procent}% </span> 
-        </span>
-    </div>
-        <img src='/MathWeb/img/${probl.problem}.jpg'>
-        <div class="answer gray1">
-            Введите ответ: 
-            <input class='input'> 
-            <button class="submit"> Ответить </button>
-            <span class='conteynerRightAnswer'></span>
-        </div>
-    </div>`
-}
-
-function eventClickOnStar(){
-    document.addEventListener('click', (event) => {
-        if (event.target.classList[0] !== 'star') return 
-
+function eventClickOnStar(){ // Функция, которая меняет звезду и special в LocalStr
+    document.addEventListener('click', (event) => { // Обработка события - нажатие на звезду
+        if (event.target.classList[0] !== 'star') return // Если не "звезда" - выходим
+       
+        let parent = event.target.closest('.conteyner') // Родитель звезды
+        if (!parent) parent = event.target.closest('.conteynerStress') // Родитель звезды для другого названия
         
-        
-        const objSpecial = getLocalStorage('special')
+        const objSpecial = getLocalStorage('special') // Массив избранных задач
+        const idThisParent = +parent.id // id звезды
+        const thisBoolean = objSpecial[idThisParent] // Избранная задача или нет
+        const resultBoolean = !thisBoolean // true <--> false
 
-        let parent = event.target.closest('.conteyner')
-        if (!parent) parent = event.target.closest('.conteynerStress')
-        
-        const starHTML = parent.querySelector('.star')
-        const idThisParent = +parent.id
+        objSpecial[idThisParent] = resultBoolean // true <--> false в objSpecial
+        setLocalStorage('special', objSpecial) // objSpecial в LocalStr 'special'
 
-        const thisBoolean = objSpecial[idThisParent]
-        const resultBoolean = !thisBoolean
-
-        objSpecial[idThisParent] = resultBoolean
-        setLocalStorage('special', objSpecial)
-
-        starHTML.innerHTML = getStar(resultBoolean)
+        const starHTML = parent.querySelector('.star') // Звезда
+        starHTML.innerHTML = getStar(resultBoolean) // Меняем звезду 
     })
 }
+
+
 
 eventClickOnStar()
+showRightAnswerHTML()
+deleteOldStats()
 
-function getSpecialObject(){
-    const objSpecial = getLocalStorage('special')
+
+
+function getSpecialObject(){ // Забираем избранные задачи
+    const objSpecial = getLocalStorage('special') // Массив избранных задач 
     let result = []
 
-    allProblems.forEach(element => {if (objSpecial[element.id]) result.push(element)})
+    allProblems.forEach(element => { // Перебираем все задачи
+        const idThisProblem = element.id // id этой задачи
+        if (objSpecial[idThisProblem]) result.push(element) // Если id: true --> добавляем
+    })
 
     return result
 }
 
 
 
-// add / remove w900
-function addW900(node, boolean){
-    const thisNode = document.querySelector(node)
-    boolean ? thisNode.classList.add('w900') : thisNode.classList.remove('w900')
+function addW900(node, boolean){ // add/remove w900
+    const thisNode = document.querySelector(node) // Наш компонент
+    boolean ? thisNode.classList.add('w900') : thisNode.classList.remove('w900') // Если true - добавляем, иначе убираем
 }
 
-// Сортировка массива 'thisProblems'
-function sortProblem(thisSelect){
-    if (thisSelect === 'oldToNew') setLocalStorage('thisProblems', getThisProblems().sort((a, b) => a.id - b.id))
-    else if (thisSelect === 'newToOld') setLocalStorage('thisProblems', getThisProblems().sort((a, b) => b.id - a.id))
-    else if (thisSelect === 'easyToHard') setLocalStorage('thisProblems', getThisProblems().sort((a, b) => a.procent - b.procent))
-    else if (thisSelect === 'hardToEasy') setLocalStorage('thisProblems', getThisProblems().sort((a, b) => b.procent - a.procent))
+
+
+function sortProblem(thisSelect){ // Сортировка массива 'thisProblems'
+    let sortedArray
+    if (thisSelect === 'oldToNew') sortedArray = getThisProblems().sort((a, b) => a.id - b.id)
+    else if (thisSelect === 'newToOld') sortedArray = getThisProblems().sort((a, b) => b.id - a.id)
+    else if (thisSelect === 'easyToHard')  sortedArray = getThisProblems().sort((a, b) => a.procent - b.procent)
+    else if (thisSelect === 'hardToEasy') sortedArray = getThisProblems().sort((a, b) => b.procent - a.procent)
+
+    setLocalStorage('thisProblems', sortedArray)
 }
 
-// Создание и/или сохрание цветов
-function createAndSaveColors(thisProblems){
 
+
+function createAndSaveColors(thisProblems){ // Создание и/или сохрание цветов
     document.addEventListener('click', (event) => {
         if (event.target.classList[0] !== 'submit') return
 
-        // Если нет в LocalStr createAndSaveColors, добавить gray
-        if (!getLocalStorage('color')){
+        if (!getLocalStorage('color')){ // Если нет в LocalStr createAndSaveColors, добавить gray
             const array = {}
             for (let index = 0; index < thisProblems.length; index ++) array[thisProblems[index].id] = 'gray'
             setLocalStorage('color', array)    
@@ -1239,14 +1256,15 @@ function createAndSaveColors(thisProblems){
     })
 }
 
-// Появление цвета в currSubject в случае обновления страницы
-function currColor(thisProblems){
+
+
+function currColor(thisProblems){ // Появление цвета в currSubject в случае обновления страницы
 
     // КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
     const inputAll = document.querySelectorAll('.input') // Все input
     const submitAll = document.querySelectorAll('.submit') // Все sumbit
     const allParents = document.querySelectorAll('.conteyner') // Все контейнеры
-    const allAnswer = document.querySelectorAll('.answer') // Все контейнеры
+    const allAnswer = document.querySelectorAll('.answer') // Все контейнеры answer
 
     if (getLocalStorage('color')){ // Если до этого были цвета карточек
 
@@ -1262,13 +1280,13 @@ function currColor(thisProblems){
                 inputAll[count].readOnly = true // Работаем с input и sumbit [count]
                 submitAll[count].disabled = true // Работаем с input и sumbit [count]
                 submitAll[count].classList.remove('button:hover') // Работаем с input и sumbit [count]
-                allAnswer[count].classList.add('white')
+                allAnswer[count].classList.add('white') // Добавляем белый цвет
              
             } else if (thisColor === 'red') { // Если красный
-                allAnswer[count].classList.add('white')
                 backgroundByCurr(idProblem, 'red') // Устанавливаем красный цвет для задачи с id контейнера
                 conteynerRightAnswer.innerHTML = getRightAnswerHTML(thisProblems[count]) // Добавляем 'показать ответ'
-                
+                allAnswer[count].classList.add('white') // Добавляем белый цвет
+
                 const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer') // close --> show
                 rightAnswer.classList.remove('close')
                 rightAnswer.classList.add('show')
@@ -1278,110 +1296,80 @@ function currColor(thisProblems){
     }
 }
 
-// Создание и/или сохрание input
-function createAndSaveInputs(thisProblems){
+
+
+function createAndSaveInputs(thisProblems){ // Создание и/или сохрание input
     document.addEventListener('input', (event) => {
-        // Если событие - не кнопка input, то выходим
-        if (event.target.classList[0] != 'input') return 
-
-
-        // Если нет в LocalStr currInfoShowRightAnswer, добавить
-        if (!getLocalStorage('inputCurr')){
+        if (event.target.classList[0] !== 'input') return // Если событие - не кнопка input, то выходим
+        
+        if (!getLocalStorage('inputCurr')){ // Если нет в LocalStr currInfoShowRightAnswer, добавить
             const array = {}
-            for (let i = 0; i < thisProblems.length; i++) array[thisProblems[i].id] = ''
+            for (let index = 0; index < thisProblems.length; index ++) array[thisProblems[index].id] = ''
 
             setLocalStorage('inputCurr', array)    
         }
 
+        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания
+        const thisInput = conteynerFull.querySelector('.input') // Текущий input
+        const objInfo = getLocalStorage('inputCurr') // Объект {4001: gray, 4002: green, 4003: red...}
+        const idThisProblemHTML = conteynerFull.id // id этой карточки - id задачи (4030, 11021...)
+        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
+        const idThisProblem = thisProblem.id // id этой задачи
 
-        // Контейнер всего задания; текущий input
-        const conteynerFull = event.target.closest('.conteyner')
-        const thisInput = conteynerFull.querySelector('.input')
-
-        // Объект {4001: gray, 4002: green, 4003: red...}
-        const objInfo = getLocalStorage('inputCurr')
-        
-        // id этой карточки - id задачи (4030, 11021...)
-        const idThisProblemHTML = conteynerFull.id
-        
-        // Сама задача по индексу 
-        const thisProblem = searchObjectById(idThisProblemHTML, allProblems)
-        // id этой задачи
-        const idThisProblem = thisProblem.id
-
-        // Изменение этой задачи; сохранение в LocalStr
-        objInfo[idThisProblem] = thisInput.value
-        setLocalStorage('inputCurr', objInfo)
+        objInfo[idThisProblem] = thisInput.value // Изменение этой задачи
+        setLocalStorage('inputCurr', objInfo) // Сохранение в LocalStr
     })
 }
 
-// Появление input в currSubject в случае обновления страницы
-function currInput(thisProblems){
 
-    // Берем все input со страницы, КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
-    const inputAll = document.querySelectorAll('.input')
 
-    // Если до этого были введены ответы 
-    if (getLocalStorage('inputCurr')){
+function currInput(thisProblems){ // Появление input в currSubject в случае обновления страницы
+    const inputAll = document.querySelectorAll('.input') // Берем все input со страницы, КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
+    const inputLocalStr = getLocalStorage('inputCurr')
 
-        // Перебираем все текущие задания (могут быть в любом порядке)
-        // Забираем значение input очередного задания через getLocalStorage('inputCurr')
-        // {4001: "1", 4002: "", 4003: ""}
+    if (inputLocalStr){ // Если до этого были введены ответы 
+        // thisProblems и inputAll идут в одной сортрировке 
+
         thisProblems.forEach((element, count) => {
-            const thisInput = getLocalStorage('inputCurr')[element.id]
-
-            // Передаем сохраненное значение
-            inputAll[count].value = thisInput 
+            const thisId = element.id // id Задачи
+            const thisInput = inputLocalStr[thisId] // input этой задачи
+            inputAll[count].value = thisInput // Передаем сохраненное значение
         })
     }
 }
 
-function eventSendAnswer(){
+
+
+function eventSendAnswer(){ // Обработка события "отправить ответ"
     document.addEventListener('click', (event) => {
+        if (event.target.classList[0] !== 'submit') return // Если событие - не кнопка sumbit, то выходим
 
-        // Если событие - не кнопка sumbit, то выходим
-        if (event.target.classList[0] !== 'submit') return
-
-        // Находим родителей кнопки; находим дочерний input; находим value этого input; находим дочерний sumbit; дочерний контейнер "правильного ответа"
-        const parent = event.target.closest('.conteyner')
-        const answerText = parent.querySelector('.answer')
-        const answer = parent.querySelector('.input')
-        const answerInput = answer.value.replace(',', '.')
-        const submit = parent.querySelector('.submit')
-        const conteynerRightAnswer = parent.querySelector('.conteynerRightAnswer')
-
-        // Находим id контейнера-задачи; находим объект по id и берем answer
-        const id = +parent.id
-        const thisObject = searchObjectById(id, allProblems)
-        const answerRight = thisObject.answer
+        const parent = event.target.closest('.conteyner') // Родители кнопки
+        const answerText = parent.querySelector('.answer') // Весь блок answer (для add('white'))
+        const answer = parent.querySelector('.input') // Дочерний input
+        const answerInput = answer.value.replace(',', '.') // Value этого input
+        const submit = parent.querySelector('.submit') // Дочерний sumbit
+        const conteynerRightAnswer = parent.querySelector('.conteynerRightAnswer') // Дочерний контейнер "правильного ответа
+        const id = +parent.id // Находим id контейнера-задачи
+        const thisObject = searchObjectById(id, allProblems) // Находим объект
+        const answerRight = thisObject.answer // Правильный ответ задачи
         
 
-        // Если верно, то: цвет фона - зеленый, input - только чтение, submit - нельзя нажимать + убираем hover. 
-        // Иначе: цвет фона - красный
-        if (answerInput != ''){
-                answerText.classList.add('white')
+        if (answerInput !== ''){
+                answerText.classList.add('white') // Добавлеяем белого в блюом случае
+
                 if (String(answerRight) === answerInput) {
-                    // Ставим зеленый фон задаче с id как у контейнера; меняем дочерний элементы; убираем "показать ответ"
-                    backgroundByCurr(id, 'green')
-
-                    answer.readOnly = true
-                    submit.disabled = true
-                    submit.classList.remove('button:hover')
-
-                    conteynerRightAnswer.innerHTML = ''
+                    backgroundByCurr(id, 'green') // Ставим зеленый фон задаче с id как у контейнера
+                    answer.readOnly = true // Меняем дочерние элементы
+                    submit.disabled = true // Меняем дочерние элементы
+                    submit.classList.remove('button:hover') // Меняем дочерний элементы
+                    conteynerRightAnswer.innerHTML = '' // Убираем "показать ответ"
                 
                 } else {
-                    // Ставим фон фон задаче с id как у контейнера
-                    backgroundByCurr(id, 'red')
-
-                    // Находим объект текущей задачи
-                    const currObject = searchObjectById(id, allProblems)
-
-                    // В контейнер правильного ответа добавляем текст 
-                    conteynerRightAnswer.innerHTML = getRightAnswerHTML(currObject)
-
-                    // show "Показать ответ"
-                    const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer')
+                    backgroundByCurr(id, 'red') // Ставим фон фон задаче с id как у контейнера
+                    const currObject = searchObjectById(id, allProblems) // Находим объект текущей задачи
+                    conteynerRightAnswer.innerHTML = getRightAnswerHTML(currObject) // В контейнер правильного ответа добавляем текст 
+                    const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer') // show "Показать ответ"
                     rightAnswer.classList.remove('close')
                     rightAnswer.classList.add('show')
             }
@@ -1389,11 +1377,11 @@ function eventSendAnswer(){
     })
 }
 
-// Создание и/или сохрание нажатия на "показать ответ"
-function createAndSaveInfoAnswers(thisProblems){
+
+
+function createAndSaveInfoAnswers(thisProblems){ // Создание и/или сохрание нажатия на "показать ответ"
     document.addEventListener('click', (event) => {
-        // Если не кнопка "показать ответ" - выходим 
-        if (event.target.classList[0] !== 'pokOtw') return
+        if (event.target.classList[0] !== 'pokOtw') return // Если не кнопка "показать ответ" - выходим 
 
         // Если нет в LocalStr currInfoShowRightAnswer, добавить
         if (!getLocalStorage('currInfoShowRightAnswer')){
@@ -1403,48 +1391,35 @@ function createAndSaveInfoAnswers(thisProblems){
             setLocalStorage('currInfoShowRightAnswer', array)    
         }
 
-        // Контейнер всего задания; верный ответ HTML
-        const conteynerFull = event.target.closest('.conteyner')
-        const rightAnswer = conteynerFull.querySelector('.rightAnswer')
+        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания
+        const rightAnswer = conteynerFull.querySelector('.rightAnswer') // Верный ответ HTML
+        const objInfo = getLocalStorage('currInfoShowRightAnswer') // Объект {4001: true, 4002: false, 4003: false...}
+        const idThisProblemHTML = conteynerFull.id // id задачи (11020, 3004 ...)
+        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
+        const idThisProblem = thisProblem.id // id этой задачи
 
-        // Объект {4001: true, 4002: false, 4003: false...}
-        const objInfo = getLocalStorage('currInfoShowRightAnswer')
-
-        // id задачи (11020, 3004 ...)
-        const idThisProblemHTML = conteynerFull.id
-        // Сама задача по индексу 
-        const thisProblem = searchObjectById(idThisProblemHTML, allProblems)
-        // id этой задачи
-        const idThisProblem = thisProblem.id
-
-        
-        // Изменение этой задачи; сохранение в LocalStr
-        objInfo[idThisProblem] = rightAnswer.classList[1] === 'show'
-        setLocalStorage('currInfoShowRightAnswer', objInfo) 
+        objInfo[idThisProblem] = rightAnswer.classList[1] === 'show' // Изменение этой задачи
+        setLocalStorage('currInfoShowRightAnswer', objInfo) // Сохранение в LocalStr
     })
 }
 
 
 
-// Обновление информации "показать ответ" при обновлении
-function currInfoShowRightAnswer(thisProblems){
-    // Если в LocalStr есть currInfoShowRightAnswer
-    if (getLocalStorage('currInfoShowRightAnswer')){
-        // Контейнеры всех задач
-        const allConteynerRightAnswer = document.querySelectorAll('.conteyner')
+function currInfoShowRightAnswer(thisProblems){ // Обновление информации "показать ответ" при обновлении
+    const infoShowRightAnswer = getLocalStorage('currInfoShowRightAnswer') // Информация об Показании ответа
 
-        // Проходимся по всем задачам
-        thisProblems.forEach((element, count) => { 
+    if (infoShowRightAnswer){ // Если в LocalStr есть currInfoShowRightAnswer
+        const allConteynerRightAnswer = document.querySelectorAll('.conteyner') // Контейнеры всех задач
 
-            // Значение: true/false
-            const thisBoolean = getLocalStorage('currInfoShowRightAnswer')[element.id]
+        thisProblems.forEach((element, count) => { // Проходимся по всем задачам
+            const thisId = element.id // id Задачи
+            const thisBoolean = infoShowRightAnswer[thisId] // true/false
 
             // Если true, то
             if (thisBoolean){
-                // Текущий контейнер; ответ-HTML этого контейнера
-                const thisConteyner = allConteynerRightAnswer[count]
-                const thisInfoAnswer = thisConteyner.querySelector('.rightAnswer')
-                const thisPokOtw = thisConteyner.querySelector('.pokOtw')
+                const thisConteyner = allConteynerRightAnswer[count] // Текущий контейнер
+                const thisInfoAnswer = thisConteyner.querySelector('.rightAnswer') // Ответ-HTML этого контейнера
+                const thisPokOtw = thisConteyner.querySelector('.pokOtw') // Надпись-кнопка
 
                 // close --> show
                 thisInfoAnswer.classList.remove('close')
@@ -1453,12 +1428,13 @@ function currInfoShowRightAnswer(thisProblems){
                 thisPokOtw.innerHTML = 'Скрыть ответ: '
             } 
         })
-
     }
 }
 
-function cleanUpLocalStorage(){
-    const importantWord = ['record', 'special', 'stats']
+
+
+function cleanUpLocalStorage(){ // Убирание из LocalStr
+    const importantWord = ['record', 'special', 'stats'] // Список неубераемых
     let importantArray = []
 
     importantWord.forEach(element => importantArray.push({key: element, value: getLocalStorage(element)}))
@@ -1468,110 +1444,106 @@ function cleanUpLocalStorage(){
 }
 
 
-// Получаем текущий массив задач
-function getThisProblems() {
+
+function getThisProblems() { // Получаем текущий массив задач
     return getLocalStorage('thisProblems')
 }
 
-// Ищем объект-задачу по id 
-function searchObjectById(searchId, array){
+
+
+function searchObjectById(searchId, array){ // Ищем объект-задачу по id 
     for (let index = 0; index < array.length; index ++){
         if (array[index].id === +searchId) return array[index]
     }
 }
 
 
-// Запись в LocalStr
-function setLocalStorage(nameLocal, value){
+
+function setLocalStorage(nameLocal, value){ // Запись в LocalStr
     localStorage.setItem(nameLocal, JSON.stringify(value))
 }
 
 
-// Получение из LocalStr
-function getLocalStorage(value){
+
+function getLocalStorage(value){ // Получение из LocalStr
     return JSON.parse(localStorage.getItem(value))
 }
 
 
-// Удаление из LocalStr
-function removeLocalStorage(value){
+
+function removeLocalStorage(value){ // Удаление из LocalStr
     localStorage.removeItem(value)
 }
 
 
-// Смена background цвета
-function background(color, index) {
-    const allNumbers = document.querySelectorAll(".number")
-    const allAnswer = document.querySelectorAll(".answer")
+
+function background(color, index) { // Смена background цвета
+    const allNumbers = document.querySelectorAll(".number") // Все верхние подконтейнеры контейнера
+    const allAnswer = document.querySelectorAll(".answer") // Все нижние подконтейнеры контейнера
     
-    allNumbers[index].classList.remove('gray', 'green', 'red')
-    allNumbers[index].classList.add(color)
+    allNumbers[index].classList.remove('gray', 'green', 'red') // Убираем все классы
+    allNumbers[index].classList.add(color) // Добавляем нужный цвет
     
-    allAnswer[index].classList.remove('gray1', 'green', 'red')
+    allAnswer[index].classList.remove('gray1', 'green', 'red') // Убираем все классы
     if (color === 'gray') color = 'gray1'
-    allAnswer[index].classList.add(color)
+    allAnswer[index].classList.add(color) // Добавляем нужный цвет
 }
 
-// Смена background цвета для currSubj
-function backgroundByCurr(id, color){
-    // Все контейнеры задач, КОТОРЫЕ ЕСТЬ СЕЙЧАС
-    const allConteyners = document.querySelectorAll('.conteyner')
-
-    // Перебираем все задачи
-    allConteyners.forEach(element => {
-        // Если id задачи === нашему id, которое мы хотим найти, то
-        if (+element.id === id){
-            // Дочерний number и answer
-            const thisNumber = element.querySelector('.number')
-            const thisAnswer = element.querySelector('.answer')
 
 
-            // Стили
+function backgroundByCurr(id, color){ // Смена background цвета для currSubj
+    const allConteyners = document.querySelectorAll('.conteyner') // Все контейнеры задач, КОТОРЫЕ ЕСТЬ СЕЙЧАС
 
-            thisNumber.classList.remove('gray', 'green', 'red')
-            thisNumber.classList.add(color)
+    allConteyners.forEach(element => { // Перебираем все задачи
+        if (+element.id === id){ // Если id задачи === нашему id, которое мы хотим найти, то
+            const thisNumber = element.querySelector('.number') // Дочерний number
+            const thisAnswer = element.querySelector('.answer') // Дочерний answer
 
-            thisAnswer.classList.remove('gray1', 'green', 'red')
+            thisNumber.classList.remove('gray', 'green', 'red') // Убираем все классы
+            thisNumber.classList.add(color) // Добавляем нужный цвет
+
+            thisAnswer.classList.remove('gray1', 'green', 'red') // Убираем все классы
             if (color === 'gray') color = 'gray1'
-            thisAnswer.classList.add(color)
+            thisAnswer.classList.add(color) // Добавляем нужный цвет
         } 
     })
 }
 
 
-// Сумма массива
-function summArray(array){
+
+function summArray(array){ // Сумма массива
     let sum = 0
     array.forEach((element, index) =>{ if (index != 0) sum += element})
     return sum
 }
 
 
-// Массив количеств задач [-, 0, 1, 3, ....]
-function pushArrayCountProblem(){
-    const DOMarrayCountProblem = ['-', ...document.getElementsByClassName('countProblem')]
-    let arrayCountProblem = ['-']
 
-    DOMarrayCountProblem.forEach((element, index) => {if (index != 0) arrayCountProblem.push(+element.value)})
+function pushArrayCountProblem(){ // Массив количеств задач [-, 0, 1, 3, ....]
+    const DOMarrayCountProblem = ['-', ...document.querySelectorAll('.countProblem')] // Все countProblem
+    let arrayCountProblem = ['-'] // Результат
+
+    DOMarrayCountProblem.forEach((element, index) => {if (index !== 0) arrayCountProblem.push(+element.value)}) // Если index != 0 => push
     return arrayCountProblem
 }
 
 
-// Округление до сотых
-function rounded(number){
+
+function rounded(number){ // Округление до сотых
     return +number.toFixed(2);
 }
 
 
-// Присваение все input в index значение = value
-function countProblemToNumber(value){
-    for (i = 0; i <= 10; i++) document.getElementsByClassName('countProblem')[i].value = value
+
+function countProblemToNumber(value){ // Присваение все input в index значение = value
+    const allCountProblem = document.querySelectorAll('.countProblem')
+    for (index = 0; index <= 10; index ++) allCountProblem[index].value = value
 }
 
 
-// Изменение кнопки variantBTN в обычную
-function defaultBtnVariant(){
-    const variant = document.querySelector('.variantBTN')
+
+function defaultBtnVariant(){ // Изменение кнопки variantBTN в обычную
+    const variant = document.querySelector('.variantBTN') // Кнопка создания варианта
 
     variant.innerHTML = `Составить вариант (Выбрано заданий: 0)`
     variant.disabled = true
@@ -1579,32 +1551,31 @@ function defaultBtnVariant(){
 }
 
 
-// Смена кнопки "Вариант" (изменение количества заданий + нажимаемость)
-function changeBtnVariant(){
-    const variant = document.querySelector('.variantBTN')
-    const arrayCountProblem = pushArrayCountProblem()
-    const summProblems = summArray(arrayCountProblem)
 
-    const startBtn = document.querySelector('.start')
-    const finishBtn = document.querySelector('.finish')
-    const valueStart = +startBtn.value
-    const valueFinish = +finishBtn.value
+function changeBtnVariant(){ // Смена кнопки "Вариант" (изменение количества заданий + нажимаемость)
+    const variant = document.querySelector('.variantBTN') // Кнопка создания варианта
+    const arrayCountProblem = pushArrayCountProblem() // Массив кол-ва задач
+    const summProblems = summArray(arrayCountProblem) // Количество задач всего
+
+    const startBtn = document.querySelector('.start') // Min сложность элемент
+    const finishBtn = document.querySelector('.finish') // Max сложность элемент
+    const valueStart = +startBtn.value // Значение
+    const valueFinish = +finishBtn.value // Значение
 
     variant.innerHTML = `Составить вариант (Выбрано заданий: ${summProblems})`
-    variant.disabled = summProblems === 0
+    variant.disabled = summProblems === 0 // Если 0 задач выбрано --> false
     
-    for (let i = 1; i <= 11; i++){
-        const problemsByDifficulty = getObjectsFromAndTo(i, valueStart, valueFinish)
-        if (problemsByDifficulty.length < arrayCountProblem[i]) variant.disabled = true
+    for (let index = 1; index <= 11; index ++){
+        const problemsByDifficulty = getObjectsFromAndTo(index, valueStart, valueFinish) // Массив задач номера index с valueStart <= procent <= valueFinish
+        if (problemsByDifficulty.length < arrayCountProblem[index]) variant.disabled = true // Если выбранных задач > возвожных задач --> disabled
     }
 
-    variant.disabled ? variant.classList.add('boom') : variant.classList.remove('boom')
+    variant.disabled ? variant.classList.add('boom') : variant.classList.remove('boom') // Эффект boom
 }
 
 
-// Функция для времени №1
-// '4:30:20 12 Февраля 2023' --> [4, 30, 20]
-function timeToArray(time){
+
+function timeToArray(time){ // Функция для времени №1    '4:30:20 12 Февраля 2023' --> [4, 30, 20]
     let timeNew = ''
     let index = 0
     let flag = true
@@ -1615,6 +1586,7 @@ function timeToArray(time){
 
         if (time[index] === ' ') flag = false
     }
+
     timeNew = timeNew.split(':')
     let timeArray = []
     timeNew.forEach((element, index) => {if (index < 3) timeArray.push(+element)})
@@ -1622,35 +1594,37 @@ function timeToArray(time){
 }
 
 
-// Функция для времени №2
-// '23:40:20 12 Февраля 2023' --> '00:10:20'
-function deadLine(time, minute, second){
+
+function deadLine(time, minute, second){ // Функция для времени №2    '23:40:20 12 Февраля 2023' --> '00:10:20'
     const hoursMinuteSecondArray = timeToArray(time)
-    return `${addZero((hoursMinuteSecondArray[0] + +(hoursMinuteSecondArray[1] >= (60 - minute))) % 24)}:${addZero((hoursMinuteSecondArray[1] + minute + +(hoursMinuteSecondArray[2] >= (60 - second))) % 60)}:${addZero((hoursMinuteSecondArray[2] + second) % 60)}`
+    const hoursDeadLine = addZero((hoursMinuteSecondArray[0] + +(hoursMinuteSecondArray[1] >= (60 - minute))) % 24)
+    const minuteDeadLine = addZero((hoursMinuteSecondArray[1] + minute + +(hoursMinuteSecondArray[2] >= (60 - second))) % 60)
+    const secondDeadLine = addZero((hoursMinuteSecondArray[2] + second) % 60)
+    return `${hoursDeadLine}:${minuteDeadLine}:${secondDeadLine}`
 }
 
 
-// Функция для времени №3
-// '4' --> '04'; '23' --> '23'
-function addZero(node){ return +node < 10 ? '0' + node : node }
+
+function addZero(node){ return +node < 10 ? '0' + node : node } // Функция для времени №3     '4' --> '04'; '23' --> '23'
 
 
-// Обратный отсчет времени
-// ('23:58:04', '00:03:50') --> '05:46'
-function titleTime(thisTime, deadLine){
-    thisTime = thisTime.split(':')
-    deadLine = deadLine.split(':')
 
-    if (thisTime[0] === '23' && deadLine[0] === '00') deadLine[0] = '24' 
+function titleTime(thisTime, deadLine){ // Обратный отсчет времени     ('23:58:04', '00:03:50') --> '05:46'
+    thisTime = thisTime.split(':') // Текущее время
+    deadLine = deadLine.split(':') // DeadLine
+
+    if (thisTime[0] === '23' && deadLine[0] === '00') deadLine[0] = '24' // Для случая с 23 и 00
     
-    const secondLeft = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1
+    const secondLeft = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1 // Кол-во секунд
 
-    const result = `${addZero(parseInt(secondLeft / 60))}:${addZero(secondLeft % 60)}`
+    const result = `${addZero(parseInt(secondLeft / 60))}:${addZero(secondLeft % 60)}` // Результат
     return result 
 }
 
-function timeForSolution(thisTime, deadLine){
-    const timeLeft = titleTime(thisTime, deadLine).split(':')
+
+
+function timeForSolution(thisTime, deadLine){ // Время решения варианта
+    const timeLeft = titleTime(thisTime, deadLine).split(':') // Сколько времени осталось
     let result = ''
     
     timeLeft[1] === '00' ? result = [30 - +timeLeft[0], +timeLeft[1]] : result = [29 - +timeLeft[0], 60 - +timeLeft[1]] 
@@ -1658,22 +1632,21 @@ function timeForSolution(thisTime, deadLine){
 
 }
 
-// Прошел ли дедлайн?
-// Если прошел, то true
-// Если еще нет, то false
-function deadLineNew(){
-    let thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')}`
-    let deadLine = getLocalStorage('deadLine')
+
+
+function deadLineNew(){ // Прошел ли дедлайн?   Если прошел, то true   Если еще нет, то false
+    let thisTime = getTime('full') // Текущее время
+    let deadLine = getLocalStorage('deadLine') // DeadLine
 
     thisTime = +thisTime.replaceAll(':', '')
     deadLine = +deadLine.replaceAll(':', '')
-    if (deadLine < 10000 && thisTime > 10000) deadLine += 240000
-    return deadLine - thisTime <= 0 || deadLine - thisTime >= 110000
+    if (deadLine < 10000 && thisTime > 10000) deadLine += 240000 // Случай с 23 и 00
+    return deadLine - thisTime <= 0 || deadLine - thisTime >= 110000 // Если разность <= 0 или >= 110_000 --> время вышло
 }
 
 
-// Добавление PopUp на страницу
-function addPopUp(thisTextPopUp, answer, rightAnswers, secondBall){
+
+function addPopUp(thisTextPopUp, answer, rightAnswers, secondBall){ // Добавление PopUp на страницу
     const popUpBody = document.querySelector('.pop_up_body')
     const popUp = document.querySelector('.pop_up') 
     
@@ -1683,24 +1656,25 @@ function addPopUp(thisTextPopUp, answer, rightAnswers, secondBall){
 
 
 
-// HTML PopUp контент для "формата ЕГЭ"
-function textPopUpFull(answer, rightAnswers, secondBallArray){
-            return `<div class='testEnd'> Тест завершен! </div> 
+function textPopUpFull(answer, rightAnswers, secondBallArray){ // HTML PopUp контент для "формата ЕГЭ"
+    const solutionTime = timeForSolution(getTime('full'), getLocalStorage('deadLine')) // Сколько решал вариант
+
+    return  `<div class='testEnd'> Тест завершен! </div> 
             <hr/>
             <div class='statsForEge1'>Общая информация</div>
             <div>Всего заданий: <span class='w900'>${answer.length}</span> </div> 
             <div>Решено верно:  <span class="greenColor w900"> ${rightAnswers} </span> </div>
             <div>Решено неверно: <span class="redColor w900"> ${answer.length - rightAnswers} </span></div>
             <div>Процент выполнения: <span class='w900'>${parseInt(rightAnswers / answer.length * 100)}% </span></div>
-            <div>Потраченное время: <span class='w900'> ${timeForSolution(`${getTime('h')}:${getTime('m')}:${getTime('s')}`, getLocalStorage('deadLine'))}</span></div>
+            <div>Потраченное время: <span class='w900'> ${solutionTime}</span></div>
             <div class='statsForEge'>Статистика по «ЕГЭ профиль (1-11)»</div>
             <div>Первичных баллов: <span class='w900'>${rightAnswers}</span> </div>
             <div>Вторичных баллов: <span class='w900'>${secondBallArray[rightAnswers]}</span> </div>`
 }
 
 
-// HTML PopUp контент для НЕ "формата ЕГЭ"
-function textPopUp(answer, rightAnswers){
+
+function textPopUp(answer, rightAnswers){ // HTML PopUp контент для НЕ "формата ЕГЭ"
     return `<div class='testEnd'> Тест завершен! </div> 
     <hr/>
     <div class='statsForEge1'>Общая информация</div>
@@ -1711,126 +1685,132 @@ function textPopUp(answer, rightAnswers){
 }
 
 
-// Глобальная функция времени (variant)
-function time(allProblemsMain){
 
-    const acceptBtn = document.querySelector('.accept') // Забираем со страницы кнопку "завершить"
+function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Конец варианта
+    const timePlace = document.querySelector('.time1') // Место времени
+    const iconText = document.querySelector('.titleVariant') // Текст иконки
+    const acceptBtn = document.querySelector('.accept') // Кнопка принятия
+    const popUpSecond = document.querySelector('.pop_up1') // PopUp - подтверждение
+
+    const inputVariant = [...document.querySelectorAll('.input')] // Все input
+    const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
+    const allAnswer = document.querySelectorAll('.answer') // Все answer
+
+    let answer = [] // Массив input ответов
+    inputVariant.forEach(element => answer.push(element.value)) // Введенные ответы
+
+    let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // Количество верных задач
+    let rightAnswers = 0 // Количество правильных ответов
+  
+    setLocalStorage('againVariant', 'afk') // Смена режима в afk
+
+    timePlace.innerHTML = `<button class='time2'>Начать заново </button>`// Уведомление для пользователей за место времени
+    iconText.innerHTML = 'Результат' 
+
+    let arrayColors = []
+
+    answer.forEach((element, index) => { // Проходимся по массиву answer
+        const thisObject = allProblemsMain[index] // Текущая задача
+        const thisParent = allParents[index] // Родитель этой задачи
+        const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
+        const thisInput = thisParent.querySelector('.input')
+
+        thisStar.classList.remove('close') // Удаляем close звезде
+        thisInput.readOnly = true
+
+        const thisAnswer = allAnswer[index]
+        thisAnswer.classList.add('white') // Добавляем white
+            
+        if (element !== '' && +element.replace(',', '.') === thisObject.answer){ // Проверка на правильность ответа
+            rightAnswers ++ // Количество правильных ответов ++ 
+            countRightAnswer[thisObject.number] ++ // Количество правильных ответов задачи номера n ++
+            background('green', index) // background - green
+            arrayColors.push('green') // В массив цветов += green
+
+        } else {
+            background('red', index) // background - red
+            arrayColors.push('red') // В массив цветов += red
+
+            const thisConteyner = thisParent.querySelector('.conteynerRightAnswer') // Текущий контейнер ответов
+            thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index]) // Записываем туда getRightAnswerHTML()
+                
+            const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show
+            rightAnswer.classList.remove('close')
+            rightAnswer.classList.add('show')
+        }
+    })
+
+    setLocalStorage('colors', arrayColors) // Добавляем цвета в LocalSte
+
+
+    
+    // Сохранение для stats
+
+    let infoLocalStorageObject = {} // Объект текущего варианта
+    let arrayRightAnswer = [] // Массив статистики
+        
+    for (let i = 1; i <= 11; i++) arrayRightAnswer.push({right: countRightAnswer[i], count: arrayCountProblem[i]}) // Для каждой задачи right, count
+    arrayRightAnswer.push({right: rightAnswers, count: answer.length}) // Для всего варианта right, count
+    //infoLocalStorageObject.name = specialVariants[numberVariant].name
+
+    const stats = getLocalStorage('stats') // Массив вариантов
+    const numberVariant = getLocalStorage('numberVariant') // Номер варианта
+    let nameVariant
+
+    infoLocalStorageObject.stats = arrayRightAnswer // Добавляем в объект варианта статистику варианта
+    infoLocalStorageObject.problems = getLocalStorage('variant') // Добавляем вариант
+    infoLocalStorageObject.colors = getLocalStorage('colors') // Добавляем цвета
+    infoLocalStorageObject.idVariant = stats ? stats.length + 1 : 1 // Добавляем id задачи как len stats + 1
+    infoLocalStorageObject.countProblem = arrayCountProblem // Количество проблем (для таблицы)
+    numberVariant !== 0 && numberVariant ? nameVariant = specialVariants[numberVariant].name : nameVariant = `Вариант ${infoLocalStorageObject.idVariant}`
+    infoLocalStorageObject.name = nameVariant // Либо название, либо idVariant
+
+
+    let arrayInfo = []
+    if (stats) stats.forEach(element => arrayInfo.push(element)) // Проходимся по всем прошлым вариантам 
+    arrayInfo.push(infoLocalStorageObject) // Добавялем текущий вариант
+    setLocalStorage('stats', arrayInfo) // В LocalStr
+
+    acceptBtn.disabled = true // Блокируем "завершить работу"
+
+    // Смотрим на формат варианта, такой PopUp и выдаем (с "формат ЕГЭ (1-11) или без")
+    isVariant ? addPopUp(textPopUpFull, answer, rightAnswers, secondBallArray) : addPopUp(textPopUp, answer, rightAnswers)
+    popUpSecond.classList.remove('active')
+}
+
+
+
+function time(allProblemsMain, arrayCountProblem, isVariant){ // Глобальная функция времени (variant)
+
     const timePlace = document.querySelector('.time1') // "Место времени"
     const title = document.querySelector('.titleVariant') // "Верхняя надпись"
-    let answerUser = [] // Список ответов
-    const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'] 
-    const timeFull = `${getTime('h')}:${getTime('m')}:${getTime('s')} ` // Определяем текущее время
+    const timeFull = getTime('full') // Определяем текущее время
     
-    // Если нет deadLine или againVariant === afk, ставим новый deadLine и afk ==> deadLinePicked
-    if ((!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk') && getLocalStorage('fromStats') != 0.5){
-        setLocalStorage('deadLine', deadLine(timeFull, 30, 1))
+    // (Если нет deadLine или againVariant === afk) И вариант НЕ в просмотре, ставим новый deadLine и afk ==> deadLinePicked
+    if ((!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk') && getLocalStorage('fromStats') !== 0.5){
+        setLocalStorage('deadLine', deadLine(timeFull, 0, 5))
         setLocalStorage('againVariant', 'deadLinePicked')
     }
 
     setInterval(() => { // setInterval раз в секунду
-        
+        const deadLine = getLocalStorage('deadLine') // Текущий deadLine
         if (getLocalStorage('againVariant') === 'deadLinePicked'){ // Если сейчас идет вариант (если нет, то "afk")
-
-            // устанавливаем "верхнюю надпись"
-            title.innerHTML = 'Вариант: ' + titleTime(`${getTime('h')}:${getTime('m')}:${getTime('s')}`, getLocalStorage('deadLine')) + ' осталось'
-
-            // устанавливаем "место времени" 
-            const textFull = `${getTime('h')}:${getTime('m')}:${getTime('s')} ${getTime('d')} ${month[getTime('mo')]} ${getTime('y')}`
-
-            timePlace.innerHTML = textFull + `, дедлайн: ${getLocalStorage('deadLine')} (${titleTime(`${getTime('h')}:${getTime('m')}:${getTime('s')}`, getLocalStorage('deadLine'))} осталось)`
+            title.innerHTML = 'Вариант: ' + titleTime(getTime('full'), deadLine) + ' осталось' // устанавливаем "верхнюю надпись"
+            timePlace.innerHTML = getTime('full') + `, дедлайн: ${deadLine} (${titleTime(getTime('full'), deadLine)} осталось)`
         }
             
         // Конец дедлайна
-        // 1 условие - если закончился дедлайн; 2 условие - чтоб вызвался 1 раз
-        if (getLocalStorage('fromStats') === null && deadLineNew() && getLocalStorage('againVariant') !== 'afk'){
-
-            // Заголовок = 'Время вышло!'
-            title.innerHTML = 'Время вышло!'
-
-            // Убираем timePlace и inputVariant - все HTML поля input
-            timePlace.innerHTML = 'Для повторного прохождения этого варианта обновите страницу'
-            const inputVariant = document.querySelectorAll('input')
-
-            // В answerUser все ответы пользователя; количетво правильных ответов; количество верных ответов какого-то задания
-            // Количество верных ответов какого-то задания; количество заданий какого-то задания
-            inputVariant.forEach(element => answerUser.push(element.value))
-            let rightAnswers = 0
-            let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const arrayCountProblem = getLocalStorage('countProblem')
-            const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
-            const allAnswer = document.querySelectorAll('.answer')  
-
-            //const thisAnswer = allAnswer[index]
-           // thisAnswer.classList.add('white')
-
-            // Считаем кол-во правильных ответов + делаем background
-            answerUser.forEach((element, index) => {
-                const thisObject = allProblemsMain[index] // Текущая задача
-                const thisParent = allParents[index] // Родитель этой задачи
-                const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
-                thisStar.classList.remove('close') // Удаляем close звезде
-
-                const thisAnswer = allAnswer[index]
-                thisAnswer.classList.add('white')
-
-
-
-                if (element != '' && element.replace(',', '.') === String(thisObject.answer)){ 
-                    rightAnswers ++
-                    background('green', index)
-                } else {
-                    background('red', index)
-
-                    // Берем из текущего контейнера контейнер ответов и записываем туда getRightAnswerHTML()
-                    const thisConteyner = allParents[index].querySelector('.conteynerRightAnswer')
-                    thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index])
-
-                    // showRightAnswer - весь блок answer -> делаем show
-                    const rightAnswer = thisConteyner.querySelector('.showRightAnswer')
-                    rightAnswer.classList.remove('close')
-                    rightAnswer.classList.add('show')
-                }
-            })
-
-            // disabled кнопки "принять"
-            acceptBtn.disabled = true
-
-            // "Режим чтения" всем кнопкам
-            inputVariant.forEach(el => el.readOnly = true)
-
-            // Вызываем PopUpFull 
-            addPopUp(textPopUpFull, answerUser, rightAnswers, secondBallArray)
-
-            // Замораживаем вариант
-            setLocalStorage('againVariant', 'afk')
-
-            // Заголовок = 'Результат'
-            title.innerHTML = 'Результат'
-            
-
-
-
-            let infoLocalStorageObject = {}
-            let arrayRightAnswer = []
-            for (let i = 1; i <= 11; i++) arrayRightAnswer.push({right: countRightAnswer[i], count: arrayCountProblem[i]})
-            arrayRightAnswer.push({right: rightAnswers, count: answerUser.length})
-
-            getLocalStorage('stats') ? infoLocalStorageObject.name = getLocalStorage('stats').length + 1 : infoLocalStorageObject.name = 1
-            infoLocalStorageObject.stats = arrayRightAnswer
-
-            let arrayInfo = []
-            if (getLocalStorage('stats')) getLocalStorage('stats').forEach(element => arrayInfo.push(element))
-
-            arrayInfo.push(infoLocalStorageObject)
-            setLocalStorage('stats', arrayInfo)
+        // 1 условие - если просмотр варианта; 2 условие - если закончился дедлайн; 3 условие - чтоб вызвался 1 раз
+        if (!getLocalStorage('fromStats') && deadLineNew() && getLocalStorage('againVariant') !== 'afk'){
+            endVariant(allProblemsMain, arrayCountProblem, isVariant) // Конец варианта
+            title.innerHTML = 'Время вышло!' // Заголовок = 'Время вышло!'
         }
     }, 1000)
-
-    
 }
 
-// осталось/остался дней/дня/день
-function getFullDaysBeforeExam(day){
+
+
+function getFullDaysBeforeExam(day){ // осталось/остался дней/дня/день
     let first; let second
     if ((day >= 5 && day <= 20) || (day % 10 >= 5) || (day % 10 === 0)) {
         first = 'осталось'
@@ -1858,15 +1838,15 @@ function daysBeforeExam(){
 }
 
 
-// Рандомный индекс массива allProblems (для stress)
-function randomStress() {
+
+function randomStress() { // Рандомный индекс массива allProblems (для stress)
     const randomIndex = Math.floor(Math.random() * allProblems.length)
     return allProblems[randomIndex]
 }
 
 
-// Возвращение времени
-function getTime(value){
+
+function getTime(value){ // Возвращение времени
     const date = new Date()
 
     if (value === 's') return addZero(date.getSeconds())
@@ -1875,5 +1855,5 @@ function getTime(value){
     else if (value === 'd') return addZero(date.getDate())
     else if (value === 'mo') return date.getMonth()
     else if (value === 'y') return addZero(date.getFullYear())
-
+    else if (value === 'full') return `${getTime('h')}:${getTime('m')}:${getTime('s')} `
 }
