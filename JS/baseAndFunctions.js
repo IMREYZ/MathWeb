@@ -1048,11 +1048,12 @@ function deleteOldStats(){ // Удаление плохой статистики
 
     if (stats){ // Если статистика есть
         stats.forEach(element => {
-            if (element.countProblem) newStats.push(stats)
+            if (element.countProblem) newStats.push(element)
         })
+
+        setLocalStorage('stats', newStats)
     }
 
-    setLocalStorage('stats', newStats)
 }
 
 
@@ -1788,7 +1789,7 @@ function time(allProblemsMain, arrayCountProblem, isVariant){ // Глобаль�
     
     // (Если нет deadLine или againVariant === afk) И вариант НЕ в просмотре, ставим новый deadLine и afk ==> deadLinePicked
     if ((!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk') && getLocalStorage('fromStats') !== 0.5){
-        setLocalStorage('deadLine', deadLine(timeFull, 0, 5))
+        setLocalStorage('deadLine', deadLine(timeFull, 30, 1))
         setLocalStorage('againVariant', 'deadLinePicked')
     }
 
