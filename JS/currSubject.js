@@ -22,6 +22,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
     // Если в LocalStr нет текущих задач - добавляем все задачи
     if (!getLocalStorage('thisProblems')) setLocalStorage('thisProblems', allProblems)
+    if (!getLocalStorage('select')) setLocalStorage('select', 'oldToNew')
 
 
     // Добавляем Checkbox на страницу
@@ -94,6 +95,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
             // Иначе убираем w900
             } else addW900(`.${element.id}`, false)
         })
+        
 
         // Устанавлием checkbox в LocalStr
         setLocalStorage('checkbox', checkboxArray)
@@ -106,9 +108,12 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
             // Если type задачи in checkboxArray: добавляем задачу в новый массив
             if (checkboxArray.includes(getNormalClass(allProblems[i].type))) newThisProblems.push(allProblems[i])
         }
+        //console.log(newThisProblems, 1)
+        
 
         // Обновляем текущие задачи; сортируем эти задачи\     
         setLocalStorage('thisProblems', newThisProblems)
+        
         sortProblem(getLocalStorage('select'))
     
         // Выводим задания
@@ -188,6 +193,8 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         // Выводим задания
         allConteynerProblem.innerHTML = ''
 
+        setLocalStorage('checkbox', [])
+
         // Возвращаем цвета; инпуты; инфу об "показать ответ"
         currColor(getThisProblems())
         currInput(getThisProblems())
@@ -198,12 +205,15 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         // Если checkbox нет в LocalStr - пустой массив
         if (!getLocalStorage('checkbox')) setLocalStorage('checkbox', [])
 
+        const fullBox = []
         // Проходимся по всем checkbox HTML
         allCheckbox.forEach(element => {
             element.checked = true
             addW900(`.${element.id}`, true)
+            fullBox.push(element.id)
         })
 
+        setLocalStorage('checkbox', fullBox)
 
         // Обновляем текущие задачи; сортируем эти задачи
         setLocalStorage('thisProblems', allProblems)

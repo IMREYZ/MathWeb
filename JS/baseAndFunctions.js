@@ -1050,7 +1050,7 @@ function deleteOldStats(){ // Удаление плохой статистики
         stats.forEach(element => {
             if (element.countProblem) newStats.push(element)
         })
-
+        
         setLocalStorage('stats', newStats)
 
         if (stats.length === 0) removeLocalStorage('stats')
