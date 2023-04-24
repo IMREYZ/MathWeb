@@ -7,7 +7,6 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
 
     // Место красного счёта (изначально скрываем)
     const refreshInfoText = document.querySelector('.conteynerTime1') 
-    const refreshButton = document.querySelector('.time1') 
 
     // При обновлении меняем timer на false
     setLocalStorage('timer', false)
@@ -62,6 +61,9 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
             refreshInfoText.innerHTML = `<button class='time3'>Начать заново </button>`
         }, 500)
 
+        const answerText = document.querySelector('.answer')
+        answerText.classList.add('white')
+        
         // Удаляем задачу из LocalStr
         removeLocalStorage('randomProblem')
 
