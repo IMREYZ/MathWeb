@@ -2,6 +2,7 @@
 const allProblems = 
 
 [   
+    {problem: '1.0', answer: 106, procent: 20, type: 'Равнобедненный треугольник'},
     {problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник'},
     {problem: '1.2', answer: 0.9, procent: 35, type: 'Прямоугольный треугольник'},
     {problem: '1.3', answer: 0.4, procent: 30, type: 'Прямоугольный треугольник'},
@@ -1194,8 +1195,22 @@ function eventClickOnStar(){ // Функция, которая меняет зв
     })
 }
 
+function renderSpecial(){
+    const specialArray = getLocalStorage('special')
 
+    if (specialArray) {
+        allProblems.forEach(element => {
+            const thisId = element.id
+            if (specialArray[thisId] === undefined) specialArray[thisId] = false
+        })
+    
+        setLocalStorage('special', specialArray)
+    }
 
+    
+}
+
+renderSpecial()
 eventClickOnStar()
 showRightAnswerHTML()
 deleteOldStats()
@@ -1859,3 +1874,6 @@ function getTime(value){ // Возвращение времени
     else if (value === 'y') return addZero(date.getFullYear())
     else if (value === 'full') return `${getTime('h')}:${getTime('m')}:${getTime('s')} `
 }
+
+
+

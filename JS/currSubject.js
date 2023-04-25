@@ -57,7 +57,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
                 // Делаем checked = true; добавляем w900
                 element.checked = true
-                addW900(`.${element.id}`, true)
+                addW900(`.${getNormalClass(element.id)}`, true)
             }
         })
         
@@ -67,7 +67,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         allCheckbox.forEach(element => {
             // Ставим всем w900 и checked
             element.checked = true 
-            addW900(`.${element.id}`, true)
+            addW900(`.${getNormalClass(element.id)}`, true)
         })
     }
 
@@ -90,10 +90,14 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
             if (element.checked) {
                 // Добавляем в массив id; добавляем w900
                 checkboxArray.push(element.id)
-                addW900(`.${element.id}`, true)
+                
+
+                addW900(`.${getNormalClass(element.id)}`, true)
 
             // Иначе убираем w900
-            } else addW900(`.${element.id}`, false)
+            } else {
+                addW900(`.${getNormalClass(element.id)}`, false)
+            }
         })
         
 
