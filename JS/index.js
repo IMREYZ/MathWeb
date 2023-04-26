@@ -1,6 +1,6 @@
 // Если на странице index
 if (window.location.pathname === `/MathWeb/index.html` || window.location.pathname === `/MathWeb/`){
-    setInterval(() =>  window.location.pathname = `/MathWeb/HTML/stress.html`, 3000)
+    setTimeout(() =>  window.location.pathname = `/MathWeb/HTML/stress.html`, 3000)
     if (!getLocalStorage('special')){
         let result = {}
         allProblems.forEach(element => result[element.id] = false)
