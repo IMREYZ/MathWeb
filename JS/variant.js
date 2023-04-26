@@ -11,7 +11,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     let arrayCountProblem // Считываем кол-во выбранных номеров  getLocalStorage('countProblem')
     if (getLocalStorage('numberVariant') === 0 && getLocalStorage('fromStats') === null) arrayCountProblem = getLocalStorage('countProblem')
     else if (getLocalStorage('fromStats') !== null) arrayCountProblem = getLocalStorage('stats')[getLocalStorage('idVariant') - 1].countProblem
-    else if (getLocalStorage('numberVariant') !== 0) arrayCountProblem = 'DEMO'
+    else if (getLocalStorage('numberVariant') !== 0) arrayCountProblem = specialVariants[numberVariant].countProblem
 
     removeLocalStorage('flagEndVariant') // Убирание заглушки, из-за которой не выходят много "результатов"
 

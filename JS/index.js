@@ -1,6 +1,6 @@
 // Если на странице index
 if (window.location.pathname === `/MathWeb/index.html` || window.location.pathname === `/MathWeb/`){
-    
+    window.location.pathname = `/MathWeb/HTML/stress.html`
     if (!getLocalStorage('special')){
         let result = {}
         allProblems.forEach(element => result[element.id] = false)
@@ -257,7 +257,15 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
     })
 
+    document.addEventListener('click', event => {
+        if (event.target.classList[0] !== 'real') return
 
+         // Удаляем данные с LocalStr
+         cleanUpLocalStorage()
+
+        const idVariant = +event.target.id
+        setLocalStorage('numberVariant', idVariant)
+    })
 
 
     // Нажатие на "составить вариант"

@@ -553,6 +553,23 @@ table{
     cursor: pointer
 
 }
+
+.firstTriple{
+    margin-top: 50px;
+}
+
+.btnReal{
+    margin-bottom: 100px;
+}
+.real {
+    border-radius: 12px;
+    font-size: 25px;
+    background-color: white;
+    cursor: pointer;
+    width: 400px;
+    height: 50px;
+    margin-right: 50px;
+}
 a {
     text-decoration:none;
     color: black
@@ -639,6 +656,10 @@ a {
 
 .exam:hover{
     background-color: rgb(247, 243, 243);
+    font-weight: 900;
+}
+
+.real:hover{
     font-weight: 900;
 }
 

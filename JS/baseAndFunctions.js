@@ -2,7 +2,6 @@
 const allProblems = 
 
 [   
-    {problem: '1.0', answer: 106, procent: 20, type: 'Равнобедненный треугольник'},
     {problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник'},
     {problem: '1.2', answer: 0.9, procent: 35, type: 'Прямоугольный треугольник'},
     {problem: '1.3', answer: 0.4, procent: 30, type: 'Прямоугольный треугольник'},
@@ -297,6 +296,7 @@ const allProblems =
     {problem: '3.36', answer: 0.2, procent: 40, type: 'Классическая вероятность'},
     {problem: '3.37', answer: 0.2, procent: 95, type: 'Классическая вероятность'},
     {problem: '3.38', answer: 0.25, procent: 65, type: 'Классическая вероятность'},
+    {problem: '3.39', answer: 0.125, procent: 70, type: 'Классическая вероятность'},
 
 
 
@@ -745,6 +745,8 @@ const allProblems =
     {problem: '9.86', answer: 6, procent: 55, type: 'Совместная работа'},
     {problem: '9.87', answer: 72, procent: 75, type: 'Совместная работа'},
     {problem: '9.88', answer: 5.6, procent: 85, type: 'Совместная работа'},
+    {problem: '9.89', answer: 52, procent: 65, type: 'Движение по прямой'},
+    {problem: '9.90', answer: 7, procent: 60, type: 'Совместная работа'},
 
     
 
@@ -939,7 +941,23 @@ function getSpecialClass(text){ return text.replaceAll('_', ' ').replaceAll('L',
 
 
 const specialVariants = ['-', // Специальные варианты
-                        {variant: ['1.1', '2.13', '3.1', '4.2', '5.1', '6.2', '7.1', '8.51', '9.1', '10.2', '11.30'], name: 'СТАТГРАД'}]
+                        {variant: ['1.31', '2.21', '3.27', '4.23', '5.49', '6.7', '7.3', '8.32', '9.89', '10.57', '11.25'], name: 'Досрок 2023 - резервный день'},
+                        {variant: ['1.6', '2.46', '3.39', '4.25', '5.6', '6.70', '7.17', '8.20', '9.90', '10.18', '11.4'], name: 'Досрок 2023'}]
+
+
+specialVariants.forEach((element, index) => {
+    if (index !== 0){
+        const thisVariant = element.variant
+        const countProblem = ['-', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
+    
+        thisVariant.forEach(element => {
+            const numberProblem = +element.split('.')[0]
+            countProblem[numberProblem] ++
+        })
+    
+        element.countProblem = countProblem
+    }
+})
 
 
 
@@ -1779,9 +1797,11 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
     infoLocalStorageObject.colors = getLocalStorage('colors') // Добавляем цвета
     infoLocalStorageObject.idVariant = stats ? stats.length + 1 : 1 // Добавляем id задачи как len stats + 1
     infoLocalStorageObject.countProblem = arrayCountProblem // Количество проблем (для таблицы)
-    numberVariant !== 0 && numberVariant ? nameVariant = specialVariants[numberVariant].name : nameVariant = `Вариант ${infoLocalStorageObject.idVariant}`
-    infoLocalStorageObject.name = nameVariant // Либо название, либо idVariant
 
+    if (numberVariant === null) nameVariant = stats[getLocalStorage('idVariant') - 1].name
+    else numberVariant !== 0 && numberVariant ? nameVariant = specialVariants[numberVariant].name : nameVariant = `Вариант ${infoLocalStorageObject.idVariant}`
+    infoLocalStorageObject.name = nameVariant // Либо название, либо idVariant
+    
 
     let arrayInfo = []
     if (stats) stats.forEach(element => arrayInfo.push(element)) // Проходимся по всем прошлым вариантам 
