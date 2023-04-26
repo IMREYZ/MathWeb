@@ -888,6 +888,7 @@ const allProblems =
     {problem: '11.74', answer: -14, procent: 80, type: 'Частное'},
     {problem: '11.75', answer: 16, procent: 80, type: 'Частное'},
     {problem: '11.76', answer: -10, procent: 60, type: 'Частное'},
+    {problem: '11.77', answer: -5, procent: 40, type: 'Степенная функция'},
 ]   
 
 
@@ -943,7 +944,7 @@ function getSpecialClass(text){ return text.replaceAll('_', ' ').replaceAll('L',
 const specialVariants = ['-', // Специальные варианты
                         {variant: ['1.31', '2.21', '3.27', '4.23', '5.49', '6.7', '7.3', '8.32', '9.89', '10.57', '11.25'], name: 'Досрок 2023 - резервный день'},
                         {variant: ['1.6', '2.46', '3.39', '4.25', '5.6', '6.70', '7.17', '8.20', '9.90', '10.18', '11.4'], name: 'Досрок 2023'},
-                        {variant: ['1.6', '2.46', '3.39', '4.25', '5.6', '6.70', '7.17', '8.20', '9.90', '10.18', '11.4'], name: 'Досрок 2023'}]
+                        {variant: ['1.56', '2.30', '3.3', '4.11', '5.48', '6.66', '7.56', '8.56', '9.16', '10.44', '11.77'], name: 'Основная волна 2022'}]
 
 
 specialVariants.forEach((element, index) => {
@@ -1214,6 +1215,8 @@ function eventClickOnStar(){ // Функция, которая меняет зв
     })
 }
 
+
+
 function renderSpecial(){
     const specialArray = getLocalStorage('special')
 
@@ -1228,6 +1231,8 @@ function renderSpecial(){
 
     
 }
+
+
 
 renderSpecial()
 eventClickOnStar()
@@ -1865,8 +1870,8 @@ function getFullDaysBeforeExam(day){ // осталось/остался дней
 }
 
 
-// Дней до экзамена
-function daysBeforeExam(){
+
+function daysBeforeExam(){ // Дней до экзамена
     const EXAM = {month: 6, day: 1} // Костанта - день экзамена
     const thisDay = {month: getTime('mo') + 1, day: getTime('d')} // Формируем текущий день
     const pogresh = 2
