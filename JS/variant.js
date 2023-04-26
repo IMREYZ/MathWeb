@@ -1,5 +1,5 @@
 if (window.location.pathname === `/MathWeb/HTML/variant.html`){
-    
+
     const acceptBtn = document.querySelector('.accept') // Кнопка подтверждения
     const allConteynerVariant = document.querySelector('.allConteynerVar') // Контейнер всех заданий
     const timePlace = document.querySelector('.time1') // Место времени
