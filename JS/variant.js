@@ -11,7 +11,8 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     let arrayCountProblem // Считываем кол-во выбранных номеров  getLocalStorage('countProblem')
     const idPreviousVariant = getLocalStorage('idVariant') // id Варианта (прошлый вариант)
     const allStats = getLocalStorage('stats') // Вся статистика
-    const myVariantPrevious =  allStats[idPreviousVariant - 1]
+    let myVariantPrevious
+    if (idPreviousVariant !== null) myVariantPrevious = allStats[idPreviousVariant - 1]
 
     removeLocalStorage('flagEndVariant') // Убирание заглушки, из-за которой не выходят много "результатов"
 
