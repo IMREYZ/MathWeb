@@ -526,7 +526,7 @@ const allProblems =
     {problem: '6.87', answer: -0.5, procent: 60, type: 'Логарифмы'},
     {problem: '6.88', answer: -3, procent: 75, type: 'Логарифмы'},
     {problem: '6.89', answer: 4, procent: 70, type: 'Тригонометрия'},
-    {problem: '6.89', answer: 28, procent: 75, type: 'Степени'},
+    {problem: '6.90', answer: 28, procent: 75, type: 'Степени'},
 
 
 
@@ -644,17 +644,12 @@ const allProblems =
     {problem: '8.34', answer: 6000, procent: 90, type: 'Показательная формула'},
     {problem: '8.35', answer: 0.79, procent: 80, type: 'Рациональная формула'},
     {problem: '8.36', answer: 0.265, procent: 70, type: 'Рациональная формула'},
-
     {problem: '8.37', answer: 30, procent: 40, type: 'Квадратичная формула'},
     {problem: '8.38', answer: 20, procent: 80, type: 'Квадратичная формула'},
     {problem: '8.39', answer: 3.79, procent: 75, type: 'Квадратичная формула'},
     {problem: '8.40', answer: 42, procent: 50, type: 'Квадратичная формула'},
     {problem: '8.41', answer: 0.4, procent: 55, type: 'Квадратичная формула'},
-    {problem: '8.42', answer: 1, procent: 90, type: 'Квадратичная формула'},
-    {problem: '8.43', answer: 4, procent: 85, type: 'Квадратичная формула'},
-    {problem: '8.44', answer: 9, procent: 25, type: 'Рациональная формула'},
-    {problem: '8.45', answer: 2.8, procent: 35, type: 'Рациональная формула'},
-    {problem: '8.46', answer: 27.5, procent: 20, type: 'Рациональная формула'},
+    {problem: '8.42', answer: 27.5, procent: 20, type: 'Рациональная формула'},
     {problem: '8.47', answer: 260, procent: 45, type: 'Рациональная формула'},
     {problem: '8.48', answer: 319, procent: 50, type: 'Рациональная формула'},
     {problem: '8.49', answer: 753, procent: 60, type: 'Рациональная формула'},
@@ -778,7 +773,7 @@ const allProblems =
     {problem: '9.91', answer: 50, procent: 65, type: 'Смеси и сплавы'},
     {problem: '9.92', answer: 4, procent: 40, type: 'Движение по воде'},
     {problem: '9.93', answer: 18, procent: 55, type: 'Движение по воде'},
-    {problem: '9.4', answer: 56, procent: 80, type: 'Совместная работа'},
+    {problem: '9.94', answer: 56, procent: 80, type: 'Совместная работа'},
 
     
 
