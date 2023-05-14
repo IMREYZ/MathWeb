@@ -605,7 +605,7 @@ const allProblems =
     {problem: '7.73', answer: 6.75, procent: 100, type: 'Первообразная'},
     {problem: '7.74', answer: 4.95, procent: 100, type: 'Первообразная'},
     {problem: '7.75', answer: -0.4, procent: 45, type: 'Геометрический смысл производной'},
-    {problem: '7.75', answer: 5, procent: 60, type: 'График функции'},
+    {problem: '7.76', answer: 5, procent: 60, type: 'График функции'},
 
 
     {problem: '8.1', answer: 25, procent: 40, type: 'Квадратичная формула'},
