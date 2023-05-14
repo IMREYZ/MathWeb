@@ -2,7 +2,7 @@
 const allProblems = 
 
 [   
-    {problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник'},
+     {problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник'},
     {problem: '1.2', answer: 0.9, procent: 35, type: 'Прямоугольный треугольник'},
     {problem: '1.3', answer: 0.4, procent: 30, type: 'Прямоугольный треугольник'},
     {problem: '1.4', answer: 16.4, procent: 70, type: 'Прямоугольный треугольник'},
@@ -88,6 +88,13 @@ const allProblems =
     {problem: '1.84', answer: 32, procent: 30, type: 'Окружность'},
     {problem: '1.85', answer: 68, procent: 35, type: 'Окружность'},
     {problem: '1.86', answer: 75, procent: 30, type: 'Окружность'},
+    {problem: '1.87', answer: 98, procent: 40, type: 'Окружность'},
+    {problem: '1.88', answer: 3, procent: 80, type: 'Треугольник'},
+    {problem: '1.89', answer: 82, procent: 80, type: 'Окружность'},
+    {problem: '1.90', answer: 44, procent: 25, type: 'Окружность'},
+    {problem: '1.91', answer: 138, procent: 50, type: 'Окружность'},
+    {problem: '1.92', answer: 97, procent: 35, type: 'Окружность'},
+    {problem: '1.93', answer: 2, procent: 80, type: 'Треугольник'},
 
 
 
@@ -255,6 +262,13 @@ const allProblems =
     {problem: '2.162', answer: 0.25, procent: 45, type: 'Комбинации тел'},
     {problem: '2.163', answer: 4, procent: 45, type: 'Комбинации тел'},
     {problem: '2.164', answer: 125, procent: 80, type: 'Комбинации тел'},
+    {problem: '2.165', answer: 27, procent: 65, type: 'Комбинации тел'},
+    {problem: '2.166', answer: 13, procent: 50, type: 'Призма'},
+    {problem: '2.167', answer: 20, procent: 65, type: 'Комбинации тел'},
+    {problem: '2.168', answer: 35, procent: 50, type: 'Параллелепипед'},
+    {problem: '2.169', answer: 24, procent: 65, type: 'Комбинации тел'},
+    {problem: '2.170', answer: 72, procent: 35, type: 'Призма'},
+    
 
 
 
@@ -297,6 +311,8 @@ const allProblems =
     {problem: '3.37', answer: 0.2, procent: 95, type: 'Классическая вероятность'},
     {problem: '3.38', answer: 0.25, procent: 65, type: 'Классическая вероятность'},
     {problem: '3.39', answer: 0.125, procent: 70, type: 'Классическая вероятность'},
+    {problem: '3.40', answer: 0.75, procent: 45, type: 'Классическая вероятность'},
+    {problem: '3.41', answer: 0.994, procent: 75, type: 'Классическая вероятность'},
 
 
 
@@ -352,6 +368,10 @@ const allProblems =
     {problem: '4.50', answer: 0.36, procent: 80, type: 'Сложение, умножение вероятностей'},
     {problem: '4.51', answer: 0.85, procent: 90, type: 'Полная вероятность'},
     {problem: '4.52', answer: 0.24, procent: 40, type: 'Предметы из ящика'},
+    {problem: '4.53', answer: 0.1024, procent: 55, type: 'Сложение, умножение вероятностей'},
+    {problem: '4.54', answer: 0.039, procent: 70, type: 'Сложение, умножение вероятностей'},
+    {problem: '4.55', answer: 0.0009, procent: 75, type: 'Сложение, умножение вероятностей'},
+    {problem: '4.56', answer: 0.936, procent: 60, type: 'Сложение, умножение вероятностей'},
 
 
 
@@ -411,6 +431,9 @@ const allProblems =
     {problem: '5.53', answer: 1, procent: 25, type: 'Иррациональные уравнения'},
     {problem: '5.54', answer: 58, procent: 45, type: 'Иррациональные уравнения'},
     {problem: '5.55', answer: 8, procent: 10, type: 'Логарифмические уравнения'},
+    {problem: '5.56', answer: 7, procent: 25, type: 'Иррациональные уравнения'},
+    {problem: '5.57', answer: 1.4, procent: 60, type: 'Степенные уравнения'},
+    {problem: '5.58', answer: 68, procent: 60, type: 'Логарифмические уравнения'},
 
 
 
@@ -502,6 +525,8 @@ const allProblems =
     {problem: '6.86', answer: 13, procent: 45, type: 'Логарифмы'},
     {problem: '6.87', answer: -0.5, procent: 60, type: 'Логарифмы'},
     {problem: '6.88', answer: -3, procent: 75, type: 'Логарифмы'},
+    {problem: '6.89', answer: 4, procent: 70, type: 'Тригонометрия'},
+    {problem: '6.89', answer: 28, procent: 75, type: 'Степени'},
 
 
 
@@ -579,6 +604,8 @@ const allProblems =
     {problem: '7.72', answer: 24, procent: 80, type: 'Первообразная'},
     {problem: '7.73', answer: 6.75, procent: 100, type: 'Первообразная'},
     {problem: '7.74', answer: 4.95, procent: 100, type: 'Первообразная'},
+    {problem: '7.75', answer: -0.4, procent: 45, type: 'Геометрический смысл производной'},
+    {problem: '7.75', answer: 5, procent: 60, type: 'График функции'},
 
 
     {problem: '8.1', answer: 25, procent: 40, type: 'Квадратичная формула'},
@@ -654,7 +681,8 @@ const allProblems =
     {problem: '8.70', answer: 5000, procent: 90, type: 'Показательная формула'},
     {problem: '8.71', answer: 0.47, procent: 80, type: 'Рациональная формула'},
     {problem: '8.72', answer: 0.445, procent: 70, type: 'Рациональная формула'},
-
+    {problem: '8.73', answer: 90, procent: 75, type: 'Тригонометрическая формула'},
+    {problem: '8.74', answer: 11.2, procent: 50, type: 'Логарифмическая формула'},
 
 
     {problem: '9.1', answer: 14, procent: 20, type: 'Движение по прямой'},
@@ -747,6 +775,10 @@ const allProblems =
     {problem: '9.88', answer: 5.6, procent: 85, type: 'Совместная работа'},
     {problem: '9.89', answer: 52, procent: 65, type: 'Движение по прямой'},
     {problem: '9.90', answer: 7, procent: 60, type: 'Совместная работа'},
+    {problem: '9.91', answer: 50, procent: 65, type: 'Смеси и сплавы'},
+    {problem: '9.92', answer: 4, procent: 40, type: 'Движение по воде'},
+    {problem: '9.93', answer: 18, procent: 55, type: 'Движение по воде'},
+    {problem: '9.4', answer: 56, procent: 80, type: 'Совместная работа'},
 
     
 
@@ -809,6 +841,7 @@ const allProblems =
     {problem: '10.55', answer: 5, procent: 25, type: 'Логарифмическая функция'},
     {problem: '10.56', answer: 27, procent: 40, type: 'Показательная функция'},
     {problem: '10.57', answer: 0.2, procent: 45, type: 'Гипербола'},
+    {problem: '10.58', answer: -3, procent: 25, type: 'Логарифмическая функция'},
 
 
 
@@ -851,7 +884,7 @@ const allProblems =
     {problem: '11.37', answer: -15, procent: 80, type: 'Частное'},
     {problem: '11.38', answer: 42, procent: 60, type: 'Частное'},
     {problem: '11.39', answer: -1005, procent: 55, type: 'Степенная функция'},
-    {problem: '11.40', answer: 3, procent: 35, type: 'Степенная функция'},
+    {problem: '11.40', answer: 3, procent: 35, type: 'C функция'},
     {problem: '11.41', answer: 9, procent: 55, type: 'Степенная функция'},
     {problem: '11.42', answer: -2, procent: 50, type: 'Степенная функция'},
     {problem: '11.43', answer: 3, procent: 75, type: 'Степенная функция'},
@@ -889,6 +922,12 @@ const allProblems =
     {problem: '11.75', answer: 16, procent: 80, type: 'Частное'},
     {problem: '11.76', answer: -10, procent: 60, type: 'Частное'},
     {problem: '11.77', answer: -5, procent: 40, type: 'Степенная функция'},
+    {problem: '11.78', answer: 8, procent: 55, type: 'Логарифмическая функция'},
+    {problem: '11.79', answer: 7, procent: 45, type: 'Степенная функция'},
+    {problem: '11.80', answer: 8, procent: 75, type: 'Произведение'},
+    {problem: '11.81', answer: -3, procent: 30, type: 'Степенная функция'},
+    {problem: '11.82', answer: 3, procent: 60, type: 'Логарифмическая функция'},
+    {problem: '11.83', answer: 10, procent: 30, type: 'Степенная функция'},
 ]   
 
 
