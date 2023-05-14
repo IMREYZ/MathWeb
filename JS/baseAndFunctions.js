@@ -2,7 +2,7 @@
 const allProblems = 
 
 [   
-     {problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник'},
+    {problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник'},
     {problem: '1.2', answer: 0.9, procent: 35, type: 'Прямоугольный треугольник'},
     {problem: '1.3', answer: 0.4, procent: 30, type: 'Прямоугольный треугольник'},
     {problem: '1.4', answer: 16.4, procent: 70, type: 'Прямоугольный треугольник'},
