@@ -1908,7 +1908,7 @@ function getFullDaysBeforeExam(day){ // осталось/остался дней
 function daysBeforeExam(){ // Дней до экзамена
     const EXAM = {month: 6, day: 1} // Костанта - день экзамена
     const thisDay = {month: getTime('mo') + 1, day: getTime('d')} // Формируем текущий день
-    const pogresh = 2
+    const pogresh = 1
 
     const dayLeft = (EXAM.month - thisDay.month) * 30 + (EXAM.day - thisDay.day) + pogresh // Сколько дней осталось
     return dayLeft
