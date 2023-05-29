@@ -5,6 +5,7 @@ html, body {
 body{
     font-family: 'PT Serif', serif;
     min-width: 1490px;
+    background: rgb(247, 246, 246);
 }
 
 .curr{
@@ -272,6 +273,11 @@ img{
 .prob11{
     position: relative;
     left: 78px;
+}
+
+.prob12{
+    position: relative;
+    left: 48px;
 }
 
 .rules{
@@ -551,7 +557,29 @@ table{
     font-size: 25px;
     background-color: white;
     cursor: pointer
+}
+.firstPartBtn:hover{
+    font-weight: 900;
+}
 
+.secondPartBtn:hover{
+    font-weight: 900;
+}
+
+.firstPartBtn{
+    border-radius: 12px;
+    font-size: 25px;
+    background-color: white;
+    cursor: pointer;
+    width: 250px;
+}
+
+.secondPartBtn{
+    border-radius: 12px;
+    font-size: 25px;
+    background-color: white;
+    cursor: pointer;
+    width: 250px;
 }
 
 .firstTriple{
@@ -733,8 +761,13 @@ a {
 }
 .end{
     text-align: center;
-    margin-top: 40px; 
+    margin-top: 10px; 
     margin-bottom: 40px;
+}
+
+.end1{
+    text-align: center;
+    margin-top: 40px; 
 }
 
 .lvl{
@@ -764,6 +797,12 @@ td{
     margin-top: 10px;
 }
 
+.name2{
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
 
 
 .smallRed{
@@ -791,6 +830,43 @@ td{
     font-weight: 900;
 }
 
+.wwww{
+    position: relative;
+    color: black;
+    font-size: 22px;
+}
+
+.answerSecondConteyner{
+    position: absolute;
+    top: 9px;
+    left: 100px;
+    font-size: 20px;
+}
+
+.answerSecond{
+    font-size: 18px;
+}
+
+.asd{
+    position: absolute;
+    right: 600px;
+    top: 10px;
+    width: 1000px;
+}
+
+
+.radioButtons{
+    color: black;
+    position: absolute;
+    bottom: 320px;
+    right: 100px;
+    font-size: 24px;
+}
+
+.tR{
+    margin-right: 10px;
+}
+
 .link2 {
     text-decoration: none;
     color: white;
@@ -814,7 +890,6 @@ td{
 
 body {
     font-size: 25px;
-    background: url(img/back.png);
     text-align: center; 
 
     margin: 0 auto;
@@ -914,6 +989,18 @@ body {
     position: relative;
     right: 100px;
 }
+
+.qqq{
+    height: 50px;
+}
+
+.qqq1{
+    position: relative;
+    height: 50px;
+}
+
+
+
 .leave{
     border-radius: 12px;
     width: 370px;
@@ -930,11 +1017,41 @@ body {
     height: 60px;
     font-size: 25px;
     margin-bottom: 15px;
-    margin-top: 30px;
     background-color: white;
 }
 
+.wer{
+    position: relative;
+    right: 500px;
+    top: 8.5px;
+    font-size: 17px;
+}
+
+.black{
+    color: black;
+}
+
+
+
+.qa{
+    font-size: 23px;
+}
+
+.backVar{
+    border-radius: 12px;
+    width: 350px;
+    height: 60px;
+    font-size: 25px;
+    background-color: white;
+    margin-bottom: 50px;
+}
+
 .leave:hover{
+    background-color: rgb(247, 243, 243);
+    font-weight: 900;
+}
+
+.backVar:hover{
     background-color: rgb(247, 243, 243);
     font-weight: 900;
 }
@@ -943,7 +1060,6 @@ body {
     background-color: rgb(247, 243, 243);
     font-weight: 900;
 }
-
 .w900{
     font-weight: 900;
 }
@@ -1009,6 +1125,17 @@ body {
     margin: 0 auto;
     margin-bottom: 60px;
     background-color: white;
+    text-align: center;  
+    border-radius: 12px;
+    border: solid 2.5px; 
+}
+
+.conteynerSecond{
+    border: 5px double black;
+    width: 1400px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    background-color: white;
     text-align: center;   
 }
 
@@ -1032,6 +1159,10 @@ body.curr{
 
 .gray{
     background-color: grey;
+}
+
+.orange{
+    background-color: orange;
 }
 
 .red{
@@ -1065,6 +1196,9 @@ body.curr{
     color: white;
     font-size: 20px;
     height: 30px;
+    border-radius: 10px;
+    border-bottom: 1px solid black;
+
 }
 
 .lvll{
@@ -1075,6 +1209,8 @@ body.curr{
 .answer{
     margin-top: 0;
     font-size: 20px;
+    border-radius: 10px;
+    border-top: 1px solid black;
 }
 
 .white{
@@ -1138,11 +1274,39 @@ body.curr{
 
 }
 
-.showRightAnswer{
-    margin-left: 150px;
-    color: white;
+.black4{
+    position: relative;
+    font-size: 22px;
 }
 
+.showRightAnswer{
+    margin-left: 150px;
+}
+
+.showRightAnswer1{
+    color: white;
+    position: absolute;
+    bottom: 13px;
+    left: 100px;
+
+}
+
+.qwer{
+    margin-bottom: 60px;
+}
+
+.rightAnswer1{
+    font-size: 18px;
+}
+
+.qqq{
+    position: relative;
+}
+
+.qqq2{
+    position: relative;
+    bottom: 4px;
+}
 .pokOtw{
     cursor: pointer;
 }
