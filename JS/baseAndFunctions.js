@@ -785,7 +785,7 @@ const allProblems =
     {problem: '10.4', answer: 41, procent: 45, type: 'Парабола'},
     {problem: '10.5', answer: 61, procent: 30, type: 'Парабола'},
     {problem: '10.6', answer: -67, procent: 60, type: 'Парабола'},
-    {problem: '10.7', answer: 0.1, procent: 15, type: 'Гипербола'},
+    {problem: '10.7', answer: 0.2, procent: 15, type: 'Гипербола'},
     {problem: '10.8', answer: 0.75, procent: 40, type: 'Гипербола'},
     {problem: '10.9', answer: -15, procent: 65, type: 'Гипербола'},
     {problem: '10.10', answer: 0.15, procent: 65, type: 'Гипербола'},
