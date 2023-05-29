@@ -1147,6 +1147,8 @@ body {
     margin: 0 auto;
     background-color: white;
     text-align: center;   
+    border-radius: 12px;
+    border: solid 2.5px
 }
 
 body.variant{
