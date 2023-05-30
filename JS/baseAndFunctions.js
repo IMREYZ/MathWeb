@@ -433,7 +433,7 @@ const allProblems =
     {problem: '5.55', answer: 8, procent: 10, type: 'Логарифмические уравнения'},
     {problem: '5.56', answer: 7, procent: 25, type: 'Иррациональные уравнения'},
     {problem: '5.57', answer: 1.4, procent: 60, type: 'Степенные уравнения'},
-    {problem: '5.58', answer: 68, procent: 60, type: 'Логарифмические уравнения'},
+    //{problem: '5.58', answer: 68, procent: 60, type: 'Логарифмические уравнения'},
 
 
 
