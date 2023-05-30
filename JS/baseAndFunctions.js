@@ -346,7 +346,7 @@ const allProblems =
     {problem: '4.28', answer: 0.96, procent: 75, type: 'Классическая вероятность'},
     {problem: '4.29', answer: 0.35, procent: 10, type: 'Сложение, умножение вероятностей'},
     {problem: '4.30', answer: 0.27, procent: 30, type: 'Сложение, умножение вероятностей'},
-    {problem: '4.31', answer: 0.0008, procent: 35, type: 'Сложение, умножение вероятностей'},
+    {problem: '4.31', answer: 0.008, procent: 35, type: 'Сложение, умножение вероятностей'},
     {problem: '4.32', answer: 0.9604, procent: 40, type: 'Сложение, умножение вероятностей'},
     {problem: '4.33', answer: 0.0104, procent: 35, type: 'Сложение, умножение вероятностей'},
     {problem: '4.34', answer: 0.07, procent: 45, type: 'Сложение, умножение вероятностей'},
