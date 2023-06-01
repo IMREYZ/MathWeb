@@ -879,7 +879,7 @@ const allProblems =
     {problem: '11.37', answer: -15, procent: 80, type: 'Частное'},
     {problem: '11.38', answer: 42, procent: 60, type: 'Частное'},
     {problem: '11.39', answer: -1005, procent: 55, type: 'Степенная функция'},
-    {problem: '11.40', answer: 3, procent: 35, type: 'C функция'},
+    {problem: '11.40', answer: 3, procent: 35, type: 'Степенная функция'},
     {problem: '11.41', answer: 9, procent: 55, type: 'Степенная функция'},
     {problem: '11.42', answer: -2, procent: 50, type: 'Степенная функция'},
     {problem: '11.43', answer: 3, procent: 75, type: 'Степенная функция'},
