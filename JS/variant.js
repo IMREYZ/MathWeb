@@ -92,7 +92,6 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
                 thisStatsNumberConteyner.innerHTML = getStatsNumberText(thisProblem)
 
 
-
                 if (myColors[index] === 'red'){
                     const thisConteyner = thisParent.querySelector('.conteynerRightAnswer') // Текущий контейнер ответов
                     thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index]) // Записываем туда getRightAnswerHTML()
