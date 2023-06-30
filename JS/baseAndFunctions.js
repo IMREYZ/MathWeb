@@ -2220,9 +2220,8 @@ function daysBeforeExam(){ // Дней до экзамена
 
 
 function randomStress() { // Рандомный индекс массива allProblems (для stress)
-    const array = getFirstProblem(allProblems)
-    const randomIndex = Math.floor(Math.random() * array.length)
-    return array[randomIndex]
+    const randomIndex = Math.floor(Math.random() * allProblems.length)
+    return allProblems[randomIndex]
 }
 
 
