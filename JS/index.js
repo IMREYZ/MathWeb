@@ -1,6 +1,14 @@
 // Если на странице index
 if (window.location.pathname === `/MathWeb/index.html` || window.location.pathname === `/MathWeb/`){
 
+    if (!getLocalStorage('statsNumber')){
+        const result = {}
+        allProblems.forEach(element => result[element.id] = {right: 0, all: 0, procent: 0})
+        
+        setLocalStorage('statsNumber', result)
+    }
+
+
     if (!getLocalStorage('special')){
         let result = {}
         allProblems.forEach(element => result[element.id] = false)
@@ -16,6 +24,9 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
     const special = document.querySelector('.toStress1')
     const namesProblem = document.querySelectorAll('.nameProblem')
     const allProblemHTML = document.querySelector('.vsegoProblems')
+    const deleteTable = document.querySelector('.deleteStats')
+    const tableInfo = document.querySelector('.table2')
+    const netTabl = document.querySelector('.netTabl')
 
     // Скрываем кнопку "вариант"
     variant.disabled = true
@@ -37,11 +48,6 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
     // ТАБЛИЦА
 
-    // Кнопка "удалить"; контейнер таблицы; "Здесь могла бы быть ваша статистика"
-    const deleteTable = document.querySelector('.deleteStats')
-    const tableInfo = document.querySelector('.table2')
-    const netTabl = document.querySelector('.netTabl')
-
     // Нажатие на "deleteTable"
     deleteTable.addEventListener('click', () => {
 
@@ -54,63 +60,110 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         netTabl.classList.add('show')
 
         deleteTable.classList.add('close')
+
+        removeLocalStorage('countVariant')
     })
 
-    // Вся статистика  вариантов
-    const statsAboutVariants = getLocalStorage('stats')
+    
 
-    // Если есть, то
-    if (statsAboutVariants){
+    // Кнопка "удалить"; контейнер таблицы; "Здесь могла бы быть ваша статистика"
+    function createTable(){
 
-        // Закрываем заглушку
-        netTabl.classList.add('close')
+        // Вся статистика  вариантов
+        const statsAboutVariants = getLocalStorage('stats')
 
-        // HTML текст для tableInfo
-        let textHTML
-        // Массив всех заданий
-        let infoAll = []
-        for (let i = 0; i <= 11; i ++) infoAll.push({right: 0, all: 0})
+        // Если есть, то
+        if (statsAboutVariants){
 
-        statsAboutVariants.forEach(element => {
-            // Начало HTML
-           
-            let textHTML = `<td class='AAAA' class='nameVariantIndex' > 
-                                <span class='indexText' id = ${element.idVariant}>
-                                ${element.name}
-                                </span>
-                            </td>`
+            tableInfo.innerHTML = `<tr>
+            <td> № </td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td class="vsego">Всего</td>
+            </tr>`
+
+            // Закрываем заглушку
+            netTabl.classList.add('close')
+
+            // HTML текст для tableInfo
+            let textHTML
+            // Массив всех заданий
+            let infoAll = []
+            for (let i = 0; i <= 11; i ++) infoAll.push({right: 0, all: 0})
+
+            statsAboutVariants.forEach(element => {
+                // Начало HTML
             
-            // Заполняем вариант
-            element.stats.forEach((elementElement, index) => {
-                const resultVariantHTML = ` (${parseInt(elementElement.right / elementElement.count * 100)}%)</td>`
-                textHTML += `<td>${elementElement.right} / ${elementElement.count}` + (index === 11 ? resultVariantHTML : '</td>')
+                let textHTML = `<td class='AAAA' class='nameVariantIndex' > 
+                                    <div>
+                                    <div class='deleteVar' title='Удалить вариант' id = ${element.idVariant}>&#10006</div> 
+                                    <span class='indexText' title='Просмотреть вариант' id = ${element.idVariant}>
+                                    ${element.name}
+                                    </span>
+                                    </div>
+                                </td>`
+                
+                // Заполняем вариант
+                element.stats.forEach((elementElement, index) => {
+                    const resultVariantHTML = ` (${parseInt(elementElement.right / elementElement.count * 100)}%)</td>`
+                    textHTML += `<td>${elementElement.right} / ${elementElement.count}` + (index === 11 ? resultVariantHTML : '</td>')
 
-                infoAll[index].right += elementElement.right
-                infoAll[index].all += elementElement.count
+                    infoAll[index].right += elementElement.right
+                    infoAll[index].all += elementElement.count
+                })
+
+                textHTML += '</tr>'
+                
+                // Выводим вариант
+                tableInfo.innerHTML += textHTML
             })
+            
+            // Заполняем итоговую статистику
+            textHTML = `<tr> <td class='zhir'> Общая информация </td>`
+                infoAll.forEach(element => {
+                    const final = element.all === 0 ? '???' : parseInt(element.right / element.all * 100)
+                    textHTML += `<td class='zhir'>${element.right} / ${element.all} \n (${final}%)</td>`
+                })
 
             textHTML += '</tr>'
-            
-            // Выводим вариант
-            tableInfo.innerHTML += textHTML
-        })
-        
-        // Заполняем итоговую статистику
-        textHTML = `<tr> <td class='zhir'> Общая информация </td>`
-            infoAll.forEach(element => {
-                const final = element.all === 0 ? '???' : parseInt(element.right / element.all * 100)
-                textHTML += `<td class='zhir'>${element.right} / ${element.all} \n (${final}%)</td>`
-            })
+            tableInfo.innerHTML += textHTML 
 
-        textHTML += '</tr>'
-        tableInfo.innerHTML += textHTML 
-
-    // Если нет варианта в LocalStr
-    } else {
-        tableInfo.classList.add('close')
-        netTabl.classList.add('show')
-        deleteTable.classList.add('close')
+        // Если нет варианта в LocalStr
+        } else {
+            tableInfo.classList.add('close')
+            netTabl.classList.add('show')
+            deleteTable.classList.add('close')
+        }
     }
+    
+    createTable()
+
+    document.addEventListener('click', event => {
+        if (event.target.classList[0] !== 'deleteVar') return 
+
+        const idVariant = +event.target.id
+        const allStats = getLocalStorage('stats')
+        const newAllStats = []
+
+
+        allStats.forEach(element => {
+            if (element.idVariant !== idVariant) newAllStats.push(element)
+        })
+
+        setLocalStorage('stats', newAllStats)
+
+        createTable()
+
+    })
 
 
     // Нажатие на стресс-тест
@@ -312,7 +365,6 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
         window.location.pathname = `/MathWeb/HTML/variant.html`
     })
 }
-
 
 
 

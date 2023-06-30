@@ -88,6 +88,13 @@ const allProblems =
     {problem: '1.84', answer: 32, procent: 30, type: 'Окружность'},
     {problem: '1.85', answer: 68, procent: 35, type: 'Окружность'},
     {problem: '1.86', answer: 75, procent: 30, type: 'Окружность'},
+    {problem: '1.87', answer: 98, procent: 40, type: 'Окружность'},
+    {problem: '1.88', answer: 3, procent: 80, type: 'Треугольник'},
+    {problem: '1.89', answer: 82, procent: 80, type: 'Окружность'},
+    {problem: '1.90', answer: 44, procent: 25, type: 'Окружность'},
+    {problem: '1.91', answer: 138, procent: 50, type: 'Окружность'},
+    {problem: '1.92', answer: 97, procent: 35, type: 'Окружность'},
+    {problem: '1.93', answer: 2, procent: 80, type: 'Треугольник'},
 
 
 
@@ -255,6 +262,13 @@ const allProblems =
     {problem: '2.162', answer: 0.25, procent: 45, type: 'Комбинации тел'},
     {problem: '2.163', answer: 4, procent: 45, type: 'Комбинации тел'},
     {problem: '2.164', answer: 125, procent: 80, type: 'Комбинации тел'},
+    {problem: '2.165', answer: 27, procent: 65, type: 'Комбинации тел'},
+    {problem: '2.166', answer: 13, procent: 50, type: 'Призма'},
+    {problem: '2.167', answer: 20, procent: 65, type: 'Комбинации тел'},
+    {problem: '2.168', answer: 35, procent: 50, type: 'Параллелепипед'},
+    {problem: '2.169', answer: 24, procent: 65, type: 'Комбинации тел'},
+    {problem: '2.170', answer: 72, procent: 35, type: 'Призма'},
+    
 
 
 
@@ -297,6 +311,8 @@ const allProblems =
     {problem: '3.37', answer: 0.2, procent: 95, type: 'Классическая вероятность'},
     {problem: '3.38', answer: 0.25, procent: 65, type: 'Классическая вероятность'},
     {problem: '3.39', answer: 0.125, procent: 70, type: 'Классическая вероятность'},
+    {problem: '3.40', answer: 0.75, procent: 45, type: 'Классическая вероятность'},
+    {problem: '3.41', answer: 0.994, procent: 75, type: 'Классическая вероятность'},
 
 
 
@@ -330,7 +346,7 @@ const allProblems =
     {problem: '4.28', answer: 0.96, procent: 75, type: 'Классическая вероятность'},
     {problem: '4.29', answer: 0.35, procent: 10, type: 'Сложение, умножение вероятностей'},
     {problem: '4.30', answer: 0.27, procent: 30, type: 'Сложение, умножение вероятностей'},
-    {problem: '4.31', answer: 0.0008, procent: 35, type: 'Сложение, умножение вероятностей'},
+    {problem: '4.31', answer: 0.008, procent: 35, type: 'Сложение, умножение вероятностей'},
     {problem: '4.32', answer: 0.9604, procent: 40, type: 'Сложение, умножение вероятностей'},
     {problem: '4.33', answer: 0.0104, procent: 35, type: 'Сложение, умножение вероятностей'},
     {problem: '4.34', answer: 0.07, procent: 45, type: 'Сложение, умножение вероятностей'},
@@ -352,6 +368,10 @@ const allProblems =
     {problem: '4.50', answer: 0.36, procent: 80, type: 'Сложение, умножение вероятностей'},
     {problem: '4.51', answer: 0.85, procent: 90, type: 'Полная вероятность'},
     {problem: '4.52', answer: 0.24, procent: 40, type: 'Предметы из ящика'},
+    {problem: '4.53', answer: 0.1024, procent: 55, type: 'Сложение, умножение вероятностей'},
+    {problem: '4.54', answer: 0.039, procent: 70, type: 'Сложение, умножение вероятностей'},
+    {problem: '4.55', answer: 0.0009, procent: 75, type: 'Сложение, умножение вероятностей'},
+    {problem: '4.56', answer: 0.936, procent: 60, type: 'Сложение, умножение вероятностей'},
 
 
 
@@ -411,6 +431,9 @@ const allProblems =
     {problem: '5.53', answer: 1, procent: 25, type: 'Иррациональные уравнения'},
     {problem: '5.54', answer: 58, procent: 45, type: 'Иррациональные уравнения'},
     {problem: '5.55', answer: 8, procent: 10, type: 'Логарифмические уравнения'},
+    {problem: '5.56', answer: 7, procent: 25, type: 'Иррациональные уравнения'},
+    {problem: '5.57', answer: 1.4, procent: 60, type: 'Степенные уравнения'},
+    //{problem: '5.58', answer: 68, procent: 60, type: 'Логарифмические уравнения'},
 
 
 
@@ -502,6 +525,8 @@ const allProblems =
     {problem: '6.86', answer: 13, procent: 45, type: 'Логарифмы'},
     {problem: '6.87', answer: -0.5, procent: 60, type: 'Логарифмы'},
     {problem: '6.88', answer: -3, procent: 75, type: 'Логарифмы'},
+    {problem: '6.89', answer: 4, procent: 70, type: 'Тригонометрия'},
+    {problem: '6.90', answer: 28, procent: 75, type: 'Степени'},
 
 
 
@@ -579,6 +604,8 @@ const allProblems =
     {problem: '7.72', answer: 24, procent: 80, type: 'Первообразная'},
     {problem: '7.73', answer: 6.75, procent: 100, type: 'Первообразная'},
     {problem: '7.74', answer: 4.95, procent: 100, type: 'Первообразная'},
+    {problem: '7.75', answer: -0.4, procent: 45, type: 'Геометрический смысл производной'},
+    {problem: '7.76', answer: 5, procent: 60, type: 'График функции'},
 
 
     {problem: '8.1', answer: 25, procent: 40, type: 'Квадратичная формула'},
@@ -617,17 +644,12 @@ const allProblems =
     {problem: '8.34', answer: 6000, procent: 90, type: 'Показательная формула'},
     {problem: '8.35', answer: 0.79, procent: 80, type: 'Рациональная формула'},
     {problem: '8.36', answer: 0.265, procent: 70, type: 'Рациональная формула'},
-
     {problem: '8.37', answer: 30, procent: 40, type: 'Квадратичная формула'},
     {problem: '8.38', answer: 20, procent: 80, type: 'Квадратичная формула'},
     {problem: '8.39', answer: 3.79, procent: 75, type: 'Квадратичная формула'},
     {problem: '8.40', answer: 42, procent: 50, type: 'Квадратичная формула'},
     {problem: '8.41', answer: 0.4, procent: 55, type: 'Квадратичная формула'},
-    {problem: '8.42', answer: 1, procent: 90, type: 'Квадратичная формула'},
-    {problem: '8.43', answer: 4, procent: 85, type: 'Квадратичная формула'},
-    {problem: '8.44', answer: 9, procent: 25, type: 'Рациональная формула'},
-    {problem: '8.45', answer: 2.8, procent: 35, type: 'Рациональная формула'},
-    {problem: '8.46', answer: 27.5, procent: 20, type: 'Рациональная формула'},
+    {problem: '8.42', answer: 27.5, procent: 20, type: 'Рациональная формула'},
     {problem: '8.47', answer: 260, procent: 45, type: 'Рациональная формула'},
     {problem: '8.48', answer: 319, procent: 50, type: 'Рациональная формула'},
     {problem: '8.49', answer: 753, procent: 60, type: 'Рациональная формула'},
@@ -654,7 +676,8 @@ const allProblems =
     {problem: '8.70', answer: 5000, procent: 90, type: 'Показательная формула'},
     {problem: '8.71', answer: 0.47, procent: 80, type: 'Рациональная формула'},
     {problem: '8.72', answer: 0.445, procent: 70, type: 'Рациональная формула'},
-
+    {problem: '8.73', answer: 90, procent: 75, type: 'Тригонометрическая формула'},
+    {problem: '8.74', answer: 11.2, procent: 50, type: 'Логарифмическая формула'},
 
 
     {problem: '9.1', answer: 14, procent: 20, type: 'Движение по прямой'},
@@ -747,6 +770,10 @@ const allProblems =
     {problem: '9.88', answer: 5.6, procent: 85, type: 'Совместная работа'},
     {problem: '9.89', answer: 52, procent: 65, type: 'Движение по прямой'},
     {problem: '9.90', answer: 7, procent: 60, type: 'Совместная работа'},
+    {problem: '9.91', answer: 50, procent: 65, type: 'Смеси и сплавы'},
+    {problem: '9.92', answer: 4, procent: 40, type: 'Движение по воде'},
+    {problem: '9.93', answer: 18, procent: 55, type: 'Движение по воде'},
+    {problem: '9.94', answer: 56, procent: 80, type: 'Совместная работа'},
 
     
 
@@ -758,7 +785,7 @@ const allProblems =
     {problem: '10.4', answer: 41, procent: 45, type: 'Парабола'},
     {problem: '10.5', answer: 61, procent: 30, type: 'Парабола'},
     {problem: '10.6', answer: -67, procent: 60, type: 'Парабола'},
-    {problem: '10.7', answer: 0.1, procent: 15, type: 'Гипербола'},
+    {problem: '10.7', answer: 0.2, procent: 15, type: 'Гипербола'},
     {problem: '10.8', answer: 0.75, procent: 40, type: 'Гипербола'},
     {problem: '10.9', answer: -15, procent: 65, type: 'Гипербола'},
     {problem: '10.10', answer: 0.15, procent: 65, type: 'Гипербола'},
@@ -809,6 +836,7 @@ const allProblems =
     {problem: '10.55', answer: 5, procent: 25, type: 'Логарифмическая функция'},
     {problem: '10.56', answer: 27, procent: 40, type: 'Показательная функция'},
     {problem: '10.57', answer: 0.2, procent: 45, type: 'Гипербола'},
+    {problem: '10.58', answer: -3, procent: 25, type: 'Логарифмическая функция'},
 
 
 
@@ -889,6 +917,12 @@ const allProblems =
     {problem: '11.75', answer: 16, procent: 80, type: 'Частное'},
     {problem: '11.76', answer: -10, procent: 60, type: 'Частное'},
     {problem: '11.77', answer: -5, procent: 40, type: 'Степенная функция'},
+    {problem: '11.78', answer: 8, procent: 55, type: 'Логарифмическая функция'},
+    {problem: '11.79', answer: 7, procent: 45, type: 'Степенная функция'},
+    {problem: '11.80', answer: 8, procent: 75, type: 'Произведение'},
+    {problem: '11.81', answer: -3, procent: 30, type: 'Степенная функция'},
+    {problem: '11.82', answer: 3, procent: 60, type: 'Логарифмическая функция'},
+    {problem: '11.83', answer: 10, procent: 30, type: 'Степенная функция'},
 ]   
 
 
@@ -944,10 +978,13 @@ function getSpecialClass(text){ return text.replaceAll('_', ' ').replaceAll('L',
 const specialVariants = ['-', // Специальные варианты
                         {variant: ['1.31', '2.21', '3.27', '4.23', '5.49', '6.7', '7.3', '8.32', '9.89', '10.57', '11.25'], name: 'Досрок 2023 - резервный день'},
                         {variant: ['1.6', '2.46', '3.39', '4.25', '5.6', '6.70', '7.17', '8.20', '9.90', '10.18', '11.4'], name: 'Досрок 2023'},
-                        {variant: ['1.56', '2.30', '3.3', '4.11', '5.48', '6.66', '7.56', '8.56', '9.16', '10.44', '11.77'], name: 'Основная волна 2022'}]
+                        {variant: ['1.56', '2.30', '3.3', '4.11', '5.48', '6.66', '7.56', '8.56', '9.16', '10.44', '11.77'], name: 'Основная волна 2022'},
+                        {variant: ['1.19', '1.25', '1.33', '1.46', '1.51', '1.73', '2.78', '2.79', '2.160', '2.161', '3.5', '3.24', '4.9', '4.35', '5.45', '6.37', '6.39', '6.83', '7.7', '7.44', '7.45', '8.12', '8.33', '8.69', '9.36', '9.38', '9.78', '9.79', '9.80', '10.23', '10.24', '10.51', '10.54', '11.8', '11.46'], name: 'Основная волна 2023'},
+                        {variant: ['1.17', '2.38', '3.9', '4.14', '5.9', '6.20', '7.59', '8.17', '9.24', '10.31', '11.33'], name: 'Резерв 2023'}]
 
 
-specialVariants.forEach((element, index) => {
+
+specialVariants.forEach((element, index) => { // countProblem для specail
     if (index !== 0){
         const thisVariant = element.variant
         const countProblem = ['-', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
@@ -1079,6 +1116,13 @@ function deleteOldStats(){ // Удаление плохой статистики
 }
 
 
+function getStatsNumberText(problem){
+    const statsNumberLocalStr = getLocalStorage('statsNumber')
+    const objThisProblem = statsNumberLocalStr[problem.id]
+
+    return `<span class='statsNumber' title='Решаемость задания. Для сброса - нажмите 2 раза.'>  ${objThisProblem.right} из ${objThisProblem.all} (${objThisProblem.procent}%)</span>`
+}
+
 
 function problemHTMLvariant(problem) { // Вывод задания на HTML на вкладку variant
     const id = problem.id // id Задачи
@@ -1088,18 +1132,30 @@ function problemHTMLvariant(problem) { // Вывод задания на HTML н
 
     return `<div id = ${id} class="conteyner">
     <div class="number gray" > 
+        <span class='statsNumberConteyner'z> </span>
         <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
-        <span title='Избранное задание' class="star close"> ${textHTML} </span>
+        <span title='Избранное задание' class="star"> ${textHTML} </span>
         <span class='lvll'>
             Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
         </span>
     </div>
         <img src='/MathWeb/img/${problem.problem}.jpg' >
-        <div class="answer gray1">
-            Введите ответ: 
-            <input class='input'> 
-            <span class='conteynerRightAnswer'></span>
+
+        <div class='imgSolutionConteyner close'>
+            <div id='QQ'> Решение: </div>
+            <img class='imgSolution' src='/MathWeb/img/NoSolutions.jpg'>
         </div>
+
+        <div class="answer gray1">
+            <span class='conteynerRightAnswer'></span>
+            <span class='conteynerInput'> 
+                Введите ответ: 
+                <input class='input'> 
+            </span>
+
+            <span class='showSolutionText'></span>
+        </div>
+
     </div>`
 } 
 
@@ -1117,6 +1173,7 @@ function getRightAnswerHTML(problem){ // Добавление "правильн�
 
 
 
+
 function problemHTMLstress(problem) { // Вывод задание на HTML на вкладку stress
     const id = problem.id // id Задачи
     const objSpecial = getLocalStorage('special') // Массив избранных задач
@@ -1125,18 +1182,29 @@ function problemHTMLstress(problem) { // Вывод задание на HTML н�
 
     return `<div id = ${id} class="conteynerStress" >
     <div class="number gray" > 
+        <span class='statsNumberConteyner'> </span>
         <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
         <span title='Избранное задание' class="star"> ${textHTML} </span>
         <span class='lvll'>
             Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
         </span>
     </div>
-        <img class='imgStress' src='/MathWeb/img/${problem.problem}.jpg'>
+        <img class='imgStress' src='/MathWeb/img/NoSolutions.jpg'>
+
+        <div class='imgSolutionConteyner close'>
+            <div id='QQ'> Решение: </div>
+            <img class='imgSolution' src='/MathWeb/img/NoSolutions.jpg'>
+        </div>
+
         <div class="answer gray1">
-            Введите ответ: 
-            <input class='input'> 
-            <button class="submit"> Ответить </button>
+
             <span class='conteynerRightAnswer'></span>
+            <span class='conteynerInput'> 
+                Введите ответ: 
+                <input class='input'> 
+                <button class="submit"> Ответить </button>
+            </span>
+            <span class='showSolutionText'></span>
         </div>
     </div>`
 }
@@ -1148,10 +1216,12 @@ function problemHTMLcurr(problem) { // Вывод задания на HTML на 
     const objSpecial = getLocalStorage('special') // Массив избранных задач
     const thisBoolean = objSpecial[id] // Избранная задача или нет
     const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
+    const textStatsNumber = getStatsNumberText(problem)
     
 
     return `<div id = ${id} class="conteyner" >
     <div class="number gray" > 
+        <span class='statsNumberConteyner'> ${textStatsNumber} </span>
         <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
         <span title='Избранное задание' class="star"> ${textHTML} </span>
         <span class='lvll'>
@@ -1159,12 +1229,24 @@ function problemHTMLcurr(problem) { // Вывод задания на HTML на 
         </span>
     </div>
         <img src='/MathWeb/img/${problem.problem}.jpg'>
-        <div class="answer gray1">
-            Введите ответ: 
-            <input class='input'> 
-            <button class="submit"> Ответить </button>
-            <span class='conteynerRightAnswer'></span>
+
+        <div class='imgSolutionConteyner close'>
+            <div id='QQ'> Решение: </div>
+            <img class='imgSolution' src='/MathWeb/img/NoSolutions.jpg'>
         </div>
+
+        <div class="answer gray1">
+            <span class='conteynerRightAnswer'></span>
+
+            <span class='conteynerInput'> 
+                Введите ответ: 
+                <input class='input'> 
+                <button class="submit"> Ответить </button>
+            </span>
+
+            <span class='showSolutionText'> </span>
+        </div>
+
     </div>`
 }
 
@@ -1211,9 +1293,12 @@ function eventClickOnStar(){ // Функция, которая меняет зв
         setLocalStorage('special', objSpecial) // objSpecial в LocalStr 'special'
 
         const starHTML = parent.querySelector('.star') // Звезда
-        starHTML.innerHTML = getStar(resultBoolean) // Меняем звезду 
+        starHTML.innerHTML = getStar(resultBoolean) // Меняем звезду
     })
 }
+
+
+
 
 
 
@@ -1227,17 +1312,62 @@ function renderSpecial(){
         })
     
         setLocalStorage('special', specialArray)
-    }
-
-    
+    }  
 }
 
 
 
-renderSpecial()
-eventClickOnStar()
-showRightAnswerHTML()
-deleteOldStats()
+function renderStatsNumber(){
+    const statsArray = getLocalStorage('statsNumber')
+
+    if (statsArray) {
+        allProblems.forEach(element => {
+            const thisId = element.id
+            if (statsArray[thisId] === undefined) statsArray[thisId] = {right: 0, all: 0, procent: 0}
+        })
+    
+        setLocalStorage('statsNumber', statsArray)
+    }  
+}
+
+
+
+
+function eventSolution(){
+    document.addEventListener('click', (event) => {
+        if (event.target.classList[0] !== 'showSolutionText') return
+
+        let conteyner = event.target.closest('.conteyner') // Контейнер всего задания
+        if (!conteyner) conteyner = event.target.closest('.conteynerStress')
+        
+
+        const imgSolution = conteyner.querySelector('.imgSolutionConteyner')
+        const solutionText = conteyner.querySelector('.showSolutionText')
+
+        if (imgSolution.classList[1] === 'close') {
+            imgSolution.classList.remove('close')
+            imgSolution.classList.add('show')
+
+            solutionText.innerHTML = `Скрыть решение`
+        } else {
+            imgSolution.classList.add('close')
+            imgSolution.classList.remove('show')
+
+            solutionText.innerHTML = `Показать решение`
+        }
+
+    })
+}
+
+eventSolution() // Открытие/закрытие решения
+renderSpecial() // 4051 = false (для новых задач)
+renderStatsNumber() // 4051 = {0, 0, 0} (для новых задач)
+eventClickOnStar() // Нажатие на звезду
+showRightAnswerHTML() // Открытие/закрытие правильного ответа
+deleteOldStats() // Удаление старой статистики
+eventSendAnswer() // Отправка задания
+clearStatsByDblClick()
+
 
 
 
@@ -1264,39 +1394,43 @@ function addW900(node, boolean){ // add/remove w900
 
 function sortProblem(thisSelect){ // Сортировка массива 'thisProblems'
     let sortedArray
+
     if (thisSelect === 'oldToNew') sortedArray = getThisProblems().sort((a, b) => a.id - b.id)
     else if (thisSelect === 'newToOld') sortedArray = getThisProblems().sort((a, b) => b.id - a.id)
     else if (thisSelect === 'easyToHard')  sortedArray = getThisProblems().sort((a, b) => a.procent - b.procent)
     else if (thisSelect === 'hardToEasy') sortedArray = getThisProblems().sort((a, b) => b.procent - a.procent)
+    else if (thisSelect === 'userEasyToHard' || thisSelect === 'userHardToEasy') {
+        const statsNumberLocalStr = getLocalStorage('statsNumber')
+        const thisProblems = getThisProblems()
+        thisProblems.forEach(problem => problem.stats = statsNumberLocalStr[problem.id])
+
+        if (thisSelect === 'userEasyToHard') {
+            sortedArray = thisProblems.sort((a, b) => b.stats.all - a.stats.all)
+            sortedArray = sortedArray.sort((a, b) => b.stats.procent - a.stats.procent)
+        }
+        if (thisSelect === 'userHardToEasy') {
+            sortedArray = thisProblems.sort((a, b) => b.stats.all - a.stats.all)
+            sortedArray = sortedArray.sort((a, b) => a.stats.procent - b.stats.procent)
+        }
+    }
 
     setLocalStorage('thisProblems', sortedArray)
 }
 
 
+function clearStatsByDblClick(){
+    document.addEventListener('dblclick', (event) => {
+        if (event.target.classList[0] !== 'statsNumber') return
 
-function createAndSaveColors(thisProblems){ // Создание и/или сохрание цветов
-    document.addEventListener('click', (event) => {
-        if (event.target.classList[0] !== 'submit') return
+        const parent = event.target.closest('.conteyner')
+        const id = parent.id
+        const numberStatsLocStr = getLocalStorage('statsNumber')
 
-        if (!getLocalStorage('color')){ // Если нет в LocalStr createAndSaveColors, добавить gray
-            const array = {}
-            for (let index = 0; index < thisProblems.length; index ++) array[thisProblems[index].id] = 'gray'
-            setLocalStorage('color', array)    
-        }
-
-        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания
-        const headerThisProblem = conteynerFull.querySelector('.number') // Верный ответ HTML
-        const objInfo = getLocalStorage('color') // Объект {4001: gray, 4002: green, 4003: red...} 
-
-        const idThisProblemHTML = conteynerFull.id // id Контейнера    
-        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу
-        const idThisProblem = thisProblem.id // id этой задачи
-
-        objInfo[idThisProblem] = headerThisProblem.classList[1] // Изменение этой задачи
-        setLocalStorage('color', objInfo) // Сохранение в LocalStr
+        numberStatsLocStr[id] = {right: 0, all: 0, procent: 0}
+        setLocalStorage('statsNumber', numberStatsLocStr)
+        event.target.innerHTML = '0 из 0 (0%)'  
     })
 }
-
 
 
 function currColor(thisProblems){ // Появление цвета в currSubject в случае обновления страницы
@@ -1318,9 +1452,9 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
                        
             if (thisColor === 'green'){ // Если зеленый        
                 backgroundByCurr(idProblem, 'green') // Устанавливаем зеленый цвет для задачи с id контейнера
-                inputAll[count].readOnly = true // Работаем с input и sumbit [count]
-                submitAll[count].disabled = true // Работаем с input и sumbit [count]
-                submitAll[count].classList.remove('button:hover') // Работаем с input и sumbit [count]
+                // inputAll[count].readOnly = true // Работаем с input и sumbit [count]
+                // submitAll[count].disabled = true // Работаем с input и sumbit [count]
+                // submitAll[count].classList.remove('button:hover') // Работаем с input и sumbit [count]
                 allAnswer[count].classList.add('white') // Добавляем белый цвет
              
             } else if (thisColor === 'red') { // Если красный
@@ -1332,11 +1466,43 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
                 rightAnswer.classList.remove('close')
                 rightAnswer.classList.add('show')
 
+                const conteynerInput = parent.querySelector('.conteynerInput')
+                conteynerInput.classList.add('inputConteynerInCenter')
+
+                const conteynerShowSolution = parent.querySelector('.showSolutionText')
+                // Если решение показано: 1) Скрыть решение 2) show рисунок, иначе: Показать решение
+                conteynerShowSolution.innerHTML = `Показать решение`
+
             } else backgroundByCurr(idProblem, 'gray')          
         })
     }
 }
 
+
+
+function createAndSaveColors(thisProblems){ // Создание и/или сохрание цветов
+    document.addEventListener('click', event => {
+        if (event.target.classList[0] !== 'submit') return
+
+
+        if (!getLocalStorage('color')){ // Если нет в LocalStr createAndSaveColors, добавить gray
+            const array = {}
+            for (let index = 0; index < thisProblems.length; index ++) array[thisProblems[index].id] = 'gray'
+            setLocalStorage('color', array)    
+        }
+
+        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания
+        const headerThisProblem = conteynerFull.querySelector('.number') // Верный ответ HTML
+        const objInfo = getLocalStorage('color') // Объект {4001: gray, 4002: green, 4003: red...} 
+
+        const idThisProblemHTML = conteynerFull.id // id Контейнера    
+        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу
+        const idThisProblem = thisProblem.id // id этой задачи
+
+        objInfo[idThisProblem] = headerThisProblem.classList[1] // Изменение этой задачи
+        setLocalStorage('color', objInfo) // Сохранение в LocalStr
+    })
+}
 
 
 function createAndSaveInputs(thisProblems){ // Создание и/или сохрание input
@@ -1368,13 +1534,15 @@ function currInput(thisProblems){ // Появление input в currSubject в 
     const inputAll = document.querySelectorAll('.input') // Берем все input со страницы, КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
     const inputLocalStr = getLocalStorage('inputCurr')
 
+    const colorLocalStr = getLocalStorage('color')
+
     if (inputLocalStr){ // Если до этого были введены ответы 
         // thisProblems и inputAll идут в одной сортрировке 
 
         thisProblems.forEach((element, count) => {
             const thisId = element.id // id Задачи
             const thisInput = inputLocalStr[thisId] // input этой задачи
-            inputAll[count].value = thisInput // Передаем сохраненное значение
+            if (colorLocalStr[thisId] !== 'green') inputAll[count].value = thisInput // Передаем сохраненное значение
         })
     }
 }
@@ -1383,8 +1551,9 @@ function currInput(thisProblems){ // Появление input в currSubject в 
 
 function eventSendAnswer(){ // Обработка события "отправить ответ"
     document.addEventListener('click', (event) => {
-        if (event.target.classList[0] !== 'submit') return // Если событие - не кнопка sumbit, то выходим
+        if (event.target.classList[0] !== 'submit' || window.location.pathname === '/MathWeb/HTML/stress.html') return // Если событие - не кнопка sumbit, то выходим
 
+        
         const parent = event.target.closest('.conteyner') // Родители кнопки
         const answerText = parent.querySelector('.answer') // Весь блок answer (для add('white'))
         const answer = parent.querySelector('.input') // Дочерний input
@@ -1394,6 +1563,13 @@ function eventSendAnswer(){ // Обработка события "отправи
         const id = +parent.id // Находим id контейнера-задачи
         const thisObject = searchObjectById(id, allProblems) // Находим объект
         const answerRight = thisObject.answer // Правильный ответ задачи
+        const conteynerInput = parent.querySelector('.conteynerInput')
+        const conteynerSolution = parent.querySelector('.showSolutionText')
+        const imgSolutionConteyner = parent.querySelector('.imgSolutionConteyner')
+        const statsNumber = parent.querySelector('.statsNumberConteyner')
+
+        const statsNumberLocalStr = getLocalStorage('statsNumber')
+        const thisStatsNumberObj = statsNumberLocalStr[id]
         
 
         if (answerInput !== ''){
@@ -1405,19 +1581,92 @@ function eventSendAnswer(){ // Обработка события "отправи
                     submit.disabled = true // Меняем дочерние элементы
                     submit.classList.remove('button:hover') // Меняем дочерний элементы
                     conteynerRightAnswer.innerHTML = '' // Убираем "показать ответ"
+                    conteynerInput.classList.remove('inputConteynerInCenter')
+                    conteynerSolution.innerHTML = ''
+                    conteynerSolution.classList.remove('show')
+                    conteynerSolution.classList.add('close')
+                    imgSolutionConteyner.classList.remove('show')
+                    imgSolutionConteyner.classList.add('close')
+
+                    thisStatsNumberObj.right ++
+                    thisStatsNumberObj.all ++
+                    thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
                 
                 } else {
-                    backgroundByCurr(id, 'red') // Ставим фон фон задаче с id как у контейнера
+                    backgroundByCurr(id, 'red') // Ставим фон задаче с id как у контейнера
                     const currObject = searchObjectById(id, allProblems) // Находим объект текущей задачи
                     conteynerRightAnswer.innerHTML = getRightAnswerHTML(currObject) // В контейнер правильного ответа добавляем текст 
                     const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer') // show "Показать ответ"
                     rightAnswer.classList.remove('close')
                     rightAnswer.classList.add('show')
+                    conteynerInput.classList.add('inputConteynerInCenter')
+                    conteynerSolution.innerHTML = 'Показать решение'
+
+                    thisStatsNumberObj.all ++
+                    thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
             }
+
+
+            statsNumberLocalStr[id] = thisStatsNumberObj            
+            setLocalStorage('statsNumber', statsNumberLocalStr)
+
+            statsNumber.innerHTML = getStatsNumberText(thisObject)
         }   
     })
 }
 
+
+// function DEMO(){ СОРТИРОВКА НЕ ДОДЕЛАНА
+//     document.addEventListener('click', event => {
+//         if (event.target.classList[0] !== 'submit' || window.location.pathname !== `/MathWeb/HTML/currSubject.html`) return
+        
+  
+//         if (getLocalStorage('select') === 'userEasyToHard' || getLocalStorage('select') === 'userHardToEasy') {
+//             const statsNumberLocalStr = getLocalStorage('statsNumber')
+
+//             const thisProblems = getThisProblems()
+
+//             thisProblems.forEach(problem => problem.stats = statsNumberLocalStr[problem.id])
+//             sortedArray = thisProblems.sort((a, b) => b.stats.procent - a.stats.procent)
+
+//             setLocalStorage('thisProblems', sortedArray)
+
+//             const allConteynerProblem = document.querySelector('.allConteynerPr') // Имя задачи
+//             allConteynerProblem.innerHTML = ''
+//             getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Выводим задания
+
+//             currColor(getThisProblems())
+//             currInput(getThisProblems())
+//             currInfoShowRightAnswer(getThisProblems())
+//             currSolution(getThisProblems())
+//         }
+//     })
+
+//     document.addEventListener('dblclick', event => {
+//         if (event.target.classList[0] !== 'statsNumber' || window.location.pathname !== `/MathWeb/HTML/currSubject.html`) return
+        
+  
+//         if (getLocalStorage('select') === 'userEasyToHard' || getLocalStorage('select') === 'userHardToEasy') {
+//             const statsNumberLocalStr = getLocalStorage('statsNumber')
+
+//             const thisProblems = getThisProblems()
+
+//             thisProblems.forEach(problem => problem.stats = statsNumberLocalStr[problem.id])
+//             sortedArray = thisProblems.sort((a, b) => b.stats.procent - a.stats.procent)
+
+//             setLocalStorage('thisProblems', sortedArray)
+
+//             const allConteynerProblem = document.querySelector('.allConteynerPr') // Имя задачи
+//             allConteynerProblem.innerHTML = ''
+//             getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Выводим задания
+
+//             currColor(getThisProblems())
+//             currInput(getThisProblems())
+//             currInfoShowRightAnswer(getThisProblems())
+//             currSolution(getThisProblems())
+//         }
+//     })
+// }
 
 
 function createAndSaveInfoAnswers(thisProblems){ // Создание и/или сохрание нажатия на "показать ответ"
@@ -1433,6 +1682,7 @@ function createAndSaveInfoAnswers(thisProblems){ // Создание и/или �
         }
 
         const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания
+
         const rightAnswer = conteynerFull.querySelector('.rightAnswer') // Верный ответ HTML
         const objInfo = getLocalStorage('currInfoShowRightAnswer') // Объект {4001: true, 4002: false, 4003: false...}
         const idThisProblemHTML = conteynerFull.id // id задачи (11020, 3004 ...)
@@ -1442,6 +1692,58 @@ function createAndSaveInfoAnswers(thisProblems){ // Создание и/или �
         objInfo[idThisProblem] = rightAnswer.classList[1] === 'show' // Изменение этой задачи
         setLocalStorage('currInfoShowRightAnswer', objInfo) // Сохранение в LocalStr
     })
+}
+
+
+function createAndSaveSolution(thisProblems){ // Создание и/или сохрание нажатия на "показать ответ"
+    document.addEventListener('click', (event) => {
+        if (event.target.classList[0] !== 'showSolutionText') return // Если не кнопка "показать ответ" - выходим 
+
+        
+
+        // Если нет в LocalStr currInfoShowRightAnswer, добавить
+        if (!getLocalStorage('showSolution')){
+            const array = {}
+            for (let i = 0; i < thisProblems.length; i++) array[thisProblems[i].id] = false
+    
+            setLocalStorage('showSolution', array)    
+        }
+
+        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания        
+        const solutionImg = conteynerFull.querySelector('.imgSolutionConteyner')
+        const objInfo = getLocalStorage('showSolution') // Объект {4001: true, 4002: false, 4003: false...}
+        const idThisProblemHTML = conteynerFull.id // id задачи (11020, 3004 ...)        
+        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
+        const idThisProblem = thisProblem.id // id этой задачи
+        
+        objInfo[idThisProblem] = solutionImg.classList[1] === 'show' // Изменение этой задачи
+        setLocalStorage('showSolution', objInfo) // Сохранение в LocalStr
+    })
+}
+
+
+
+function currSolution(thisProblems){
+    const objBoolSolution = getLocalStorage('showSolution')
+
+    if (objBoolSolution){
+        const allConteyner = document.querySelectorAll('.conteyner') // Контейнеры всех задач
+
+        thisProblems.forEach((element, index) => {
+            const idThisProblem = element.id
+            const valueInObj = objBoolSolution[idThisProblem]
+
+            if (valueInObj) {
+                const thisConteyner = allConteyner[index]
+                const thisImgSolution = thisConteyner.querySelector('.imgSolutionConteyner')
+                const thisShowSolutionText = thisConteyner.querySelector('.showSolutionText')
+
+                thisImgSolution.classList.remove('close')
+                thisImgSolution.classList.add('show')
+                thisShowSolutionText.innerHTML = 'Скрыть решение'
+            }
+        })
+    }
 }
 
 
@@ -1475,7 +1777,7 @@ function currInfoShowRightAnswer(thisProblems){ // Обновление инфо
 
 
 function cleanUpLocalStorage(){ // Убирание из LocalStr
-    const importantWord = ['record', 'special', 'stats'] // Список неубераемых
+    const importantWord = ['record', 'special', 'stats', 'countVariant', 'statsNumber'] // Список неубераемых
     let importantArray = []
 
     importantWord.forEach(element => importantArray.push({key: element, value: getLocalStorage(element)}))
@@ -1734,11 +2036,13 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
     const popUpSecond = document.querySelector('.pop_up1') // PopUp - подтверждение
 
     const inputVariant = [...document.querySelectorAll('.input')] // Все input
+    const inputConteyner = [...document.querySelectorAll('.conteynerInput')] // Все input
     const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
     const allAnswer = document.querySelectorAll('.answer') // Все answer
 
     let answer = [] // Массив input ответов
     inputVariant.forEach(element => answer.push(element.value)) // Введенные ответы
+    inputConteyner.forEach(element => element.classList.add('inputConteynerInCenter'))
 
     let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // Количество верных задач
     let rightAnswers = 0 // Количество правильных ответов
@@ -1755,9 +2059,17 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
         const thisParent = allParents[index] // Родитель этой задачи
         const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
         const thisInput = thisParent.querySelector('.input')
+        const thisAnswerText = thisParent.querySelector('.showSolutionText')
+        const thisStatsNumberConteyner = thisParent.querySelector('.statsNumberConteyner')
+
+        const statsNumberLocalStr = getLocalStorage('statsNumber')
+        const thisStatsNumberObj = statsNumberLocalStr[thisObject.id]
+    
 
         thisStar.classList.remove('close') // Удаляем close звезде
         thisInput.readOnly = true
+
+        thisAnswerText.innerHTML = 'Показать решение'
 
         const thisAnswer = allAnswer[index]
         thisAnswer.classList.add('white') // Добавляем white
@@ -1767,6 +2079,10 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
             countRightAnswer[thisObject.number] ++ // Количество правильных ответов задачи номера n ++
             background('green', index) // background - green
             arrayColors.push('green') // В массив цветов += green
+
+            thisStatsNumberObj.right ++
+            thisStatsNumberObj.all ++
+            thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
 
         } else {
             background('red', index) // background - red
@@ -1778,7 +2094,15 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
             const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show
             rightAnswer.classList.remove('close')
             rightAnswer.classList.add('show')
+
+            thisStatsNumberObj.all ++
+            thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
         }
+
+        statsNumberLocalStr[thisObject.id] = thisStatsNumberObj            
+        setLocalStorage('statsNumber', statsNumberLocalStr)
+            
+        thisStatsNumberConteyner.innerHTML = getStatsNumberText(thisObject)
     })
 
     setLocalStorage('colors', arrayColors) // Добавляем цвета в LocalSte
@@ -1798,14 +2122,26 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
     const numberVariant = getLocalStorage('numberVariant') // Номер варианта
     let nameVariant
 
+    if (!getLocalStorage('countVariant')) setLocalStorage('countVariant', 0)
+    setLocalStorage('countVariant', getLocalStorage('countVariant') + 1)
+
     infoLocalStorageObject.stats = arrayRightAnswer // Добавляем в объект варианта статистику варианта
     infoLocalStorageObject.problems = getLocalStorage('variant') // Добавляем вариант
     infoLocalStorageObject.colors = getLocalStorage('colors') // Добавляем цвета
-    infoLocalStorageObject.idVariant = stats ? stats.length + 1 : 1 // Добавляем id задачи как len stats + 1
+    infoLocalStorageObject.idVariant = getLocalStorage('countVariant') // Добавляем id задачи как len stats + 1
     infoLocalStorageObject.countProblem = arrayCountProblem // Количество проблем (для таблицы)
 
-    if (numberVariant === null) nameVariant = stats[getLocalStorage('idVariant') - 1].name
-    else numberVariant !== 0 && numberVariant ? nameVariant = specialVariants[numberVariant].name : nameVariant = `Вариант ${infoLocalStorageObject.idVariant}`
+    if (numberVariant === null) { // Если "просмотр"
+        stats.forEach(variant => {
+            if (variant.idVariant === getLocalStorage('idVariant')) {
+                if (variant.name.includes('Вариант')) nameVariant = `Вариант ${infoLocalStorageObject.idVariant}`
+                else nameVariant = variant.name
+            }
+        })
+    }
+    else if (numberVariant !== 0 && numberVariant) nameVariant = specialVariants[numberVariant].name
+    else nameVariant = `Вариант ${infoLocalStorageObject.idVariant}`
+
     infoLocalStorageObject.name = nameVariant // Либо название, либо idVariant
     
 
@@ -1872,11 +2208,11 @@ function getFullDaysBeforeExam(day){ // осталось/остался дней
 
 
 function daysBeforeExam(){ // Дней до экзамена
-    const EXAM = {month: 6, day: 1} // Костанта - день экзамена
-    const thisDay = {month: getTime('mo') + 1, day: getTime('d')} // Формируем текущий день
-    const pogresh = 2
+    const EXAM = {year: 2024, month: 6, day: 1} // Костанта - день экзамена
+    const thisDay = {year: getTime('y'), month: getTime('mo') + 1, day: getTime('d')} // Формируем текущий день
+    const pogresh = 1
 
-    const dayLeft = (EXAM.month - thisDay.month) * 30 + (EXAM.day - thisDay.day) + pogresh // Сколько дней осталось
+    const dayLeft = (EXAM.year - thisDay.year) * 365 + (EXAM.month - thisDay.month) * 30 + (EXAM.day - thisDay.day) + pogresh // Сколько дней осталось
     return dayLeft
 }
 
@@ -1900,6 +2236,5 @@ function getTime(value){ // Возвращение времени
     else if (value === 'y') return addZero(date.getFullYear())
     else if (value === 'full') return `${getTime('h')}:${getTime('m')}:${getTime('s')} `
 }
-
 
 

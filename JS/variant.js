@@ -12,7 +12,12 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
     const idPreviousVariant = getLocalStorage('idVariant') // id Варианта (прошлый вариант)
     const allStats = getLocalStorage('stats') // Вся статистика
     let myVariantPrevious
-    if (idPreviousVariant !== null) myVariantPrevious = allStats[idPreviousVariant - 1]
+
+    if (idPreviousVariant !== null) {
+        allStats.forEach(variant => {
+            if (variant.idVariant === idPreviousVariant) myVariantPrevious = variant
+        })
+    }
 
     removeLocalStorage('flagEndVariant') // Убирание заглушки, из-за которой не выходят много "результатов"
 
@@ -22,7 +27,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
         arrayCountProblem = getLocalStorage('countProblem')
 
     } else if (getLocalStorage('fromStats') !== null) { // Если "просмотр" варианта
-        arrayCountProblem = allStats[idPreviousVariant - 1].countProblem
+        arrayCountProblem = myVariantPrevious.countProblem
 
     } else if (numberVariant !== 0) { // Если специальный вариант
         arrayCountProblem = specialVariants[numberVariant].countProblem
@@ -65,15 +70,28 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
             const inputVariant = [...document.querySelectorAll('.input')] // input варианта
             const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
             const allAnswer = [...document.querySelectorAll('.answer')] // answer варианта (для white)
+            const inputConteyner = [...document.querySelectorAll('.conteynerInput')] // Все input
+
+            inputConteyner.forEach(element => element.classList.add('inputConteynerInCenter'))
 
             for (let index = 0; index < myVariant.length; index ++){
                 background(myColors[index], index) // Ставим цвет контейнеру
                 inputVariant[index].readOnly = true // Только чтение
                 allAnswer[index].classList.add('white') // white
 
+                const thisProblem = myVariant[index]
                 const thisParent = allParents[index] // Родитель этой задачи
                 const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
+                const thisStatsNumberConteyner = thisParent.querySelector('.statsNumberConteyner')
+                const thisAnswerText = thisParent.querySelector('.showSolutionText')
+
+                thisAnswerText.innerHTML = 'Показать решение'
+
+
                 thisStar.classList.remove('close') // Удаляем close звезде
+                thisStatsNumberConteyner.innerHTML = getStatsNumberText(thisProblem)
+
+
 
                 if (myColors[index] === 'red'){
                     const thisConteyner = thisParent.querySelector('.conteynerRightAnswer') // Текущий контейнер ответов

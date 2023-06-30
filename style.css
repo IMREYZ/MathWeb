@@ -4,7 +4,8 @@ html, body {
 
 body{
     font-family: 'PT Serif', serif;
-    min-width: 1500px;
+    min-width: 1490px;
+    background: rgb(247, 246, 246);
 }
 
 .curr{
@@ -41,7 +42,7 @@ img{
 
 .star{
     position: relative;
-    left: 460px;
+    left: 380px;
     font-size: 20px;
 }
 
@@ -272,6 +273,11 @@ img{
 .prob11{
     position: relative;
     left: 78px;
+}
+
+.prob12{
+    position: relative;
+    left: 48px;
 }
 
 .rules{
@@ -551,7 +557,29 @@ table{
     font-size: 25px;
     background-color: white;
     cursor: pointer
+}
+.firstPartBtn:hover{
+    font-weight: 900;
+}
 
+.secondPartBtn:hover{
+    font-weight: 900;
+}
+
+.firstPartBtn{
+    border-radius: 12px;
+    font-size: 25px;
+    background-color: white;
+    cursor: pointer;
+    width: 250px;
+}
+
+.secondPartBtn{
+    border-radius: 12px;
+    font-size: 25px;
+    background-color: white;
+    cursor: pointer;
+    width: 250px;
 }
 
 .firstTriple{
@@ -583,6 +611,8 @@ a {
 
 .indexText{
     border-bottom: 0.1rem dashed;
+    position: relative;
+    bottom: 5px;
 }
 .indexText:hover{
     font-weight: 900;
@@ -733,8 +763,13 @@ a {
 }
 .end{
     text-align: center;
-    margin-top: 40px; 
+    margin-top: 30px; 
     margin-bottom: 40px;
+}
+
+.end1{
+    text-align: center;
+    margin-top: 40px; 
 }
 
 .lvl{
@@ -764,6 +799,12 @@ td{
     margin-top: 10px;
 }
 
+.name2{
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
 
 
 .smallRed{
@@ -791,6 +832,43 @@ td{
     font-weight: 900;
 }
 
+.wwww{
+    position: relative;
+    color: black;
+    font-size: 22px;
+}
+
+.answerSecondConteyner{
+    position: absolute;
+    top: 9px;
+    left: 100px;
+    font-size: 20px;
+}
+
+.answerSecond{
+    font-size: 18px;
+}
+
+.asd{
+    position: absolute;
+    right: 600px;
+    top: 10px;
+    width: 1000px;
+}
+
+
+.radioButtons{
+    color: black;
+    position: absolute;
+    bottom: 320px;
+    right: 100px;
+    font-size: 24px;
+}
+
+.tR{
+    margin-right: 10px;
+}
+
 .link2 {
     text-decoration: none;
     color: white;
@@ -814,7 +892,6 @@ td{
 
 body {
     font-size: 25px;
-    background: url(img/back.png);
     text-align: center; 
 
     margin: 0 auto;
@@ -901,7 +978,7 @@ body {
 }
 
 .flitrConteynerByBox{
-    margin-left: 200px;
+    margin-left: 150px;
 }
 
 .SSS{
@@ -912,8 +989,20 @@ body {
 
 .fil{
     position: relative;
-    right: 100px;
+    right: 150px;
 }
+
+.qqq{
+    height: 50px;
+}
+
+.qqq1{
+    position: relative;
+    height: 50px;
+}
+
+
+
 .leave{
     border-radius: 12px;
     width: 370px;
@@ -930,11 +1019,43 @@ body {
     height: 60px;
     font-size: 25px;
     margin-bottom: 15px;
-    margin-top: 30px;
     background-color: white;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.wer{
+    position: relative;
+    right: 500px;
+    top: 8.5px;
+    font-size: 17px;
+}
+
+.black{
+    color: black;
+}
+
+
+
+.qa{
+    font-size: 23px;
+}
+
+.backVar{
+    border-radius: 12px;
+    width: 350px;
+    height: 60px;
+    font-size: 25px;
+    background-color: white;
+    margin-bottom: 50px;
 }
 
 .leave:hover{
+    background-color: rgb(247, 243, 243);
+    font-weight: 900;
+}
+
+.backVar:hover{
     background-color: rgb(247, 243, 243);
     font-weight: 900;
 }
@@ -943,7 +1064,6 @@ body {
     background-color: rgb(247, 243, 243);
     font-weight: 900;
 }
-
 .w900{
     font-weight: 900;
 }
@@ -961,8 +1081,9 @@ body {
     font-size: 23px;
     margin-bottom: 30px;
     border-radius: 12px;
-    width: 300px;
+    width: 350px;
     text-align: center;
+    margin-top: 10px;
 }
 
 .conteynerTime1{
@@ -1009,6 +1130,17 @@ body {
     margin: 0 auto;
     margin-bottom: 60px;
     background-color: white;
+    text-align: center;  
+    border-radius: 12px;
+    border: solid 2.5px; 
+}
+
+.conteynerSecond{
+    border: 5px double black;
+    width: 1400px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    background-color: white;
     text-align: center;   
 }
 
@@ -1018,6 +1150,8 @@ body {
     margin: 0 auto;
     background-color: white;
     text-align: center;   
+    border-radius: 12px;
+    border: solid 2.5px
 }
 
 body.variant{
@@ -1032,6 +1166,10 @@ body.curr{
 
 .gray{
     background-color: grey;
+}
+
+.orange{
+    background-color: orange;
 }
 
 .red{
@@ -1065,16 +1203,21 @@ body.curr{
     color: white;
     font-size: 20px;
     height: 30px;
+    border-radius: 10px;
+    border-bottom: 1px solid black;
+
 }
 
 .lvll{
     position: relative;
-    left: 480px;
+    left: 400px;
 }
 
 .answer{
     margin-top: 0;
     font-size: 20px;
+    border-radius: 10px;
+    border-top: 1px solid black;
 }
 
 .white{
@@ -1093,7 +1236,7 @@ body.curr{
     font-size: 23px;
     background-color: white;
     position: relative;
-    right: 140px;
+    right: 290px;
     margin-top: 20px;
 }
 
@@ -1104,7 +1247,7 @@ body.curr{
     font-size: 23px;
     background-color: white;
     position: relative;
-    right: 130px
+    right: 280px
 }
 
 .plusBox:hover{
@@ -1138,11 +1281,36 @@ body.curr{
 
 }
 
-.showRightAnswer{
-    margin-left: 150px;
-    color: white;
+.black4{
+    position: relative;
+    font-size: 22px;
 }
 
+
+.showRightAnswer1{
+    color: white;
+    position: absolute;
+    bottom: 13px;
+    left: 100px;
+
+}
+
+.qwer{
+    margin-bottom: 60px;
+}
+
+.rightAnswer1{
+    font-size: 18px;
+}
+
+.qqq{
+    position: relative;
+}
+
+.qqq2{
+    position: relative;
+    bottom: 4px;
+}
 .pokOtw{
     cursor: pointer;
 }
@@ -1152,7 +1320,68 @@ body.curr{
 }
 
 img{
-    margin-bottom: 0;
+    margin-bottom: 0;   
+}
 
-    
+.inputConteynerInCenter{
+    position: relative;
+    right: 170px;
+}
+
+
+.showRightAnswer{
+    margin-right: 370px;
+}
+
+.deleteVar{
+    cursor: pointer;
+    color:rgb(189, 87, 18)
+}
+
+.showSolutionText{
+    cursor: pointer;
+}
+
+.showSolutionText:hover{
+    font-weight: 900;
+}
+
+.imgSolution{
+}
+
+.imgSolutionConteyner{
+    border-top: 3px solid rgb(0, 0, 0);
+}
+
+#QQ{
+    margin-top: 10px;
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.statsNumber{
+    border: black solid 2.5px;
+    border-radius: 12px;
+    background-color: #ffcda7;
+    position: relative;
+    display: inline-block;
+    right: 400px;
+    width: 150px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.statsNumber:hover{
+    font-weight: 900;
+}
+
+canvas {
+    border: 1px solid black;
+    width: 560px;
+    height: 360px;
+  }
+
+.sort{
+    position: relative;
+    right: 100px;
 }

@@ -38,12 +38,34 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
         background('red', 0)
         setLocalStorage('pause', true)
 
+        const conteynerSolution = document.querySelector('.showSolutionText')
+        conteynerSolution.innerHTML = 'Показать решение'
+
+        const thisProblem = getLocalStorage('randomProblem')
+        const statsNumberLocalStr = getLocalStorage('statsNumber')
+        const thisStatsNumberObj = statsNumberLocalStr[thisProblem.id]
+        const thisStatsNumber = document.querySelector('.statsNumberConteyner')
+       
+
+        thisStatsNumberObj.all ++
+        thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
+
+        statsNumberLocalStr[thisProblem.id] = thisStatsNumberObj            
+        setLocalStorage('statsNumber', statsNumberLocalStr)
+        
+        thisStatsNumber.innerHTML = getStatsNumberText(thisProblem)
+
+
+
         const thisConteyner = document.querySelector('.conteynerRightAnswer')
         thisConteyner.innerHTML = getRightAnswerHTML(getLocalStorage('randomProblem'))
 
         const rightAnswer = document.querySelector('.showRightAnswer')
         rightAnswer.classList.remove('close')
         rightAnswer.classList.add('show')
+
+        const conteynerInput = document.querySelector('.conteynerInput') // conteynerInputStress --> conteynerInput
+        conteynerInput.classList.add('inputConteynerInCenter') // conteynerInput --> inputConteynerInCenter
 
 
         // Делаем заглушку на 0,35 сек
@@ -158,6 +180,20 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
             inputAll.readOnly = true
             submitAll.disabled = true
             submitAll.classList.remove('button:hover')
+
+            const thisProblem = getLocalStorage('randomProblem')
+            const statsNumberLocalStr = getLocalStorage('statsNumber')
+            const thisStatsNumberObj = statsNumberLocalStr[thisProblem.id]
+            const thisStatsNumber = document.querySelector('.statsNumberConteyner')
+        
+            thisStatsNumberObj.right ++
+            thisStatsNumberObj.all ++
+            thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
+
+            statsNumberLocalStr[thisProblem.id] = thisStatsNumberObj            
+            setLocalStorage('statsNumber', statsNumberLocalStr)
+            
+            thisStatsNumber.innerHTML = getStatsNumberText(thisProblem)
 
         // Если ответ НЕВЕРНЫЙ    
         } else endGame()

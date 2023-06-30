@@ -17,6 +17,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
 
 
 
+
     // Добавляем Checkbox на страницу
     const filterConteyner = document.querySelector('.fil') // Контейнер
     const themeThisProblem = themeProblems[id] // Темы задачи
@@ -39,6 +40,16 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
     const plusBox = document.querySelector('.plusBox') // Добавить всё
 
 
+
+    const thisSelect = getLocalStorage('select') // Забираем из LocalStr select
+    const optionCurr = document.querySelector('.optionCurr') // Текущий select
+
+    if (thisSelect) { // Если есть select
+        sortProblem(thisSelect) // Сортировка к изначальному виду
+        optionCurr.querySelector(`[value=${thisSelect}]`).selected="selected" // Возвращаем к тому, что было до обновления
+    }
+
+    
 
     if (getLocalStorage('checkbox')){ // Если в LocalStr был checkbox  (в случае обновления страницы)
         const arrayCheckbox = getLocalStorage('checkbox') // Массив checkbox
@@ -65,6 +76,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
     currColor(getThisProblems())
     currInput(getThisProblems())
     currInfoShowRightAnswer(getThisProblems())
+    currSolution(getThisProblems())
 
     
     document.addEventListener('click', (event) => { // Обработка события нажатия на checkbox
@@ -94,8 +106,11 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
             }
         }
         
-        setLocalStorage('thisProblems', newThisProblems) // Обновляем текущие задачи
         sortProblem(getLocalStorage('select')) // сортируем эти задачи
+        setLocalStorage('thisProblems', newThisProblems) // Обновляем текущие задачи
+        
+
+        
     
         allConteynerProblem.innerHTML = ''
         getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Выводим задания
@@ -103,17 +118,11 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         currColor(getThisProblems()) // Выводим цвета
         currInput(getThisProblems()) // Выводим input
         currInfoShowRightAnswer(getThisProblems()) // Выводим "показать ответ"
+        currSolution(getThisProblems())
     })
 
 
 
-    const thisSelect = getLocalStorage('select') // Забираем из LocalStr select
-    const optionCurr = document.querySelector('.optionCurr') // Текущий select
-
-    if (thisSelect) { // Если есть select
-        sortProblem(thisSelect) // Сортировка к изначальному виду
-        optionCurr.querySelector(`[value=${thisSelect}]`).selected="selected" // Возвращаем к тому, что было до обновления
-    }
 
 
     optionCurr.addEventListener('change', () => {  // Обработка события "Сортировка"
@@ -129,11 +138,10 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         currColor(getThisProblems())
         currInput(getThisProblems())
         currInfoShowRightAnswer(getThisProblems())
+        currSolution(getThisProblems())
     })
 
     
-    // Нажатие на "Ответить"
-    eventSendAnswer()
 
 
     minusBox.addEventListener('click', () => { // Обработка события - нажатие на "удалить всё"
@@ -153,6 +161,7 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         currColor(getThisProblems())
         currInput(getThisProblems())
         currInfoShowRightAnswer(getThisProblems())
+        currSolution(getThisProblems())
     })
 
 
@@ -177,12 +186,22 @@ if (window.location.pathname === `/MathWeb/HTML/currSubject.html`){
         currColor(getThisProblems())
         currInput(getThisProblems())
         currInfoShowRightAnswer(getThisProblems())
+        currSolution(getThisProblems())
     })
 
 
+
+    
     createAndSaveColors(getThisProblems()) // Сохранение
     createAndSaveInfoAnswers(getThisProblems()) // Сохранение
     createAndSaveInputs(getThisProblems()) // Сохранение
+    createAndSaveSolution(getThisProblems())
+
+    // if (true) DEMO()
+    // Мгновенное обновление или нет 
+    
+    
+
 
 
     document.addEventListener('input', (event) => { // Ограничение на input
