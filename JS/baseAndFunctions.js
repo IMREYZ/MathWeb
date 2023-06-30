@@ -979,13 +979,9 @@ const specialVariants = ['-', // Специальные варианты
                         {variant: ['1.31', '2.21', '3.27', '4.23', '5.49', '6.7', '7.3', '8.32', '9.89', '10.57', '11.25'], name: 'Досрок 2023 - резервный день'},
                         {variant: ['1.6', '2.46', '3.39', '4.25', '5.6', '6.70', '7.17', '8.20', '9.90', '10.18', '11.4'], name: 'Досрок 2023'},
                         {variant: ['1.56', '2.30', '3.3', '4.11', '5.48', '6.66', '7.56', '8.56', '9.16', '10.44', '11.77'], name: 'Основная волна 2022'},
-<<<<<<< HEAD
                         {variant: ['1.19', '1.25', '1.33', '1.46', '1.51', '1.73', '2.78', '2.79', '2.160', '2.161', '3.5', '3.24', '4.9', '4.35', '5.45', '6.37', '6.39', '6.83', '7.7', '7.44', '7.45', '8.12', '8.33', '8.69', '9.36', '9.38', '9.78', '9.79', '9.80', '10.23', '10.24', '10.51', '10.54', '11.8', '11.46'], name: 'Основная волна 2023'},
                         {variant: ['1.17', '2.38', '3.9', '4.14', '5.9', '6.20', '7.59', '8.17', '9.24', '10.31', '11.33'], name: 'Резерв 2023'}]
 
-=======
-                        {variant: ['1.19', '1.25', '1.33', '1.46', '1.51', '1.73', '2.78', '2.79', '2.160', '2.161', '3.5', '3.24', '4.9', '4.35', '5.45', '6.37', '6.39', '6.83', '7.7', '7.44', '7.45', '8.12', '8.33', '8.69', '9.36', '9.38', '9.78', '9.79', '9.80', '10.23', '10.24', '10.51', '10.54', '11.8', '11.46'], name: 'Основная волна 2023'}]
->>>>>>> 0d48bd0c6e2ccfa4fbadad122453c4789ee86d3e
 
 
 specialVariants.forEach((element, index) => { // countProblem для specail
@@ -1118,6 +1114,8 @@ function deleteOldStats(){ // Удаление плохой статистики
         if (stats.length === 0) removeLocalStorage('stats')
     }
 }
+
+//<span class='statsNumber close' title='Решаемость задания'> </span> 
 
 
 function getStatsNumberText(problem){
@@ -2214,35 +2212,38 @@ function getFullDaysBeforeExam(day){ // осталось/остался дней
 function daysBeforeExam(){ // Дней до экзамена
     const EXAM = {year: 2024, month: 6, day: 1} // Костанта - день экзамена
     const thisDay = {year: getTime('y'), month: getTime('mo') + 1, day: getTime('d')} // Формируем текущий день
+    const pogresh = 1
+sVariant) // Конец варианта
+            title.innerHTML = 'Время вышло!' // Заголовок = 'Время вышло!'
+        }
+    }, 1000)
+}
+
+
+
+function getFullDaysBeforeExam(day){ // осталось/остался дней/дня/день
+    let first; let second
+    if ((day >= 5 && day <= 20) || (day % 10 >= 5) || (day % 10 === 0)) {
+        first = 'осталось'
+        second = 'дней'
+    } else if (day % 10 === 1){
+        first = 'остался'
+        second = 'день'
+    } else {
+        first = 'осталось'
+        second = 'дня'
+    }
+    const days = daysBeforeExam()
+    return `до ЕГЭ ${first} <span class='dayLeft'>${days}</span> ${second}`
+}
+
+
+
+function daysBeforeExam(){ // Дней до экзамена
+    const EXAM = {year: 2024, month: 6, day: 1} // Костанта - день экзамена
+    const thisDay = {year: getTime('y'), month: getTime('mo') + 1, day: getTime('d')} // Формируем текущий день
 <<<<<<< HEAD
     const pogresh = 1
 =======
     const pogresh = 0
 >>>>>>> 0d48bd0c6e2ccfa4fbadad122453c4789ee86d3e
-
-    const dayLeft = (EXAM.year - thisDay.year) * 365 + (EXAM.month - thisDay.month) * 30 + (EXAM.day - thisDay.day) + pogresh // Сколько дней осталось
-    return dayLeft
-}
-
-
-
-function randomStress() { // Рандомный индекс массива allProblems (для stress)
-    const randomIndex = Math.floor(Math.random() * allProblems.length)
-    return allProblems[randomIndex]
-}
-
-
-
-function getTime(value){ // Возвращение времени
-    const date = new Date()
-
-    if (value === 's') return addZero(date.getSeconds())
-    else if (value === 'm') return addZero(date.getMinutes())
-    else if (value === 'h') return addZero(date.getHours())
-    else if (value === 'd') return addZero(date.getDate())
-    else if (value === 'mo') return date.getMonth()
-    else if (value === 'y') return addZero(date.getFullYear())
-    else if (value === 'full') return `${getTime('h')}:${getTime('m')}:${getTime('s')} `
-}
-
-
