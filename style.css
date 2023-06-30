@@ -1286,6 +1286,12 @@ body.curr{
     font-size: 22px;
 }
 
+<<<<<<< HEAD
+=======
+.showRightAnswer{
+    margin-left: 150px;
+}
+>>>>>>> 0d48bd0c6e2ccfa4fbadad122453c4789ee86d3e
 
 .showRightAnswer1{
     color: white;
@@ -1323,6 +1329,7 @@ img{
     margin-bottom: 0;   
 }
 
+<<<<<<< HEAD
 .inputConteynerInCenter{
     position: relative;
     right: 170px;
@@ -1385,3 +1392,7 @@ canvas {
     position: relative;
     right: 100px;
 }
+=======
+    
+}
+>>>>>>> 0d48bd0c6e2ccfa4fbadad122453c4789ee86d3e
