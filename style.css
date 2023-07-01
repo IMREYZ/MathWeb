@@ -1323,24 +1323,15 @@ img{
     margin-bottom: 0;   
 }
 
-.inputConteynerInCenter{
-    position: relative;
-    right: 170px;
-}
 
 
-.showRightAnswer{
-    margin-right: 370px;
-}
+
 
 .deleteVar{
     cursor: pointer;
     color:rgb(189, 87, 18)
 }
 
-.showSolutionText{
-    cursor: pointer;
-}
 
 .showSolutionText:hover{
     font-weight: 900;
@@ -1389,4 +1380,32 @@ canvas {
 .middle{
     position: relative;
     left: 80px
+}
+
+
+
+.showRightAnswer{
+    position: relative;
+    right: 260px;
+}
+
+.showRightAnswerVariant{
+    position: relative;
+    right: 310px;
+}
+
+.inputConteynerInCenter{
+    position: relative;
+    left: 14px;
+}
+
+.inputConteynerInCenterVariant{
+    position: relative;
+    left: 28px;
+}
+
+.showSolutionText{
+    cursor: pointer;
+    position: relative;
+    left: 220px;
 }

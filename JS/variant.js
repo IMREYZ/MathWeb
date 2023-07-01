@@ -86,8 +86,8 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
                 const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
                 const thisStatsNumberConteyner = thisParent.querySelector('.statsNumberConteyner')
                 const thisAnswerText = thisParent.querySelector('.showSolutionText')
-                const thisMiddle = document.querySelector('.middle')
-                thisMiddle.classList.remove('middle')
+                const thisMiddle = thisParent.querySelector('.middle')
+                thisMiddle.style.left = '0px'
 
                 thisAnswerText.innerHTML = 'Показать решение'
 
@@ -102,6 +102,8 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
                     const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show
                     rightAnswer.classList.remove('close')
                     rightAnswer.classList.add('show')
+                    rightAnswer.style.right = '310px'
+                    thisAnswerText.style.left = '270px'
                 }
             }
 

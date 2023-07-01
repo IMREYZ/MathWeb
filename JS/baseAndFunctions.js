@@ -313,12 +313,16 @@ const allProblems =
     {problem: '3.39', answer: 0.125, procent: 70, type: 'Классическая вероятность'},
     {problem: '3.40', answer: 0.75, procent: 45, type: 'Классическая вероятность'},
     {problem: '3.41', answer: 0.994, procent: 75, type: 'Классическая вероятность'},
+    {problem: '3.42', answer: 0.55, procent: 65, type: 'Сложение, умножение вероятностей'},
+    {problem: '3.43', answer: 0.11, procent: 65, type: 'Сложение, умножение вероятностей'},
+    {problem: '3.44', answer: 0.35, procent: 65, type: 'Сложение, умножение вероятностей'},
+    {problem: '3.45', answer: 0.07, procent: 65, type: 'Сложение, умножение вероятностей'},
 
 
 
     {problem: '4.1', answer: 0.1, procent: 45, type: 'Классическая вероятность'},
     {problem: '4.2', answer: 0.96, procent: 75, type: 'Классическая вероятность'},
-    {problem: '4.3', answer: 0.55, procent: 10, type: 'Сложение, умножение вероятностей'},
+    {problem: '4.3', answer: 0.1024, procent: 55, type: 'Сложение, умножение вероятностей'},
     {problem: '4.4', answer: 0.16, procent: 30, type: 'Сложение, умножение вероятностей'},
     {problem: '4.5', answer: 0.027, procent: 35, type: 'Сложение, умножение вероятностей'},
     {problem: '4.6', answer: 0.9216, procent: 40, type: 'Сложение, умножение вероятностей'},
@@ -328,7 +332,7 @@ const allProblems =
     {problem: '4.10', answer: 0.9975, procent: 65, type: 'Сложение, умножение вероятностей'},
     {problem: '4.11', answer: 0.488, procent: 55, type: 'Сложение, умножение вероятностей'},
     {problem: '4.12', answer: 0.33, procent: 70, type: 'Сложение, умножение вероятностей'},
-    {problem: '4.13', answer: 0.11, procent: 10, type: 'Полная вероятность'},
+    {problem: '4.13', answer: 0.039, procent: 70, type: 'Сложение, умножение вероятностей'},
     {problem: '4.14', answer: 0.78, procent: 80, type: 'Полная вероятность'},
     {problem: '4.15', answer: 0.025, procent: 50, type: 'Сложение, умножение вероятностей'},
     {problem: '4.16', answer: 0.069, procent: 65, type: 'Сложение, умножение вероятностей'},
@@ -344,7 +348,7 @@ const allProblems =
     {problem: '4.26', answer: 0.22, procent: 40, type: 'Предметы из ящика'},
     {problem: '4.27', answer: 0.05, procent: 45, type: 'Классическая вероятность'},
     {problem: '4.28', answer: 0.96, procent: 75, type: 'Классическая вероятность'},
-    {problem: '4.29', answer: 0.35, procent: 10, type: 'Сложение, умножение вероятностей'},
+    {problem: '4.29', answer: 0.0009, procent: 75, type: 'Сложение, умножение вероятностей'},
     {problem: '4.30', answer: 0.27, procent: 30, type: 'Сложение, умножение вероятностей'},
     {problem: '4.31', answer: 0.008, procent: 35, type: 'Сложение, умножение вероятностей'},
     {problem: '4.32', answer: 0.9604, procent: 40, type: 'Сложение, умножение вероятностей'},
@@ -354,7 +358,7 @@ const allProblems =
     {problem: '4.36', answer: 0.9856, procent: 65, type: 'Сложение, умножение вероятностей'},
     {problem: '4.37', answer: 0.271, procent: 55, type: 'Сложение, умножение вероятностей'},
     {problem: '4.38', answer: 0.28, procent: 70, type: 'Сложение, умножение вероятностей'},
-    {problem: '4.39', answer: 0.07, procent: 10, type: 'Полная вероятность'},
+    {problem: '4.39', answer: 0.936, procent: 60, type: 'Сложение, умножение вероятностей'},
     {problem: '4.40', answer: 0.81, procent: 80, type: 'Полная вероятность'},
     {problem: '4.41', answer: 0.016, procent: 40, type: 'Сложение, умножение вероятностей'},
     {problem: '4.42', answer: 0.059, procent: 60, type: 'Сложение, умножение вероятностей'},
@@ -368,11 +372,7 @@ const allProblems =
     {problem: '4.50', answer: 0.36, procent: 80, type: 'Сложение, умножение вероятностей'},
     {problem: '4.51', answer: 0.85, procent: 90, type: 'Полная вероятность'},
     {problem: '4.52', answer: 0.24, procent: 40, type: 'Предметы из ящика'},
-    {problem: '4.53', answer: 0.1024, procent: 55, type: 'Сложение, умножение вероятностей'},
-    {problem: '4.54', answer: 0.039, procent: 70, type: 'Сложение, умножение вероятностей'},
-    {problem: '4.55', answer: 0.0009, procent: 75, type: 'Сложение, умножение вероятностей'},
-    {problem: '4.56', answer: 0.936, procent: 60, type: 'Сложение, умножение вероятностей'},
-
+    
 
 
 
@@ -980,7 +980,9 @@ const specialVariants = ['-', // Специальные варианты
                         {variant: ['1.6', '2.46', '3.39', '4.25', '5.6', '6.70', '7.17', '8.20', '9.90', '10.18', '11.4'], name: 'Досрок 2023'},
                         {variant: ['1.56', '2.30', '3.3', '4.11', '5.48', '6.66', '7.56', '8.56', '9.16', '10.44', '11.77'], name: 'Основная волна 2022'},
                         {variant: ['1.19', '1.25', '1.33', '1.46', '1.51', '1.73', '2.78', '2.79', '2.160', '2.161', '3.5', '3.24', '4.9', '4.35', '5.45', '6.37', '6.39', '6.83', '7.7', '7.44', '7.45', '8.12', '8.33', '8.69', '9.36', '9.38', '9.78', '9.79', '9.80', '10.23', '10.24', '10.51', '10.54', '11.8', '11.46'], name: 'Основная волна 2023'},
-                        {variant: ['1.17', '2.38', '3.9', '4.14', '5.9', '6.20', '7.59', '8.17', '9.24', '10.31', '11.33'], name: 'Резерв 2023'}]
+                        {variant: ['1.17', '2.38', '3.9', '4.14', '5.9', '6.20', '7.59', '8.17', '9.24', '10.31', '11.33'], name: 'Резерв 2023'},
+                        {variant: ['1.20', '2.65', '3.44', '4.44', '5.24', '6.11', '7.11', '8.5', '9.8', '10.27', '11.65'], name: 'Резерв 2023 - резервный день'}]
+
 specialVariants.forEach((element, index) => {
     if (index !== 0){
         const thisVariant = element.variant
@@ -1048,9 +1050,11 @@ function randomProblem(thisIndexProblem, thisCountProblem) { // thisCountProblem
 
 
 
-function getObjectsFromAndTo(thisIndexProblem, start, finish){
+function getObjectsFromAndTo(thisIndexProblem, start, finish){ // Возвращает задания по сложности
     let result = []
     const myArray = problems[thisIndexProblem]
+    console.log(myArray, problems)
+    
 
     myArray.forEach(element => {
         const thisProcent = element.procent
@@ -1102,8 +1106,8 @@ function deleteOldStats(){ // Удаление плохой статистики
     let newStats = []
 
     if (stats){ // Если статистика есть
-        stats.forEach(element => {
-            if (element.countProblem) newStats.push(element)
+        stats.forEach(variant => {
+            if (variant.countProblem) newStats.push(variant)
         })
         
         setLocalStorage('stats', newStats)
@@ -1112,10 +1116,9 @@ function deleteOldStats(){ // Удаление плохой статистики
     }
 }
 
-//<span class='statsNumber close' title='Решаемость задания'> </span> 
 
 
-function getStatsNumberText(problem){
+function getStatsNumberText(problem){ // Функция, которая возвращает statsNumber
     const statsNumberLocalStr = getLocalStorage('statsNumber')
     const objThisProblem = statsNumberLocalStr[problem.id]
 
@@ -1133,14 +1136,14 @@ function problemHTMLvariant(problem) { // Вывод задания на HTML н
     <div class="number gray" > 
         <span class='statsNumberConteyner'> </span>
         <span class='middle'>
-        <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
-        <span title='Избранное задание' class="star"> ${textHTML} </span>
-        <span class='lvll'>
-            Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
-        </span>
+            <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
+            <span title='Избранное задание' class="star"> ${textHTML} </span>
+            <span class='lvll'>
+                Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
+            </span>
         </span>
     </div>
-        <img src='/MathWeb/img/${problem.problem}.jpg' >
+        <img src='/MathWeb/img/${problem.problem}.jpg'>
 
         <div class='imgSolutionConteyner close'>
             <div id='QQ'> Решение: </div>
@@ -1171,7 +1174,6 @@ function getRightAnswerHTML(problem){ // Добавление "правильн�
         <span class='rightAnswer close'>${rightAnswer} </span>
     </span>`
 }
-
 
 
 
@@ -1220,7 +1222,7 @@ function problemHTMLcurr(problem) { // Вывод задания на HTML на 
     const objSpecial = getLocalStorage('special') // Массив избранных задач
     const thisBoolean = objSpecial[id] // Избранная задача или нет
     const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
-    const textStatsNumber = getStatsNumberText(problem)
+    const textStatsNumber = getStatsNumberText(problem) // StatsNumber
     
 
     return `<div id = ${id} class="conteyner" >
@@ -1232,11 +1234,11 @@ function problemHTMLcurr(problem) { // Вывод задания на HTML на 
             Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
         </span>
     </div>
-        <img src='/MathWeb/img/${problem.problem}.jpg'>
+        <img src='/MathWeb/img/${problem.problem}.jpg' title='Тема: ${problem.type}'>
 
         <div class='imgSolutionConteyner close'>
             <div id='QQ'> Решение: </div>
-            <img class='imgSolution' src='/MathWeb/img/NoSolutions.jpg'>
+            <img class='imgSolution' src='/MathWeb/img/NoSolutions.jpg' >
         </div>
 
         <div class="answer gray1">
@@ -1256,6 +1258,20 @@ function problemHTMLcurr(problem) { // Вывод задания на HTML на 
 
 
 
+function closeToShow(element){
+    element.classList.remove('close')
+    element.classList.add('show')
+}
+
+
+
+function showToClose(element){
+    element.classList.remove('show')
+    element.classList.add('close')
+}
+
+
+
 function showRightAnswerHTML(){ // Показ правильного ответа
     document.addEventListener('click', (event) => { // Обработка события - нажание на "показать правильный ответ"
         if (event.target.classList[0] !== 'pokOtw') return // Если не кнопка "показать ответ" - выходим
@@ -1267,13 +1283,11 @@ function showRightAnswerHTML(){ // Показ правильного ответ�
 
         // close <--> show
         if (rightAnswer.classList[1] === 'close'){
-            rightAnswer.classList.remove('close')
-            rightAnswer.classList.add('show')
+            closeToShow(rightAnswer)
             showAnswer.innerHTML = 'Скрыть ответ: '  
 
         } else {
-            rightAnswer.classList.remove('show')
-            rightAnswer.classList.add('close')
+            showToClose(rightAnswer)
             showAnswer.innerHTML = 'Показать ответ: '
         }
     })
@@ -1304,9 +1318,7 @@ function eventClickOnStar(){ // Функция, которая меняет зв
 
 
 
-
-
-function renderSpecial(){
+function renderSpecial(){ // Отловка новых заданий и записывание их в special
     const specialArray = getLocalStorage('special')
 
     if (specialArray) {
@@ -1321,7 +1333,7 @@ function renderSpecial(){
 
 
 
-function renderStatsNumber(){
+function renderStatsNumber(){ // Отловка новых заданий и записывание их в statsNumber
     const statsArray = getLocalStorage('statsNumber')
 
     if (statsArray) {
@@ -1336,8 +1348,7 @@ function renderStatsNumber(){
 
 
 
-
-function eventSolution(){
+function eventSolution(){ // Обработка события нажатия на "показать решение"
     document.addEventListener('click', (event) => {
         if (event.target.classList[0] !== 'showSolutionText') return
 
@@ -1349,14 +1360,11 @@ function eventSolution(){
         const solutionText = conteyner.querySelector('.showSolutionText')
 
         if (imgSolution.classList[1] === 'close') {
-            imgSolution.classList.remove('close')
-            imgSolution.classList.add('show')
-
+            closeToShow(imgSolution)
             solutionText.innerHTML = `Скрыть решение`
-        } else {
-            imgSolution.classList.add('close')
-            imgSolution.classList.remove('show')
 
+        } else {
+            closeToShow(imgSolution)
             solutionText.innerHTML = `Показать решение`
         }
 
@@ -1370,7 +1378,7 @@ eventClickOnStar() // Нажатие на звезду
 showRightAnswerHTML() // Открытие/закрытие правильного ответа
 deleteOldStats() // Удаление старой статистики
 eventSendAnswer() // Отправка задания
-clearStatsByDblClick()
+clearStatsByDblClick() // Удаление статистики о задании
 
 
 
@@ -1404,9 +1412,10 @@ function sortProblem(thisSelect){ // Сортировка массива 'thisPr
     else if (thisSelect === 'easyToHard')  sortedArray = getThisProblems().sort((a, b) => a.procent - b.procent)
     else if (thisSelect === 'hardToEasy') sortedArray = getThisProblems().sort((a, b) => b.procent - a.procent)
     else if (thisSelect === 'userEasyToHard' || thisSelect === 'userHardToEasy') {
+
         const statsNumberLocalStr = getLocalStorage('statsNumber')
         const thisProblems = getThisProblems()
-        thisProblems.forEach(problem => problem.stats = statsNumberLocalStr[problem.id])
+        thisProblems.forEach(problem => problem.stats = statsNumberLocalStr[problem.id]) // Добавляем доп. характ.
 
         if (thisSelect === 'userEasyToHard') {
             sortedArray = thisProblems.sort((a, b) => b.stats.all - a.stats.all)
@@ -1422,7 +1431,7 @@ function sortProblem(thisSelect){ // Сортировка массива 'thisPr
 }
 
 
-function clearStatsByDblClick(){
+function clearStatsByDblClick(){ // Удаление статистики при двойном клике
     document.addEventListener('dblclick', (event) => {
         if (event.target.classList[0] !== 'statsNumber') return
 
@@ -1445,10 +1454,10 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
     const allParents = document.querySelectorAll('.conteyner') // Все контейнеры
     const allAnswer = document.querySelectorAll('.answer') // Все контейнеры answer
 
+
     if (getLocalStorage('color')){ // Если до этого были цвета карточек
 
-        // Проходимся по всем текущий задачам
-        thisProblems.forEach((element, count) => {  
+        thisProblems.forEach((element, count) => {  // Проходимся по всем текущий задачам
             const thisColor = getLocalStorage('color')[element.id] // Текущий цвет
             const parent = allParents[count] // Родитель текущей задачи
             const idProblem = +parent.id // id родителя (для задачи 11.20 id = 11020)
@@ -1462,19 +1471,18 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
                 allAnswer[count].classList.add('white') // Добавляем белый цвет
              
             } else if (thisColor === 'red') { // Если красный
+                const conteynerInput = parent.querySelector('.conteynerInput')
+                const conteynerShowSolution = parent.querySelector('.showSolutionText')
+
+
                 backgroundByCurr(idProblem, 'red') // Устанавливаем красный цвет для задачи с id контейнера
                 conteynerRightAnswer.innerHTML = getRightAnswerHTML(thisProblems[count]) // Добавляем 'показать ответ'
+
+                const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer')
+
                 allAnswer[count].classList.add('white') // Добавляем белый цвет
-
-                const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer') // close --> show
-                rightAnswer.classList.remove('close')
-                rightAnswer.classList.add('show')
-
-                const conteynerInput = parent.querySelector('.conteynerInput')
-                conteynerInput.classList.add('inputConteynerInCenter')
-
-                const conteynerShowSolution = parent.querySelector('.showSolutionText')
-                // Если решение показано: 1) Скрыть решение 2) show рисунок, иначе: Показать решение
+                closeToShow(rightAnswer) // Показываем "показать ответ"
+                conteynerInput.classList.add('inputConteynerInCenterVariant') // ВЕРСТКА               
                 conteynerShowSolution.innerHTML = `Показать решение`
 
             } else backgroundByCurr(idProblem, 'gray')          
@@ -1509,6 +1517,26 @@ function createAndSaveColors(thisProblems){ // Создание и/или сох
 }
 
 
+
+function currInput(thisProblems){ // Появление input в currSubject в случае обновления страницы
+    const inputAll = document.querySelectorAll('.input') // Берем все input со страницы, КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
+    const inputLocalStr = getLocalStorage('inputCurr')
+
+    const colorLocalStr = getLocalStorage('color')
+
+    if (inputLocalStr){ // Если до этого были введены ответы 
+        // thisProblems и inputAll идут в одной сортрировке 
+
+        thisProblems.forEach((element, count) => {
+            const thisId = element.id // id Задачи
+            const thisInput = inputLocalStr[thisId] // input этой задачи
+            if (colorLocalStr[thisId] !== 'green') inputAll[count].value = thisInput // Передаем сохраненное значение
+        })
+    }
+}
+
+
+
 function createAndSaveInputs(thisProblems){ // Создание и/или сохрание input
     document.addEventListener('input', (event) => {
         if (event.target.classList[0] !== 'input') return // Если событие - не кнопка input, то выходим
@@ -1534,25 +1562,6 @@ function createAndSaveInputs(thisProblems){ // Создание и/или сох
 
 
 
-function currInput(thisProblems){ // Появление input в currSubject в случае обновления страницы
-    const inputAll = document.querySelectorAll('.input') // Берем все input со страницы, КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
-    const inputLocalStr = getLocalStorage('inputCurr')
-
-    const colorLocalStr = getLocalStorage('color')
-
-    if (inputLocalStr){ // Если до этого были введены ответы 
-        // thisProblems и inputAll идут в одной сортрировке 
-
-        thisProblems.forEach((element, count) => {
-            const thisId = element.id // id Задачи
-            const thisInput = inputLocalStr[thisId] // input этой задачи
-            if (colorLocalStr[thisId] !== 'green') inputAll[count].value = thisInput // Передаем сохраненное значение
-        })
-    }
-}
-
-
-
 function eventSendAnswer(){ // Обработка события "отправить ответ"
     document.addEventListener('click', (event) => {
         if (event.target.classList[0] !== 'submit' || window.location.pathname === '/MathWeb/HTML/stress.html') return // Если событие - не кнопка sumbit, то выходим
@@ -1567,13 +1576,13 @@ function eventSendAnswer(){ // Обработка события "отправи
         const id = +parent.id // Находим id контейнера-задачи
         const thisObject = searchObjectById(id, allProblems) // Находим объект
         const answerRight = thisObject.answer // Правильный ответ задачи
-        const conteynerInput = parent.querySelector('.conteynerInput')
-        const conteynerSolution = parent.querySelector('.showSolutionText')
-        const imgSolutionConteyner = parent.querySelector('.imgSolutionConteyner')
-        const statsNumber = parent.querySelector('.statsNumberConteyner')
+        const conteynerInput = parent.querySelector('.conteynerInput') // Контейнер инпута
+        const conteynerSolution = parent.querySelector('.showSolutionText') // Контейнер текста решения
+        const imgSolutionConteyner = parent.querySelector('.imgSolutionConteyner') // Контейнер фотки
+        const statsNumber = parent.querySelector('.statsNumberConteyner') // Контейнер statsNumber
 
-        const statsNumberLocalStr = getLocalStorage('statsNumber')
-        const thisStatsNumberObj = statsNumberLocalStr[id]
+        const statsNumberLocalStr = getLocalStorage('statsNumber') // Забираем statsNumber из LS
+        const thisStatsNumberObj = statsNumberLocalStr[id] // Статистика нашей задачи
         
 
         if (answerInput !== ''){
@@ -1585,12 +1594,10 @@ function eventSendAnswer(){ // Обработка события "отправи
                     submit.disabled = true // Меняем дочерние элементы
                     submit.classList.remove('button:hover') // Меняем дочерний элементы
                     conteynerRightAnswer.innerHTML = '' // Убираем "показать ответ"
-                    conteynerInput.classList.remove('inputConteynerInCenter')
-                    conteynerSolution.innerHTML = ''
-                    conteynerSolution.classList.remove('show')
-                    conteynerSolution.classList.add('close')
-                    imgSolutionConteyner.classList.remove('show')
-                    imgSolutionConteyner.classList.add('close')
+                    conteynerInput.classList.remove('inputConteynerInCenter') // ВЕРСТКА
+                    conteynerSolution.innerHTML = '' // Убираем решения
+                    showToClose(conteynerSolution)
+                    showToClose(imgSolutionConteyner)
 
                     thisStatsNumberObj.right ++
                     thisStatsNumberObj.all ++
@@ -1598,13 +1605,14 @@ function eventSendAnswer(){ // Обработка события "отправи
                 
                 } else {
                     backgroundByCurr(id, 'red') // Ставим фон задаче с id как у контейнера
-                    const currObject = searchObjectById(id, allProblems) // Находим объект текущей задачи
-                    conteynerRightAnswer.innerHTML = getRightAnswerHTML(currObject) // В контейнер правильного ответа добавляем текст 
-                    const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer') // show "Показать ответ"
-                    rightAnswer.classList.remove('close')
-                    rightAnswer.classList.add('show')
-                    conteynerInput.classList.add('inputConteynerInCenter')
+                    const currObject = searchObjectById(id, allProblems) // Находим объект текущей задачи     
+                    conteynerRightAnswer.innerHTML = getRightAnswerHTML(currObject) // В контейнер правильного ответа добавляем текст
+                    const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer') // show "Показать ответ
+ 
+                    conteynerInput.classList.add('inputConteynerInCenter') // ВЕРСТКА
                     conteynerSolution.innerHTML = 'Показать решение'
+                    
+                    closeToShow(rightAnswer)
 
                     thisStatsNumberObj.all ++
                     thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
@@ -1680,13 +1688,12 @@ function createAndSaveInfoAnswers(thisProblems){ // Создание и/или �
         // Если нет в LocalStr currInfoShowRightAnswer, добавить
         if (!getLocalStorage('currInfoShowRightAnswer')){
             const array = {}
-            for (let i = 0; i < thisProblems.length; i++) array[thisProblems[i].id] = false
+            for (let index = 0; index < thisProblems.length; index ++) array[thisProblems[index].id] = false
     
             setLocalStorage('currInfoShowRightAnswer', array)    
         }
 
         const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания
-
         const rightAnswer = conteynerFull.querySelector('.rightAnswer') // Верный ответ HTML
         const objInfo = getLocalStorage('currInfoShowRightAnswer') // Объект {4001: true, 4002: false, 4003: false...}
         const idThisProblemHTML = conteynerFull.id // id задачи (11020, 3004 ...)
@@ -1696,58 +1703,6 @@ function createAndSaveInfoAnswers(thisProblems){ // Создание и/или �
         objInfo[idThisProblem] = rightAnswer.classList[1] === 'show' // Изменение этой задачи
         setLocalStorage('currInfoShowRightAnswer', objInfo) // Сохранение в LocalStr
     })
-}
-
-
-function createAndSaveSolution(thisProblems){ // Создание и/или сохрание нажатия на "показать ответ"
-    document.addEventListener('click', (event) => {
-        if (event.target.classList[0] !== 'showSolutionText') return // Если не кнопка "показать ответ" - выходим 
-
-        
-
-        // Если нет в LocalStr currInfoShowRightAnswer, добавить
-        if (!getLocalStorage('showSolution')){
-            const array = {}
-            for (let i = 0; i < thisProblems.length; i++) array[thisProblems[i].id] = false
-    
-            setLocalStorage('showSolution', array)    
-        }
-
-        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания        
-        const solutionImg = conteynerFull.querySelector('.imgSolutionConteyner')
-        const objInfo = getLocalStorage('showSolution') // Объект {4001: true, 4002: false, 4003: false...}
-        const idThisProblemHTML = conteynerFull.id // id задачи (11020, 3004 ...)        
-        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
-        const idThisProblem = thisProblem.id // id этой задачи
-        
-        objInfo[idThisProblem] = solutionImg.classList[1] === 'show' // Изменение этой задачи
-        setLocalStorage('showSolution', objInfo) // Сохранение в LocalStr
-    })
-}
-
-
-
-function currSolution(thisProblems){
-    const objBoolSolution = getLocalStorage('showSolution')
-
-    if (objBoolSolution){
-        const allConteyner = document.querySelectorAll('.conteyner') // Контейнеры всех задач
-
-        thisProblems.forEach((element, index) => {
-            const idThisProblem = element.id
-            const valueInObj = objBoolSolution[idThisProblem]
-
-            if (valueInObj) {
-                const thisConteyner = allConteyner[index]
-                const thisImgSolution = thisConteyner.querySelector('.imgSolutionConteyner')
-                const thisShowSolutionText = thisConteyner.querySelector('.showSolutionText')
-
-                thisImgSolution.classList.remove('close')
-                thisImgSolution.classList.add('show')
-                thisShowSolutionText.innerHTML = 'Скрыть решение'
-            }
-        })
-    }
 }
 
 
@@ -1769,14 +1724,67 @@ function currInfoShowRightAnswer(thisProblems){ // Обновление инфо
                 const thisPokOtw = thisConteyner.querySelector('.pokOtw') // Надпись-кнопка
 
                 // close --> show
-                thisInfoAnswer.classList.remove('close')
-                thisInfoAnswer.classList.add('show')
+                closeToShow(thisInfoAnswer)
 
                 thisPokOtw.innerHTML = 'Скрыть ответ: '
             } 
         })
     }
 }
+
+
+
+function createAndSaveSolution(thisProblems){ // Создание и/или сохрание нажатия на "показать решение"
+    document.addEventListener('click', (event) => {
+        if (event.target.classList[0] !== 'showSolutionText') return // Если не кнопка "показать ответ" - выходим 
+
+        
+
+        // Если нет в LocalStr currInfoShowRightAnswer, добавить
+        if (!getLocalStorage('showSolution')){
+            const array = {}
+            for (let index = 0; index < thisProblems.length; index ++) array[thisProblems[index].id] = false
+    
+            setLocalStorage('showSolution', array)    
+        }
+
+        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания        
+        const solutionImg = conteynerFull.querySelector('.imgSolutionConteyner')
+        const objInfo = getLocalStorage('showSolution') // Объект {4001: true, 4002: false, 4003: false...}
+        const idThisProblemHTML = conteynerFull.id // id задачи (11020, 3004 ...)        
+        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
+        const idThisProblem = thisProblem.id // id этой задачи
+        
+        objInfo[idThisProblem] = solutionImg.classList[1] === 'show' // Изменение этой задачи
+        setLocalStorage('showSolution', objInfo) // Сохранение в LocalStr
+    })
+}
+
+
+
+function currSolution(thisProblems){ // Обновление информации "показать решение" при обновлении
+    const objBoolSolution = getLocalStorage('showSolution')
+
+    if (objBoolSolution){
+        const allConteyner = document.querySelectorAll('.conteyner') // Контейнеры всех задач
+
+        thisProblems.forEach((element, index) => {
+            const idThisProblem = element.id
+            const valueInObj = objBoolSolution[idThisProblem]
+
+            if (valueInObj) {
+                const thisConteyner = allConteyner[index]
+                const thisImgSolution = thisConteyner.querySelector('.imgSolutionConteyner')
+                const thisShowSolutionText = thisConteyner.querySelector('.showSolutionText')
+
+                closeToShow(thisImgSolution)
+                thisShowSolutionText.innerHTML = 'Скрыть решение'
+            }
+        })
+    }
+}
+
+
 
 
 
@@ -1868,9 +1876,11 @@ function summArray(array){ // Сумма массива
 
 function pushArrayCountProblem(){ // Массив количеств задач [-, 0, 1, 3, ....]
     const DOMarrayCountProblem = ['-', ...document.querySelectorAll('.countProblem')] // Все countProblem
-    let arrayCountProblem = ['-'] // Результат
+    const arrayCountProblem = ['-'] // Результат
 
-    DOMarrayCountProblem.forEach((element, index) => {if (index !== 0) arrayCountProblem.push(+element.value)}) // Если index != 0 => push
+    DOMarrayCountProblem.forEach((element, index) => { // Если index != 0 => push
+        if (index !== 0) arrayCountProblem.push(+element.value)
+    }) 
     return arrayCountProblem
 }
 
@@ -1883,8 +1893,8 @@ function rounded(number){ // Округление до сотых
 
 
 function countProblemToNumber(value){ // Присваение все input в index значение = value
-    const allCountProblem = document.querySelectorAll('.countProblem')
-    for (index = 0; index <= 10; index ++) allCountProblem[index].value = value
+    const allCountProblem = [...document.querySelectorAll('.countProblem')]
+    allCountProblem.forEach(element => element.value = value)
 }
 
 
@@ -1912,10 +1922,13 @@ function changeBtnVariant(){ // Смена кнопки "Вариант" (изм
     variant.innerHTML = `Составить вариант (Выбрано заданий: ${summProblems})`
     variant.disabled = summProblems === 0 // Если 0 задач выбрано --> false
     
-    for (let index = 1; index <= 11; index ++){
-        const problemsByDifficulty = getObjectsFromAndTo(index, valueStart, valueFinish) // Массив задач номера index с valueStart <= procent <= valueFinish
-        if (problemsByDifficulty.length < arrayCountProblem[index]) variant.disabled = true // Если выбранных задач > возвожных задач --> disabled
-    }
+
+    arrayCountProblem.forEach((element, index) => {
+        if (index !== 0){
+            const problemsByDifficulty = getObjectsFromAndTo(index, valueStart, valueFinish) // Массив задач номера index с valueStart <= procent <= valueFinish
+            if (problemsByDifficulty.length < element) variant.disabled = true // Если выбранных задач > возвожных задач --> disabled
+        }
+    })
 
     variant.disabled ? variant.classList.add('boom') : variant.classList.remove('boom') // Эффект boom
 }
@@ -1923,21 +1936,9 @@ function changeBtnVariant(){ // Смена кнопки "Вариант" (изм
 
 
 function timeToArray(time){ // Функция для времени №1    '4:30:20 12 Февраля 2023' --> [4, 30, 20]
-    let timeNew = ''
-    let index = 0
-    let flag = true
-
-    while (flag) {
-        timeNew += time[index]
-        index += 1
-
-        if (time[index] === ' ') flag = false
-    }
-
-    timeNew = timeNew.split(':')
-    let timeArray = []
-    timeNew.forEach((element, index) => {if (index < 3) timeArray.push(+element)})
-    return timeArray
+    const timeArray = time.split(':')
+    
+    return [+timeArray[0], +timeArray[1], +timeArray[2]]
 }
 
 
@@ -2046,7 +2047,7 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
 
     let answer = [] // Массив input ответов
     inputVariant.forEach(element => answer.push(element.value)) // Введенные ответы
-    inputConteyner.forEach(element => element.classList.add('inputConteynerInCenter'))
+    inputConteyner.forEach(element => element.classList.add('inputConteynerInCenterVariant'))
 
     let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // Количество верных задач
     let rightAnswers = 0 // Количество правильных ответов
@@ -2070,7 +2071,9 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
         const statsNumberLocalStr = getLocalStorage('statsNumber')
         const thisStatsNumberObj = statsNumberLocalStr[thisObject.id]
 
-        thisMiddle.classList.remove('middle')
+        thisMiddle.style.left = '0px'
+
+        
     
 
         thisStar.classList.remove('close') // Удаляем close звезде
@@ -2099,8 +2102,11 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
             thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index]) // Записываем туда getRightAnswerHTML()
                 
             const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show
-            rightAnswer.classList.remove('close')
-            rightAnswer.classList.add('show')
+            console.log(rightAnswer)
+            
+            closeToShow(rightAnswer)
+            rightAnswer.style.right = '310px' // ВЕРСТКА
+            thisAnswerText.style.left = '270px' // ВЕРСТКА
 
             thisStatsNumberObj.all ++
             thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
@@ -2121,9 +2127,8 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
     let infoLocalStorageObject = {} // Объект текущего варианта
     let arrayRightAnswer = [] // Массив статистики
         
-    for (let i = 1; i <= 11; i++) arrayRightAnswer.push({right: countRightAnswer[i], count: arrayCountProblem[i]}) // Для каждой задачи right, count
+    for (let index = 1; index <= 11; index ++) arrayRightAnswer.push({right: countRightAnswer[index], count: arrayCountProblem[index]}) // Для каждой задачи right, count
     arrayRightAnswer.push({right: rightAnswers, count: answer.length}) // Для всего варианта right, count
-    //infoLocalStorageObject.name = specialVariants[numberVariant].name
 
     const stats = getLocalStorage('stats') // Массив вариантов
     const numberVariant = getLocalStorage('numberVariant') // Номер варианта
@@ -2243,7 +2248,7 @@ function getTime(value){ // Возвращение времени
     else if (value === 'd') return addZero(date.getDate())
     else if (value === 'mo') return date.getMonth()
     else if (value === 'y') return addZero(date.getFullYear())
-    else if (value === 'full') return `${getTime('h')}:${getTime('m')}:${getTime('s')} `
+    else if (value === 'full') return `${getTime('h')}:${getTime('m')}:${getTime('s')}`
 }
 
 
