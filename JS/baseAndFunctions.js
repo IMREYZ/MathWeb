@@ -1181,6 +1181,7 @@ function problemHTMLstress(problem) { // Вывод задание на HTML н�
     const thisBoolean = objSpecial[id] // Избранная задача или нет
     const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
 
+    
     return `<div id = ${id} class="conteynerStress" >
     <div class="number gray" > 
         <span class='statsNumberConteyner'> </span>
