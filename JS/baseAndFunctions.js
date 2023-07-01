@@ -2040,13 +2040,11 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
     const popUpSecond = document.querySelector('.pop_up1') // PopUp - подтверждение
 
     const inputVariant = [...document.querySelectorAll('.input')] // Все input
-    const inputConteyner = [...document.querySelectorAll('.conteynerInput')] // Все input
     const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
     const allAnswer = document.querySelectorAll('.answer') // Все answer
 
     let answer = [] // Массив input ответов
     inputVariant.forEach(element => answer.push(element.value)) // Введенные ответы
-    inputConteyner.forEach(element => element.classList.add('inputConteynerInCenterVariant'))
 
     let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // Количество верных задач
     let rightAnswers = 0 // Количество правильных ответов
@@ -2063,9 +2061,10 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
         const thisParent = allParents[index] // Родитель этой задачи
         const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
         const thisInput = thisParent.querySelector('.input')
-        const thisAnswerText = thisParent.querySelector('.showSolutionText')
+        const thisSolutionText = thisParent.querySelector('.showSolutionText')
         const thisStatsNumberConteyner = thisParent.querySelector('.statsNumberConteyner')
         const thisMiddle = thisParent.querySelector('.middle')
+        const inputConteyner = thisParent.querySelector('.conteynerInput')
 
         const statsNumberLocalStr = getLocalStorage('statsNumber')
         const thisStatsNumberObj = statsNumberLocalStr[thisObject.id]
@@ -2078,7 +2077,6 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
         thisStar.classList.remove('close') // Удаляем close звезде
         thisInput.readOnly = true
 
-        thisAnswerText.innerHTML = 'Показать решение'
 
         const thisAnswer = allAnswer[index]
         thisAnswer.classList.add('white') // Добавляем white
@@ -2088,12 +2086,10 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
             countRightAnswer[thisObject.number] ++ // Количество правильных ответов задачи номера n ++
             background('green', index) // background - green
             arrayColors.push('green') // В массив цветов += green
-            
 
             thisStatsNumberObj.right ++
             thisStatsNumberObj.all ++
             thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
-
 
         } else {
             background('red', index) // background - red
@@ -2106,8 +2102,12 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
             
             closeToShow(rightAnswer)
             rightAnswer.style.right = '310px' // ВЕРСТКА
-            thisAnswerText.style.left = '270px' // ВЕРСТКА
-            
+            thisSolutionText.style.left = '270px' // ВЕРСТКА
+            thisSolutionText.innerHTML = 'Показать решение'
+
+            inputConteyner.style.left = '14px'
+
+
 
             thisStatsNumberObj.all ++
             thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)

@@ -70,9 +70,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
             const inputVariant = [...document.querySelectorAll('.input')] // input варианта
             const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
             const allAnswer = [...document.querySelectorAll('.answer')] // answer варианта (для white)
-            const inputConteyner = [...document.querySelectorAll('.conteynerInput')] // Все input
-
-            inputConteyner.forEach(element => element.classList.add('inputConteynerInCenter'))
+  
 
 
 
@@ -87,6 +85,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
                 const thisStatsNumberConteyner = thisParent.querySelector('.statsNumberConteyner')
                 const thisAnswerText = thisParent.querySelector('.showSolutionText')
                 const thisMiddle = thisParent.querySelector('.middle')
+                const thisInputConteyner = thisParent.querySelector('.conteynerInput')
                 thisMiddle.style.left = '0px'
 
 
@@ -99,11 +98,15 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
                     const thisConteyner = thisParent.querySelector('.conteynerRightAnswer') // Текущий контейнер ответов
                     thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index]) // Записываем туда getRightAnswerHTML()
                     const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show
-                    rightAnswer.classList.remove('close')
-                    rightAnswer.classList.add('show')
+                    closeToShow(rightAnswer)
                     rightAnswer.style.right = '310px'
                     thisAnswerText.style.left = '270px'
                     thisAnswerText.innerHTML = 'Показать решение'
+
+                    thisInputConteyner.style.left = '14px'
+
+
+                    
                 }
             }
 

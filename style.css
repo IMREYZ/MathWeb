@@ -1396,12 +1396,12 @@ canvas {
 
 .inputConteynerInCenter{
     position: relative;
-    left: 14px;
+    left: 13px;
 }
 
 .inputConteynerInCenterVariant{
     position: relative;
-    left: 28px;
+    left: 26px;
 }
 
 .showSolutionText{
@@ -1410,10 +1410,6 @@ canvas {
     left: 220px;
 }
 
-.ww{
-    position: relative;
-    left: 85px;
-}
 
 .conteynerInput{
     position: relative;
