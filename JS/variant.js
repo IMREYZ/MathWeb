@@ -89,7 +89,6 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
                 const thisMiddle = thisParent.querySelector('.middle')
                 thisMiddle.style.left = '0px'
 
-                thisAnswerText.innerHTML = 'Показать решение'
 
 
                 thisStar.classList.remove('close') // Удаляем close звезде
@@ -104,6 +103,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
                     rightAnswer.classList.add('show')
                     rightAnswer.style.right = '310px'
                     thisAnswerText.style.left = '270px'
+                    thisAnswerText.innerHTML = 'Показать решение'
                 }
             }
 

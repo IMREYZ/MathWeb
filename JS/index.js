@@ -71,6 +71,7 @@ if (window.location.pathname === `/MathWeb/index.html` || window.location.pathna
 
         // Вся статистика  вариантов
         const statsAboutVariants = getLocalStorage('stats')
+        
 
         // Если есть, то
         if (statsAboutVariants){

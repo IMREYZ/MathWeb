@@ -1053,7 +1053,6 @@ function randomProblem(thisIndexProblem, thisCountProblem) { // thisCountProblem
 function getObjectsFromAndTo(thisIndexProblem, start, finish){ // Возвращает задания по сложности
     let result = []
     const myArray = problems[thisIndexProblem]
-    console.log(myArray, problems)
     
 
     myArray.forEach(element => {
@@ -2089,10 +2088,12 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
             countRightAnswer[thisObject.number] ++ // Количество правильных ответов задачи номера n ++
             background('green', index) // background - green
             arrayColors.push('green') // В массив цветов += green
+            
 
             thisStatsNumberObj.right ++
             thisStatsNumberObj.all ++
             thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
+
 
         } else {
             background('red', index) // background - red
@@ -2102,11 +2103,11 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
             thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index]) // Записываем туда getRightAnswerHTML()
                 
             const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show
-            console.log(rightAnswer)
             
             closeToShow(rightAnswer)
             rightAnswer.style.right = '310px' // ВЕРСТКА
             thisAnswerText.style.left = '270px' // ВЕРСТКА
+            
 
             thisStatsNumberObj.all ++
             thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
