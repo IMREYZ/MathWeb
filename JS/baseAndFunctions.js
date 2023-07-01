@@ -1364,7 +1364,7 @@ function eventSolution(){ // Обработка события нажатия н
             solutionText.innerHTML = `Скрыть решение`
 
         } else {
-            closeToShow(imgSolution)
+            showToClose(imgSolution)
             solutionText.innerHTML = `Показать решение`
         }
 
