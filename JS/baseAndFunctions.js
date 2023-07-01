@@ -1131,11 +1131,13 @@ function problemHTMLvariant(problem) { // Вывод задания на HTML н
 
     return `<div id = ${id} class="conteyner">
     <div class="number gray" > 
-        <span class='statsNumberConteyner'z> </span>
+        <span class='statsNumberConteyner'> </span>
+        <span class='middle'>
         <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
         <span title='Избранное задание' class="star"> ${textHTML} </span>
         <span class='lvll'>
             Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
+        </span>
         </span>
     </div>
         <img src='/MathWeb/img/${problem.problem}.jpg' >
