@@ -88,25 +88,19 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
                 const thisInputConteyner = thisParent.querySelector('.conteynerInput')
                 thisMiddle.style.left = '0px'
 
-
-
                 thisStar.classList.remove('close') // Удаляем close звезде
                 thisStatsNumberConteyner.innerHTML = getStatsNumberText(thisProblem)
-
 
                 if (myColors[index] === 'red'){
                     const thisConteyner = thisParent.querySelector('.conteynerRightAnswer') // Текущий контейнер ответов
                     thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index]) // Записываем туда getRightAnswerHTML()
                     const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show
                     closeToShow(rightAnswer)
-                    rightAnswer.style.right = '310px'
-                    thisAnswerText.style.left = '270px'
                     thisAnswerText.innerHTML = 'Показать решение'
 
-                    thisInputConteyner.style.left = '14px'
-
-
-                    
+                    rightAnswer.style.right = '310px'
+                    thisAnswerText.style.left = '270px'
+                    thisInputConteyner.style.left = '14px'        
                 }
             }
 

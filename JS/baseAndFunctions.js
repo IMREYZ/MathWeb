@@ -1473,15 +1473,12 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
                 const conteynerInput = parent.querySelector('.conteynerInput')
                 const conteynerShowSolution = parent.querySelector('.showSolutionText')
 
-
                 backgroundByCurr(idProblem, 'red') // Устанавливаем красный цвет для задачи с id контейнера
                 conteynerRightAnswer.innerHTML = getRightAnswerHTML(thisProblems[count]) // Добавляем 'показать ответ'
-
                 const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer')
-
                 allAnswer[count].classList.add('white') // Добавляем белый цвет
                 closeToShow(rightAnswer) // Показываем "показать ответ"
-                conteynerInput.classList.add('inputConteynerInCenterVariant') // ВЕРСТКА               
+                conteynerInput.classList.add('inputConteynerInCenter') // ВЕРСТКА               
                 conteynerShowSolution.innerHTML = `Показать решение`
 
             } else backgroundByCurr(idProblem, 'gray')          
@@ -2071,9 +2068,6 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
 
         thisMiddle.style.left = '0px'
 
-        
-    
-
         thisStar.classList.remove('close') // Удаляем close звезде
         thisInput.readOnly = true
 
@@ -2097,16 +2091,13 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
 
             const thisConteyner = thisParent.querySelector('.conteynerRightAnswer') // Текущий контейнер ответов
             thisConteyner.innerHTML = getRightAnswerHTML(allProblemsMain[index]) // Записываем туда getRightAnswerHTML()
-                
             const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show
-            
             closeToShow(rightAnswer)
-            rightAnswer.style.right = '310px' // ВЕРСТКА
-            thisSolutionText.style.left = '270px' // ВЕРСТКА
             thisSolutionText.innerHTML = 'Показать решение'
 
+            rightAnswer.style.right = '310px' // ВЕРСТКА
+            thisSolutionText.style.left = '270px' // ВЕРСТКА
             inputConteyner.style.left = '14px'
-
 
 
             thisStatsNumberObj.all ++
