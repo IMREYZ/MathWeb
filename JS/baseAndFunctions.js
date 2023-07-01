@@ -982,7 +982,7 @@ const specialVariants = ['-', // Специальные варианты
                         {variant: ['1.19', '1.25', '1.33', '1.46', '1.51', '1.73', '2.78', '2.79', '2.160', '2.161', '3.5', '3.24', '4.9', '4.35', '5.45', '6.37', '6.39', '6.83', '7.7', '7.44', '7.45', '8.12', '8.33', '8.69', '9.36', '9.38', '9.78', '9.79', '9.80', '10.23', '10.24', '10.51', '10.54', '11.8', '11.46'], name: 'Основная волна 2023'},
                         {variant: ['1.17', '2.38', '3.9', '4.14', '5.9', '6.20', '7.59', '8.17', '9.24', '10.31', '11.33'], name: 'Резерв 2023'},
                         {variant: ['1.20', '2.65', '3.44', '4.44', '5.24', '6.11', '7.11', '8.5', '9.8', '10.27', '11.65'], name: 'Резерв 2023 - резервный день'}]
-
+                      
 specialVariants.forEach((element, index) => {
     if (index !== 0){
         const thisVariant = element.variant
@@ -1000,7 +1000,7 @@ specialVariants.forEach((element, index) => {
 
 
 function getArrayObjectForSpecialVariants(numberVariant){ // ['1.21', '3.32'] -> [{problem: '1.21' ....}, {problem: '3.32'....}]
-    let resultArray = []
+    const resultArray = []
     const thisIdArray = specialVariants[numberVariant].variant // Массив строк id задач
 
     allProblems.forEach(element => { // Проходимся по всем задачам
@@ -1125,6 +1125,19 @@ function getStatsNumberText(problem){ // Функция, которая возв
 }
 
 
+
+function getRightAnswerHTML(problem){ // Добавление "правильный ответ"
+    const rightAnswer = String(problem.answer).replace('.', ',') // Правильный ответ
+
+    return `<span class='showRightAnswer close'> 
+        <span class='pokOtw'>Показать ответ: </span> 
+        <span class='conteynerRightAnswer'> </span>
+        <span class='rightAnswer close'>${rightAnswer} </span>
+    </span>`
+}
+
+
+
 function problemHTMLvariant(problem) { // Вывод задания на HTML на вкладку variant
     const id = problem.id // id Задачи
     const objSpecial = getLocalStorage('special') // Массив избранных задач
@@ -1163,16 +1176,6 @@ function problemHTMLvariant(problem) { // Вывод задания на HTML н
 } 
 
 
-
-function getRightAnswerHTML(problem){ // Добавление "правильный ответ"
-    const rightAnswer = String(problem.answer).replace('.', ',') // Правильный ответ
-
-    return `<span class='showRightAnswer close'> 
-        <span class='pokOtw'>Показать ответ: </span> 
-        <span class='conteynerRightAnswer'> </span>
-        <span class='rightAnswer close'>${rightAnswer} </span>
-    </span>`
-}
 
 
 
@@ -1283,11 +1286,11 @@ function showRightAnswerHTML(){ // Показ правильного ответ�
         // close <--> show
         if (rightAnswer.classList[1] === 'close'){
             closeToShow(rightAnswer)
-            showAnswer.innerHTML = 'Скрыть ответ: '  
+            showAnswer.innerHTML = 'Скрыть ответ:'  
 
         } else {
             showToClose(rightAnswer)
-            showAnswer.innerHTML = 'Показать ответ: '
+            showAnswer.innerHTML = 'Показать ответ:'
         }
     })
 }
@@ -1313,7 +1316,6 @@ function eventClickOnStar(){ // Функция, которая меняет зв
         starHTML.innerHTML = getStar(resultBoolean) // Меняем звезду
     })
 }
-
 
 
 
@@ -1448,8 +1450,8 @@ function clearStatsByDblClick(){ // Удаление статистики при
 function currColor(thisProblems){ // Появление цвета в currSubject в случае обновления страницы
 
     // КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
-    const inputAll = document.querySelectorAll('.input') // Все input
-    const submitAll = document.querySelectorAll('.submit') // Все sumbit
+    // const inputAll = document.querySelectorAll('.input') // Все input
+    // const submitAll = document.querySelectorAll('.submit') // Все sumbit
     const allParents = document.querySelectorAll('.conteyner') // Все контейнеры
     const allAnswer = document.querySelectorAll('.answer') // Все контейнеры answer
 
@@ -1476,10 +1478,12 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
                 backgroundByCurr(idProblem, 'red') // Устанавливаем красный цвет для задачи с id контейнера
                 conteynerRightAnswer.innerHTML = getRightAnswerHTML(thisProblems[count]) // Добавляем 'показать ответ'
                 const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer')
-                allAnswer[count].classList.add('white') // Добавляем белый цвет
                 closeToShow(rightAnswer) // Показываем "показать ответ"
-                conteynerInput.classList.add('inputConteynerInCenter') // ВЕРСТКА               
-                conteynerShowSolution.innerHTML = `Показать решение`
+
+                conteynerInput.style.left = '13px' // ВЕРСТКА               
+                conteynerShowSolution.innerHTML = `Показать решение` // Добавляем "показать решение"
+
+                allAnswer[count].classList.add('white') // Добавляем белый цвет
 
             } else backgroundByCurr(idProblem, 'gray')          
         })
@@ -1590,7 +1594,7 @@ function eventSendAnswer(){ // Обработка события "отправи
                     submit.disabled = true // Меняем дочерние элементы
                     submit.classList.remove('button:hover') // Меняем дочерний элементы
                     conteynerRightAnswer.innerHTML = '' // Убираем "показать ответ"
-                    conteynerInput.classList.remove('inputConteynerInCenter') // ВЕРСТКА
+                    conteynerInput.style.left = '0px' // ВЕРСТКА
                     conteynerSolution.innerHTML = '' // Убираем решения
                     showToClose(conteynerSolution)
                     showToClose(imgSolutionConteyner)
@@ -1605,7 +1609,7 @@ function eventSendAnswer(){ // Обработка события "отправи
                     conteynerRightAnswer.innerHTML = getRightAnswerHTML(currObject) // В контейнер правильного ответа добавляем текст
                     const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer') // show "Показать ответ
  
-                    conteynerInput.classList.add('inputConteynerInCenter') // ВЕРСТКА
+                    conteynerInput.style.left = '13px' // ВЕРСТКА
                     conteynerSolution.innerHTML = 'Показать решение'
                     
                     closeToShow(rightAnswer)
@@ -2097,7 +2101,7 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
 
             rightAnswer.style.right = '310px' // ВЕРСТКА
             thisSolutionText.style.left = '270px' // ВЕРСТКА
-            inputConteyner.style.left = '14px'
+            inputConteyner.style.left = '13px'
 
 
             thisStatsNumberObj.all ++
@@ -2242,9 +2246,3 @@ function getTime(value){ // Возвращение времени
     else if (value === 'y') return addZero(date.getFullYear())
     else if (value === 'full') return `${getTime('h')}:${getTime('m')}:${getTime('s')}`
 }
-
-
-
-
-
-

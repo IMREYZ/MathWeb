@@ -1394,15 +1394,6 @@ canvas {
     right: 310px;
 }
 
-.inputConteynerInCenter{
-    position: relative;
-    left: 13px;
-}
-
-.inputConteynerInCenterVariant{
-    position: relative;
-    left: 26px;
-}
 
 .showSolutionText{
     cursor: pointer;

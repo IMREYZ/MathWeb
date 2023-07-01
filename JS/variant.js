@@ -100,7 +100,7 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
 
                     rightAnswer.style.right = '310px'
                     thisAnswerText.style.left = '270px'
-                    thisInputConteyner.style.left = '14px'        
+                    thisInputConteyner.style.left = '13px'        
                 }
             }
 
