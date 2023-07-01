@@ -139,6 +139,9 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
 
         const answerText = document.querySelector('.answer')
         answerText.classList.add('white')
+
+        const thisMiddle = document.querySelector('.middle')
+        thisMiddle.classList.remove('middle')
         
         // Если ответ ВЕРНЫЙ
         if (inputAnswer === getLocalStorage('randomProblem').answer){
@@ -194,6 +197,8 @@ if (window.location.pathname === '/MathWeb/HTML/stress.html'){
             setLocalStorage('statsNumber', statsNumberLocalStr)
             
             thisStatsNumber.innerHTML = getStatsNumberText(thisProblem)
+
+
 
         // Если ответ НЕВЕРНЫЙ    
         } else endGame()

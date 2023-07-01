@@ -42,7 +42,7 @@ img{
 
 .star{
     position: relative;
-    left: 380px;
+    left: 360px;
     font-size: 20px;
 }
 
@@ -1210,7 +1210,7 @@ body.curr{
 
 .lvll{
     position: relative;
-    left: 400px;
+    left: 380px;
 }
 
 .answer{
@@ -1286,9 +1286,6 @@ body.curr{
     font-size: 22px;
 }
 
-.showRightAnswer{
-    margin-left: 150px;
-}
 
 .showRightAnswer1{
     color: white;
@@ -1368,7 +1365,7 @@ img{
     background-color: #ffcda7;
     position: relative;
     display: inline-block;
-    right: 400px;
+    right: 380px;
     width: 150px;
     font-size: 17px;
     cursor: pointer;
@@ -1389,3 +1386,7 @@ canvas {
     right: 100px;
 }
 
+.middle{
+    position: relative;
+    left: 80px
+}

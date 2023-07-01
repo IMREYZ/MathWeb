@@ -74,6 +74,8 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
 
             inputConteyner.forEach(element => element.classList.add('inputConteynerInCenter'))
 
+
+
             for (let index = 0; index < myVariant.length; index ++){
                 background(myColors[index], index) // Ставим цвет контейнеру
                 inputVariant[index].readOnly = true // Только чтение
@@ -84,6 +86,8 @@ if (window.location.pathname === `/MathWeb/HTML/variant.html`){
                 const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
                 const thisStatsNumberConteyner = thisParent.querySelector('.statsNumberConteyner')
                 const thisAnswerText = thisParent.querySelector('.showSolutionText')
+                const thisMiddle = document.querySelector('.middle')
+                thisMiddle.classList.remove('middle')
 
                 thisAnswerText.innerHTML = 'Показать решение'
 

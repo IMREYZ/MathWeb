@@ -1132,10 +1132,12 @@ function problemHTMLvariant(problem) { // Вывод задания на HTML н
     return `<div id = ${id} class="conteyner">
     <div class="number gray" > 
         <span class='statsNumberConteyner'> </span>
-        <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
-        <span title='Избранное задание' class="star"> ${textHTML} </span>
-        <span class='lvll'>
-            Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
+        <span class='middle'>
+            <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
+            <span title='Избранное задание' class="star"> ${textHTML} </span>
+            <span class='lvll'>
+                Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
+            </span>
         </span>
     </div>
         <img src='/MathWeb/img/${problem.problem}.jpg' >
@@ -1182,13 +1184,15 @@ function problemHTMLstress(problem) { // Вывод задание на HTML н�
     return `<div id = ${id} class="conteynerStress" >
     <div class="number gray" > 
         <span class='statsNumberConteyner'> </span>
-        <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
-        <span title='Избранное задание' class="star"> ${textHTML} </span>
-        <span class='lvll'>
-            Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
+        <span class='middle'>
+            <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
+            <span title='Избранное задание' class="star"> ${textHTML} </span>
+            <span class='lvll'>
+                Сложность: <span class='${colorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
+            </span>
         </span>
     </div>
-        <img class='imgStress' src='/MathWeb/img/NoSolutions.jpg'>
+        <img class='imgStress' src='/MathWeb/img/${problem.problem}.jpg'>
 
         <div class='imgSolutionConteyner close'>
             <div id='QQ'> Решение: </div>
@@ -2060,9 +2064,12 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
         const thisInput = thisParent.querySelector('.input')
         const thisAnswerText = thisParent.querySelector('.showSolutionText')
         const thisStatsNumberConteyner = thisParent.querySelector('.statsNumberConteyner')
+        const thisMiddle = thisParent.querySelector('.middle')
 
         const statsNumberLocalStr = getLocalStorage('statsNumber')
         const thisStatsNumberObj = statsNumberLocalStr[thisObject.id]
+
+        thisMiddle.classList.remove('middle')
     
 
         thisStar.classList.remove('close') // Удаляем close звезде
