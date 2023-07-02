@@ -53,7 +53,7 @@ function problemHTMLstress(problem) { // Вывод задание на HTML н�
         <span class='statsNumberConteyner'> </span>
         <span class='middle'>
             <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
-            <span title='Избранное задание' class="star"> ${textHTML} </span>
+            <span title='Избранное задание' class="star close"> ${textHTML} </span>
             <span class='lvll'>
                 Сложность: <span class='${getColorProcent(problem.procent)} proc'> ${problem.procent}% </span> 
             </span>

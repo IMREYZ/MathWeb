@@ -58,7 +58,9 @@ function processStress(){
 
             const thisMiddle = document.querySelector('.middle')
             thisMiddle.style.left = '0px'
-        
+
+            const thisStar = document.querySelector('.star')
+            thisStar.classList.remove('close')
 
             thisStatsNumberObj.all ++
             thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
