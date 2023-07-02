@@ -55,6 +55,9 @@ function processStress(){
             const statsNumberLocalStr = getLocalStorage('statsNumber')
             const thisStatsNumberObj = statsNumberLocalStr[thisProblem.id]
             const thisStatsNumber = document.querySelector('.statsNumberConteyner')
+
+            const thisMiddle = document.querySelector('.middle')
+            thisMiddle.style.left = '0px'
         
 
             thisStatsNumberObj.all ++
@@ -76,6 +79,7 @@ function processStress(){
 
             const conteynerInput = document.querySelector('.conteynerInput') // conteynerInputStress --> conteynerInput
             conteynerInput.classList.add('inputConteynerInCenter') // conteynerInput --> inputConteynerInCenter
+
 
 
             // Делаем заглушку на 0,35 сек
@@ -151,7 +155,7 @@ function processStress(){
             answerText.classList.add('white')
 
             const thisMiddle = document.querySelector('.middle')
-            thisMiddle.classList.remove('middle')
+            thisMiddle.style.left = '0px'
             
             // Если ответ ВЕРНЫЙ
             if (inputAnswer === getLocalStorage('randomProblem').answer){
