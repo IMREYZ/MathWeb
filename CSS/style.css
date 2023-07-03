@@ -6,6 +6,7 @@ body{
     font-family: 'PT Serif', serif;
     min-width: 1490px;
     background: rgb(247, 246, 246);
+    margin: 0;
 }
 
 .curr{
@@ -1164,6 +1165,7 @@ body.variant{
 
 body.curr{
     text-align: center;
+    margin: 0 auto;
 }
 
 
