@@ -357,11 +357,12 @@ hr{
 
 
 .text{
-    right: 30px;
+    right: 35px;
     position: relative;
     font-weight: 900;
     margin-bottom: 30px;
 }
+
 
 .head{
     z-index: 10000;
