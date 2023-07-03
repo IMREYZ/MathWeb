@@ -14,6 +14,8 @@ function showToClose(element) {
     element.classList.add('close')
 }
 
+
+
 function background(color, index) { // Смена background цвета
     const allNumbers = document.querySelectorAll(".number") // Все верхние подконтейнеры контейнера
     const allAnswer = document.querySelectorAll(".answer") // Все нижние подконтейнеры контейнера
