@@ -1,5 +1,5 @@
 import { summArray } from "./OtherFunctions.js"
-import { pushArrayCountProblem, getObjectsFromAndTo } from "./variantFunctions.js"
+import { pushArrayCountProblem, getObjectsFromAndTo } from "./VariantFunctions.js"
 
 
 function closeToShow(element) {

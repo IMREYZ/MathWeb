@@ -2,7 +2,7 @@ import { currColor, currSolution, currInfoShowRightAnswer, currInput } from "./C
 import { createAndSaveInputs, createAndSaveColors, createAndSaveInfoAnswers, createAndSaveSolution } from "./SaveProblem.js"
 import { problemHTMLcurr } from "./ProblemHTML.js"
 import { getSpecialObject } from "./OtherFunctions.js"
-import { getCountProblemForVariant } from "./variantFunctions.js"
+import { getCountProblemForVariant } from "./VariantFunctions.js"
 import { setLocalStorage } from "./LocalStorage.js"
 
 

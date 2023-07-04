@@ -1,4 +1,4 @@
-import { getCountProblemForVariant, getArrayObjectForSpecialVariants } from "./variantFunctions.js"
+import { getCountProblemForVariant, getArrayObjectForSpecialVariants } from "./VariantFunctions.js"
 
 // Объекты - задачи
 const allProblems =

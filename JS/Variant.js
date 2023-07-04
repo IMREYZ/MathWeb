@@ -5,7 +5,7 @@ import { endVariant } from "./EndVariant.js"
 import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
 
 import { background, closeToShow } from "./ChangeLayout.js"
-import { getArrayObjectForSpecialVariants, randomVariant } from "./variantFunctions.js"
+import { getArrayObjectForSpecialVariants, randomVariant } from "./VariantFunctions.js"
 import { specialVariants } from "./Base.js"
 import { getSpecialObject } from "./OtherFunctions.js"
 
