@@ -2,7 +2,7 @@ import { getLocalStorage, setLocalStorage, removeLocalStorage, cleanUpLocalStora
 import { getFullDaysBeforeExam, daysBeforeExam } from "./DaysBeforeExam.js"
 import { changeBtnVariant, defaultBtnVariant } from "./ChangeLayout.js"
 import { withOutBadZero } from "./OtherFunctions.js"
-import { pushArrayCountProblem, countProblemToNumber } from "./variantFunctions.js"
+import { pushArrayCountProblem, countProblemToNumber } from "./VariantFunctions.js"
 import { allProblems, problems } from "./Base.js"
 
 
