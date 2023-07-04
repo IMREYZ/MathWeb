@@ -11,6 +11,7 @@ import { processStress } from "./Stress.js"
 
 
 
+
 eventSolution() // Открытие/закрытие решения
 renderSpecial() // 4051 = false (для новых задач)
 renderStatsNumber() // 4051 = {0, 0, 0} (для новых задач)
