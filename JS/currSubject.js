@@ -4,7 +4,7 @@ import { createAndSaveInputs, createAndSaveColors, createAndSaveInfoAnswers, cre
 import { getLocalStorage, setLocalStorage, getThisProblems} from "./LocalStorage.js"
 import { problemHTMLcurr } from "./ProblemHTML.js"
 import { getNormalClass, weight900 } from "./OtherFunctions.js"
-import { problems, themeProblems } from "./BaseAndFunctions.js"
+import { problems, themeProblems } from "./Base.js"
 
 
 // Если на странице currSubject

@@ -2,7 +2,7 @@ import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
 import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
 import { backgroundByCurr, showToClose, closeToShow } from "./ChangeLayout.js"
 import { searchObjectById } from "./OtherFunctions.js"
-import { allProblems } from "./BaseAndFunctions.js"
+import { allProblems } from "./Base.js"
 
 
 function eventSendAnswer() { // Обработка события "отправить ответ"

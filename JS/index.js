@@ -3,7 +3,7 @@ import { getFullDaysBeforeExam, daysBeforeExam } from "./DaysBeforeExam.js"
 import { changeBtnVariant, defaultBtnVariant } from "./ChangeLayout.js"
 import { withOutBadZero } from "./OtherFunctions.js"
 import { pushArrayCountProblem, countProblemToNumber } from "./variantFunctions.js"
-import { allProblems, problems } from "./BaseAndFunctions.js"
+import { allProblems, problems } from "./Base.js"
 
 
 // Если на странице index

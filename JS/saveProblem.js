@@ -1,6 +1,6 @@
 import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
 import { searchObjectById } from "./OtherFunctions.js"
-import { allProblems } from "./BaseAndFunctions.js"
+import { allProblems } from "./Base.js"
 
 function createAndSaveColors(thisProblems){ // Создание и/или сохрание цветов
     document.addEventListener('click', event => {

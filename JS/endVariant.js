@@ -2,7 +2,7 @@ import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
 import { textPopUp, textPopUpFull, addPopUp } from "./PopUp.js"
 import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
 import { background, closeToShow } from "./ChangeLayout.js"
-import { specialVariants, secondBallArray } from "./BaseAndFunctions.js"
+import { specialVariants, secondBallArray } from "./Base.js"
 
 function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Конец варианта
     const timePlace = document.querySelector('.time1') // Место времени

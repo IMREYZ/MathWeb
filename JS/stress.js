@@ -5,7 +5,7 @@ import { deadLine, titleTime, deadLineNew, getTime } from "./Time.js"
 import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
 import { background } from "./ChangeLayout.js"
 import { randomStress } from "./OtherFunctions.js"
-import { timeOnProblem } from "./BaseAndFunctions.js"
+import { timeOnProblem } from "./Base.js"
 
 function processStress(){
 

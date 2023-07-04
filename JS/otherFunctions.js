@@ -1,5 +1,5 @@
 import { getLocalStorage } from "./LocalStorage.js"
-import { allProblems } from "./BaseAndFunctions.js"
+import { allProblems } from "./Base.js"
 
 
 function randomStress() { // Рандомный индекс массива allProblems (для stress)

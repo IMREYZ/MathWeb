@@ -1,6 +1,6 @@
 import { getLocalStorage, setLocalStorage, removeLocalStorage } from "./LocalStorage.js"
 import { showToClose, closeToShow } from "./ChangeLayout.js"
-import { allProblems } from "./BaseAndFunctions.js"
+import { allProblems } from "./Base.js"
 
 
 function renderSpecial() { // Отловка новых заданий и записывание их в special

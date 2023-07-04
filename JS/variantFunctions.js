@@ -1,5 +1,5 @@
 import { getLocalStorage } from "./LocalStorage.js"
-import { allProblems, problems, specialVariants } from "./BaseAndFunctions.js"
+import { allProblems, problems, specialVariants } from "./Base.js"
 
 
 function pushArrayCountProblem() { // Массив количеств задач [-, 0, 1, 3, ....]
