@@ -1,4 +1,4 @@
-import { getTime } from "./time.js"
+import { getTime } from "./Time.js"
 
 
 function getFullDaysBeforeExam(day){ // осталось/остался дней/дня/день

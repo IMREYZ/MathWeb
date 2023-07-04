@@ -1,12 +1,12 @@
-import { eventSendAnswer } from "./eventSendAnswer.js"
-import { eventClickOnStar, eventSolution } from "./eventStarSolution.js"
-import { renderSpecial, renderStatsNumber, clearStatsByDblClick, deleteOldStats, showRightAnswerHTML } from "./render.js"
+import { eventSendAnswer } from "./EventSendAnswer.js"
+import { eventClickOnStar, eventSolution } from "./EventStarSolution.js"
+import { renderSpecial, renderStatsNumber, clearStatsByDblClick, deleteOldStats, showRightAnswerHTML } from "./Render.js"
 
-import { processIndex } from "./index.js"
-import { processCurrSubject } from "./currSubject.js"
-import { processVariant } from "./variant.js"
-import { processSpecial } from "./special.js"
-import { processStress } from "./stress.js"
+import { processIndex } from "./Index.js"
+import { processCurrSubject } from "./CurrSubject.js"
+import { processVariant } from "./Variant.js"
+import { processSpecial } from "./Special.js"
+import { processStress } from "./Stress.js"
 
 
 

@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, getThisProblems } from "./localStorage.js"
+import { getLocalStorage, setLocalStorage, getThisProblems } from "./LocalStorage.js"
 
 
 function sortProblem(thisSelect){ // Сортировка массива 'thisProblems'

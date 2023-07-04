@@ -1,7 +1,7 @@
 
-import { getLocalStorage, setLocalStorage } from "./localStorage.js"
-import { endVariant } from "./endVariant.js"
-import { addZero } from "./otherFunctions.js"
+import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
+import { endVariant } from "./EndVariant.js"
+import { addZero } from "./OtherFunctions.js"
 
 
 function timeToArray(time){ // Функция для времени №1    '4:30:20 12 Февраля 2023' --> [4, 30, 20]
@@ -23,27 +23,24 @@ function deadLine(time, minute, second){ // Функция для времени
 
 
 
-function titleTime(thisTime, deadLine){ // Обратный отсчет времени     ('23:58:04', '00:03:50') --> '05:46'
+function titleTime(thisTime, deadLine){ // Обратный отсчет времени     ('23:58:04', '00:03:50') --> '00:05:46'
     thisTime = thisTime.split(':') // Текущее время
     deadLine = deadLine.split(':') // DeadLine
 
-    if (thisTime[0] === '23' && deadLine[0] === '00') deadLine[0] = '24' // Для случая с 23 и 00
+    if (+thisTime[0] > +deadLine[0]) deadLine[0] = String(+deadLine[0] + 24) // Для случая с 23 и 00
+
+    if (+`${thisTime[0]}${thisTime[1]}${thisTime[2]}` >= +`${deadLine[0]}${deadLine[1]}${deadLine[2]}`) return `00:00`
     
     const secondLeft = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1 // Кол-во секунд
 
-    const result = `${addZero(parseInt(secondLeft / 60))}:${addZero(secondLeft % 60)}` // Результат
+    const result = `${addZero(parseInt(secondLeft / 3600))}:${addZero(parseInt(secondLeft / 60) % 60)}:${addZero(secondLeft % 60)}` // Результат
     return result 
 }
 
 
 
-function timeForSolution(thisTime, deadLine){ // Время решения варианта
-    const timeLeft = titleTime(thisTime, deadLine).split(':') // Сколько времени осталось
-    let result = ''
-    
-    timeLeft[1] === '00' ? result = [30 - +timeLeft[0], +timeLeft[1]] : result = [29 - +timeLeft[0], 60 - +timeLeft[1]] 
-    return `${addZero(result[0])}:${addZero(result[1])}`
-
+function timeForSolution(thisTime, startTime){ // Время решения варианта 1:01 --> 4:56
+    return titleTime(startTime, thisTime)
 }
 
 
@@ -75,7 +72,7 @@ function time(allProblemsMain, arrayCountProblem, isVariant){ // Глобаль�
         const deadLine = getLocalStorage('deadLine') // Текущий deadLine
         if (getLocalStorage('againVariant') === 'deadLinePicked'){ // Если сейчас идет вариант (если нет, то "afk")
             title.innerHTML = 'Вариант: ' + titleTime(getTime('full'), deadLine) + ' осталось' // устанавливаем "верхнюю надпись"
-            timePlace.innerHTML = getTime('full') + `, дедлайн: ${deadLine} (${titleTime(getTime('full'), deadLine)} осталось)`
+            timePlace.innerHTML = `<span class='w900'>${titleTime(getTime('full'), deadLine)} </span> осталось`
         }
             
         // Конец дедлайна

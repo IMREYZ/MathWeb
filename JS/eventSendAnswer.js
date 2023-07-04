@@ -1,8 +1,8 @@
-import { getLocalStorage, setLocalStorage } from "./localStorage.js"
-import { getStatsNumberText, getRightAnswerHTML } from "./getLayout.js"
-import { backgroundByCurr, showToClose, closeToShow } from "./changeLayout.js"
-import { searchObjectById } from "./otherFunctions.js"
-import { allProblems } from "./baseAndFunctions.js"
+import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
+import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
+import { backgroundByCurr, showToClose, closeToShow } from "./ChangeLayout.js"
+import { searchObjectById } from "./OtherFunctions.js"
+import { allProblems } from "./BaseAndFunctions.js"
 
 
 function eventSendAnswer() { // Обработка события "отправить ответ"

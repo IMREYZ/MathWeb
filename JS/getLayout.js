@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./localStorage.js"
+import { getLocalStorage } from "./LocalStorage.js"
 
 
 function getStar(boolean) { // Функция, которая возвращает нужную звезду

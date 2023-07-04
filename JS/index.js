@@ -1,9 +1,9 @@
-import { getLocalStorage, setLocalStorage, removeLocalStorage, cleanUpLocalStorage } from "./localStorage.js"
-import { getFullDaysBeforeExam, daysBeforeExam } from "./daysBeforeExam.js"
-import { changeBtnVariant, defaultBtnVariant } from "./changeLayout.js"
-import { withOutBadZero } from "./otherFunctions.js"
+import { getLocalStorage, setLocalStorage, removeLocalStorage, cleanUpLocalStorage } from "./LocalStorage.js"
+import { getFullDaysBeforeExam, daysBeforeExam } from "./DaysBeforeExam.js"
+import { changeBtnVariant, defaultBtnVariant } from "./ChangeLayout.js"
+import { withOutBadZero } from "./OtherFunctions.js"
 import { pushArrayCountProblem, countProblemToNumber } from "./variantFunctions.js"
-import { allProblems, problems } from "./baseAndFunctions.js"
+import { allProblems, problems } from "./BaseAndFunctions.js"
 
 
 // Если на странице index
@@ -113,7 +113,7 @@ function processIndex(){
                 // Начало HTML
             
                 let textHTML = `<td class='AAAA' class='nameVariantIndex' > 
-                                    <div>
+                                    <div class='startTable'>
                                     <div class='deleteVar' title='Удалить вариант' id = ${element.idVariant}>&#10006</div> 
                                     <span class='indexText' title='Просмотреть вариант' id = ${element.idVariant}>
                                     ${element.name}
@@ -124,7 +124,7 @@ function processIndex(){
                 // Заполняем вариант
                 element.stats.forEach((elementElement, index) => {
                     const resultVariantHTML = ` (${parseInt(elementElement.right / elementElement.count * 100)}%)</td>`
-                    textHTML += `<td>${elementElement.right} / ${elementElement.count}` + (index === 11 ? resultVariantHTML : '</td>')
+                    textHTML += `<td class='cell'>${elementElement.right} / ${elementElement.count}` + (index === 11 ? resultVariantHTML : '</td>')
 
                     infoAll[index].right += elementElement.right
                     infoAll[index].all += elementElement.count

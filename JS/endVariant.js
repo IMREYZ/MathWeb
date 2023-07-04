@@ -1,8 +1,8 @@
-import { getLocalStorage, setLocalStorage } from "./localStorage.js"
-import { textPopUp, textPopUpFull, addPopUp } from "./popUp.js"
-import { getStatsNumberText, getRightAnswerHTML } from "./getLayout.js"
-import { background, closeToShow } from "./changeLayout.js"
-import { specialVariants, secondBallArray } from "./baseAndFunctions.js"
+import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
+import { textPopUp, textPopUpFull, addPopUp } from "./PopUp.js"
+import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
+import { background, closeToShow } from "./ChangeLayout.js"
+import { specialVariants, secondBallArray } from "./BaseAndFunctions.js"
 
 function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Конец варианта
     const timePlace = document.querySelector('.time1') // Место времени
@@ -117,7 +117,8 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
             }
         })
     }
-    else if (numberVariant !== 0 && numberVariant) nameVariant = specialVariants[numberVariant].name
+    else if (numberVariant > 0 && numberVariant) nameVariant = specialVariants[numberVariant].name
+    else if (numberVariant === -1) nameVariant = 'Избранные задачи' 
     else nameVariant = `Вариант ${infoLocalStorageObject.idVariant}`
 
     infoLocalStorageObject.name = nameVariant // Либо название, либо idVariant

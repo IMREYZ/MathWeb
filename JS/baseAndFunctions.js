@@ -1,4 +1,4 @@
-import { getCountProblemForVariant } from "./variantFunctions.js"
+import { getCountProblemForVariant, getArrayObjectForSpecialVariants } from "./variantFunctions.js"
 
 // Объекты - задачи
 const allProblems =
@@ -977,10 +977,11 @@ const specialVariants = ['-', // Специальные варианты
 
 specialVariants.forEach((element, index) => {
     if (index !== 0) {
-        const thisVariant = element.variant
-        element.countProblem = getCountProblemForVariant(thisVariant)
+        const arrayObj = getArrayObjectForSpecialVariants(index)
+        element.countProblem = getCountProblemForVariant(arrayObj)
     }
 })
+
 
 
 

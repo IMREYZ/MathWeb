@@ -1,6 +1,6 @@
-import { getLocalStorage } from "./localStorage.js"
-import { getRightAnswerHTML } from "./getLayout.js"
-import { backgroundByCurr, closeToShow } from "./changeLayout.js"
+import { getLocalStorage } from "./LocalStorage.js"
+import { getRightAnswerHTML } from "./GetLayout.js"
+import { backgroundByCurr, closeToShow } from "./ChangeLayout.js"
 
 
 

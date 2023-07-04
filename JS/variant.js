@@ -1,12 +1,13 @@
-import { getLocalStorage, setLocalStorage, removeLocalStorage } from "./localStorage.js"
-import { problemHTMLvariant } from "./problemHTML.js"
-import { time } from "./time.js"
-import { endVariant } from "./endVariant.js"
-import { getStatsNumberText, getRightAnswerHTML } from "./getLayout.js"
+import { getLocalStorage, setLocalStorage, removeLocalStorage } from "./LocalStorage.js"
+import { problemHTMLvariant } from "./ProblemHTML.js"
+import { time, getTime } from "./Time.js"
+import { endVariant } from "./EndVariant.js"
+import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
 
-import { background, closeToShow } from "./changeLayout.js"
+import { background, closeToShow } from "./ChangeLayout.js"
 import { getArrayObjectForSpecialVariants, randomVariant } from "./variantFunctions.js"
-import { specialVariants } from "./baseAndFunctions.js"
+import { specialVariants } from "./BaseAndFunctions.js"
+import { getSpecialObject } from "./OtherFunctions.js"
 
 
 function processVariant(){
@@ -21,8 +22,8 @@ function processVariant(){
     let arrayCountProblem // Считываем кол-во выбранных номеров  getLocalStorage('countProblem')
     const idPreviousVariant = getLocalStorage('idVariant') // id Варианта (прошлый вариант)
     const allStats = getLocalStorage('stats') // Вся статистика
+    
     let myVariantPrevious
-
     if (idPreviousVariant !== null) {
         allStats.forEach(variant => {
             if (variant.idVariant === idPreviousVariant) myVariantPrevious = variant
@@ -31,29 +32,36 @@ function processVariant(){
 
     removeLocalStorage('flagEndVariant') // Убирание заглушки, из-за которой не выходят много "результатов"
 
+    
+    if (!getLocalStorage('startTime') && !getLocalStorage('fromStats')) setLocalStorage('startTime', getTime('full'))
 
     // arrayCountProblem
-    if (numberVariant === 0 && getLocalStorage('fromStats') === null) { // Если создан вариант рандомно - берем из index countProblem
-        arrayCountProblem = getLocalStorage('countProblem')
-
-    } else if (getLocalStorage('fromStats') !== null) { // Если "просмотр" варианта
+    if (getLocalStorage('fromStats') !== null) { // Если из статистики
         arrayCountProblem = myVariantPrevious.countProblem
 
-    } else if (numberVariant !== 0) { // Если специальный вариант
-        arrayCountProblem = specialVariants[numberVariant].countProblem
+    } else {
+        if (numberVariant === 0) arrayCountProblem = getLocalStorage('countProblem') // Если рандом
+        if (numberVariant === -1) arrayCountProblem = getLocalStorage('countProblem') // Если из special
+        if (numberVariant > 0) arrayCountProblem = specialVariants[numberVariant].countProblem // Если специальный вариант
+        
     }
 
     
     // allProblemsMain
     if (getLocalStorage('variant')){ // Если уже есть вариант
+
         allProblemsMain = getLocalStorage('variant') // Массив заданий при обновлении   
         if (getLocalStorage('againVariant') === 'afk') removeLocalStorage('answers') // Стирание ответов при новом старом вариате
-
-    } else if (getLocalStorage('fromStats') !== 1) { // Если только создался (кнопкой создания варианта)
-        numberVariant === 0 ? allProblemsMain = randomVariant(arrayCountProblem) : allProblemsMain = getArrayObjectForSpecialVariants(numberVariant)
     
-    } else allProblemsMain = myVariantPrevious.problems // Если только создался (просматриванием варианта)
-    
+    } else { // Создание варианта
+        if (getLocalStorage('fromStats') !== null) { // Если только создался (просматриванием варианта)
+            allProblemsMain = myVariantPrevious.problems
+        } else {
+            if (numberVariant === 0) allProblemsMain = randomVariant(arrayCountProblem) // Если только создался (кнопкой создания варианта)
+            if (numberVariant === -1) allProblemsMain = getSpecialObject()
+            if (numberVariant > 0) allProblemsMain = getArrayObjectForSpecialVariants(numberVariant) // Если специальный вариант
+        }
+    }    
     
 
     allProblemsMain.forEach((element, id) => allConteynerVariant.innerHTML += problemHTMLvariant(element, id)) // Выводим задания на страницу
@@ -64,7 +72,10 @@ function processVariant(){
     // Если связано с просмотром варианта
     if (getLocalStorage('fromStats') !== null){
 
-        if (getLocalStorage('fromStats') === 0.5) setLocalStorage('fromStats', 0) // Просмотр --> решение
+        if (getLocalStorage('fromStats') === 0.5) { // Просмотр --> решение
+            setLocalStorage('fromStats', 0)
+            setLocalStorage('startTime', getTime('full'))
+        }
 
         if (getLocalStorage('fromStats') === 1) { // Только зашли на страницу
             setLocalStorage('againVariant', 'afk') // afk режим
@@ -139,6 +150,7 @@ function processVariant(){
 
     // nameVariant
     if (numberVariant === 0) nameVariant.innerHTML = 'Тестовая часть' // Если создан рандомно
+    else if (numberVariant === -1) nameVariant.innerHTML = 'Избранные задачи' // Если создан рандомно
     else if (getLocalStorage('fromStats') !== null) nameVariant.innerHTML = myVariantPrevious.name  // Если просмотр
     else nameVariant.innerHTML = specialVariants[numberVariant].name // Если спец вариант
 

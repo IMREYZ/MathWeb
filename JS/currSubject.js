@@ -1,10 +1,10 @@
-import { sortProblem } from "./sortProblem.js"
-import { currColor, currSolution, currInfoShowRightAnswer, currInput } from "./currProblem.js"
-import { createAndSaveInputs, createAndSaveColors, createAndSaveInfoAnswers, createAndSaveSolution } from "./saveProblem.js"
-import { getLocalStorage, setLocalStorage, getThisProblems} from "./localStorage.js"
-import { problemHTMLcurr } from "./problemHTML.js"
-import { getNormalClass, weight900 } from "./otherFunctions.js"
-import { problems, themeProblems } from "./baseAndFunctions.js"
+import { sortProblem } from "./SortProblem.js"
+import { currColor, currSolution, currInfoShowRightAnswer, currInput } from "./CurrProblem.js"
+import { createAndSaveInputs, createAndSaveColors, createAndSaveInfoAnswers, createAndSaveSolution } from "./SaveProblem.js"
+import { getLocalStorage, setLocalStorage, getThisProblems} from "./LocalStorage.js"
+import { problemHTMLcurr } from "./ProblemHTML.js"
+import { getNormalClass, weight900 } from "./OtherFunctions.js"
+import { problems, themeProblems } from "./BaseAndFunctions.js"
 
 
 // Если на странице currSubject

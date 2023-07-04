@@ -1,5 +1,5 @@
-import { getLocalStorage } from "./localStorage.js"
-import { getColorProcent, getStar, getStatsNumberText } from "./getLayout.js"
+import { getLocalStorage } from "./LocalStorage.js"
+import { getColorProcent, getStar, getStatsNumberText } from "./GetLayout.js"
 
 
 function problemHTMLvariant(problem) { // Вывод задания на HTML на вкладку variant

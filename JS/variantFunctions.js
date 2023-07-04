@@ -1,5 +1,5 @@
-import { getLocalStorage } from "./localStorage.js"
-import { allProblems, problems, specialVariants } from "./baseAndFunctions.js"
+import { getLocalStorage } from "./LocalStorage.js"
+import { allProblems, problems, specialVariants } from "./BaseAndFunctions.js"
 
 
 function pushArrayCountProblem() { // Массив количеств задач [-, 0, 1, 3, ....]
@@ -83,8 +83,8 @@ function randomVariant(countProblem) { // Генератор рандомног�
 function getCountProblemForVariant(variant){ // Функиця, которая возвращает countProblem для варианта (нужно для special и для specialVariant )
     const countProblem = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     
-    variant.forEach(element => {
-        const numberProblem = +element.split('.')[0]
+    variant.forEach(element => {                
+        const numberProblem = +element.problem.split('.')[0]
         countProblem[numberProblem]++
     })
     

@@ -1,11 +1,11 @@
 
-import { getLocalStorage, setLocalStorage, removeLocalStorage } from "./localStorage.js"
-import { problemHTMLstress } from "./problemHTML.js"
-import { deadLine, titleTime, deadLineNew, getTime } from "./time.js"
-import { getStatsNumberText, getRightAnswerHTML } from "./getLayout.js"
-import { background } from "./changeLayout.js"
-import { randomStress } from "./otherFunctions.js"
-import { timeOnProblem } from "./baseAndFunctions.js"
+import { getLocalStorage, setLocalStorage, removeLocalStorage } from "./LocalStorage.js"
+import { problemHTMLstress } from "./ProblemHTML.js"
+import { deadLine, titleTime, deadLineNew, getTime } from "./Time.js"
+import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
+import { background } from "./ChangeLayout.js"
+import { randomStress } from "./OtherFunctions.js"
+import { timeOnProblem } from "./BaseAndFunctions.js"
 
 function processStress(){
 
@@ -137,8 +137,13 @@ function processStress(){
 
             // Пока есть время, обновляем время
             if (!deadLineNew()){
-                const thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')} `
-                timePlace.innerHTML = `<span class='thisScore'> ${titleTime(thisTime, getLocalStorage('deadLine'))} </span> осталось`
+                const thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')}`
+
+                const timeLeftDemo = titleTime(thisTime, getLocalStorage('deadLine'))
+                let timeLeftResult = ''
+                for (let index = 3; index < timeLeftDemo.length; index ++) timeLeftResult += timeLeftDemo[index]
+
+                timePlace.innerHTML = `<span class='thisScore'> ${timeLeftResult} </span> осталось`
             }
 
             // Если deadLine закончился

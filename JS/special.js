@@ -1,14 +1,16 @@
-import { currColor, currSolution, currInfoShowRightAnswer, currInput } from "./currProblem.js"
-import { createAndSaveInputs, createAndSaveColors, createAndSaveInfoAnswers, createAndSaveSolution } from "./saveProblem.js"
-import { problemHTMLcurr } from "./problemHTML.js"
-import { getSpecialObject } from "./otherFunctions.js"
+import { currColor, currSolution, currInfoShowRightAnswer, currInput } from "./CurrProblem.js"
+import { createAndSaveInputs, createAndSaveColors, createAndSaveInfoAnswers, createAndSaveSolution } from "./SaveProblem.js"
+import { problemHTMLcurr } from "./ProblemHTML.js"
+import { getSpecialObject } from "./OtherFunctions.js"
 import { getCountProblemForVariant } from "./variantFunctions.js"
+import { setLocalStorage } from "./LocalStorage.js"
 
 
 function processSpecial(){
 
     const conteynerAll = document.querySelector('.conteynerAll')  
     const arraySpecialObject = getSpecialObject()
+    const createVariantBtn = document.querySelector('.goVariant')
 
     arraySpecialObject.forEach(element => conteynerAll.innerHTML += problemHTMLcurr(element))
 
@@ -25,6 +27,9 @@ function processSpecial(){
     currSolution(getSpecialObject())
 
 
+    if (getSpecialObject().length === 0) createVariantBtn.disabled = 'true'
+
+
 
     document.addEventListener('click', event => { //
         if (event.target.classList[0] !== 'star') return // Если не "звезда" - выходим
@@ -36,6 +41,20 @@ function processSpecial(){
         currInput(getSpecialObject())
         currInfoShowRightAnswer(getSpecialObject())
         currSolution(getSpecialObject())
+
+        if (getSpecialObject().length === 0) createVariantBtn.disabled = 'true'
+    })
+
+
+
+    createVariantBtn.addEventListener('click', () => {
+        const arrayCountProblem = getCountProblemForVariant(getSpecialObject())
+        console.log(arrayCountProblem, getSpecialObject())
+        
+
+        setLocalStorage('countProblem', arrayCountProblem)
+        setLocalStorage('numberVariant', -1)
+
     })
 
 

@@ -1,4 +1,4 @@
-import { summArray } from "./otherFunctions.js"
+import { summArray } from "./OtherFunctions.js"
 import { pushArrayCountProblem, getObjectsFromAndTo } from "./variantFunctions.js"
 
 

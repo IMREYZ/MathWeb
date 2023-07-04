@@ -457,7 +457,7 @@ table{
 .table2{
     text-align: center;
     margin: 0 auto;
-    font-size: 22px;
+    font-size: 20px;
     width: 1300px;
     background-color: white;
     margin-left: 40px;
@@ -609,14 +609,13 @@ a {
 
 .indexText{
     cursor: pointer;
-    
-
 }
 
 .indexText{
     border-bottom: 0.1rem dashed;
     position: relative;
     bottom: 5px;
+    font-size: 17px;
 }
 .indexText:hover{
     font-weight: 900;
@@ -651,7 +650,7 @@ a {
     font-size: 25px;
     background-color: white;
     margin-bottom: 100px; 
-    cursor: pointer
+    cursor: pointer;
 }
 
 .clearAll {
@@ -1028,6 +1027,20 @@ body {
     margin-top: 30px;
 }
 
+.goVariant{
+    border-radius: 12px;
+    width: 350px;
+    height: 60px;
+    font-size: 25px;
+    margin-bottom: 15px;
+    background-color: white;
+    margin-bottom: 30px;
+}
+
+.goVariant:hover{
+    font-weight: 900;
+}
+
 .wer{
     position: relative;
     right: 500px;
@@ -1095,9 +1108,8 @@ body {
     margin-bottom: 30px;
 }
 .time1{
-    color: red;
     margin-bottom: 30px;
-    font-weight: 900;
+    font-size: 30px;
 }
 
 .time2{
@@ -1409,5 +1421,9 @@ canvas {
 
 .conteynerInput{
     position: relative;
+}
+
+.startTable{
+    width: 250px;
 }
 

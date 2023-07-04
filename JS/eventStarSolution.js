@@ -1,6 +1,6 @@
-import { getLocalStorage, setLocalStorage} from "./localStorage.js"
-import { getStar } from "./getLayout.js"
-import { showToClose, closeToShow } from "./changeLayout.js"
+import { getLocalStorage, setLocalStorage} from "./LocalStorage.js"
+import { getStar } from "./GetLayout.js"
+import { showToClose, closeToShow } from "./ChangeLayout.js"
 
 
 function eventClickOnStar() { // Функция, которая меняет звезду и special в LocalStr
