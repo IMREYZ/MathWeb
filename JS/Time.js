@@ -12,9 +12,9 @@ function timeToArray(time){ // Функция для времени №1    '4:3
 
 
 
-function deadLine(time, minute, second){ // Функция для времени №2    '23:40:20 12 Февраля 2023' --> '00:10:20'
+function deadLine(time, hour, minute, second){ // Функция для времени №2    '23:40:20 12 Февраля 2023' --> '00:10:20'
     const hoursMinuteSecondArray = timeToArray(time)
-    const hoursDeadLine = addZero((hoursMinuteSecondArray[0] + +(hoursMinuteSecondArray[1] >= (60 - minute))) % 24)
+    const hoursDeadLine = addZero((hoursMinuteSecondArray[0] + hour + +(hoursMinuteSecondArray[1] >= (60 - minute))) % 24)
     const minuteDeadLine = addZero((hoursMinuteSecondArray[1] + minute + +(hoursMinuteSecondArray[2] >= (60 - second))) % 60)
     const secondDeadLine = addZero((hoursMinuteSecondArray[2] + second) % 60)
     return `${hoursDeadLine}:${minuteDeadLine}:${secondDeadLine}`
@@ -56,22 +56,22 @@ function deadLineNew(){ // Прошел ли дедлайн?   Если прош
 }
 
 
-function time(allProblemsMain, arrayCountProblem, isVariant){ // Глобальная функция времени (variant)
+function time(allProblemsMain, arrayCountProblem, isVariant, hour, minute){ // Глобальная функция времени (variant)
 
     const timePlace = document.querySelector('.time1') // "Место времени"
     const title = document.querySelector('.titleVariant') // "Верхняя надпись"
     const timeFull = getTime('full') // Определяем текущее время
     
     // (Если нет deadLine или againVariant === afk) И вариант НЕ в просмотре, ставим новый deadLine и afk ==> deadLinePicked
-    if ((!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk') && getLocalStorage('fromStats') !== 0.5){
-        setLocalStorage('deadLine', deadLine(timeFull, 30, 1))
+    if ((!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk') && getLocalStorage('fromStats') * getLocalStorage('endVariant') !== 1){
+        setLocalStorage('deadLine', deadLine(timeFull, hour, minute, 1))
         setLocalStorage('againVariant', 'deadLinePicked')
     }
 
     setInterval(() => { // setInterval раз в секунду
         const deadLine = getLocalStorage('deadLine') // Текущий deadLine
         if (getLocalStorage('againVariant') === 'deadLinePicked'){ // Если сейчас идет вариант (если нет, то "afk")
-            title.innerHTML = 'Вариант: ' + titleTime(getTime('full'), deadLine) + ' осталось' // устанавливаем "верхнюю надпись"
+            title.innerHTML = `Вариант: ${titleTime(getTime('full'), deadLine)} осталось` // устанавливаем "верхнюю надпись"
             timePlace.innerHTML = `<span class='w900'>${titleTime(getTime('full'), deadLine)} </span> осталось`
         }
             

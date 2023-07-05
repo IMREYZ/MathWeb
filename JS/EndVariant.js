@@ -21,8 +21,9 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
     let rightAnswers = 0 // Количество правильных ответов
   
     setLocalStorage('againVariant', 'afk') // Смена режима в afk
+    setLocalStorage('endVariant', 1) // Смена режима в afk
 
-    timePlace.innerHTML = `<button class='time2'>Начать заново </button>`// Уведомление для пользователей за место времени
+    timePlace.innerHTML = `<button class='time2'>Начать заново </button>`;// Уведомление для пользователей за место времени
     iconText.innerHTML = 'Результат' 
 
     let arrayColors = []

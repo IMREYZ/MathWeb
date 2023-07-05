@@ -36,6 +36,9 @@ function processIndex(){
     const tableInfo = document.querySelector('.table2')
     const netTabl = document.querySelector('.netTabl')
 
+    const hoursHTML = document.querySelector('.hours')
+    const minutesHTML = document.querySelector('.minutes')
+
     // Скрываем кнопку "вариант"
     variant.disabled = true
 
@@ -317,6 +320,8 @@ function processIndex(){
         }
 
 
+
+
     })
 
     document.addEventListener('click', event => {
@@ -328,6 +333,37 @@ function processIndex(){
         const idVariant = +event.target.id
         setLocalStorage('numberVariant', idVariant)
     })
+
+
+
+
+    // ВРЕМЯ
+    document.addEventListener('click', event => { // Нажатие на "использовать время"
+        if (event.target.classList[0] !== 'checkboxTime') return
+
+        const boolChecked = event.target.checked
+
+        hoursHTML.disabled = !boolChecked
+        minutesHTML.disabled = !boolChecked
+    })
+
+    document.addEventListener('input', event => {
+        if (!['hours', 'minutes'].includes(event.target.classList[0])) return
+
+        event.target.value = event.target.value.replace(/[-]/g, '')
+
+        const hoursValue = +hoursHTML.value
+        const minutesValue = +minutesHTML.value
+        
+        
+        if (hoursValue >= 4) hoursHTML.value = 3
+        if (minutesValue >= 60) minutesHTML.value = 0
+
+
+        changeBtnVariant()
+             
+    })
+    
 
 
     // Нажатие на "составить вариант"
@@ -355,6 +391,15 @@ function processIndex(){
         const startBtnValue = +document.querySelector('.start').value
         const finishBtnValue = +document.querySelector('.finish').value
         setLocalStorage('fromAndTo', {start: startBtnValue, finish: finishBtnValue})
+
+        const checkboxTime = document.querySelector('.checkboxTime')
+        const hoursValue = +hoursHTML.value
+        const minutesValue = +minutesHTML.value
+
+        if (!checkboxTime.checked) setLocalStorage('timeOnVariant', 'no deadline')
+        else setLocalStorage('timeOnVariant', [hoursValue, minutesValue])
+        
+
     })
 
     special.addEventListener('click', () => {
@@ -371,6 +416,7 @@ function processIndex(){
 
         setLocalStorage('fromStats', 1)
         setLocalStorage('idVariant', +event.target.id)
+        setLocalStorage('timeOnVariant', 'no deadline')
         window.location.pathname = `/MathWeb/HTML/variant.html`
     })
 }

@@ -73,6 +73,11 @@ function changeBtnVariant() { // Смена кнопки "Вариант" (из�
     const valueStart = +startBtn.value // Значение
     const valueFinish = +finishBtn.value // Значение
 
+    const hoursHTML = document.querySelector('.hours') // Min сложность элемент
+    const minutesHTML = document.querySelector('.minutes') // Max сложность элемент
+    const hoursValue = +hoursHTML.value // Значение
+    const minutesValue = +minutesHTML.value // Значение
+
     variant.innerHTML = `Составить вариант (Выбрано заданий: ${summProblems})`
     variant.disabled = summProblems === 0 // Если 0 задач выбрано --> false
 
@@ -83,6 +88,8 @@ function changeBtnVariant() { // Смена кнопки "Вариант" (из�
             if (problemsByDifficulty.length < element) variant.disabled = true // Если выбранных задач > возвожных задач --> disabled
         }
     })
+
+    if (hoursValue === 0 && minutesValue === 0) variant.disabled = true
 
     variant.disabled ? variant.classList.add('boom') : variant.classList.remove('boom') // Эффект boom
 }

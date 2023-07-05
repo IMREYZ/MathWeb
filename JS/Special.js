@@ -49,12 +49,10 @@ function processSpecial(){
 
     createVariantBtn.addEventListener('click', () => {
         const arrayCountProblem = getCountProblemForVariant(getSpecialObject())
-        console.log(arrayCountProblem, getSpecialObject())
         
-
         setLocalStorage('countProblem', arrayCountProblem)
         setLocalStorage('numberVariant', -1)
-
+        setLocalStorage('timeOnVariant', 'no deadline')
     })
 
 

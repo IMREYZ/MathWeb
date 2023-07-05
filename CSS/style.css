@@ -1399,7 +1399,21 @@ canvas {
     left: 80px
 }
 
+.conteyner{
+    opacity: 0;
+    animation: ani 1.5s forwards;
+}
 
+
+.conteynerStress{
+    opacity: 0;
+    animation: ani 1.5s forwards;
+}
+
+@keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
 
 .showRightAnswer{
     position: relative;
@@ -1425,5 +1439,34 @@ canvas {
 
 .startTable{
     width: 250px;
+}
+
+.hours{
+    border-radius: 12px;
+    font-size: 25px;
+    background-color: rgb(238, 235, 235);
+    width: 50px;
+    text-align: center;
+}
+
+.minutes{
+    border-radius: 12px;
+    font-size: 25px;
+    background-color: rgb(238, 235, 235);
+    width: 50px;
+    text-align: center;
+}
+
+.timeOnVariantIndex{
+    position: relative;
+    left: 360px;
+    bottom: 163px;
+    width: 300px;
+}
+
+.lvlVariantIndex{
+    position: relative;
+    left: 610px;
+    width: 600px;
 }
 

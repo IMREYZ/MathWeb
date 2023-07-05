@@ -35,6 +35,7 @@ function processVariant(){
     
     if (!getLocalStorage('startTime') && !getLocalStorage('fromStats')) setLocalStorage('startTime', getTime('full'))
 
+
     // arrayCountProblem
     if (getLocalStorage('fromStats') !== null) { // Если из статистики
         arrayCountProblem = myVariantPrevious.countProblem
@@ -43,10 +44,10 @@ function processVariant(){
         if (numberVariant === 0) arrayCountProblem = getLocalStorage('countProblem') // Если рандом
         if (numberVariant === -1) arrayCountProblem = getLocalStorage('countProblem') // Если из special
         if (numberVariant > 0) arrayCountProblem = specialVariants[numberVariant].countProblem // Если специальный вариант
-        
     }
 
     
+
     // allProblemsMain
     if (getLocalStorage('variant')){ // Если уже есть вариант
 
@@ -64,35 +65,45 @@ function processVariant(){
     }    
     
 
+
+    
     allProblemsMain.forEach((element, id) => allConteynerVariant.innerHTML += problemHTMLvariant(element, id)) // Выводим задания на страницу
     setLocalStorage('variant', allProblemsMain) // Записываем список объектов задач в LocalStr в variant (для случая обновления страницы)
 
 
 
     // Если связано с просмотром варианта
-    if (getLocalStorage('fromStats') !== null){
+    if (getLocalStorage('fromStats') !== null || getLocalStorage('endVariant') === 1){
 
-        if (getLocalStorage('fromStats') === 0.5) { // Просмотр --> решение
-            setLocalStorage('fromStats', 0)
+        if (!getLocalStorage('fromStats') && getLocalStorage('endVariant') === 0) { // Просмотр --> решение
             setLocalStorage('startTime', getTime('full'))
         }
 
-        if (getLocalStorage('fromStats') === 1) { // Только зашли на страницу
+        if (getLocalStorage('fromStats') === 1 || getLocalStorage('endVariant') === 1) { // Только зашли на страницу
             setLocalStorage('againVariant', 'afk') // afk режим
-            setLocalStorage('fromStats', 0.5) // Переход в просмотр
+            // setLocalStorage('fromStats', 0) // Переход в просмотр
 
             timePlace.innerHTML = `<button class='time2'>Начать заново </button>` // имитация законченного варианта
             iconText.innerHTML = 'Результат' // имитация законченного варианта
+            
+            let myVariant
+            let myColors
+            if (getLocalStorage('fromStats') === 1){
+                myVariant = myVariantPrevious.problems // Задачи варианта
+                myColors = myVariantPrevious.colors // Цвета варианта
+            }
 
-            const myVariant = myVariantPrevious.problems // Задачи варианта
-            const myColors = myVariantPrevious.colors // Цвета варианта
+            if (getLocalStorage('endVariant') === 1){
+                myVariant = getLocalStorage('variant')
+                myColors = getLocalStorage('colors')
+            }
+
+
             setLocalStorage('variant', myVariant)
 
             const inputVariant = [...document.querySelectorAll('.input')] // input варианта
             const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
             const allAnswer = [...document.querySelectorAll('.answer')] // answer варианта (для white)
-
-
 
 
             for (let index = 0; index < myVariant.length; index ++){
@@ -137,16 +148,15 @@ function processVariant(){
         inputVariant.forEach((element, index) => element.value = LocalStrAnswer[index])
     }
 
-
-
-    let isVariant = true // Флаг
-    arrayCountProblem.forEach(element => {
-        if (element != '-' && element !== 1) isVariant = false // Проверяем, вариант формата ЕГЭ или нет
-    }) 
+    
+    const isVariant = arrayCountProblem.every(element => element === '-' || element === 1) // Формата ЕГЭ или нет
     
 
-    if (isVariant) time(allProblemsMain, arrayCountProblem, isVariant) // Если формат ЕГЭ, то работаем c time
-
+    const timeOnVariantLS = getLocalStorage('timeOnVariant')
+    if (timeOnVariantLS !== 'no deadline'){
+        const [hours, minutes] = timeOnVariantLS        
+        time(allProblemsMain, arrayCountProblem, isVariant, hours, minutes) // Если формат ЕГЭ, то работаем c time
+    }
 
     // nameVariant
     if (numberVariant === 0) nameVariant.innerHTML = 'Тестовая часть' // Если создан рандомно
@@ -185,7 +195,11 @@ function processVariant(){
     
 
     document.addEventListener('click', event => { // Обработка события - нажатие на "обновить страницу"
-        if (event.target.classList[0] === 'time2') location.reload() 
+        if (event.target.classList[0] === 'time2') {
+            if (getLocalStorage('fromStats') === 1) setLocalStorage('fromStats', 0)
+            if (getLocalStorage('endVariant') === 1) setLocalStorage('endVariant', 0)
+            location.reload() 
+        }
     })
 
 
