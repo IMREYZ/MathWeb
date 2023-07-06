@@ -118,10 +118,10 @@ function processStress(){
         setLocalStorage('randomProblem', randomStress())
 
         // Добавляем deadLine 
-        const thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')} `
+        const thisTime = getTime('full')
         const randomProblem = getLocalStorage('randomProblem').number
         const time = timeOnProblem[randomProblem]
-        setLocalStorage('deadLine', deadLine(thisTime, time[0], time[1]))
+        setLocalStorage('deadLine', deadLine(thisTime, 0, time[0], time[1]))
     }
 
     // Закидываем задачу на страницу (даже при обновлении)
@@ -137,7 +137,7 @@ function processStress(){
 
             // Пока есть время, обновляем время
             if (!deadLineNew()){
-                const thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')}`
+                const thisTime = getTime('full')
 
                 const timeLeftDemo = titleTime(thisTime, getLocalStorage('deadLine'))
                 let timeLeftResult = ''
@@ -189,12 +189,12 @@ function processStress(){
             }, 500)
 
             // Формируем дату для дедлайна (текущее время)
-            const thisTime = `${getTime('h')}:${getTime('m')}:${getTime('s')} `
+            const thisTime = getTime('full')
             
             // Узнаем deadLine новой задачи
             const randomProblem = getLocalStorage('randomProblem').number
             const time = timeOnProblem[randomProblem]
-            setLocalStorage('deadLine', deadLine(thisTime, time[0], time[1]))
+            setLocalStorage('deadLine', deadLine(thisTime, 0, time[0], time[1]))
 
             // disabled
             const inputAll = document.querySelector('.input')
