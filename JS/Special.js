@@ -52,7 +52,6 @@ function processSpecial(){
         
         setLocalStorage('countProblem', arrayCountProblem)
         setLocalStorage('numberVariant', -1)
-        setLocalStorage('timeOnVariant', 'no deadline')
     })
 
 

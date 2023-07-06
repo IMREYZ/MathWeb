@@ -63,8 +63,8 @@ function time(allProblemsMain, arrayCountProblem, isVariant, hour, minute){ // �
     const timeFull = getTime('full') // Определяем текущее время
     
     // (Если нет deadLine или againVariant === afk) И вариант НЕ в просмотре, ставим новый deadLine и afk ==> deadLinePicked
-    if ((!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk') && getLocalStorage('fromStats') * getLocalStorage('endVariant') !== 1){
-        setLocalStorage('deadLine', deadLine(timeFull, hour, minute, 1))
+    if ((!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk') && getLocalStorage('fromStats') !== 1 && getLocalStorage('endVariant') !== 1){
+        setLocalStorage('deadLine', deadLine(timeFull, hour, minute, 0))
         setLocalStorage('againVariant', 'deadLinePicked')
     }
 

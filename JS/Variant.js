@@ -153,10 +153,23 @@ function processVariant(){
     
 
     const timeOnVariantLS = getLocalStorage('timeOnVariant')
-    if (timeOnVariantLS !== 'no deadline'){
+    if (timeOnVariantLS !== 'no deadline') {
         const [hours, minutes] = timeOnVariantLS        
-        time(allProblemsMain, arrayCountProblem, isVariant, hours, minutes) // Если формат ЕГЭ, то работаем c time
+        time(allProblemsMain, arrayCountProblem, isVariant, hours, minutes)
     }
+    // if (timeOnVariantLS !== 'no deadline'){
+    //     if (timeOnVariantLS === 'special'){
+    //         const haveMinutes = allProblemsMain.length * 5
+    //         const [hours, minutes] = [parseInt(haveMinutes / 60), haveMinutes % 60]
+    //         time(allProblemsMain, arrayCountProblem, isVariant, hours, minutes)
+    //     }
+    //     if (timeOnVariantLS !== 'special'){ 
+    //         const [hours, minutes] = timeOnVariantLS        
+    //         time(allProblemsMain, arrayCountProblem, isVariant, hours, minutes) // Если формат ЕГЭ, то работаем c time
+    //     }
+    // }
+
+
 
     // nameVariant
     if (numberVariant === 0) nameVariant.innerHTML = 'Тестовая часть' // Если создан рандомно

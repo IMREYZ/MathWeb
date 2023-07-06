@@ -38,6 +38,7 @@ function processIndex(){
 
     const hoursHTML = document.querySelector('.hours')
     const minutesHTML = document.querySelector('.minutes')
+    const checkboxTime = document.querySelector('.checkboxTime')
 
     // Скрываем кнопку "вариант"
     variant.disabled = true
@@ -342,15 +343,21 @@ function processIndex(){
         if (event.target.classList[0] !== 'checkboxTime') return
 
         const boolChecked = event.target.checked
+        const hoursValue = +hoursHTML.value
+        const minutesValue = +minutesHTML.value
 
         hoursHTML.disabled = !boolChecked
         minutesHTML.disabled = !boolChecked
+
+        if (boolChecked) setLocalStorage('timeOnVariant', [hoursValue, minutesValue])
+        else setLocalStorage('timeOnVariant', 'no deadline')
     })
 
     document.addEventListener('input', event => {
         if (!['hours', 'minutes'].includes(event.target.classList[0])) return
 
         event.target.value = event.target.value.replace(/[-]/g, '')
+        event.target.value = withOutBadZero(event.target.value)
 
         const hoursValue = +hoursHTML.value
         const minutesValue = +minutesHTML.value
@@ -359,10 +366,24 @@ function processIndex(){
         if (hoursValue >= 4) hoursHTML.value = 3
         if (minutesValue >= 60) minutesHTML.value = 0
 
+        setLocalStorage('timeOnVariant', [hoursValue, minutesValue])
 
         changeBtnVariant()
              
     })
+
+    const timeOnVariant = getLocalStorage('timeOnVariant')
+    if (timeOnVariant && timeOnVariant === 'no deadline'){
+        checkboxTime.checked = true
+    }
+
+    if (timeOnVariant) {
+        if (timeOnVariant === 'no deadline') {
+            checkboxTime.checked = false
+            minutesHTML.disabled = true
+            hoursHTML.disabled = true
+        } else [hoursHTML.value, minutesHTML.value] = timeOnVariant
+    }
     
 
 
@@ -392,7 +413,6 @@ function processIndex(){
         const finishBtnValue = +document.querySelector('.finish').value
         setLocalStorage('fromAndTo', {start: startBtnValue, finish: finishBtnValue})
 
-        const checkboxTime = document.querySelector('.checkboxTime')
         const hoursValue = +hoursHTML.value
         const minutesValue = +minutesHTML.value
 
@@ -407,6 +427,7 @@ function processIndex(){
         // Удаляем данные с LocalStr
         cleanUpLocalStorage()
     })
+    
 
     document.addEventListener('click', event => {
         if (event.target.classList[0] !== 'indexText') return
@@ -416,7 +437,6 @@ function processIndex(){
 
         setLocalStorage('fromStats', 1)
         setLocalStorage('idVariant', +event.target.id)
-        setLocalStorage('timeOnVariant', 'no deadline')
         window.location.pathname = `/MathWeb/HTML/variant.html`
     })
 }
