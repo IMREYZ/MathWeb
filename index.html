@@ -156,9 +156,23 @@
             </div>
         </div>
 
-        <div class="timeOnVariantIndex" title="Данное время будет для всех будущих вариантов">
-            <div class="w900"><span>Время </span>
-            <span style="position: relative; left: 4px; top: 2px; color: red; font-size: 30px;">🛈 </span>  </div> 
+        <div class="timeOnVariantIndex">
+            <div class="w900" style="position: relative; top: 2px; height: 30px;">
+                <!-- <span style="position: relative; left: 4px; top: 2px; color: red; font-size: 30px;">🛈 </span>  -->
+                <!-- <div class="text-ex-tooltip">
+                    Время <img src="/MathWeb/img/icon.png" height="20px" style="position: relative; top: 3px;">
+                    <div class="tooltip-content">
+                        <p>Lorem ipsum dolor sit amet</p>
+                    </div>
+                </div> -->
+                Время
+                <span class="tooltip">
+                    <button class="tooltip-toggle" type="button">
+                     <img src="/MathWeb/img/icon.png" height="20px">
+                    </button>
+                    <span class="tooltip-text">Данное время будет для всех будущих вариантов.</span>
+                  </span>
+            </div> 
 
             <div style='margin-top: 5px; margin-bottom: 5px'>
                 <input class="checkboxTime" type="checkbox" checked="true"> Использовать время
