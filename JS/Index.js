@@ -373,17 +373,17 @@ function processIndex(){
     })
 
     const timeOnVariant = getLocalStorage('timeOnVariant')
-    if (timeOnVariant && timeOnVariant === 'no deadline'){
-        checkboxTime.checked = true
-    }
+    if (!timeOnVariant) setLocalStorage('timeOnVariant', [0, 30])
 
-    if (timeOnVariant) {
-        if (timeOnVariant === 'no deadline') {
-            checkboxTime.checked = false
-            minutesHTML.disabled = true
-            hoursHTML.disabled = true
-        } else [hoursHTML.value, minutesHTML.value] = timeOnVariant
-    }
+    else if (timeOnVariant === 'no deadline') {
+        checkboxTime.checked = false
+        minutesHTML.disabled = true
+        hoursHTML.disabled = true
+        
+    } else [hoursHTML.value, minutesHTML.value] = timeOnVariant
+
+
+    
     
 
 
