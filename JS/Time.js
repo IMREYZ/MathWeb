@@ -51,7 +51,8 @@ function deadLineNew(){ // Прошел ли дедлайн?   Если прош
 
     thisTime = +thisTime.replaceAll(':', '')
     deadLine = +deadLine.replaceAll(':', '')
-    if (deadLine < 10000 && thisTime > 10000) deadLine += 240000 // Случай с 23 и 00
+    if (deadLine < 40000 && thisTime > 10000) deadLine += 240000 // Случай с 23 и 00
+    
     return deadLine - thisTime <= 0 || deadLine - thisTime >= 110000 // Если разность <= 0 или >= 110_000 --> время вышло
 }
 

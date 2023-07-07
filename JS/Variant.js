@@ -73,9 +73,11 @@ function processVariant(){
 
 
     // Если связано с просмотром варианта
-    if (getLocalStorage('fromStats') !== null || getLocalStorage('endVariant') === 1){
+    if (getLocalStorage('fromStats') !== null || getLocalStorage('endVariant') !== null){
 
-        if (!getLocalStorage('fromStats') && getLocalStorage('endVariant') === 0) { // Просмотр --> решение
+        console.log(getLocalStorage('fromStats'), getLocalStorage('endVariant'))
+        
+        if ((!getLocalStorage('fromStats') && getLocalStorage('endVariant') === 0)){ // Просмотр --> решение
             setLocalStorage('startTime', getTime('full'))
         }
 
