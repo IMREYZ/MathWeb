@@ -1526,7 +1526,7 @@ canvas {
     text-transform: none;
     padding: 20px 18px 18px 22px; 
     border-radius: 10px;
-    width: 256px; 
+    width: 306px; 
     position: absolute;
     bottom: 100%;
     left: 50%; 
@@ -1542,5 +1542,5 @@ canvas {
 
 .tooltip-toggle{
     position: relative;
-    bottom: 18px;
+    bottom: 19px;
 }
