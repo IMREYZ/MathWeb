@@ -6,11 +6,13 @@ import { allProblems } from "./Base.js"
 
 
 function eventSendAnswer() { // Обработка события "отправить ответ"
-    document.addEventListener('click', (event) => {
-        if (event.target.classList[0] !== 'submit' || window.location.pathname === '/MathWeb/HTML/stress.html') return // Если событие - не кнопка sumbit, то выходим
+    function sendAnswerFunc(event){        
+        if (event !== 'button' && (event.target.classList[0] !== 'submit' || window.location.pathname === '/MathWeb/HTML/stress.html')) return // Если событие - не кнопка sumbit, то выходим
 
+        let parent
+        if (event.target) parent = event.target.closest('.conteyner') // Родители кнопки
+        else parent = document.activeElement.closest('.conteyner')
 
-        const parent = event.target.closest('.conteyner') // Родители кнопки
         const answerText = parent.querySelector('.answer') // Весь блок answer (для add('white'))
         const answer = parent.querySelector('.input') // Дочерний input
         const answerInput = answer.value.replace(',', '.') // Value этого input
@@ -66,6 +68,14 @@ function eventSendAnswer() { // Обработка события "отправ�
             setLocalStorage('statsNumber', statsNumberLocalStr)
 
             statsNumber.innerHTML = getStatsNumberText(thisObject)
+        }
+    }
+
+    document.addEventListener('click', sendAnswerFunc)
+    
+    document.addEventListener('keydown', (button) => {
+        if (button.key === 'Enter' && document.activeElement.classList[0] === 'input' && window.location.pathname !== '/MathWeb/HTML/stress.html') {            
+            sendAnswerFunc('button')
         }
     })
 }
