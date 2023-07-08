@@ -74,8 +74,6 @@ function processVariant(){
 
     // Если связано с просмотром варианта
     if (getLocalStorage('fromStats') !== null || getLocalStorage('endVariant') !== null){
-
-        console.log(getLocalStorage('fromStats'), getLocalStorage('endVariant'))
         
         if ((!getLocalStorage('fromStats') && getLocalStorage('endVariant') === 0)){ // Просмотр --> решение
             setLocalStorage('startTime', getTime('full'))
@@ -159,6 +157,8 @@ function processVariant(){
         const [hours, minutes] = timeOnVariantLS        
         time(allProblemsMain, arrayCountProblem, isVariant, hours, minutes)
     }
+
+
     // if (timeOnVariantLS !== 'no deadline'){
     //     if (timeOnVariantLS === 'special'){
     //         const haveMinutes = allProblemsMain.length * 5
@@ -179,7 +179,7 @@ function processVariant(){
     else if (getLocalStorage('fromStats') !== null) nameVariant.innerHTML = myVariantPrevious.name  // Если просмотр
     else nameVariant.innerHTML = specialVariants[numberVariant].name // Если спец вариант
 
-    isVariant ? nameVariant.innerHTML += ' (вариант формата ЕГЭ)' : nameVariant.innerHTML += ' (вариант не формата ЕГЭ)' // Заголовок 
+    //isVariant ? nameVariant.innerHTML += ' (вариант формата ЕГЭ)' : nameVariant.innerHTML += ' (вариант не формата ЕГЭ)' // Заголовок 
 
 
 
@@ -202,8 +202,6 @@ function processVariant(){
         if (popUpArrayClassList.includes(classThisElement)) popUpMain.classList.remove('active')
         if (popUp1ArrayClassList.includes(classThisElement)) popUpSecond.classList.remove('active')
     })
-
-
 
 
     yesBtn.addEventListener('click', () => endVariant(allProblemsMain, arrayCountProblem, isVariant) ) // Нажатие на "Да" в PopUp

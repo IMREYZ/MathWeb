@@ -1,8 +1,8 @@
 import { getLocalStorage, setLocalStorage, removeLocalStorage } from "./LocalStorage.js"
 import { problemHTMLstress } from "./ProblemHTML.js"
-import { deadLine, titleTime, deadLineNew, getTime } from "./Time.js"
+import { deadLine, titleTimeWithOutHours, deadLineNew, getTime } from "./Time.js"
 import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
-import { background } from "./ChangeLayout.js"
+import { background, closeToShow } from "./ChangeLayout.js"
 import { randomStress } from "./OtherFunctions.js"
 import { timeOnProblem } from "./Base.js"
 
@@ -76,8 +76,7 @@ function processStress(){
         thisConteyner.innerHTML = getRightAnswerHTML(getLocalStorage('randomProblem'))
 
         const rightAnswer = document.querySelector('.showRightAnswer')
-        rightAnswer.classList.remove('close')
-        rightAnswer.classList.add('show')
+        closeToShow(rightAnswer)
 
         const conteynerInput = document.querySelector('.conteynerInput') // conteynerInputStress --> conteynerInput
         conteynerInput.classList.add('inputConteynerInCenter') // conteynerInput --> inputConteynerInCenter
@@ -139,12 +138,10 @@ function processStress(){
             // Пока есть время, обновляем время
             if (!deadLineNew()){
                 const thisTime = getTime('full')
-
-                const timeLeftDemo = titleTime(thisTime, getLocalStorage('deadLine'))
-                let timeLeftResult = ''
-                for (let index = 3; index < timeLeftDemo.length; index ++) timeLeftResult += timeLeftDemo[index]
-
-                timePlace.innerHTML = `<span class='thisScore'> ${timeLeftResult} </span> осталось`
+                const deadline = getLocalStorage('deadLine')
+                const timeLeft = titleTimeWithOutHours(thisTime, deadline)
+                
+                timePlace.innerHTML = `<span class='thisScore'> ${timeLeft} </span> осталось`
             }
 
             // Если deadLine закончился

@@ -1,6 +1,6 @@
 import { getLocalStorage, setLocalStorage, removeLocalStorage, cleanUpLocalStorage } from "./LocalStorage.js"
 import { getFullDaysBeforeExam, daysBeforeExam } from "./DaysBeforeExam.js"
-import { changeBtnVariant, defaultBtnVariant } from "./ChangeLayout.js"
+import { changeBtnVariant, closeToShow, defaultBtnVariant } from "./ChangeLayout.js"
 import { withOutBadZero } from "./OtherFunctions.js"
 import { pushArrayCountProblem, countProblemToNumber } from "./VariantFunctions.js"
 import { allProblems, problems } from "./Base.js"
@@ -18,7 +18,7 @@ function processIndex(){
 
 
     if (!getLocalStorage('special')){
-        let result = {}
+        const result = {}
         allProblems.forEach(element => result[element.id] = false)
         
         setLocalStorage('special', result)
@@ -67,11 +67,8 @@ function processIndex(){
         removeLocalStorage('stats')
 
         tableInfo.classList.add('close')
-
-        netTabl.classList.remove('close')
-        netTabl.classList.add('show')
-
         deleteTable.classList.add('close')
+        closeToShow(netTabl)
 
         removeLocalStorage('countVariant')
     })
@@ -244,7 +241,7 @@ function processIndex(){
         countProblemToNumber(1)
         
         // Удаляем жирность всем кнопкам
-        const allCountProblem = [...document.getElementsByClassName('countProblem')]
+        const allCountProblem = [...document.querySelectorAll('.countProblem')]
         allCountProblem.forEach(element => element.classList.remove('font-weight'))
 
         // Смена кнопки "Составить вариант"
@@ -261,7 +258,7 @@ function processIndex(){
         countProblemToNumber(0)
         
         // Удаляем жирность всем кнопкам
-        const allCountProblem = [...document.getElementsByClassName('countProblem')]
+        const allCountProblem = [...document.querySelectorAll('.countProblem')]
         allCountProblem.forEach(element => element.classList.remove('font-weight'))
 
         // Смена кнопки "Составить вариант"
@@ -394,7 +391,7 @@ function processIndex(){
         cleanUpLocalStorage()
 
         // Удаляем жирность всем кнопкам
-        const allCountProblem = [...document.getElementsByClassName('countProblem')]
+        const allCountProblem = [...document.querySelectorAll('.countProblem')]
         allCountProblem.forEach(element => element.classList.remove('font-weight'))
 
         // Добавление в localStorage массив значений количества заданий и обнуление value

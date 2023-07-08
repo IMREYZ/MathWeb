@@ -39,6 +39,19 @@ function titleTime(thisTime, deadLine){ // Обратный отсчет вре�
 
 
 
+function titleTimeWithOutHours(thisTime, deadLine){
+    const fullTitleTime = titleTime(thisTime, deadLine)
+    let timeLeftResult = ''
+    
+    for (let index = 3; index < fullTitleTime.length; index ++) { 
+        timeLeftResult += fullTitleTime[index]
+    }
+
+    return timeLeftResult
+}
+
+
+
 function timeForSolution(thisTime, startTime){ // Время решения варианта 1:01 --> 4:56
     return titleTime(startTime, thisTime)
 }
@@ -101,4 +114,4 @@ function getTime(value) { // Возвращение времени
 
 
 
-export {deadLine, timeForSolution, timeToArray, titleTime, deadLineNew, time, getTime}
+export {deadLine, timeForSolution, timeToArray, titleTime, deadLineNew, time, getTime, titleTimeWithOutHours}

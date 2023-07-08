@@ -37,8 +37,8 @@ function textPopUp(answer, rightAnswers){ // HTML PopUp контент для Н
     <hr/>
     <div class='statsForEge1'>Общая информация</div>
     <div>Всего заданий: <span class='w900'>${answer.length}</span> </div> 
-    <div>Верно решено: <span class='w900'>${rightAnswers} </span></div>
-    <div>Неверно решено: <span class='w900'>${answer.length - rightAnswers} </span></div>
+    <div>Решено верно: <span class='w900 greenColor'>${rightAnswers} </span></div>
+    <div>Решено неверно: <span class='w900 redColor'>${answer.length - rightAnswers} </span></div>
     <div>Процент выполнения: <span class='w900'>${parseInt(rightAnswers / answer.length * 100)}% </span></div>
     <div>Потраченное время: <span class='w900'> ${solutionTime}</span></div>
     `
