@@ -17,6 +17,7 @@ function endVariant(allProblemsMain, arrayCountProblem, isVariant){ // Коне�
     let answer = [] // Массив input ответов
     inputVariant.forEach(element => answer.push(element.value)) // Введенные ответы
 
+    // let countRightAnswer = ['-', new Array(11).fill(100)].flat(1)
     let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // Количество верных задач
     let rightAnswers = 0 // Количество правильных ответов
   

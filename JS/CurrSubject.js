@@ -10,6 +10,7 @@ import { problems, themeProblems } from "./Base.js"
 // Если на странице currSubject
 function processCurrSubject(){
 
+    
     // Считываем номер задания и имя задания
     const id = getLocalStorage('idProblem') // Номер задания
     const name = getLocalStorage('nameProblem') // Имя задания
@@ -57,7 +58,7 @@ function processCurrSubject(){
 
     if (thisSelect) { // Если есть select
         sortProblem(thisSelect) // Сортировка к изначальному виду
-        currSort.selected="selected" // Возвращаем к тому, что было до обновления
+        currSort.selected = true // Возвращаем к тому, что было до обновления
     }
 
     
@@ -121,7 +122,7 @@ function processCurrSubject(){
         setLocalStorage('thisProblems', newThisProblems) // Обновляем текущие задачи
         
 
-        
+        location.reload()        
     
         allConteynerProblem.innerHTML = ''
         getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Выводим задания
@@ -142,6 +143,8 @@ function processCurrSubject(){
         sortProblem(thisOption) // Сортируем по новому изменению
 
         setLocalStorage('select', thisOption) // Добавляем в LocalStr select
+
+        location.reload()
 
         allConteynerProblem.innerHTML = ''
         getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Образовываем обновленную страницу
@@ -169,6 +172,8 @@ function processCurrSubject(){
 
         setLocalStorage('checkbox', []) // checkbox = []
 
+        location.reload()
+
         currColor(getThisProblems())
         currInput(getThisProblems())
         currInfoShowRightAnswer(getThisProblems())
@@ -190,7 +195,9 @@ function processCurrSubject(){
 
         setLocalStorage('thisProblems', allProblems) // Все задачи
         sortProblem(getLocalStorage('select')) // Сортируем
-    
+        
+        location.reload()
+
         allConteynerProblem.innerHTML = ''
         getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Выводим задания
 

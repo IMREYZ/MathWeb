@@ -1027,39 +1027,6 @@ export {allProblems, problems, themeProblems, specialVariants, timeOnProblem, se
 
 
 
-// eventSolution() // Открытие/закрытие решения
-// renderSpecial() // 4051 = false (для новых задач)
-// renderStatsNumber() // 4051 = {0, 0, 0} (для новых задач)
-// eventClickOnStar() // Нажатие на звезду
-// showRightAnswerHTML() // Открытие/закрытие правильного ответа
-// deleteOldStats() // Удаление старой статистики
-// eventSendAnswer() // Отправка задания
-// clearStatsByDblClick() // Удаление статистики о задании
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

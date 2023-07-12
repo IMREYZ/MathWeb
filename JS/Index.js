@@ -424,7 +424,7 @@ function processIndex(){
         // Удаляем данные с LocalStr
         cleanUpLocalStorage()
     })
-    
+
 
     document.addEventListener('click', event => {
         if (event.target.classList[0] !== 'indexText') return
