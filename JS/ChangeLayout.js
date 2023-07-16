@@ -2,14 +2,14 @@ import { summArray } from "./OtherFunctions.js"
 import { pushArrayCountProblem, getObjectsFromAndTo } from "./VariantFunctions.js"
 
 
-function closeToShow(element) {
+function closeToShow(element) { // close -> show
     element.classList.remove('close')
     element.classList.add('show')
 }
 
 
 
-function showToClose(element) {
+function showToClose(element) { // show -> close
     element.classList.remove('show')
     element.classList.add('close')
 }
@@ -23,20 +23,20 @@ function background(color, index) { // Смена background цвета
     const thisNumber = allNumbers[index] // Дочерний number
     const thisAnswer = allAnswer[index] // Дочерний answer
     
-    stainingBackground(thisNumber, thisAnswer, color)
+    stainingBackground(thisNumber, thisAnswer, color) // Окраска
 }
 
 
 
 function backgroundByCurr(id, color) { // Смена background цвета для currSubj
-    const allConteyners = [...document.querySelectorAll('.conteyner')] // Все контейнеры задач, КОТОРЫЕ ЕСТЬ СЕЙЧАС
+    const allConteyners = [...document.querySelectorAll('.conteyner')] // Все контейнеры задач
 
     allConteyners.forEach(element => { // Перебираем все задачи
         if (+element.id === id) { // Если id задачи === нашему id, которое мы хотим найти, то
             const thisNumber = element.querySelector('.number') // Дочерний number
             const thisAnswer = element.querySelector('.answer') // Дочерний answer
 
-            stainingBackground(thisNumber, thisAnswer, color)
+            stainingBackground(thisNumber, thisAnswer, color) // Окраска
         }
     })
 }
@@ -68,23 +68,23 @@ function changeBtnVariant() { // Смена кнопки "Вариант" (из�
     const variant = document.querySelector('.variantBTN') // Кнопка создания варианта
     const startBtn = document.querySelector('.start') // Min сложность элемент
     const finishBtn = document.querySelector('.finish') // Max сложность элемент
-    const hoursHTML = document.querySelector('.hours') // Min сложность элемент
-    const minutesHTML = document.querySelector('.minutes') // Max сложность элемент
+    const hoursHTML = document.querySelector('.hours') // hours элемент
+    const minutesHTML = document.querySelector('.minutes') //minttes элемент
 
     const arrayCountProblem = pushArrayCountProblem() // Массив кол-ва задач
     const summProblems = summArray(arrayCountProblem) // Количество задач всего
-    const valueStart = +startBtn.value // Значение
-    const valueFinish = +finishBtn.value // Значение
-    const hoursValue = +hoursHTML.value // Значение
-    const minutesValue = +minutesHTML.value // Значение
+    const valueStart = +startBtn.value // Значение min
+    const valueFinish = +finishBtn.value // Значение max
+    const hoursValue = +hoursHTML.value // Значение hours
+    const minutesValue = +minutesHTML.value // Значение minutes
+
+    const boolArrayCountProblem = arrayCountProblem.some((element, index) => index !== 0 && getObjectsFromAndTo(index, valueStart, valueFinish).length < element) // валидность arrayCountProblem
+    const boolTime = hoursValue === 0 && minutesValue === 0 // 0 часов, 0 минут ?
+    variant.disabled = summProblems === 0 || boolArrayCountProblem || boolTime  // Если сумма === 0 || boolArrayCountProblem || boolTime => disabled = true
 
     variant.innerHTML = `Составить вариант (Выбрано заданий: ${summProblems})`
-    variant.disabled = summProblems === 0 || arrayCountProblem.some((element, index) => index !== 0 && getObjectsFromAndTo(index, valueStart, valueFinish).length < element)
 
-
-    if (hoursValue === 0 && minutesValue === 0) variant.disabled = true
-
-    if (variant.disabled) variant.classList.add('boom')
+    if (variant.disabled) variant.classList.add('boom') // Эффект boom
     else variant.classList.remove('boom') // Эффект boom
 }
 

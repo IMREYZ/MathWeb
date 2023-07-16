@@ -1,36 +1,64 @@
-import { getLocalStorage, setLocalStorage, getThisProblems } from "./LocalStorage.js"
+import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
 import { searchObjectById } from "./OtherFunctions.js"
 import { allProblems } from "./Base.js"
+import { problems } from "./Base.js"
 
 
-function createAndSaveColors(thisProblems){ // Создание и/или сохрание цветов
-    document.addEventListener('click', event => {
-        if (event.target.classList[0] !== 'submit') return
+function createAndSaveColorsFunc(event){
+    if (event !== 'button' && event.target.classList[0] !== 'submit') return
+
+    const id = getLocalStorage('idProblem') // Номер задания
+    const thisProblems = problems[id]
+        
+    if (!getLocalStorage('color')){ // Если нет в LocalStr createAndSaveColors, добавить gray
+        const array = {}
+        for (let index = 0; index < thisProblems.length; index ++) array[thisProblems[index].id] = 'gray'
+        setLocalStorage('color', array)    
+    }
+
+    let conteynerFull
+    if (event.target) conteynerFull = event.target.closest('.conteyner')
+    else conteynerFull = document.activeElement.closest('.conteyner')
+
+    const headerThisProblem = conteynerFull.querySelector('.number') // Верный ответ HTML
+    const objColor = getLocalStorage('color') // Объект {4001: gray, 4002: green, 4003: red...}
+    const objAnswer = getLocalStorage('currInfoShowRightAnswer') // Объект {4001: gray, 4002: green, 4003: red...}
+    const objSolution = getLocalStorage('showSolution') // Объект {4001: gray, 4002: green, 4003: red...}
+    const objInput = getLocalStorage('inputCurr') // Объект {4001: gray, 4002: green, 4003: red...}
 
 
-        if (!getLocalStorage('color')){ // Если нет в LocalStr createAndSaveColors, добавить gray
-            const array = {}
-            for (let index = 0; index < thisProblems.length; index ++) array[thisProblems[index].id] = 'gray'
-            setLocalStorage('color', array)    
+    const idThisProblemHTML = conteynerFull.id // id Контейнера    
+    const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу
+    const idThisProblem = thisProblem.id // id этой задачи
+
+    objColor[idThisProblem] = headerThisProblem.classList[1] // Изменение этой задачи
+    setLocalStorage('color', objColor) // Сохранение в LocalStr
+
+    if (objColor[idThisProblem] === 'green'){
+        if (objAnswer) {
+            objAnswer[idThisProblem] = false
+            setLocalStorage('currInfoShowRightAnswer', objAnswer) // Сохранение в LocalStr
         }
-
-        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания
-        const headerThisProblem = conteynerFull.querySelector('.number') // Верный ответ HTML
-        const objInfo = getLocalStorage('color') // Объект {4001: gray, 4002: green, 4003: red...} 
-
-        const idThisProblemHTML = conteynerFull.id // id Контейнера    
-        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу
-        const idThisProblem = thisProblem.id // id этой задачи
-
-        objInfo[idThisProblem] = headerThisProblem.classList[1] // Изменение этой задачи
-        setLocalStorage('color', objInfo) // Сохранение в LocalStr
-    })
+        if (objSolution) {
+            objSolution[idThisProblem] = false
+            setLocalStorage('showSolution', objSolution) // Сохранение в LocalStr
+        }
+        if (objInput) {
+            objInput[idThisProblem] = ''
+            setLocalStorage('inputCurr', objInput) // Сохранение в LocalStr
+        }
+    }   
 }
 
 
 
+
+function createAndSaveColors(){ document.addEventListener('click', createAndSaveColorsFunc) } // Создание и/или сохрание цветов
+
+
+
 function createAndSaveInputs(thisProblems){ // Создание и/или сохрание input
-    document.addEventListener('input', (event) => {
+    document.addEventListener('input', event => {
         if (event.target.classList[0] !== 'input') return // Если событие - не кнопка input, то выходим
         
         if (!getLocalStorage('inputCurr')){ // Если нет в LocalStr currInfoShowRightAnswer, добавить
@@ -120,4 +148,4 @@ function createAndSaveAll(problems){
 
 
 
-export { createAndSaveInfoAnswers, createAndSaveSolution, createAndSaveAll }
+export { createAndSaveInfoAnswers, createAndSaveSolution, createAndSaveAll, createAndSaveColorsFunc }

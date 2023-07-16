@@ -3,11 +3,13 @@ import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
 import { backgroundByCurr, showToClose, closeToShow } from "./ChangeLayout.js"
 import { searchObjectById } from "./OtherFunctions.js"
 import { allProblems } from "./Base.js"
+import { createAndSaveColorsFunc } from "./SaveProblem.js"
 
 
 function eventSendAnswer() { // Обработка события "отправить ответ"
 
-    function sendAnswerFunc(event){        
+    function sendAnswerFunc(event){      
+
         if (event !== 'button' && (event.target.classList[0] !== 'submit' || window.location.pathname === '/MathWeb/HTML/stress.html')) return // Если событие - не кнопка sumbit, то выходим
 
         let parent
@@ -52,11 +54,12 @@ function eventSendAnswer() { // Обработка события "отправ�
             } else {
                 backgroundByCurr(id, 'red') // Ставим фон задаче с id как у контейнера
                 const currObject = searchObjectById(id, allProblems) // Находим объект текущей задачи     
-                conteynerRightAnswer.innerHTML = getRightAnswerHTML(currObject) // В контейнер правильного ответа добавляем текст
+                if (!conteynerRightAnswer.innerHTML) conteynerRightAnswer.innerHTML = getRightAnswerHTML(currObject) // В контейнер правильного ответа добавляем текст
                 const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer') // show "Показать ответ
 
                 conteynerInput.style.left = '13px' // ВЕРСТКА
-                conteynerSolution.innerHTML = 'Показать решение'
+                
+                if (conteynerSolution.innerHTML !== 'Скрыть решение') conteynerSolution.innerHTML = 'Показать решение'
 
                 closeToShow(rightAnswer)
 
@@ -80,6 +83,7 @@ function eventSendAnswer() { // Обработка события "отправ�
     document.addEventListener('keydown', (button) => {
         if (button.key === 'Enter' && document.activeElement.classList[0] === 'input' && window.location.pathname !== '/MathWeb/HTML/stress.html') {            
             sendAnswerFunc('button')
+            createAndSaveColorsFunc('button')
         }
     })
 }

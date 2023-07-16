@@ -71,7 +71,7 @@ function popUpProcces(){
     })
 
 
-    yesBtn.addEventListener('click', () => endVariant()) // Нажатие на "Да" в PopUp
+    yesBtn.addEventListener('click', () => { endVariant() }) // Нажатие на "Да" в PopUp
 }
 
 

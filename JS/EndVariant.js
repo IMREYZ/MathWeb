@@ -4,8 +4,11 @@ import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
 import { background, closeToShow } from "./ChangeLayout.js"
 import { specialVariants, secondBallArray } from "./Base.js"
 import { getAllProblemMain, getArrayCountProblem, getIsVariant } from "./GetVariableForVariant.js"
+import { createAndSaveInfoAnswers, createAndSaveSolution } from "./SaveProblem.js"
+import { currInfoShowRightAnswer, currSolution } from "./CurrProblem.js"
 
 function endVariant(){ // Конец варианта
+
     const allProblemMain = getAllProblemMain() // Массив, состоящий из объектов заданий
     const arrayCountProblem = getArrayCountProblem() // Считываем кол-во выбранных номеров  getLocalStorage('countProblem')
     const isVariant = getIsVariant()
@@ -136,18 +139,20 @@ function endVariant(){ // Конец варианта
 
 
 
-        infoLocalStorageObject.stats = arrayRightAnswer // Добавляем в объект варианта статистику варианта
-        infoLocalStorageObject.problems = getLocalStorage('variant') // Добавляем вариант
-        infoLocalStorageObject.colors = getLocalStorage('colors') // Добавляем цвета
-        infoLocalStorageObject.idVariant = getLocalStorage('countVariant') // Добавляем id задачи как len stats + 1
-        infoLocalStorageObject.countProblem = arrayCountProblem // Количество проблем (для таблицы)
-        infoLocalStorageObject.answers = answer
-        infoLocalStorageObject.name = nameVariant // Либо название, либо idVariant
+        infoLocalStorageObject = {
+            stats: arrayRightAnswer,
+            problems: getLocalStorage('variant'), // Добавляем вариант
+            colors: getLocalStorage('colors'), // Добавляем цвета
+            idVariant: getLocalStorage('countVariant'), // Добавляем id задачи как len stats + 1
+            countProblem: arrayCountProblem, // Количество проблем (для таблицы)
+            answers: answer,
+            name: nameVariant
+        }
         
 
-        const arrayInfo = []
-        if (stats) stats.forEach(element => arrayInfo.push(element)) // Проходимся по всем прошлым вариантам 
-        arrayInfo.push(infoLocalStorageObject) // Добавялем текущий вариант
+        let arrayInfo = []
+        if (stats) arrayInfo = [...stats, infoLocalStorageObject]
+        else arrayInfo = [infoLocalStorageObject]        
         setLocalStorage('stats', arrayInfo) // В LocalStr
     }
 

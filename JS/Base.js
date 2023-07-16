@@ -953,17 +953,17 @@ allProblems.forEach(element => { // Распределение по ключу n
     problems[element.number].push(element) // problem[3].push(obj)
 
     if (element.solution){
-        if (element.solution[0] === 1){
+        if (element.solution[0] === 1){ // Если есть СВОЕ решение
             element.solution = {have: true, link: element.solution[1]}
         }
 
-        if (element.solution[0] === 0){ 
+        if (element.solution[0] === 0){  // Если есть ЧУЖОЕ решение
             element.solution = {have: false, numberPrototype: element.solution[1]}
 
-            const numberPrototype = element.solution.numberPrototype
-            const objectPrototype = searchObjectByProblem(numberPrototype, allProblems)        
+            const numberPrototype = element.solution.numberPrototype // Номер прототипа
+            const objectPrototype = searchObjectByProblem(numberPrototype, allProblems) // Находим объект прототипа       
 
-            element.solution.objectPrototype = objectPrototype
+            element.solution.objectPrototype = objectPrototype // Добавляем прототип
         }
     }
 

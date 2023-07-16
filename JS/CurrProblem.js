@@ -54,15 +54,14 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
 function currInput(thisProblems){ // Появление input в currSubject в случае обновления страницы
     const inputAll = document.querySelectorAll('.input') // Берем все input со страницы, КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
     const inputLocalStr = getLocalStorage('inputCurr')
-
     const colorLocalStr = getLocalStorage('color')
 
     if (inputLocalStr){ // Если до этого были введены ответы 
-        // thisProblems и inputAll идут в одной сортрировке 
-
         thisProblems.forEach((element, count) => {
+            
             const thisId = element.id // id Задачи
             const thisInput = inputLocalStr[thisId] // input этой задачи
+
             if (colorLocalStr[thisId] !== 'green') inputAll[count].value = thisInput // Передаем сохраненное значение
         })
     }
@@ -77,23 +76,16 @@ function currInfoShowRightAnswer(thisProblems){ // Обновление инфо
     if (infoShowRightAnswer){ // Если в LocalStr есть currInfoShowRightAnswer
         const allConteynerRightAnswer = [...document.querySelectorAll('.conteyner')]// Контейнеры всех задач
 
-        
-
         thisProblems.forEach((element, count) => { // Проходимся по всем задачам
             const thisId = element.id // id Задачи
             const thisBoolean = infoShowRightAnswer[thisId] // true/false
-
             
-
-            // Если true, то
-            if (thisBoolean){
+            if (thisBoolean){ // Если true, то
                 const thisConteyner = allConteynerRightAnswer[count] // Текущий контейнер
                 const thisInfoAnswer = thisConteyner.querySelector('.rightAnswer') // Ответ-HTML этого контейнера
                 const thisPokOtw = thisConteyner.querySelector('.pokOtw') // Надпись-кнопка
-                
-                // close --> show                
-                closeToShow(thisInfoAnswer)
-
+                                
+                closeToShow(thisInfoAnswer) // close --> show
                 thisPokOtw.innerHTML = 'Скрыть ответ: '
             } 
         })
@@ -128,7 +120,7 @@ function currSolution(thisProblems){ // Обновление информаци�
 
 
 
-function currAll(){
+function currAll(){ // Вызов всех curr
     currColor(getThisProblems()) // Сохранение
     currInfoShowRightAnswer(getThisProblems()) // Сохранение
     currInput(getThisProblems()) // Сохранение

@@ -11,10 +11,10 @@ import { currInfoShowRightAnswer, currSolution } from "./CurrProblem.js"
 
 
 function processVariant(){
-    const allProblemMain = getAllProblemMain() // Массив, состоящий из объектов заданий
-    const previousAnswers = getPreviousAnswers()        
     const allConteynerVariant = document.querySelector('.allConteynerVar') // Контейнер всех заданий
     const nameVariant = document.querySelector('.nameVariant') // Имя варианта
+    const allProblemMain = getAllProblemMain() // Массив, состоящий из объектов заданий
+    const previousAnswers = getPreviousAnswers()        
 
     setLocalStorage('variant', allProblemMain) // Записываем список объектов задач в LocalStr в variant (для случая обновления страницы)
     nameVariant.innerHTML = getNameVariant()
@@ -35,13 +35,10 @@ function processVariant(){
     viewingVariant() // Если связано с просмотром варианта
     time()
 
-    
     createAndSaveInfoAnswers(allProblemMain)
     createAndSaveSolution(allProblemMain)
     currInfoShowRightAnswer(allProblemMain)
     currSolution(allProblemMain) 
-
-
 
 
     document.addEventListener('click', event => { // Обработка события - нажатие на "обновить страницу"

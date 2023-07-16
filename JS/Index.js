@@ -436,6 +436,8 @@ function processIndex(){
         setLocalStorage('idVariant', +event.target.id)
         window.location.pathname = `/MathWeb/HTML/variant.html`
     })
+
+    
 }
 
 export {processIndex}
