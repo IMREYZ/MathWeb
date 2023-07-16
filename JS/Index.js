@@ -71,6 +71,8 @@ function processIndex(){
         closeToShow(netTabl)
 
         removeLocalStorage('countVariant')
+        removeLocalStorage('countSpecialVariant')
+        removeLocalStorage('countDefaultVariant')
     })
 
     
@@ -140,7 +142,7 @@ function processIndex(){
             // Заполняем итоговую статистику
             textHTML = `<tr> <td class='zhir'> Общая информация </td>`
                 infoAll.forEach(element => {
-                    const final = element.all === 0 ? '???' : parseInt(element.right / element.all * 100)
+                    const final = element.all === 0 ? '0' : parseInt(element.right / element.all * 100)
                     textHTML += `<td class='zhir'>${element.right} / ${element.all} \n (${final}%)</td>`
                 })
 
@@ -415,8 +417,6 @@ function processIndex(){
 
         if (!checkboxTime.checked) setLocalStorage('timeOnVariant', 'no deadline')
         else setLocalStorage('timeOnVariant', [hoursValue, minutesValue])
-        
-
     })
 
     special.addEventListener('click', () => {

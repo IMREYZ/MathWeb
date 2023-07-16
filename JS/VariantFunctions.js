@@ -23,8 +23,7 @@ function randomProblem(thisIndexProblem, thisCountProblem) { // thisCountProblem
     let result = []
     const myArray = problems[thisIndexProblem] // Масссив задач этого номера
 
-    const start = getLocalStorage('fromAndTo').start // Min сложность
-    const finish = getLocalStorage('fromAndTo').finish // Max сложномть
+    const {start, finish} = getLocalStorage('fromAndTo') // Min сложность
 
 
     function getRandomInt(numberIndex) { return Math.floor(Math.random() * Math.floor(numberIndex)) } // Рандомный индекс
@@ -92,4 +91,26 @@ function getCountProblemForVariant(variant){ // Функиця, которая �
 }
 
 
-export { pushArrayCountProblem, countProblemToNumber, randomProblem, getObjectsFromAndTo, getArrayObjectForSpecialVariants, randomVariant, getCountProblemForVariant } 
+
+
+function getAvgProcentVariant(variant){
+    let sum = 0
+
+    variant.forEach(problem => sum += problem.procent)    
+    
+    if (variant.length === 0) return 0
+    else return parseInt(sum / variant.length)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+export { pushArrayCountProblem, countProblemToNumber, randomProblem, getObjectsFromAndTo, getArrayObjectForSpecialVariants, randomVariant, getCountProblemForVariant, getAvgProcentVariant } 

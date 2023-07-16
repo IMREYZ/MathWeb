@@ -1,5 +1,6 @@
 import { getLocalStorage } from "./LocalStorage.js"
 import { getColorProcent, getStar, getStatsNumberText } from "./GetLayout.js"
+import { getSolution } from "./GetLayout.js"
 
 
 function problemHTMLvariant(problem) { // Вывод задания на HTML на вкладку variant
@@ -7,6 +8,8 @@ function problemHTMLvariant(problem) { // Вывод задания на HTML н
     const objSpecial = getLocalStorage('special') // Массив избранных задач
     const thisBoolean = objSpecial[id] // Избранная задача или нет
     const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
+    const solution = getSolution(problem)
+
 
     return `<div id = ${id} class="conteyner">
     <div class="number gray" > 
@@ -22,8 +25,7 @@ function problemHTMLvariant(problem) { // Вывод задания на HTML н
         <img src='/MathWeb/img/${problem.problem}.jpg'>
 
         <div class='imgSolutionConteyner close'>
-            <div id='QQ'> Решение: </div>
-            <img class='imgSolution' src='/MathWeb/img/NoSolutions.jpg'>
+            ${solution}
         </div>
 
         <div class="answer gray1">
@@ -46,6 +48,8 @@ function problemHTMLstress(problem) { // Вывод задание на HTML н�
     const objSpecial = getLocalStorage('special') // Массив избранных задач
     const thisBoolean = objSpecial[id] // Избранная задача или нет
     const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
+    const solution = getSolution(problem)
+
 
     
     return `<div id = ${id} class="conteynerStress" >
@@ -62,8 +66,7 @@ function problemHTMLstress(problem) { // Вывод задание на HTML н�
         <img class='imgStress' src='/MathWeb/img/${problem.problem}.jpg'>
 
         <div class='imgSolutionConteyner close'>
-            <div id='QQ'> Решение: </div>
-            <img class='imgSolution' src='/MathWeb/img/NoSolutions.jpg'>
+            ${solution}
         </div>
 
         <div class="answer gray1">
@@ -87,7 +90,9 @@ function problemHTMLcurr(problem) { // Вывод задания на HTML на 
     const thisBoolean = objSpecial[id] // Избранная задача или нет
     const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
     const textStatsNumber = getStatsNumberText(problem) // StatsNumber
+    const solution = getSolution(problem)
     
+
 
     return `<div id = ${id} class="conteyner" >
     <div class="number gray" > 
@@ -101,8 +106,7 @@ function problemHTMLcurr(problem) { // Вывод задания на HTML на 
         <img src='/MathWeb/img/${problem.problem}.jpg' title='Тема: ${problem.type}'>
 
         <div class='imgSolutionConteyner close'>
-            <div id='QQ'> Решение: </div>
-            <img class='imgSolution' src='/MathWeb/img/NoSolutions.jpg' >
+            ${solution}
         </div>
 
         <div class="answer gray1">
@@ -118,6 +122,8 @@ function problemHTMLcurr(problem) { // Вывод задания на HTML на 
         </div>
 
     </div>`
+
+    // <a target="_blank" href=${problem.solution}> Перейти на решение</a>
 }
 
 

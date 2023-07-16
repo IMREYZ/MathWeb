@@ -4,6 +4,7 @@ import { endVariant } from "./EndVariant.js"
 import { addZero } from "./OtherFunctions.js"
 
 
+
 function timeToArray(time){ // Функция для времени №1    '4:30:20 12 Февраля 2023' --> [4, 30, 20]
     const timeArray = time.split(':')
     
@@ -64,35 +65,42 @@ function deadLineNew(){ // Прошел ли дедлайн?   Если прош
 
     thisTime = +thisTime.replaceAll(':', '')
     deadLine = +deadLine.replaceAll(':', '')
-    if (deadLine < 40000 && thisTime > 10000) deadLine += 240000 // Случай с 23 и 00
+    
+    if (String(thisTime).length === 6 && String(deadLine).length === 5) deadLine += 240000 // Случай с 23 и 00  
     
     return deadLine - thisTime <= 0 || deadLine - thisTime >= 110000 // Если разность <= 0 или >= 110_000 --> время вышло
 }
 
 
-function time(allProblemsMain, arrayCountProblem, isVariant, hour, minute){ // Глобальная функция времени (variant)
+function time(){ // Глобальная функция времени (variant)
+    
 
     const timePlace = document.querySelector('.time1') // "Место времени"
     const title = document.querySelector('.titleVariant') // "Верхняя надпись"
     const timeFull = getTime('full') // Определяем текущее время
+    const timeOnVariant = getLocalStorage('timeOnVariant')
+    const [hours, minutes] = timeOnVariant 
+
+    if (timeOnVariant === 'no deadline') return
     
     // (Если нет deadLine или againVariant === afk) И вариант НЕ в просмотре, ставим новый deadLine и afk ==> deadLinePicked
     if ((!getLocalStorage('deadLine') || getLocalStorage('againVariant') === 'afk') && getLocalStorage('fromStats') !== 1 && getLocalStorage('endVariant') !== 1){
-        setLocalStorage('deadLine', deadLine(timeFull, hour, minute, 0))
+        setLocalStorage('deadLine', deadLine(timeFull, hours, minutes, 0))
         setLocalStorage('againVariant', 'deadLinePicked')
     }
 
     setInterval(() => { // setInterval раз в секунду
         const deadLine = getLocalStorage('deadLine') // Текущий deadLine
         if (getLocalStorage('againVariant') === 'deadLinePicked'){ // Если сейчас идет вариант (если нет, то "afk")
+
             title.innerHTML = `Вариант: ${titleTime(getTime('full'), deadLine)} осталось` // устанавливаем "верхнюю надпись"
-            timePlace.innerHTML = `<span class='w900'>${titleTime(getTime('full'), deadLine)} </span> осталось`
+            timePlace.innerHTML = `осталось:  <span class='w900'>${titleTime(getTime('full'), deadLine)} </span>`
         }
             
         // Конец дедлайна
         // 1 условие - если просмотр варианта; 2 условие - если закончился дедлайн; 3 условие - чтоб вызвался 1 раз
         if (!getLocalStorage('fromStats') && deadLineNew() && getLocalStorage('againVariant') !== 'afk'){
-            endVariant(allProblemsMain, arrayCountProblem, isVariant) // Конец варианта
+            endVariant() // Конец варианта
             title.innerHTML = 'Время вышло!' // Заголовок = 'Время вышло!'
         }
     }, 1000)

@@ -1,17 +1,18 @@
 import { getCountProblemForVariant, getArrayObjectForSpecialVariants } from "./VariantFunctions.js"
+import { searchObjectByProblem } from "./OtherFunctions.js"
 
 // Объекты - задачи
 const allProblems =
 
     [
-        { problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник' },
-        { problem: '1.2', answer: 0.9, procent: 35, type: 'Прямоугольный треугольник' },
+        { problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник', solution: [1, 'https://t.me/c/1659326846/59'] },
+        { problem: '1.2', answer: 0.9, procent: 35, type: 'Прямоугольный треугольник', solution: [0, '1.1']},
         { problem: '1.3', answer: 0.4, procent: 30, type: 'Прямоугольный треугольник' },
         { problem: '1.4', answer: 16.4, procent: 70, type: 'Прямоугольный треугольник' },
         { problem: '1.5', answer: 86, procent: 40, type: 'Прямоугольный треугольник' },
         { problem: '1.6', answer: 1, procent: 60, type: 'Прямоугольный треугольник' },
         { problem: '1.7', answer: 26, procent: 35, type: 'Прямоугольный треугольник' },
-        { problem: '1.8', answer: 66, procent: 45, type: 'Треугольник' },
+        { problem: '1.8', answer: 66, procent: 45, type: 'Треугольник', solution: [1, 'https://t.me/c/1659326846/61'] }, 
         { problem: '1.9', answer: 19, procent: 65, type: 'Прямоугольный треугольник' },
         { problem: '1.10', answer: 16, procent: 60, type: 'Прямоугольный треугольник' },
         { problem: '1.11', answer: 5.5, procent: 30, type: 'Трапеция' },
@@ -23,12 +24,12 @@ const allProblems =
         { problem: '1.17', answer: 21, procent: 15, type: 'Окружность' },
         { problem: '1.18', answer: 198, procent: 20, type: 'Окружность' },
         { problem: '1.19', answer: 10.5, procent: 60, type: 'Окружность' },
-        { problem: '1.20', answer: 47, procent: 40, type: 'Равнобедненный треугольник' },
-        { problem: '1.21', answer: 124, procent: 60, type: 'Треугольник' },
-        { problem: '1.22', answer: 30.25, procent: 70, type: 'Равнобедненный треугольник' },
-        { problem: '1.23', answer: 20, procent: 35, type: 'Треугольник' },
+        { problem: '1.20', answer: 47, procent: 40, type: 'Равнобедненный треугольник', solution: [1, 'https://t.me/c/1659326846/63'] },
+        { problem: '1.21', answer: 124, procent: 60, type: 'Треугольник', solution: [1, 'https://t.me/c/1659326846/77'] },
+        { problem: '1.22', answer: 30.25, procent: 70, type: 'Равнобедненный треугольник', solution: [1, 'https://t.me/c/1659326846/98'] },
+        { problem: '1.23', answer: 20, procent: 35, type: 'Треугольник', solution: [1, 'https://t.me/c/1659326846/104'] },
         { problem: '1.24', answer: 3.5, procent: 70, type: 'Окружность' },
-        { problem: '1.25', answer: 96, procent: 30, type: 'Треугольник' },
+        { problem: '1.25', answer: 96, procent: 30, type: 'Треугольник', solution: [1, 'https://t.me/c/1659326846/112'] },
         { problem: '1.26', answer: 119, procent: 65, type: 'Треугольник' },
         { problem: '1.27', answer: 0.5, procent: 30, type: 'Равнобедненный треугольник' },
         { problem: '1.28', answer: 0.4, procent: 35, type: 'Равнобедненный треугольник' },
@@ -36,7 +37,7 @@ const allProblems =
         { problem: '1.30', answer: 0.4, procent: 35, type: 'Равнобедненный треугольник' },
         { problem: '1.31', answer: 132, procent: 30, type: 'Окружность' },
         { problem: '1.32', answer: 2, procent: 80, type: 'Равнобедненный треугольник' },
-        { problem: '1.33', answer: 6, procent: 40, type: 'Треугольник' },
+        { problem: '1.33', answer: 6, procent: 40, type: 'Треугольник', solution: [1, 'https://t.me/c/1659326846/114'] },
         { problem: '1.34', answer: 20, procent: 70, type: 'Равнобедненный треугольник' },
         { problem: '1.35', answer: 90, procent: 50, type: 'Равносторонний треугольник' },
         { problem: '1.36', answer: 20, procent: 40, type: 'Прямоугольный треугольник' },
@@ -69,13 +70,13 @@ const allProblems =
         { problem: '1.63', answer: 98, procent: 45, type: 'Окружность' },
         { problem: '1.64', answer: 33, procent: 40, type: 'Окружность' },
         { problem: '1.65', answer: 40, procent: 80, type: 'Окружность' },
-        { problem: '1.66', answer: 39, procent: 25, type: 'Равнобедненный треугольник' },
-        { problem: '1.67', answer: 54, procent: 40, type: 'Треугольник' },
-        { problem: '1.68', answer: 84, procent: 35, type: 'Равнобедненный треугольник' },
-        { problem: '1.69', answer: 102, procent: 70, type: 'Треугольник' },
-        { problem: '1.70', answer: 2.25, procent: 75, type: 'Равнобедненный треугольник' },
-        { problem: '1.71', answer: 12.5, procent: 40, type: 'Треугольник' },
-        { problem: '1.72', answer: 16, procent: 50, type: 'Треугольник' },
+        { problem: '1.66', answer: 39, procent: 25, type: 'Равнобедненный треугольник', solution: [1, 'https://t.me/c/1659326846/60'] },
+        { problem: '1.67', answer: 54, procent: 40, type: 'Треугольник', solution: [1, 'https://t.me/c/1659326846/61'] },
+        { problem: '1.68', answer: 84, procent: 35, type: 'Равнобедненный треугольник', solution: [1, 'https://t.me/c/1659326846/64'] },
+        { problem: '1.69', answer: 102, procent: 70, type: 'Треугольник', solution: [1, 'https://t.me/c/1659326846/78'] },
+        { problem: '1.70', answer: 2.25, procent: 75, type: 'Равнобедненный треугольник', solution: [1, 'https://t.me/c/1659326846/99'] },
+        { problem: '1.71', answer: 12.5, procent: 40, type: 'Треугольник', solution: [1, 'https://t.me/c/1659326846/105'] },
+        { problem: '1.72', answer: 16, procent: 50, type: 'Треугольник', solution: [1, 'https://t.me/c/1659326846/113'] },
         { problem: '1.73', answer: 1, procent: 25, type: 'Треугольник' },
         { problem: '1.74', answer: 123, procent: 75, type: 'Треугольник' },
         { problem: '1.75', answer: 0.8, procent: 25, type: 'Равнобедненный треугольник' },
@@ -941,21 +942,44 @@ const problems = ['-', [], [], [], [], [], [], [], [], [], [], []] // Все з�
 
 
 allProblems.forEach(element => { // Распределение по ключу number
-    const problemSplit = element.problem.split('.') // problem = 3.25 --> [3, 25]
+    const problemSplitString = element.problem.split('.') // problem = 3.25 --> ['3', '25']
+    const [problem, number] = [+problemSplitString[0], +problemSplitString[1]]
+    const thisType = element.type // Тип задачи
+    const thisTypes = [] // Массив, где будут все текущие типы, которые были добавлены на данных момент
 
-    element.id = +problemSplit[0] * 1000 + (+problemSplit[1]) // id = 3025
-    element.number = +problemSplit[0] // 3
+
+    element.id = 1000 * problem + number // id = 3025
+    element.number = problem // 3
     problems[element.number].push(element) // problem[3].push(obj)
 
+    if (element.solution){
+        if (element.solution[0] === 1){
+            element.solution = {have: true, link: element.solution[1]}
+        }
 
-    const thisType = element.type // Тип задачи
+        if (element.solution[0] === 0){ 
+            element.solution = {have: false, numberPrototype: element.solution[1]}
+
+            const numberPrototype = element.solution.numberPrototype
+            const objectPrototype = searchObjectByProblem(numberPrototype, allProblems)        
+
+            element.solution.objectPrototype = objectPrototype
+        }
+    }
+
+
+
+
+    
     const thisThemeObject = themeProblems[element.number] // Массив тем этой задачи [{name: 'уравнение', count: 3}, {name: 'неравенство', count: 4}...]
-    let thisTypes = [] // Массив, где будут все текущие типы, которые были добавлены на данных момент
-    for (let index = 0; index < thisThemeObject.length; index++) thisTypes.push(thisThemeObject[index].name) // Добавляем имена
+    for (let index = 0; index < thisThemeObject.length; index++) {
+        thisTypes.push(thisThemeObject[index].name) // Добавляем имена
+    }
 
-    if (!thisTypes.includes(thisType)) thisThemeObject.push({ name: thisType, count: 1 }) // Если новый тип - {name: 'НАЗВАНИЕ', count: 1}
-    else { // Иначе перебираем все прошлые темы - ищем эту неновую тему и делаем ++
-        for (let index = 0; index < thisThemeObject.length; index++) {
+    if (!thisTypes.includes(thisType)) {
+        thisThemeObject.push({ name: thisType, count: 1 }) // Если новый тип - {name: 'НАЗВАНИЕ', count: 1}
+    } else { // Иначе перебираем все прошлые темы - ищем эту неновую тему и делаем ++
+        for (let index = 0; index < thisThemeObject.length; index ++) {
             if (thisType === thisThemeObject[index].name) thisThemeObject[index].count++
         }
     }
@@ -985,8 +1009,6 @@ specialVariants.forEach((element, index) => {
 
 
 
-
-
 const timeOnProblem = { // Время на задачу с каким-то номером
     1: [1, 1], 2: [1, 21], 3: [0, 31], 4: [1, 31], 5: [0, 46], 6: [1, 11],
     7: [0, 41], 8: [2, 1], 9: [3, 1], 10: [2, 1], 11: [1, 21]
@@ -999,6 +1021,8 @@ const secondBallArray = { // Словарь перевода баллов из �
     6: 34, 7: 40, 8: 46, 9: 52, 10: 58,
     11: 64
 }
+
+
 
 
 export {allProblems, problems, themeProblems, specialVariants, timeOnProblem, secondBallArray}

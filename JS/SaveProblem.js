@@ -1,6 +1,7 @@
-import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
+import { getLocalStorage, setLocalStorage, getThisProblems } from "./LocalStorage.js"
 import { searchObjectById } from "./OtherFunctions.js"
 import { allProblems } from "./Base.js"
+
 
 function createAndSaveColors(thisProblems){ // Создание и/или сохрание цветов
     document.addEventListener('click', event => {
@@ -73,7 +74,8 @@ function createAndSaveInfoAnswers(thisProblems){ // Создание и/или �
         const idThisProblem = thisProblem.id // id этой задачи
 
         objInfo[idThisProblem] = rightAnswer.classList[1] === 'show' // Изменение этой задачи
-        setLocalStorage('currInfoShowRightAnswer', objInfo) // Сохранение в LocalStr
+        setLocalStorage('currInfoShowRightAnswer', objInfo) // Сохранение в LocalStr 
+        
     })
 }
 
@@ -106,4 +108,16 @@ function createAndSaveSolution(thisProblems){ // Создание и/или со
 }
 
 
-export { createAndSaveColors, createAndSaveInputs, createAndSaveSolution, createAndSaveInfoAnswers }
+
+function createAndSaveAll(problems){
+    createAndSaveColors(problems) // Сохранение
+    createAndSaveInfoAnswers(problems) // Сохранение
+    createAndSaveInputs(problems) // Сохранение
+    createAndSaveSolution(problems)
+}
+
+
+
+
+
+export { createAndSaveInfoAnswers, createAndSaveSolution, createAndSaveAll }

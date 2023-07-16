@@ -27,9 +27,21 @@ function searchObjectById(searchId, array) { // Ищем объект-задач
 }
 
 
+
+function searchObjectByProblem(searchProblem, array) { // Ищем объект-задачу по id 
+    for (let index = 0; index < array.length; index ++) {
+        if (array[index].problem === searchProblem) return array[index]
+    }
+}
+
+
+
+
 function weight900(node, boolean) { // add/remove w900
-    const thisNode = document.querySelector(node) // Наш компонент
-    boolean ? thisNode.classList.add('w900') : thisNode.classList.remove('w900') // Если true - добавляем, иначе убираем
+    const thisNode = document.querySelector(`.${node}`) // Наш компонент
+
+    if (boolean) thisNode.classList.add('w900') // Если true - добавляем, иначе убираем
+    else thisNode.classList.remove('w900')
 }
 
 
@@ -122,7 +134,7 @@ function getSpecialObject() { // Забираем избранные задач�
 // }
 
 
-export { getNormalClass, getSpecialClass, getSpecialObject, weight900, withOutBadZero, randomStress, addZero, rounded, summArray, searchObjectById }
+export { getNormalClass, getSpecialClass, getSpecialObject, weight900, withOutBadZero, randomStress, addZero, rounded, summArray, searchObjectById, searchObjectByProblem }
 
 
 

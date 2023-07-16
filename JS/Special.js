@@ -1,5 +1,5 @@
-import { currColor, currSolution, currInfoShowRightAnswer, currInput } from "./CurrProblem.js"
-import { createAndSaveInputs, createAndSaveColors, createAndSaveInfoAnswers, createAndSaveSolution } from "./SaveProblem.js"
+import { currAll } from "./CurrProblem.js"
+import { createAndSaveAll } from "./SaveProblem.js"
 import { problemHTMLcurr } from "./ProblemHTML.js"
 import { getSpecialObject } from "./OtherFunctions.js"
 import { getCountProblemForVariant } from "./VariantFunctions.js"
@@ -15,17 +15,10 @@ function processSpecial(){
     arraySpecialObject.forEach(element => conteynerAll.innerHTML += problemHTMLcurr(element))
 
     // Создание и/или сохранение 1) цветов 2) "показать ответ"  3) input
-    createAndSaveColors(getSpecialObject()) 
-    createAndSaveInfoAnswers(getSpecialObject())
-    createAndSaveInputs(getSpecialObject())
-    createAndSaveSolution(getSpecialObject())
+    createAndSaveAll()
 
     // Возвращаем цвета и инпуты в случае инпута
-    currColor(getSpecialObject())
-    currInput(getSpecialObject())
-    currInfoShowRightAnswer(getSpecialObject())
-    currSolution(getSpecialObject())
-
+    currAll()
 
     if (getSpecialObject().length === 0) createVariantBtn.disabled = 'true'
 
@@ -37,10 +30,7 @@ function processSpecial(){
         conteynerAll.innerHTML = ''       
         getSpecialObject().forEach(element => conteynerAll.innerHTML += problemHTMLcurr(element))
 
-        currColor(getSpecialObject())
-        currInput(getSpecialObject())
-        currInfoShowRightAnswer(getSpecialObject())
-        currSolution(getSpecialObject())
+        currAll()
 
         if (getSpecialObject().length === 0) createVariantBtn.disabled = 'true'
     })

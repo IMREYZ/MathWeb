@@ -6,6 +6,7 @@ import { allProblems } from "./Base.js"
 
 
 function eventSendAnswer() { // Обработка события "отправить ответ"
+
     function sendAnswerFunc(event){        
         if (event !== 'button' && (event.target.classList[0] !== 'submit' || window.location.pathname === '/MathWeb/HTML/stress.html')) return // Если событие - не кнопка sumbit, то выходим
 
@@ -71,7 +72,10 @@ function eventSendAnswer() { // Обработка события "отправ�
         }
     }
 
+
+
     document.addEventListener('click', sendAnswerFunc)
+    
     
     document.addEventListener('keydown', (button) => {
         if (button.key === 'Enter' && document.activeElement.classList[0] === 'input' && window.location.pathname !== '/MathWeb/HTML/stress.html') {            

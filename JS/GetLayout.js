@@ -1,4 +1,5 @@
 import { getLocalStorage } from "./LocalStorage.js"
+import { getNormalClass } from "./OtherFunctions.js"
 
 
 function getStar(boolean) { // Функция, которая возвращает нужную звезду
@@ -14,6 +15,8 @@ function getColorProcent(procent) { // Цвет задачи
     else return 'redColor1'
 
 }
+
+
 
 function getStatsNumberText(problem) { // Функция, которая возвращает statsNumber
     const statsNumberLocalStr = getLocalStorage('statsNumber')
@@ -34,4 +37,60 @@ function getRightAnswerHTML(problem) { // Добавление "правильн
     </span>`
 }
 
-export { getColorProcent, getStar, getStatsNumberText, getRightAnswerHTML }
+
+
+
+function getCheckboxes(themeThisProblem){
+    let resultText = ``
+
+    themeThisProblem.forEach(element => {
+        const nameNormalClass = getNormalClass(element.name)
+        resultText += `<div class='SSS'> 
+                    <input class='checkbox' type='checkbox' id='${nameNormalClass}'> 
+                    <span class='${nameNormalClass}'>${element.name} (${element.count} шт.)</span> 
+                 </div>`
+    })
+
+    return resultText
+}
+
+
+
+
+function getSolution(problem){
+    const thisSolution = problem.solution
+    let result
+
+    if (!thisSolution) {
+        result = `<div id='QQ'> Решение: </div>
+                  <img src='/MathWeb/img/NoSolutions.jpg' >`
+    } else {
+        if (thisSolution.have === true) {
+            result = `<div id='QQ'> Решение: </div>
+                      <img class='imgSolution' src='/MathWeb/img/${problem.problem}s.jpg' >
+                      <a target="_blank" href='${problem.solution.link}'>
+                        <div class='conteynerLink'>
+                            <span id='QQ1'> Видеорешение </span> 
+                        </div>
+                      </a>`
+        }
+
+        if (thisSolution.have === false){
+            const objectPrototype = thisSolution.objectPrototype
+            
+            result = `<div id='QQ'> Решение похожего прототипа (№${objectPrototype.id}): </div>
+                  <img class='imgSolution' src='/MathWeb/img/${objectPrototype.problem}s.jpg' >
+                  <a target="_blank" href='${objectPrototype.solution.link}'>
+                    <div class='conteynerLink'>
+                        <span id='QQ1'> Видеорешение прототипа </span> 
+                    </div>
+                  </a>`
+        }
+    }
+
+    return result
+}
+
+
+
+export { getColorProcent, getStar, getStatsNumberText, getRightAnswerHTML, getCheckboxes, getSolution }

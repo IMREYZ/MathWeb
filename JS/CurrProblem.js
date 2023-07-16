@@ -1,7 +1,6 @@
-import { getLocalStorage } from "./LocalStorage.js"
+import { getLocalStorage, getThisProblems, removeLocalStorage } from "./LocalStorage.js"
 import { getRightAnswerHTML } from "./GetLayout.js"
 import { backgroundByCurr, closeToShow } from "./ChangeLayout.js"
-
 
 
 
@@ -11,8 +10,8 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
     // КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
     // const inputAll = document.querySelectorAll('.input') // Все input
     // const submitAll = document.querySelectorAll('.submit') // Все sumbit
-    const allParents = document.querySelectorAll('.conteyner') // Все контейнеры
-    const allAnswer = document.querySelectorAll('.answer') // Все контейнеры answer
+    const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
+    const allAnswer = [...document.querySelectorAll('.answer')] // Все контейнеры answer
 
 
     if (getLocalStorage('color')){ // Если до этого были цвета карточек
@@ -36,12 +35,12 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
 
                 backgroundByCurr(idProblem, 'red') // Устанавливаем красный цвет для задачи с id контейнера
                 conteynerRightAnswer.innerHTML = getRightAnswerHTML(thisProblems[count]) // Добавляем 'показать ответ'
+
                 const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer')
                 closeToShow(rightAnswer) // Показываем "показать ответ"
 
                 conteynerInput.style.left = '13px' // ВЕРСТКА               
                 conteynerShowSolution.innerHTML = `Показать решение` // Добавляем "показать решение"
-
                 allAnswer[count].classList.add('white') // Добавляем белый цвет
 
             } else backgroundByCurr(idProblem, 'gray')          
@@ -76,19 +75,23 @@ function currInfoShowRightAnswer(thisProblems){ // Обновление инфо
     const infoShowRightAnswer = getLocalStorage('currInfoShowRightAnswer') // Информация об Показании ответа
 
     if (infoShowRightAnswer){ // Если в LocalStr есть currInfoShowRightAnswer
-        const allConteynerRightAnswer = document.querySelectorAll('.conteyner') // Контейнеры всех задач
+        const allConteynerRightAnswer = [...document.querySelectorAll('.conteyner')]// Контейнеры всех задач
+
+        
 
         thisProblems.forEach((element, count) => { // Проходимся по всем задачам
             const thisId = element.id // id Задачи
             const thisBoolean = infoShowRightAnswer[thisId] // true/false
+
+            
 
             // Если true, то
             if (thisBoolean){
                 const thisConteyner = allConteynerRightAnswer[count] // Текущий контейнер
                 const thisInfoAnswer = thisConteyner.querySelector('.rightAnswer') // Ответ-HTML этого контейнера
                 const thisPokOtw = thisConteyner.querySelector('.pokOtw') // Надпись-кнопка
-
-                // close --> show
+                
+                // close --> show                
                 closeToShow(thisInfoAnswer)
 
                 thisPokOtw.innerHTML = 'Скрыть ответ: '
@@ -124,4 +127,14 @@ function currSolution(thisProblems){ // Обновление информаци�
 
 
 
-export {currColor, currInfoShowRightAnswer, currInput, currSolution}
+
+function currAll(){
+    currColor(getThisProblems()) // Сохранение
+    currInfoShowRightAnswer(getThisProblems()) // Сохранение
+    currInput(getThisProblems()) // Сохранение
+    currSolution(getThisProblems())
+}
+
+
+
+export { currInfoShowRightAnswer, currAll, currSolution }

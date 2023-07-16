@@ -1,5 +1,7 @@
 import { getLocalStorage } from "./LocalStorage.js"
 import { timeForSolution, getTime } from "./Time.js"
+import { endVariant } from "./EndVariant.js"
+
 
 
 function addPopUp(thisTextPopUp, answer, rightAnswers, secondBall){ // Добавление PopUp на страницу
@@ -45,4 +47,33 @@ function textPopUp(answer, rightAnswers){ // HTML PopUp контент для Н
 }
 
 
-export { textPopUp, textPopUpFull, addPopUp }
+
+
+function popUpProcces(){
+    const popUpMain = document.querySelector('.pop_up')
+    const popUpSecond = document.querySelector('.pop_up1')
+    const yesBtn = document.querySelector('.yesBtn')
+    const cancelBtn = document.querySelector('.cancelBtn')
+    const acceptBtn = document.querySelector('.accept') // Кнопка подтверждения
+
+    acceptBtn.addEventListener('click', () =>  popUpSecond.classList.add('active')) // Нажатие на "закончить" // Открывает PopUp
+    cancelBtn.addEventListener('click', () =>  popUpSecond.classList.remove('active')) // Нажатие на "отмена" в PopUp // Закрываем PopUp
+
+    document.addEventListener('click', event => { // Выход из PopUp
+        if (!event.target.classList[0] || !event.target.classList[0].includes('pop_up')) return // Если не popUp - выходим
+
+        const popUpArrayClassList = ['pop_up', 'pop_up_container', 'pop_up_close']
+        const popUp1ArrayClassList = ['pop_up1', 'pop_up_container1', 'pop_up_close1']
+        const classThisElement = event.target.classList[0]
+
+        if (popUpArrayClassList.includes(classThisElement)) popUpMain.classList.remove('active')
+        if (popUp1ArrayClassList.includes(classThisElement)) popUpSecond.classList.remove('active')
+    })
+
+
+    yesBtn.addEventListener('click', () => endVariant()) // Нажатие на "Да" в PopUp
+}
+
+
+
+export { textPopUp, textPopUpFull, addPopUp, popUpProcces }
