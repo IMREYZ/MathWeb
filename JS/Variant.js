@@ -25,10 +25,10 @@ function processVariant(){
     if (!getLocalStorage('startTime') && !getLocalStorage('fromStats')) setLocalStorage('startTime', getTime('full'))
     if (!getLocalStorage('againVariant')) setLocalStorage('againVariant', 'deadLinePicked')
 
-    allProblemMain.forEach((element, id) => allConteynerVariant.innerHTML += problemHTMLvariant(element, id)) // Выводим задания на страницу
+    allProblemMain.forEach((problem, id) => allConteynerVariant.innerHTML += problemHTMLvariant(problem, id)) // Выводим задания на страницу
 
     const inputVariant = [...document.querySelectorAll('.input')]
-    if (previousAnswers) inputVariant.forEach((element, index) => element.value = previousAnswers[index]) // Вывод ответов
+    if (previousAnswers) inputVariant.forEach((input, index) => input.value = previousAnswers[index]) // Вывод ответов
         
     
     popUpProcces()
@@ -64,7 +64,7 @@ function processVariant(){
         const answer = []
         const inputVariant = [...document.querySelectorAll('.input')]
         
-        inputVariant.forEach(element => answer.push(element.value))
+        inputVariant.forEach(input => answer.push(input.value))
         setLocalStorage('answers', answer) // Сохраняем ответы в LocalStr
     })       
 }

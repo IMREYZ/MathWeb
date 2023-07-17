@@ -4,8 +4,8 @@ import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
 import { background, closeToShow } from "./ChangeLayout.js"
 import { specialVariants, secondBallArray } from "./Base.js"
 import { getAllProblemMain, getArrayCountProblem, getIsVariant } from "./GetVariableForVariant.js"
-import { createAndSaveInfoAnswers, createAndSaveSolution } from "./SaveProblem.js"
-import { currInfoShowRightAnswer, currSolution } from "./CurrProblem.js"
+
+
 
 function endVariant(){ // Конец варианта
 
@@ -23,24 +23,21 @@ function endVariant(){ // Конец варианта
 
     let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // Количество верных задач "['-', new Array(11).fill(100)].flat(1)"
     let rightAnswers = 0 // Количество правильных ответов
-    let answer = [] // Массив input ответов
+    let arrayAnswer = [] // Массив input ответов
     let arrayColors = []
-    inputVariant.forEach(element => answer.push(element.value)) // Введенные ответы
+    inputVariant.forEach(input => arrayAnswer.push(input.value)) // Введенные ответы
   
     setLocalStorage('againVariant', 'afk') // Смена режима в afk
     setLocalStorage('endVariant', 1) // Смена режима в afk
 
-    
-    
-
     timePlace.innerHTML = `<button class='time2'>Начать заново </button>`;// Уведомление для пользователей за место времени
     iconText.innerHTML = 'Результат'
     acceptBtn.disabled = true // Блокируем "завершить работу"
-
+  
 
     
     function checkEveryProblems(){
-        answer.forEach((element, index) => { // Проходимся по массиву answer
+        arrayAnswer.forEach((answer, index) => { // Проходимся по массиву answer
             const thisObject = allProblemMain[index] // Текущая задача
             const thisParent = allParents[index] // Родитель этой задачи
             const thisStar = thisParent.querySelector('.star') // Звезда этой задачи
@@ -58,7 +55,7 @@ function endVariant(){ // Конец варианта
             thisInput.readOnly = true
             thisAnswer.classList.add('white') // Добавляем white
                 
-            if (element !== '' && +element.replace(',', '.') === thisObject.answer){ // Проверка на правильность ответа
+            if (answer !== '' && +answer.replace(',', '.') === thisObject.answer){ // Проверка на правильность ответа
                 rightAnswers ++ // Количество правильных ответов ++ 
                 countRightAnswer[thisObject.number] ++ // Количество правильных ответов задачи номера n ++
                 background('green', index) // background - green
@@ -103,7 +100,7 @@ function endVariant(){ // Конец варианта
         let arrayRightAnswer = [] // Массив статистики
             
         for (let index = 1; index <= 11; index ++) arrayRightAnswer.push({right: countRightAnswer[index], count: arrayCountProblem[index]}) // Для каждой задачи right, count
-        arrayRightAnswer.push({right: rightAnswers, count: answer.length}) // Для всего варианта right, count
+        arrayRightAnswer.push({right: rightAnswers, count: arrayAnswer.length}) // Для всего варианта right, count
 
         const stats = getLocalStorage('stats') // Массив вариантов
         const numberVariant = getLocalStorage('numberVariant') // Номер варианта
@@ -145,7 +142,7 @@ function endVariant(){ // Конец варианта
             colors: getLocalStorage('colors'), // Добавляем цвета
             idVariant: getLocalStorage('countVariant'), // Добавляем id задачи как len stats + 1
             countProblem: arrayCountProblem, // Количество проблем (для таблицы)
-            answers: answer,
+            answers: arrayAnswer,
             name: nameVariant
         }
         
@@ -162,8 +159,8 @@ function endVariant(){ // Конец варианта
 
 
     // Смотрим на формат варианта, такой PopUp и выдаем (с "формат ЕГЭ (1-11) или без")
-    if (isVariant) addPopUp(textPopUpFull, answer, rightAnswers, secondBallArray) 
-    else addPopUp(textPopUp, answer, rightAnswers)
+    if (isVariant) addPopUp(textPopUpFull, arrayAnswer, rightAnswers, secondBallArray) 
+    else addPopUp(textPopUp, arrayAnswer, rightAnswers)
     popUpSecond.classList.remove('active')
 }
 

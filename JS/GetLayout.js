@@ -43,11 +43,11 @@ function getRightAnswerHTML(problem) { // Добавление "правильн
 function getCheckboxes(themeThisProblem){
     let resultText = ``
 
-    themeThisProblem.forEach(element => {
-        const nameNormalClass = getNormalClass(element.name)
+    themeThisProblem.forEach(theme => {
+        const nameNormalClass = getNormalClass(theme.name)
         resultText += `<div class='SSS'> 
                     <input class='checkbox' type='checkbox' id='${nameNormalClass}'> 
-                    <span class='${nameNormalClass}'>${element.name} (${element.count} шт.)</span> 
+                    <span class='${nameNormalClass}'>${theme.name} (${theme.count} шт.)</span> 
                  </div>`
     })
 

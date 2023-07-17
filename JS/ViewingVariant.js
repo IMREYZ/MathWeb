@@ -4,6 +4,7 @@ import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
 import { getMyVariantPrevious, getAllProblemMain } from "./GetVariableForVariant.js"
 import { getTime } from "./Time.js"
 
+
 function viewingVariant(){
     const timePlace = document.querySelector('.time1') // Место времени
     const iconText = document.querySelector('.titleVariant') // Текст иконки

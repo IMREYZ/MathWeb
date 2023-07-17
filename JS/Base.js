@@ -999,10 +999,10 @@ const specialVariants = ['-', // Специальные варианты
     { variant: ['1.20', '2.65', '3.44', '4.44', '5.24', '6.11', '7.11', '8.5', '9.8', '10.27', '11.65'], name: 'Резерв 2023 - резервный день' }]
 
 
-specialVariants.forEach((element, index) => {
+specialVariants.forEach((variant, index) => {
     if (index !== 0) {
         const arrayObj = getArrayObjectForSpecialVariants(index)
-        element.countProblem = getCountProblemForVariant(arrayObj)
+        variant.countProblem = getCountProblemForVariant(arrayObj)
     }
 })
 

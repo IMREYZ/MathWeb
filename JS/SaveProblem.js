@@ -2,10 +2,10 @@ import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
 import { searchObjectById } from "./OtherFunctions.js"
 import { allProblems } from "./Base.js"
 import { problems } from "./Base.js"
+import { getParentForCurrSubject } from "./GetVariableForVariant.js"
 
-
-function createAndSaveColorsFunc(event){
-    if (event !== 'button' && event.target.classList[0] !== 'submit') return
+function createAndSaveColorsFunction(event){
+    if (event !== 'ENTER' && event.target.classList[0] !== 'submit') return
 
     const id = getLocalStorage('idProblem') // Номер задания
     const thisProblems = problems[id]
@@ -16,23 +16,30 @@ function createAndSaveColorsFunc(event){
         setLocalStorage('color', array)    
     }
 
-    let conteynerFull
-    if (event.target) conteynerFull = event.target.closest('.conteyner')
-    else conteynerFull = document.activeElement.closest('.conteyner')
+    const parent = getParentForCurrSubject(event)
+    const headerThisProblem = parent.querySelector('.number') // Верный ответ HTML
+    const idThisProblemHTML = parent.id // id Контейнера    
+    const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу
+    const idThisProblem = thisProblem.id // id этой задачи
+    const objColor = getLocalStorage('color') // Объект {4001: gray, 4002: green, 4003: red...}
 
-    const headerThisProblem = conteynerFull.querySelector('.number') // Верный ответ HTML
+    objColor[idThisProblem] = headerThisProblem.classList[1] // Изменение этой задачи
+    setLocalStorage('color', objColor) // Сохранение в LocalStr
+    
+    clearOtherSave(event)
+}
+
+
+
+function clearOtherSave(event){
+    const parent = getParentForCurrSubject(event)
+    const idThisProblemHTML = parent.id // id Контейнера    
+    const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу
+    const idThisProblem = thisProblem.id // id этой задачи
     const objColor = getLocalStorage('color') // Объект {4001: gray, 4002: green, 4003: red...}
     const objAnswer = getLocalStorage('currInfoShowRightAnswer') // Объект {4001: gray, 4002: green, 4003: red...}
     const objSolution = getLocalStorage('showSolution') // Объект {4001: gray, 4002: green, 4003: red...}
     const objInput = getLocalStorage('inputCurr') // Объект {4001: gray, 4002: green, 4003: red...}
-
-
-    const idThisProblemHTML = conteynerFull.id // id Контейнера    
-    const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу
-    const idThisProblem = thisProblem.id // id этой задачи
-
-    objColor[idThisProblem] = headerThisProblem.classList[1] // Изменение этой задачи
-    setLocalStorage('color', objColor) // Сохранение в LocalStr
 
     if (objColor[idThisProblem] === 'green'){
         if (objAnswer) {
@@ -53,7 +60,15 @@ function createAndSaveColorsFunc(event){
 
 
 
-function createAndSaveColors(){ document.addEventListener('click', createAndSaveColorsFunc) } // Создание и/или сохрание цветов
+function createAndSaveColors(){ // Создание и/или сохрание цветов
+    document.addEventListener('click', { createAndSaveColorsFunction }) 
+
+    document.addEventListener('keydown', button => {
+        if (button.key === 'Enter' && document.activeElement.classList[0] === 'input' && window.location.pathname !== '/MathWeb/HTML/stress.html') {            
+            createAndSaveColorsFunction('ENTER')
+        }
+    })
+}
 
 
 
@@ -68,10 +83,10 @@ function createAndSaveInputs(thisProblems){ // Создание и/или сох
             setLocalStorage('inputCurr', array)    
         }
 
-        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания
-        const thisInput = conteynerFull.querySelector('.input') // Текущий input
+        const parent = event.target.closest('.conteyner') // Контейнер всего задания
+        const thisInput = parent.querySelector('.input') // Текущий input
         const objInfo = getLocalStorage('inputCurr') // Объект {4001: gray, 4002: green, 4003: red...}
-        const idThisProblemHTML = conteynerFull.id // id этой карточки - id задачи (4030, 11021...)
+        const idThisProblemHTML = parent.id // id этой карточки - id задачи (4030, 11021...)
         const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
         const idThisProblem = thisProblem.id // id этой задачи
 
@@ -83,7 +98,7 @@ function createAndSaveInputs(thisProblems){ // Создание и/или сох
 
 
 function createAndSaveInfoAnswers(thisProblems){ // Создание и/или сохрание нажатия на "показать ответ"
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', event => {
         if (event.target.classList[0] !== 'pokOtw') return // Если не кнопка "показать ответ" - выходим 
 
         // Если нет в LocalStr currInfoShowRightAnswer, добавить
@@ -94,10 +109,10 @@ function createAndSaveInfoAnswers(thisProblems){ // Создание и/или �
             setLocalStorage('currInfoShowRightAnswer', array)    
         }
 
-        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания
-        const rightAnswer = conteynerFull.querySelector('.rightAnswer') // Верный ответ HTML
+        const parent = event.target.closest('.conteyner') // Контейнер всего задания
+        const rightAnswer = parent.querySelector('.rightAnswer') // Верный ответ HTML
         const objInfo = getLocalStorage('currInfoShowRightAnswer') // Объект {4001: true, 4002: false, 4003: false...}
-        const idThisProblemHTML = conteynerFull.id // id задачи (11020, 3004 ...)
+        const idThisProblemHTML = parent.id // id задачи (11020, 3004 ...)
         const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
         const idThisProblem = thisProblem.id // id этой задачи
 
@@ -110,7 +125,7 @@ function createAndSaveInfoAnswers(thisProblems){ // Создание и/или �
 
 
 function createAndSaveSolution(thisProblems){ // Создание и/или сохрание нажатия на "показать решение"
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', event => {
         if (event.target.classList[0] !== 'showSolutionText') return // Если не кнопка "показать ответ" - выходим 
 
         
@@ -123,10 +138,10 @@ function createAndSaveSolution(thisProblems){ // Создание и/или со
             setLocalStorage('showSolution', array)    
         }
 
-        const conteynerFull = event.target.closest('.conteyner') // Контейнер всего задания        
-        const solutionImg = conteynerFull.querySelector('.imgSolutionConteyner')
+        const parent = event.target.closest('.conteyner') // Контейнер всего задания        
+        const solutionImg = parent.querySelector('.imgSolutionConteyner')
         const objInfo = getLocalStorage('showSolution') // Объект {4001: true, 4002: false, 4003: false...}
-        const idThisProblemHTML = conteynerFull.id // id задачи (11020, 3004 ...)        
+        const idThisProblemHTML = parent.id // id задачи (11020, 3004 ...)        
         const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
         const idThisProblem = thisProblem.id // id этой задачи
         
@@ -148,4 +163,4 @@ function createAndSaveAll(problems){
 
 
 
-export { createAndSaveInfoAnswers, createAndSaveSolution, createAndSaveAll, createAndSaveColorsFunc }
+export { createAndSaveInfoAnswers, createAndSaveSolution, createAndSaveAll }

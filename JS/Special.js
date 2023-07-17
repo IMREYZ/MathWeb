@@ -12,7 +12,7 @@ function processSpecial(){
     const arraySpecialObject = getSpecialObject()
     const createVariantBtn = document.querySelector('.goVariant')
 
-    arraySpecialObject.forEach(element => conteynerAll.innerHTML += problemHTMLcurr(element))
+    arraySpecialObject.forEach(problem => conteynerAll.innerHTML += problemHTMLcurr(problem))
 
     // Создание и/или сохранение 1) цветов 2) "показать ответ"  3) input
     createAndSaveAll()
@@ -28,7 +28,7 @@ function processSpecial(){
         if (event.target.classList[0] !== 'star') return // Если не "звезда" - выходим
         
         conteynerAll.innerHTML = ''       
-        getSpecialObject().forEach(element => conteynerAll.innerHTML += problemHTMLcurr(element))
+        getSpecialObject().forEach(problem => conteynerAll.innerHTML += problemHTMLcurr(problem))
 
         currAll()
 
@@ -46,7 +46,7 @@ function processSpecial(){
 
 
 
-    document.addEventListener('input', (event) => {
+    document.addEventListener('input', event => {
         if (event.target.classList[0] !== 'input') return
 
         event.target.value = event.target.value.replace(/[^0123456789,-]/g, '')

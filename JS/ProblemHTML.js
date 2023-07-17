@@ -4,14 +4,15 @@ import { getSolution } from "./GetLayout.js"
 
 
 function problemHTMLvariant(problem) { // Вывод задания на HTML на вкладку variant
-    const id = problem.id // id Задачи
+    const idThisProblem = problem.id // id Задачи
     const objSpecial = getLocalStorage('special') // Массив избранных задач
-    const thisBoolean = objSpecial[id] // Избранная задача или нет
+    const thisBoolean = objSpecial[idThisProblem] // Избранная задача или нет
     const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
     const solution = getSolution(problem)
 
 
-    return `<div id = ${id} class="conteyner">
+    
+    return `<div id = ${idThisProblem} class="conteyner">
     <div class="number gray" > 
         <span class='statsNumberConteyner'> </span>
         <span class='middle'>
@@ -44,15 +45,15 @@ function problemHTMLvariant(problem) { // Вывод задания на HTML н
 
 
 function problemHTMLstress(problem) { // Вывод задание на HTML на вкладку stress
-    const id = problem.id // id Задачи
+    const idThisProblem = problem.id // id Задачи
     const objSpecial = getLocalStorage('special') // Массив избранных задач
-    const thisBoolean = objSpecial[id] // Избранная задача или нет
+    const thisBoolean = objSpecial[idThisProblem] // Избранная задача или нет
     const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
     const solution = getSolution(problem)
 
 
     
-    return `<div id = ${id} class="conteynerStress" >
+    return `<div id = ${idThisProblem} class="conteynerStress" >
     <div class="number gray" > 
         <span class='statsNumberConteyner'> </span>
         <span class='middle'>
@@ -85,16 +86,16 @@ function problemHTMLstress(problem) { // Вывод задание на HTML н�
 
 
 function problemHTMLcurr(problem) { // Вывод задания на HTML на вкладку currSubject
-    const id = problem.id // id Задачи
+    const idThisProblem = problem.id // id Задачи
     const objSpecial = getLocalStorage('special') // Массив избранных задач
-    const thisBoolean = objSpecial[id] // Избранная задача или нет
+    const thisBoolean = objSpecial[idThisProblem] // Избранная задача или нет
     const textHTML = getStar(thisBoolean) // Добавляем звезду в контейнер
     const textStatsNumber = getStatsNumberText(problem) // StatsNumber
     const solution = getSolution(problem)
     
 
 
-    return `<div id = ${id} class="conteyner" >
+    return `<div id = ${idThisProblem} class="conteyner" >
     <div class="number gray" > 
         <span class='statsNumberConteyner'> ${textStatsNumber} </span>
         <span class='idInfo'>Номер ${problem.number} (№${problem.id}) </span> 
@@ -122,8 +123,6 @@ function problemHTMLcurr(problem) { // Вывод задания на HTML на 
         </div>
 
     </div>`
-
-    // <a target="_blank" href=${problem.solution}> Перейти на решение</a>
 }
 
 

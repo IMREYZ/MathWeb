@@ -222,7 +222,6 @@ function processStress(){
         } else endGame()
     }
     
-    //refreshInfo.addEventListener('click', () => { location.reload() })
 
     document.addEventListener('click', event => {
         if (event.target.classList[0] === 'time3') location.reload()
@@ -230,10 +229,12 @@ function processStress(){
 
 
     // Если событие - кнопка submit
-    document.addEventListener('click', (event) => { if (event.target.classList[0] === 'submit') sendAsnwer() })
+    document.addEventListener('click', event => { 
+        if (event.target.classList[0] === 'submit') sendAsnwer() 
+    })
 
     // Обработка по кнопке Enter
-    document.addEventListener('keydown', (btn) => { if (btn.key === 'Enter') sendAsnwer() })
+    document.addEventListener('keydown', button => { if (button.key === 'Enter') sendAsnwer() })
 
 
     // Ограничение на input

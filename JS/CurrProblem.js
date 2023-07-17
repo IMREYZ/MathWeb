@@ -16,8 +16,8 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
 
     if (getLocalStorage('color')){ // Если до этого были цвета карточек
 
-        thisProblems.forEach((element, count) => {  // Проходимся по всем текущий задачам
-            const thisColor = getLocalStorage('color')[element.id] // Текущий цвет
+        thisProblems.forEach((problem, count) => {  // Проходимся по всем текущий задачам
+            const thisColor = getLocalStorage('color')[problem.id] // Текущий цвет
             const parent = allParents[count] // Родитель текущей задачи
             const idProblem = +parent.id // id родителя (для задачи 11.20 id = 11020)
             const conteynerRightAnswer = parent.querySelector('.conteynerRightAnswer') // Берем контейнер "показать ответ" у контейнера всей задачи
@@ -35,7 +35,7 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
 
                 backgroundByCurr(idProblem, 'red') // Устанавливаем красный цвет для задачи с id контейнера
                 conteynerRightAnswer.innerHTML = getRightAnswerHTML(thisProblems[count]) // Добавляем 'показать ответ'
-
+2
                 const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer')
                 closeToShow(rightAnswer) // Показываем "показать ответ"
 
@@ -57,9 +57,9 @@ function currInput(thisProblems){ // Появление input в currSubject в 
     const colorLocalStr = getLocalStorage('color')
 
     if (inputLocalStr){ // Если до этого были введены ответы 
-        thisProblems.forEach((element, count) => {
+        thisProblems.forEach((problem, count) => {
             
-            const thisId = element.id // id Задачи
+            const thisId = problem.id // id Задачи
             const thisInput = inputLocalStr[thisId] // input этой задачи
 
             if (colorLocalStr[thisId] !== 'green') inputAll[count].value = thisInput // Передаем сохраненное значение
@@ -76,8 +76,8 @@ function currInfoShowRightAnswer(thisProblems){ // Обновление инфо
     if (infoShowRightAnswer){ // Если в LocalStr есть currInfoShowRightAnswer
         const allConteynerRightAnswer = [...document.querySelectorAll('.conteyner')]// Контейнеры всех задач
 
-        thisProblems.forEach((element, count) => { // Проходимся по всем задачам
-            const thisId = element.id // id Задачи
+        thisProblems.forEach((problem, count) => { // Проходимся по всем задачам
+            const thisId = problem.id // id Задачи
             const thisBoolean = infoShowRightAnswer[thisId] // true/false
             
             if (thisBoolean){ // Если true, то
@@ -101,8 +101,8 @@ function currSolution(thisProblems){ // Обновление информаци�
     if (objBoolSolution){
         const allConteyner = document.querySelectorAll('.conteyner') // Контейнеры всех задач
 
-        thisProblems.forEach((element, index) => {
-            const idThisProblem = element.id
+        thisProblems.forEach((problem, index) => {
+            const idThisProblem = problem.id
             const valueInObj = objBoolSolution[idThisProblem]
 
             if (valueInObj) {

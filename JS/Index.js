@@ -173,8 +173,17 @@ function processIndex(){
 
         setLocalStorage('stats', newAllStats)
 
-        createTable()
+        if (newAllStats.length === 0){
+            tableInfo.classList.add('close')
+            deleteTable.classList.add('close')
+            closeToShow(netTabl)
 
+            removeLocalStorage('countVariant')
+            removeLocalStorage('countSpecialVariant')
+            removeLocalStorage('countDefaultVariant')
+        } else {
+            createTable()
+        }
     })
 
 
@@ -271,7 +280,7 @@ function processIndex(){
 
 
     // input "countProblem"
-    document.addEventListener('input', (event) => {
+    document.addEventListener('input', event => {
 
         // Если event - не countProblem, выходим
         if (event.target.classList[0] !== 'countProblem') return 
@@ -293,7 +302,7 @@ function processIndex(){
     })
 
 
-    document.addEventListener('input', (event) => {
+    document.addEventListener('input', event => {
 
         if (!['start', 'finish'].includes(event.target.classList[0])) return 
 
@@ -306,7 +315,7 @@ function processIndex(){
 
     })
 
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', event => {
         if (['start', 'finish'].includes(event.target.classList[0])) return
 
         const startBtn = document.querySelector('.start')

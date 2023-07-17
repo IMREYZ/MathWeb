@@ -65,16 +65,17 @@ function deadLineNew(){ // Прошел ли дедлайн?   Если прош
 
     thisTime = +thisTime.replaceAll(':', '')
     deadLine = +deadLine.replaceAll(':', '')
+
+    console.log(thisTime, deadLine)
     
-    if (String(thisTime).length === 6 && String(deadLine).length === 5) deadLine += 240000 // Случай с 23 и 00  
+    
+    if (String(thisTime).length === 6 && String(deadLine).length < 6) deadLine += 240000 // Случай с 23 и 00  
     
     return deadLine - thisTime <= 0 || deadLine - thisTime >= 110000 // Если разность <= 0 или >= 110_000 --> время вышло
 }
 
 
 function time(){ // Глобальная функция времени (variant)
-    
-
     const timePlace = document.querySelector('.time1') // "Место времени"
     const title = document.querySelector('.titleVariant') // "Верхняя надпись"
     const timeFull = getTime('full') // Определяем текущее время
@@ -92,7 +93,6 @@ function time(){ // Глобальная функция времени (variant)
     setInterval(() => { // setInterval раз в секунду
         const deadLine = getLocalStorage('deadLine') // Текущий deadLine
         if (getLocalStorage('againVariant') === 'deadLinePicked'){ // Если сейчас идет вариант (если нет, то "afk")
-
             title.innerHTML = `Вариант: ${titleTime(getTime('full'), deadLine)} осталось` // устанавливаем "верхнюю надпись"
             timePlace.innerHTML = `осталось:  <span class='w900'>${titleTime(getTime('full'), deadLine)} </span>`
         }

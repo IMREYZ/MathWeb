@@ -21,10 +21,12 @@ function cleanUpLocalStorage(){ // Убирание из LocalStr
     const importantWord = ['record', 'special', 'stats', 'statsNumber', 'timeOnVariant', 'countVariant', 'countSpecialVariant', 'countDefaultVariant'] // Список неубераемых
     let importantArray = []
 
-    importantWord.forEach(element => importantArray.push({key: element, value: getLocalStorage(element)}))
+    importantWord.forEach(word => importantArray.push({key: word, value: getLocalStorage(word)}))
     localStorage.clear()
     
-    importantArray.forEach(element => {if (element.value) setLocalStorage(element.key, element.value) })
+    importantArray.forEach(important => {
+        if (important.value) setLocalStorage(important.key, important.value) 
+    })
 }
 
 

@@ -16,7 +16,11 @@ function rounded(number) { // Округление до сотых
 
 function summArray(array) { // Сумма массива
     let sum = 0
-    array.forEach((element, index) => { if (index != 0) sum += element })
+
+    array.forEach((element, index) => { 
+        if (index != 0) sum += element 
+    })
+
     return sum
 }
 
@@ -73,9 +77,9 @@ function getSpecialObject() { // Забираем избранные задач�
     const objSpecial = getLocalStorage('special') // Массив избранных задач 
     let result = []
 
-    allProblems.forEach(element => { // Перебираем все задачи
-        const idThisProblem = element.id // id этой задачи
-        if (objSpecial[idThisProblem]) result.push(element) // Если id: true --> добавляем
+    allProblems.forEach(problem => { // Перебираем все задачи
+        const idThisProblem = problem.id // id этой задачи
+        if (objSpecial[idThisProblem]) result.push(problem) // Если id: true --> добавляем
     })
 
     return result

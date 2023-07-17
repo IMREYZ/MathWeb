@@ -52,24 +52,24 @@ function processCurrSubject(){
 
     const allCheckbox = [...document.querySelectorAll('.checkbox')] // Все checkbox в HTML
     if (arrayCheckbox){ // Если в LocalStr был checkbox  (в случае обновления страницы)
-        allCheckbox.forEach(element => { // Проходимся по всем checkbox HTML        
-            if (arrayCheckbox.includes(element.id)) { // Если id in arrayCheckbox, то
-                element.checked = true // Делаем checked = true
-                weight900(element.id, true) // Добавляем w900
+        allCheckbox.forEach(checkbox => { // Проходимся по всем checkbox HTML        
+            if (arrayCheckbox.includes(checkbox.id)) { // Если id in arrayCheckbox, то
+                checkbox.checked = true // Делаем checked = true
+                weight900(checkbox.id, true) // Добавляем w900
             }
         })
         
     } else { // Если не было в LocalStr
-        allCheckbox.forEach(element => { // Проходимся по всем checkbox HTML
-            element.checked = true // checked
-            weight900(element.id, true) // w900
+        allCheckbox.forEach(checkbox => { // Проходимся по всем checkbox HTML
+            checkbox.checked = true // checked
+            weight900(checkbox.id, true) // w900
         })
     }
 
 
 
     // Первый вывод заданий 
-    getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element))
+    getThisProblems().forEach(problem => allConteynerProblem.innerHTML += problemHTMLcurr(problem))
 
 
     // Возвращаем цвета; инпуты; инфу об "показать ответ"
@@ -84,12 +84,12 @@ function processCurrSubject(){
 
         const checkboxArray = [] // Массив значений checkbox
 
-        allCheckbox.forEach(element => { // Проходимся по всем checkbox HTML
-            if (element.checked) { // Если checked
-                checkboxArray.push(element.id) // Добавляем в массив id
-                weight900(element.id, true) // Добавляем w900
+        allCheckbox.forEach(checkbox => { // Проходимся по всем checkbox HTML
+            if (checkbox.checked) { // Если checked
+                checkboxArray.push(checkbox.id) // Добавляем в массив id
+                weight900(checkbox.id, true) // Добавляем w900
 
-            } else weight900(element.id, false) // Иначе убираем w900
+            } else weight900(checkbox.id, false) // Иначе убираем w900
         })
         
         setLocalStorage('checkbox', checkboxArray) // Устанавлием checkbox в LocalStr
@@ -110,7 +110,7 @@ function processCurrSubject(){
         location.reload()        
     
         allConteynerProblem.innerHTML = ''
-        getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Выводим задания
+        getThisProblems().forEach(problem => allConteynerProblem.innerHTML += problemHTMLcurr(problem)) // Выводим задания
 
         currAll()
     })
@@ -128,7 +128,7 @@ function processCurrSubject(){
         location.reload()
 
         allConteynerProblem.innerHTML = ''
-        getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Образовываем обновленную страницу
+        getThisProblems().forEach(problem => allConteynerProblem.innerHTML += problemHTMLcurr(problem)) // Образовываем обновленную страницу
 
         currAll()
     })
@@ -139,9 +139,9 @@ function processCurrSubject(){
     minusBox.addEventListener('click', () => { // Обработка события - нажатие на "удалить всё"
         if (!getLocalStorage('checkbox')) setLocalStorage('checkbox', []) // Если checkbox нет в LocalStr - пустой массив
 
-        allCheckbox.forEach(element => { // Проходимся по всем checkbox HTML
-            element.checked = false
-            weight900(element.id, false)
+        allCheckbox.forEach(checkbox => { // Проходимся по всем checkbox HTML
+            checkbox.checked = false
+            weight900(checkbox.id, false)
         })
 
         setLocalStorage('thisProblems', []) // Текущие задачи = []
@@ -161,10 +161,10 @@ function processCurrSubject(){
 
         const fullBox = []
 
-        allCheckbox.forEach(element => { // Проходимся по всем checkbox HTML
-            element.checked = true
-            weight900(element.id, true)
-            fullBox.push(element.id)
+        allCheckbox.forEach(checkbox => { // Проходимся по всем checkbox HTML
+            checkbox.checked = true
+            weight900(checkbox.id, true)
+            fullBox.push(checkbox.id)
         })
 
         setLocalStorage('checkbox', fullBox) // checkbox = все checkbox
@@ -174,7 +174,7 @@ function processCurrSubject(){
         location.reload()
 
         allConteynerProblem.innerHTML = ''
-        getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Выводим задания
+        getThisProblems().forEach(problem => allConteynerProblem.innerHTML += problemHTMLcurr(problem)) // Выводим задания
 
         currAll()
     })

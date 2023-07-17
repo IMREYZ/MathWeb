@@ -115,4 +115,18 @@ function getIsVariant(){
 }
 
 
-export { getMyVariantPrevious, getArrayCountProblem, getAllProblemMain, getPreviousAnswers, getNameVariant, getIsVariant }
+
+// currSubject
+
+function getParentForCurrSubject(event){
+    let parent
+
+    if (event.target) parent = event.target.closest('.conteyner') // Родители кнопки
+    else parent = document.activeElement.closest('.conteyner')
+
+    return parent
+}
+
+
+
+export { getMyVariantPrevious, getArrayCountProblem, getAllProblemMain, getPreviousAnswers, getNameVariant, getIsVariant, getParentForCurrSubject }

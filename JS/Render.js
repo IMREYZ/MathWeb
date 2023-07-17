@@ -7,8 +7,8 @@ function renderSpecial() { // Отловка новых заданий и зап
     const specialArray = getLocalStorage('special')
 
     if (specialArray) {
-        allProblems.forEach(element => {
-            const thisId = element.id
+        allProblems.forEach(problem => {
+            const thisId = problem.id
             if (specialArray[thisId] === undefined) specialArray[thisId] = false
         })
 
@@ -21,8 +21,8 @@ function renderStatsNumber() { // Отловка новых заданий и з
     const statsArray = getLocalStorage('statsNumber')
 
     if (statsArray) {
-        allProblems.forEach(element => {
-            const thisId = element.id
+        allProblems.forEach(problem => {
+            const thisId = problem.id
             if (statsArray[thisId] === undefined) statsArray[thisId] = { right: 0, all: 0, procent: 0 }
         })
 
@@ -32,7 +32,7 @@ function renderStatsNumber() { // Отловка новых заданий и з
 
 
 function clearStatsByDblClick() { // Удаление статистики при двойном клике
-    document.addEventListener('dblclick', (event) => {
+    document.addEventListener('dblclick', event => {
         if (event.target.classList[0] !== 'statsNumber') return
 
         const parent = event.target.closest('.conteyner')
@@ -61,7 +61,7 @@ function deleteOldStats() { // Удаление плохой статистик�
 }
 
 function showRightAnswerHTML() { // Показ правильного ответа
-    document.addEventListener('click', (event) => { // Обработка события - нажание на "показать правильный ответ"
+    document.addEventListener('click', event => { // Обработка события - нажание на "показать правильный ответ"
         if (event.target.classList[0] !== 'pokOtw') return // Если не кнопка "показать ответ" - выходим
 
         const conteynerAnswer = event.target.closest('.conteynerRightAnswer') // Контейнер правильного ответа

@@ -4,7 +4,7 @@ import { showToClose, closeToShow } from "./ChangeLayout.js"
 
 
 function eventClickOnStar() { // Функция, которая меняет звезду и special в LocalStr
-    document.addEventListener('click', (event) => { // Обработка события - нажатие на звезду
+    document.addEventListener('click', event => { // Обработка события - нажатие на звезду
         if (event.target.classList[0] !== 'star') return // Если не "звезда" - выходим
 
         let parent = event.target.closest('.conteyner') // Родитель звезды
@@ -25,7 +25,7 @@ function eventClickOnStar() { // Функция, которая меняет з�
 
 
 function eventSolution() { // Обработка события нажатия на "показать решение"
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', event => {
         if (event.target.classList[0] !== 'showSolutionText') return
 
         let conteyner = event.target.closest('.conteyner') // Контейнер всего задания

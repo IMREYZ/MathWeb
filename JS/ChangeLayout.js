@@ -31,10 +31,10 @@ function background(color, index) { // Смена background цвета
 function backgroundByCurr(id, color) { // Смена background цвета для currSubj
     const allConteyners = [...document.querySelectorAll('.conteyner')] // Все контейнеры задач
 
-    allConteyners.forEach(element => { // Перебираем все задачи
-        if (+element.id === id) { // Если id задачи === нашему id, которое мы хотим найти, то
-            const thisNumber = element.querySelector('.number') // Дочерний number
-            const thisAnswer = element.querySelector('.answer') // Дочерний answer
+    allConteyners.forEach(conteyner => { // Перебираем все задачи
+        if (+conteyner.id === id) { // Если id задачи === нашему id, которое мы хотим найти, то
+            const thisNumber = conteyner.querySelector('.number') // Дочерний number
+            const thisAnswer = conteyner.querySelector('.answer') // Дочерний answer
 
             stainingBackground(thisNumber, thisAnswer, color) // Окраска
         }

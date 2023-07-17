@@ -3,19 +3,15 @@ import { getStatsNumberText, getRightAnswerHTML } from "./GetLayout.js"
 import { backgroundByCurr, showToClose, closeToShow } from "./ChangeLayout.js"
 import { searchObjectById } from "./OtherFunctions.js"
 import { allProblems } from "./Base.js"
-import { createAndSaveColorsFunc } from "./SaveProblem.js"
+import { getParentForCurrSubject } from "./GetVariableForVariant.js"
 
 
 function eventSendAnswer() { // Обработка события "отправить ответ"
 
-    function sendAnswerFunc(event){      
+    function sendAnswerFunction(event){      
+        if (event !== 'ENTER' && (event.target.classList[0] !== 'submit' || window.location.pathname === '/MathWeb/HTML/stress.html')) return // Если событие - не кнопка sumbit, то выходим
 
-        if (event !== 'button' && (event.target.classList[0] !== 'submit' || window.location.pathname === '/MathWeb/HTML/stress.html')) return // Если событие - не кнопка sumbit, то выходим
-
-        let parent
-        if (event.target) parent = event.target.closest('.conteyner') // Родители кнопки
-        else parent = document.activeElement.closest('.conteyner')
-
+        const parent = getParentForCurrSubject(event)
         const answerText = parent.querySelector('.answer') // Весь блок answer (для add('white'))
         const answer = parent.querySelector('.input') // Дочерний input
         const answerInput = answer.value.replace(',', '.') // Value этого input
@@ -34,8 +30,6 @@ function eventSendAnswer() { // Обработка события "отправ�
 
 
         if (answerInput !== '') {
-            answerText.classList.add('white') // Добавлеяем белого в блюом случае
-
             if (String(answerRight) === answerInput) {
                 backgroundByCurr(id, 'green') // Ставим зеленый фон задаче с id как у контейнера
                 answer.readOnly = true // Меняем дочерние элементы
@@ -47,8 +41,8 @@ function eventSendAnswer() { // Обработка события "отправ�
                 showToClose(conteynerSolution)
                 showToClose(imgSolutionConteyner)
 
-                thisStatsNumberObj.right++
-                thisStatsNumberObj.all++
+                thisStatsNumberObj.right ++
+                thisStatsNumberObj.all ++
                 thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
 
             } else {
@@ -63,27 +57,24 @@ function eventSendAnswer() { // Обработка события "отправ�
 
                 closeToShow(rightAnswer)
 
-                thisStatsNumberObj.all++
+                thisStatsNumberObj.all ++
                 thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
             }
 
-
+            answerText.classList.add('white') // Добавлеяем белого в блюом случае
             statsNumberLocalStr[id] = thisStatsNumberObj
             setLocalStorage('statsNumber', statsNumberLocalStr)
-
             statsNumber.innerHTML = getStatsNumberText(thisObject)
         }
     }
 
 
-
-    document.addEventListener('click', sendAnswerFunc)
     
+    document.addEventListener('click', { sendAnswerFunction })
     
-    document.addEventListener('keydown', (button) => {
-        if (button.key === 'Enter' && document.activeElement.classList[0] === 'input' && window.location.pathname !== '/MathWeb/HTML/stress.html') {            
-            sendAnswerFunc('button')
-            createAndSaveColorsFunc('button')
+    document.addEventListener('keydown', button => {
+        if (button.key === 'Enter' && document.activeElement.classList[0] === 'input' && window.location.pathname !== '/MathWeb/HTML/stress.html') { 
+            sendAnswerFunction('ENTER')
         }
     })
 }

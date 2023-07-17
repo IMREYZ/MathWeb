@@ -56,8 +56,8 @@ function popUpProcces(){
     const cancelBtn = document.querySelector('.cancelBtn')
     const acceptBtn = document.querySelector('.accept') // Кнопка подтверждения
 
-    acceptBtn.addEventListener('click', () =>  popUpSecond.classList.add('active')) // Нажатие на "закончить" // Открывает PopUp
-    cancelBtn.addEventListener('click', () =>  popUpSecond.classList.remove('active')) // Нажатие на "отмена" в PopUp // Закрываем PopUp
+    acceptBtn.addEventListener('click', () => { popUpSecond.classList.add('active') }) // Нажатие на "закончить" // Открывает PopUp
+    cancelBtn.addEventListener('click', () => { popUpSecond.classList.remove('active') }) // Нажатие на "отмена" в PopUp // Закрываем PopUp
 
     document.addEventListener('click', event => { // Выход из PopUp
         if (!event.target.classList[0] || !event.target.classList[0].includes('pop_up')) return // Если не popUp - выходим

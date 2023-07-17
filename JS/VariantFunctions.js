@@ -6,17 +6,19 @@ function pushArrayCountProblem() { // Массив количеств задач
     const DOMarrayCountProblem = ['-', ...document.querySelectorAll('.countProblem')] // Все countProblem
     const arrayCountProblem = ['-'] // Результат
 
-    DOMarrayCountProblem.forEach((element, index) => { // Если index != 0 => push
-        if (index !== 0) arrayCountProblem.push(+element.value)
+    DOMarrayCountProblem.forEach((countProblem, index) => { // Если index != 0 => push
+        if (index !== 0) arrayCountProblem.push(+countProblem.value)
     })
     return arrayCountProblem
 }
 
 
-function countProblemToNumber(value) { // Присваение все input в index значение = value
+
+function countProblemToNumber(number) { // Присваение все input в index значение = value
     const allCountProblem = [...document.querySelectorAll('.countProblem')]
-    allCountProblem.forEach(element => element.value = value)
+    allCountProblem.forEach(countProblem => countProblem.value = number)
 }
+
 
 
 function randomProblem(thisIndexProblem, thisCountProblem) { // thisCountProblem неповторяющих элементов из массива problems[thisIndexProblem]
@@ -45,21 +47,22 @@ function getObjectsFromAndTo(thisIndexProblem, start, finish) { // Возвра�
     const myArray = problems[thisIndexProblem]
 
 
-    myArray.forEach(element => {
-        const thisProcent = element.procent
-        if (thisProcent >= start && thisProcent <= finish) result.push(element)
+    myArray.forEach(problem => {
+        const thisProcent = problem.procent
+        if (thisProcent >= start && thisProcent <= finish) result.push(problem)
     })
 
     return result
 }
 
 
+
 function getArrayObjectForSpecialVariants(numberVariant) { // ['1.21', '3.32'] -> [{problem: '1.21' ....}, {problem: '3.32'....}]
     const resultArray = []
     const thisIdArray = specialVariants[numberVariant].variant // Массив строк id задач
 
-    allProblems.forEach(element => { // Проходимся по всем задачам
-        if (thisIdArray.includes(element.problem)) resultArray.push(element) // Если {n.m} in thisIdArray, добавляем задачу в thisIdArray
+    allProblems.forEach(problem => { // Проходимся по всем задачам
+        if (thisIdArray.includes(problem.problem)) resultArray.push(problem) // Если {n.m} in thisIdArray, добавляем задачу в thisIdArray
     })
 
     return resultArray
@@ -72,24 +75,24 @@ function randomVariant(countProblem) { // Генератор рандомног�
     let result = []
     for (let index = 1; index <= 11; index++) {
         const randomProblemArray = randomProblem(index, countProblem[index]) // Массив задач номера i
-        randomProblemArray.forEach(element => result.push(element)) // Добавляем все эти задачи в итоговый массив
+        randomProblemArray.forEach(problem => result.push(problem)) // Добавляем все эти задачи в итоговый массив
     }
 
     return result
 }
 
 
+
 function getCountProblemForVariant(variant){ // Функиця, которая возвращает countProblem для варианта (нужно для special и для specialVariant )
     const countProblem = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     
-    variant.forEach(element => {                
-        const numberProblem = +element.problem.split('.')[0]
-        countProblem[numberProblem]++
+    variant.forEach(problem => {                
+        const numberProblem = +problem.problem.split('.')[0]
+        countProblem[numberProblem] ++
     })
     
     return countProblem
 }
-
 
 
 
@@ -101,13 +104,6 @@ function getAvgProcentVariant(variant){
     if (variant.length === 0) return 0
     else return parseInt(sum / variant.length)
 }
-
-
-
-
-
-
-
 
 
 
