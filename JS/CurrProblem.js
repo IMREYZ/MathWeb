@@ -1,4 +1,4 @@
-import { getLocalStorage, getThisProblems, removeLocalStorage } from "./LocalStorage.js"
+import { getLocalStorage, getThisProblems } from "./LocalStorage.js"
 import { getRightAnswerHTML } from "./GetLayout.js"
 import { backgroundByCurr, closeToShow } from "./ChangeLayout.js"
 

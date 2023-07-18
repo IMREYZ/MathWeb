@@ -70,7 +70,7 @@ function eventSendAnswer() { // Обработка события "отправ�
 
 
     
-    document.addEventListener('click', { sendAnswerFunction })
+    document.addEventListener('click', sendAnswerFunction)
     
     document.addEventListener('keydown', button => {
         if (button.key === 'Enter' && document.activeElement.classList[0] === 'input' && window.location.pathname !== '/MathWeb/HTML/stress.html') { 

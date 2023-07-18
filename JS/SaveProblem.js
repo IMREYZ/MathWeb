@@ -61,7 +61,7 @@ function clearOtherSave(event){
 
 
 function createAndSaveColors(){ // Создание и/или сохрание цветов
-    document.addEventListener('click', { createAndSaveColorsFunction }) 
+    document.addEventListener('click', createAndSaveColorsFunction) 
 
     document.addEventListener('keydown', button => {
         if (button.key === 'Enter' && document.activeElement.classList[0] === 'input' && window.location.pathname !== '/MathWeb/HTML/stress.html') {            

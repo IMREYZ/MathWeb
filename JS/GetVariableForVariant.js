@@ -99,8 +99,8 @@ function getNameVariant(){
     else if (getLocalStorage('fromStats') !== null) nameVariant = myVariantPrevious.name  // Если просмотр
     else nameVariant = specialVariants[numberVariant].name // Если спец вариант
 
-    const avgVariant = getAvgProcentVariant(allProblemsMain)
-    nameVariant += ` (Сложность варианта: ${avgVariant}%)`
+    // const avgVariant = getAvgProcentVariant(allProblemsMain)
+    // nameVariant += ` (Сложность варианта: ${avgVariant}%)`
 
     return nameVariant
 }

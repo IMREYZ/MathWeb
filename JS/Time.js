@@ -34,7 +34,7 @@ function titleTime(thisTime, deadLine){ // Обратный отсчет вре�
     
     const secondLeft = (+deadLine[0] - +thisTime[0]) * 3600 + (+deadLine[1] - +thisTime[1]) * 60 + (+deadLine[2] - +thisTime[2]) * 1 // Кол-во секунд
 
-    const result = `${addZero(parseInt(secondLeft / 3600))}:${addZero(parseInt(secondLeft / 60) % 60)}:${addZero(secondLeft % 60)}` // Результат
+    const result = `${parseInt(secondLeft / 3600)}:${addZero(parseInt(secondLeft / 60) % 60)}:${addZero(secondLeft % 60)}` // Результат
     return result 
 }
 
@@ -64,10 +64,7 @@ function deadLineNew(){ // Прошел ли дедлайн?   Если прош
     let deadLine = getLocalStorage('deadLine') // DeadLine
 
     thisTime = +thisTime.replaceAll(':', '')
-    deadLine = +deadLine.replaceAll(':', '')
-
-    console.log(thisTime, deadLine)
-    
+    deadLine = +deadLine.replaceAll(':', '')    
     
     if (String(thisTime).length === 6 && String(deadLine).length < 6) deadLine += 240000 // Случай с 23 и 00  
     
@@ -91,10 +88,12 @@ function time(){ // Глобальная функция времени (variant)
     }
 
     setInterval(() => { // setInterval раз в секунду
-        const deadLine = getLocalStorage('deadLine') // Текущий deadLine
         if (getLocalStorage('againVariant') === 'deadLinePicked'){ // Если сейчас идет вариант (если нет, то "afk")
-            title.innerHTML = `Вариант: ${titleTime(getTime('full'), deadLine)} осталось` // устанавливаем "верхнюю надпись"
-            timePlace.innerHTML = `осталось:  <span class='w900'>${titleTime(getTime('full'), deadLine)} </span>`
+            const deadLine = getLocalStorage('deadLine') // Текущий deadLine
+            const leftTime = titleTime(getTime('full'), deadLine)
+
+            title.innerHTML = `Вариант: ${leftTime} осталось` // устанавливаем "верхнюю надпись"
+            timePlace.innerHTML = `<span class='w900'>${leftTime} </span> осталось`
         }
             
         // Конец дедлайна
@@ -117,8 +116,9 @@ function getTime(value) { // Возвращение времени
     else if (value === 'd') return addZero(date.getDate())
     else if (value === 'mo') return date.getMonth()
     else if (value === 'y') return addZero(date.getFullYear())
-    else if (value === 'full') return `${getTime('h')}:${getTime('m')}:${getTime('s')}`
+    else if (value === 'full') return [getTime('h'), getTime('m'), getTime('s')].join(':')
 }
+
 
 
 
