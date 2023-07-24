@@ -57,6 +57,7 @@ function popUpProcces(){
     const acceptBtn = document.querySelector('.accept') // Кнопка подтверждения
 
     acceptBtn.addEventListener('click', () => { popUpSecond.classList.add('active') }) // Нажатие на "закончить" // Открывает PopUp
+    
     cancelBtn.addEventListener('click', () => { popUpSecond.classList.remove('active') }) // Нажатие на "отмена" в PopUp // Закрываем PopUp
 
     document.addEventListener('click', event => { // Выход из PopUp
@@ -69,7 +70,6 @@ function popUpProcces(){
         if (popUpArrayClassList.includes(classThisElement)) popUpMain.classList.remove('active')
         if (popUp1ArrayClassList.includes(classThisElement)) popUpSecond.classList.remove('active')
     })
-
 
     yesBtn.addEventListener('click', () => { endVariant() }) // Нажатие на "Да" в PopUp
 }

@@ -1549,12 +1549,20 @@ canvas {
 
 #QQ1{
     font-size: 21px;
-    font-weight: 900;
     border-bottom-style: dotted;
+    color: #68a2ca;
+    font-weight: 900;
+}
+
+#QQ1:hover{
     color: rgb(80, 80, 165);
 }
 
 .conteynerLink{
     margin-bottom: 20px;
     margin-top: 5px;
+}
+
+.deleteVar:hover {
+    color: rgb(102, 42, 42);
 }
