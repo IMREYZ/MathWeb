@@ -976,7 +976,12 @@ const allProblems =
 
         { problem: '9.41', answer: 0.4, procent: 55, type: 'Квадратичная формула' },
 
-        { problem: '9.42', answer: 27.5, procent: 20, type: 'Рациональная формула' },
+        { problem: '9.42', answer: 1, procent: 95, type: 'Квадратичная формула' },
+        { problem: '9.43', answer: 4, procent: 95, type: 'Квадратичная формула' },
+
+        { problem: '9.44', answer: 9, procent: 40, type: 'Рациональная формула' },
+        { problem: '9.45', answer: 2.8, procent: 40, type: 'Рациональная формула' },
+        { problem: '9.46', answer: 27.5, procent: 20, type: 'Рациональная формула' },
 
         { problem: '9.47', answer: 260, procent: 45, type: 'Рациональная формула' },
 
