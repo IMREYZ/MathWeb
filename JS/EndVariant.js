@@ -21,7 +21,7 @@ function endVariant(){ // Конец варианта
     const allParents = [...document.querySelectorAll('.conteyner')] // Все контейнеры
     const allAnswer = [...document.querySelectorAll('.answer')] // Все answer
 
-    let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // Количество верных задач "['-', new Array(11).fill(100)].flat(1)"
+    let countRightAnswer = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // Количество верных задач "['-', new Array(11).fill(100)].flat(1)"
     let rightAnswers = 0 // Количество правильных ответов
     let arrayAnswer = [] // Массив input ответов
     let arrayColors = []
@@ -99,7 +99,7 @@ function endVariant(){ // Конец варианта
         let infoLocalStorageObject = {} // Объект текущего варианта
         let arrayRightAnswer = [] // Массив статистики
             
-        for (let index = 1; index <= 11; index ++) arrayRightAnswer.push({right: countRightAnswer[index], count: arrayCountProblem[index]}) // Для каждой задачи right, count
+        for (let index = 1; index <= 12; index ++) arrayRightAnswer.push({right: countRightAnswer[index], count: arrayCountProblem[index]}) // Для каждой задачи right, count
         arrayRightAnswer.push({right: rightAnswers, count: arrayAnswer.length}) // Для всего варианта right, count
 
         const stats = getLocalStorage('stats') // Массив вариантов

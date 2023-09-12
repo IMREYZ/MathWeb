@@ -18,6 +18,7 @@ function removeLocalStorage(value){ // Удаление из LocalStr
 
 
 function cleanUpLocalStorage(){ // Убирание из LocalStr
+    
     const importantWord = ['record', 'special', 'stats', 'statsNumber', 'timeOnVariant', 'countVariant', 'countSpecialVariant', 'countDefaultVariant'] // Список неубераемых
     let importantArray = []
 

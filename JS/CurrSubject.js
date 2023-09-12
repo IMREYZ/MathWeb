@@ -15,6 +15,8 @@ function processCurrSubject(){
     const name = getLocalStorage('nameProblem') // Имя задания
     const thisSelect = getLocalStorage('select') // Забираем из LocalStr select
     const allProblems = problems[id] // Все задачи
+    console.log(allProblems, id)
+    
     const themeThisProblem = themeProblems[id] // Темы задачи
     const arrayCheckbox = getLocalStorage('checkbox') // Массив checkbox
 
@@ -69,6 +71,7 @@ function processCurrSubject(){
 
 
     // Первый вывод заданий 
+    
     getThisProblems().forEach(problem => allConteynerProblem.innerHTML += problemHTMLcurr(problem))
 
 
@@ -107,8 +110,6 @@ function processCurrSubject(){
         sortProblem(getLocalStorage('select')) // сортируем эти задачи
         setLocalStorage('thisProblems', newThisProblems) // Обновляем текущие задачи
         
-        location.reload()        
-    
         allConteynerProblem.innerHTML = ''
         getThisProblems().forEach(problem => allConteynerProblem.innerHTML += problemHTMLcurr(problem)) // Выводим задания
 
@@ -124,8 +125,6 @@ function processCurrSubject(){
         sortProblem(thisOption) // Сортируем по новому изменению
 
         setLocalStorage('select', thisOption) // Добавляем в LocalStr select
-
-        location.reload()
 
         allConteynerProblem.innerHTML = ''
         getThisProblems().forEach(problem => allConteynerProblem.innerHTML += problemHTMLcurr(problem)) // Образовываем обновленную страницу
@@ -194,6 +193,7 @@ function processCurrSubject(){
 
         event.target.value = event.target.value.replace(/[^0123456789,-]/g, '') // Регулярное выражение для фильтрации input
     })
+
 }
 
 export {processCurrSubject}

@@ -73,7 +73,7 @@ function getArrayObjectForSpecialVariants(numberVariant) { // ['1.21', '3.32'] -
 
 function randomVariant(countProblem) { // Генератор рандомного варинта
     let result = []
-    for (let index = 1; index <= 11; index++) {
+    for (let index = 1; index <= 12; index ++) {
         const randomProblemArray = randomProblem(index, countProblem[index]) // Массив задач номера i
         randomProblemArray.forEach(problem => result.push(problem)) // Добавляем все эти задачи в итоговый массив
     }
@@ -84,7 +84,7 @@ function randomVariant(countProblem) { // Генератор рандомног�
 
 
 function getCountProblemForVariant(variant){ // Функиця, которая возвращает countProblem для варианта (нужно для special и для specialVariant )
-    const countProblem = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    const countProblem = ['-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     
     variant.forEach(problem => {                
         const numberProblem = +problem.problem.split('.')[0]

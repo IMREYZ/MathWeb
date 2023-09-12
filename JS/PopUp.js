@@ -25,7 +25,7 @@ function textPopUpFull(answer, rightAnswers, secondBallArray){ // HTML PopUp к�
             <div>Решено неверно: <span class="redColor w900"> ${answer.length - rightAnswers} </span></div>
             <div>Процент выполнения: <span class='w900'>${parseInt(rightAnswers / answer.length * 100)}% </span></div>
             <div>Потраченное время: <span class='w900'> ${solutionTime}</span></div>
-            <div class='statsForEge'>Статистика по «ЕГЭ профиль (1-11)»</div>
+            <div class='statsForEge'>Статистика по «ЕГЭ профиль (1-12)»</div>
             <div>Первичных баллов: <span class='w900'>${rightAnswers}</span> </div>
             <div>Вторичных баллов: <span class='w900'>${secondBallArray[rightAnswers]}</span> </div>`
 }

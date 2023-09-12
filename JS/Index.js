@@ -100,6 +100,7 @@ function processIndex(){
             <td>9</td>
             <td>10</td>
             <td>11</td>
+            <td>12</td>
             <td class="vsego">Всего</td>
             </tr>`
 
@@ -110,7 +111,7 @@ function processIndex(){
             let textHTML
             // Массив всех заданий
             let infoAll = []
-            for (let i = 0; i <= 11; i ++) infoAll.push({right: 0, all: 0})
+            for (let i = 0; i <= 12; i ++) infoAll.push({right: 0, all: 0})
 
             statsAboutVariants.forEach(element => {
                 // Начало HTML
@@ -127,7 +128,7 @@ function processIndex(){
                 // Заполняем вариант
                 element.stats.forEach((elementElement, index) => {
                     const resultVariantHTML = ` (${parseInt(elementElement.right / elementElement.count * 100)}%)</td>`
-                    textHTML += `<td class='cell'>${elementElement.right} / ${elementElement.count}` + (index === 11 ? resultVariantHTML : '</td>')
+                    textHTML += `<td class='cell'>${elementElement.right} / ${elementElement.count}` + (index === 12 ? resultVariantHTML : '</td>')
 
                     infoAll[index].right += elementElement.right
                     infoAll[index].all += elementElement.count
@@ -205,6 +206,8 @@ function processIndex(){
         const parent = event.target.closest('.fullProblem')
         const id = +parent.dataset.number
         const name = parent.querySelector('.nameProblem').innerHTML
+        console.log(id)
+        
 
         // Записываем номер и имя задачи LocalStr
         setLocalStorage('idProblem', id)
@@ -449,7 +452,7 @@ function processIndex(){
     
 }
 
-export {processIndex}
+export { processIndex }
 
 
 
