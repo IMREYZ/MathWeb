@@ -35,7 +35,6 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
 
                 backgroundByCurr(idProblem, 'red') // Устанавливаем красный цвет для задачи с id контейнера
                 conteynerRightAnswer.innerHTML = getRightAnswerHTML(thisProblems[count]) // Добавляем 'показать ответ'
-2
                 const rightAnswer = conteynerRightAnswer.querySelector('.showRightAnswer')
                 closeToShow(rightAnswer) // Показываем "показать ответ"
 

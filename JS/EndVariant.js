@@ -103,7 +103,7 @@ function endVariant(){ // Конец варианта
         arrayRightAnswer.push({right: rightAnswers, count: arrayAnswer.length}) // Для всего варианта right, count
 
         const stats = getLocalStorage('stats') // Массив вариантов
-        const numberVariant = getLocalStorage('numberVariant') // Номер варианта
+        const numberVariant = getLocalStorage('numberVariant') // Номер варианта (не просмотр)
         let nameVariant
 
         if (!getLocalStorage('countSpecialVariant')) setLocalStorage('countSpecialVariant', 0)
@@ -128,7 +128,7 @@ function endVariant(){ // Конец варианта
             else if (numberVariant === -1) {
                 setLocalStorage('countSpecialVariant', getLocalStorage('countSpecialVariant') + 1)
                 nameVariant = `Избранные задания ${getLocalStorage('countSpecialVariant')}` 
-            } else {
+            } else if (numberVariant === 0) {
                 setLocalStorage('countDefaultVariant', getLocalStorage('countDefaultVariant') + 1)
                 nameVariant = `Вариант ${getLocalStorage('countDefaultVariant')}`
             }

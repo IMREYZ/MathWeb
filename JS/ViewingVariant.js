@@ -29,7 +29,7 @@ function viewingVariant(){
             setLocalStorage('variant', myVariant)
 
 
-            for (let index = 0; index < myVariant.length; index ++){
+            for (let index = 0; index < myVariant.length; index ++) {
                 background(myColors[index], index) // Ставим цвет контейнеру
                 inputVariant[index].readOnly = true // Только чтение
                 allAnswer[index].classList.add('white') // white
@@ -46,7 +46,7 @@ function viewingVariant(){
                 thisStar.classList.remove('close') // Удаляем close звезде
                 thisStatsNumberConteyner.innerHTML = getStatsNumberText(thisProblem)
 
-                if (myColors[index] === 'red'){
+                if (myColors[index] === 'red') {
                     const thisConteyner = thisParent.querySelector('.conteynerRightAnswer') // Текущий контейнер ответов
                     thisConteyner.innerHTML = getRightAnswerHTML(allProblemMain[index]) // Записываем туда getRightAnswerHTML()
                     const rightAnswer = thisConteyner.querySelector('.showRightAnswer') // showRightAnswer - весь блок answer -> делаем show

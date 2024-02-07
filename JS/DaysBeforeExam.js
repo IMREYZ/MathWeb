@@ -4,6 +4,7 @@ import { getTime } from "./Time.js"
 
 function getFullDaysBeforeExam(day){ // осталось/остался дней/дня/день
     let first; let second
+    
     if ((day >= 5 && day <= 20) || (day % 10 >= 5) || (day % 10 === 0)) {
         first = 'осталось'
         second = 'дней'
@@ -22,9 +23,9 @@ function getFullDaysBeforeExam(day){ // осталось/остался дней
 
 
 function daysBeforeExam(){ // Дней до экзамена
-    const EXAM = {year: 2024, month: 6, day: 1} // Костанта - день экзамена
+    const EXAM = {year: 2024, month: 5, day: 31} // Костанта - день экзамена
     const thisDay = {year: getTime('y'), month: getTime('mo') + 1, day: getTime('d')} // Формируем текущий день
-    const pogresh = 1
+    const pogresh = -2
 
     const dayLeft = (EXAM.year - thisDay.year) * 365 + (EXAM.month - thisDay.month) * 30 + (EXAM.day - thisDay.day) + pogresh // Сколько дней осталось
     return dayLeft

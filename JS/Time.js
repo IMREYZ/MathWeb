@@ -8,7 +8,7 @@ import { addZero } from "./OtherFunctions.js"
 function timeToArray(time){ // Функция для времени №1    '4:30:20 12 Февраля 2023' --> [4, 30, 20]
     const timeArray = time.split(':')
     
-    return [+timeArray[0], +timeArray[1], +timeArray[2]]
+    return [ +timeArray[0], +timeArray[1], +timeArray[2] ]
 }
 
 

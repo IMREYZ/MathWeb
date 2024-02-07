@@ -16,26 +16,62 @@ function processStress(){
     const place = document.querySelector('.place')
 
     // Место красного счёта (изначально скрываем)
-    const refreshInfoText = document.querySelector('.conteynerTime1') 
+    const refreshInfoText = document.querySelector('.conteynerTime1')
 
-    // При обновлении меняем timer на false
-    setLocalStorage('timer', false)
 
-    if (getLocalStorage('pause')) removeLocalStorage('pause')
+    // Если нет задачи в LocalStr
+    if (!getLocalStorage('randomProblem')) {
+        setLocalStorage('randomProblem', randomStress())
 
-    // Если нет рекорда, рекорд = 0
-    if (!getLocalStorage('record')) setLocalStorage('record', 0)
-
-    // Если нет, то score в LocalStr, иначе записываем в счёт (если обновление страницы)
-    // Дописываем рекорд
-    !getLocalStorage('thisScore') ? setLocalStorage('thisScore', 0) : score.innerHTML = `Текущий счёт: <span class='thisScore'>${getLocalStorage('thisScore')}</span> `
-    score.innerHTML += `(Рекорд: <span class='thisScore'>${getLocalStorage('record')}</span>)`
+        // Добавляем deadLine 
+        const thisTime = getTime('full')
+        const randomProblem = getLocalStorage('randomProblem').number
+        const time = timeOnProblem[randomProblem]
+        if (getLocalStorage('status') !== 'afk') setLocalStorage('deadLine', deadLine(thisTime, 0, time[0], time[1]))
+    }
+    
     
 
-    // timer = false, когда пауза, иначе = true
-    // pause - 0,35 сек
+    if (getLocalStorage('status') === 'afk'){
+        viewingStress()
+        
+    } else {
+        // При обновлении меняем timer на false
+        setLocalStorage('timer', false)
 
+        if (getLocalStorage('pause')) removeLocalStorage('pause')
 
+        // Если нет рекорда, рекорд = 0
+        if (!getLocalStorage('record')) setLocalStorage('record', 0)
+
+        // Если нет, то score в LocalStr, иначе записываем в счёт (если обновление страницы)
+        // Дописываем рекорд
+        !getLocalStorage('thisScore') ? setLocalStorage('thisScore', 0) : score.innerHTML = `Текущий счёт: <span class='thisScore'>${getLocalStorage('thisScore')}</span> `
+        score.innerHTML += `(Рекорд: <span class='thisScore'>${getLocalStorage('record')}</span>)`
+
+        // Закидываем задачу на страницу (даже при обновлении)
+        place.innerHTML = problemHTMLstress(getLocalStorage('randomProblem'))
+
+        // Фокус на input
+        document.querySelector('.input').focus()
+    }
+    
+    
+    
+    
+    function viewingStress(){
+        place.innerHTML = problemHTMLstress(getLocalStorage('randomProblem'))
+        
+        const scored = +getLocalStorage('thisScore')
+        score.innerHTML = ''
+        timePlace.innerHTML = `Ваш Результат за эту попытку: <span class='thisScore'>${scored}</span> (Рекорд: <span class='thisScore'>${getLocalStorage('record')}</span>)`
+        
+        refreshInfoText.innerHTML = `<button class='time3'>Начать заново </button>`
+
+        endGame()
+    }
+    
+    
     // Если проиграл
     function endGame(){
         // Узнаем текущий счет
@@ -62,15 +98,7 @@ function processStress(){
         const thisStar = document.querySelector('.star')
         thisStar.classList.remove('close')
 
-        thisStatsNumberObj.all ++
-        thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
-
-        statsNumberLocalStr[thisProblem.id] = thisStatsNumberObj            
-        setLocalStorage('statsNumber', statsNumberLocalStr)
-        
         thisStatsNumber.innerHTML = getStatsNumberText(thisProblem)
-
-
 
         const thisConteyner = document.querySelector('.conteynerRightAnswer')
         thisConteyner.innerHTML = getRightAnswerHTML(getLocalStorage('randomProblem'))
@@ -80,7 +108,14 @@ function processStress(){
 
         const conteynerInput = document.querySelector('.conteynerInput') // conteynerInputStress --> conteynerInput
         conteynerInput.classList.add('inputConteynerInCenter') // conteynerInput --> inputConteynerInCenter
+        
 
+
+        thisStatsNumberObj.all ++
+        thisStatsNumberObj.procent = parseInt(thisStatsNumberObj.right / thisStatsNumberObj.all * 100)
+
+        statsNumberLocalStr[thisProblem.id] = thisStatsNumberObj            
+        setLocalStorage('statsNumber', statsNumberLocalStr)
 
 
         // Делаем заглушку на 0,35 сек
@@ -100,9 +135,6 @@ function processStress(){
 
         const answerText = document.querySelector('.answer')
         answerText.classList.add('white')
-        
-        // Удаляем задачу из LocalStr
-        removeLocalStorage('randomProblem')
 
         // disabled
         const inputAll = document.querySelector('.input')
@@ -111,24 +143,12 @@ function processStress(){
         inputAll.readOnly = true
         submitAll.disabled = true
         submitAll.classList.remove('button:hover')
+        
+        setLocalStorage('status', 'afk')
     }
 
-    // Если нет задачи в LocalStr
-    if (!getLocalStorage('randomProblem')) {
-        setLocalStorage('randomProblem', randomStress())
 
-        // Добавляем deadLine 
-        const thisTime = getTime('full')
-        const randomProblem = getLocalStorage('randomProblem').number
-        const time = timeOnProblem[randomProblem]
-        setLocalStorage('deadLine', deadLine(thisTime, 0, time[0], time[1]))
-    }
-
-    // Закидываем задачу на страницу (даже при обновлении)
-    place.innerHTML = problemHTMLstress(getLocalStorage('randomProblem'))
-
-    // Фокус на input
-    document.querySelector('.input').focus()
+    
 
     // Обновление каждую секунду
     setInterval(function() {
@@ -149,6 +169,7 @@ function processStress(){
         }
     }, 1000)   
 
+    
     function sendAsnwer(){
         
         // Узнаем введенный ответ; текущий счет
@@ -224,10 +245,18 @@ function processStress(){
     
 
     document.addEventListener('click', event => {
-        if (event.target.classList[0] === 'time3') location.reload()
+        if (event.target.classList[0] === 'time3') {
+            location.reload()
+            removeLocalStorage('status')
+            
+            // Удаляем задачу из LocalStr
+            removeLocalStorage('randomProblem')
+        }
     })
 
 
+    
+    
     // Если событие - кнопка submit
     document.addEventListener('click', event => { 
         if (event.target.classList[0] === 'submit') sendAsnwer() 
@@ -243,4 +272,4 @@ function processStress(){
     })
 }
 
-export {processStress}
+export { processStress }

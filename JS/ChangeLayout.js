@@ -78,7 +78,8 @@ function changeBtnVariant() { // Смена кнопки "Вариант" (из�
     const hoursValue = +hoursHTML.value // Значение hours
     const minutesValue = +minutesHTML.value // Значение minutes
 
-    const boolArrayCountProblem = arrayCountProblem.some((element, index) => index !== 0 && getObjectsFromAndTo(index, valueStart, valueFinish).length < element) // валидность arrayCountProblem
+    const boolArrayCountProblem = arrayCountProblem.some((element, index) => 
+        index !== 0 && getObjectsFromAndTo(index, valueStart, valueFinish).length < element) // валидность arrayCountProblem
     const boolTime = hoursValue === 0 && minutesValue === 0 // 0 часов, 0 минут ?
     variant.disabled = summProblems === 0 || boolArrayCountProblem || boolTime  // Если сумма === 0 || boolArrayCountProblem || boolTime => disabled = true
 

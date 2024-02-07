@@ -1,14 +1,9 @@
-import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
+import {getLocalStorage, getThisProblems, setLocalStorage} from "./LocalStorage.js"
 import { searchObjectById } from "./OtherFunctions.js"
-import { allProblems } from "./Base.js"
-import { problems } from "./Base.js"
 import { getParentForCurrSubject } from "./GetVariableForVariant.js"
 
-function createAndSaveColorsFunction(event){
+function createAndSaveColorsFunction(event, thisProblems){
     if (event !== 'ENTER' && event.target.classList[0] !== 'submit') return
-
-    const id = getLocalStorage('idProblem') // Номер задания
-    const thisProblems = problems[id]
         
     if (!getLocalStorage('color')){ // Если нет в LocalStr createAndSaveColors, добавить gray
         const array = {}
@@ -19,22 +14,22 @@ function createAndSaveColorsFunction(event){
     const parent = getParentForCurrSubject(event)
     const headerThisProblem = parent.querySelector('.number') // Верный ответ HTML
     const idThisProblemHTML = parent.id // id Контейнера    
-    const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу
+    const thisProblem = searchObjectById(idThisProblemHTML, thisProblems) // Сама задача по индексу
     const idThisProblem = thisProblem.id // id этой задачи
     const objColor = getLocalStorage('color') // Объект {4001: gray, 4002: green, 4003: red...}
 
     objColor[idThisProblem] = headerThisProblem.classList[1] // Изменение этой задачи
     setLocalStorage('color', objColor) // Сохранение в LocalStr
     
-    clearOtherSave(event)
+    clearOtherSave(event, thisProblems)
 }
 
 
 
-function clearOtherSave(event){
+function clearOtherSave(event, thisProblems){
     const parent = getParentForCurrSubject(event)
     const idThisProblemHTML = parent.id // id Контейнера    
-    const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу
+    const thisProblem = searchObjectById(idThisProblemHTML, thisProblems) // Сама задача по индексу
     const idThisProblem = thisProblem.id // id этой задачи
     const objColor = getLocalStorage('color') // Объект {4001: gray, 4002: green, 4003: red...}
     const objAnswer = getLocalStorage('currInfoShowRightAnswer') // Объект {4001: gray, 4002: green, 4003: red...}
@@ -60,12 +55,14 @@ function clearOtherSave(event){
 
 
 
-function createAndSaveColors(){ // Создание и/или сохрание цветов
-    document.addEventListener('click', createAndSaveColorsFunction) 
+
+
+function createAndSaveColors(thisProblems){ // Создание и/или сохрание цветов
+    document.addEventListener('click', event => createAndSaveColorsFunction(event, thisProblems)) 
 
     document.addEventListener('keydown', button => {
         if (button.key === 'Enter' && document.activeElement.classList[0] === 'input' && window.location.pathname !== '/MathWeb/HTML/stress.html') {            
-            createAndSaveColorsFunction('ENTER')
+            createAndSaveColorsFunction('ENTER', thisProblems)
         }
     })
 }
@@ -75,6 +72,7 @@ function createAndSaveColors(){ // Создание и/или сохрание �
 function createAndSaveInputs(thisProblems){ // Создание и/или сохрание input
     document.addEventListener('input', event => {
         if (event.target.classList[0] !== 'input') return // Если событие - не кнопка input, то выходим
+        
         
         if (!getLocalStorage('inputCurr')){ // Если нет в LocalStr currInfoShowRightAnswer, добавить
             const array = {}
@@ -87,7 +85,7 @@ function createAndSaveInputs(thisProblems){ // Создание и/или сох
         const thisInput = parent.querySelector('.input') // Текущий input
         const objInfo = getLocalStorage('inputCurr') // Объект {4001: gray, 4002: green, 4003: red...}
         const idThisProblemHTML = parent.id // id этой карточки - id задачи (4030, 11021...)
-        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
+        const thisProblem = searchObjectById(idThisProblemHTML, thisProblems) // Сама задача по индексу 
         const idThisProblem = thisProblem.id // id этой задачи
 
         objInfo[idThisProblem] = thisInput.value // Изменение этой задачи
@@ -113,7 +111,7 @@ function createAndSaveInfoAnswers(thisProblems){ // Создание и/или �
         const rightAnswer = parent.querySelector('.rightAnswer') // Верный ответ HTML
         const objInfo = getLocalStorage('currInfoShowRightAnswer') // Объект {4001: true, 4002: false, 4003: false...}
         const idThisProblemHTML = parent.id // id задачи (11020, 3004 ...)
-        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
+        const thisProblem = searchObjectById(idThisProblemHTML, thisProblems) // Сама задача по индексу 
         const idThisProblem = thisProblem.id // id этой задачи
 
         objInfo[idThisProblem] = rightAnswer.classList[1] === 'show' // Изменение этой задачи
@@ -142,7 +140,7 @@ function createAndSaveSolution(thisProblems){ // Создание и/или со
         const solutionImg = parent.querySelector('.imgSolutionConteyner')
         const objInfo = getLocalStorage('showSolution') // Объект {4001: true, 4002: false, 4003: false...}
         const idThisProblemHTML = parent.id // id задачи (11020, 3004 ...)        
-        const thisProblem = searchObjectById(idThisProblemHTML, allProblems) // Сама задача по индексу 
+        const thisProblem = searchObjectById(idThisProblemHTML, thisProblems) // Сама задача по индексу 
         const idThisProblem = thisProblem.id // id этой задачи
         
         objInfo[idThisProblem] = solutionImg.classList[1] === 'show' // Изменение этой задачи
@@ -152,11 +150,11 @@ function createAndSaveSolution(thisProblems){ // Создание и/или со
 
 
 
-function createAndSaveAll(problems){
-    createAndSaveColors(problems) // Сохранение
-    createAndSaveInfoAnswers(problems) // Сохранение
-    createAndSaveInputs(problems) // Сохранение
-    createAndSaveSolution(problems)
+function createAndSaveAll(){
+    createAndSaveColors(getThisProblems()) // Сохранение
+    createAndSaveInfoAnswers(getThisProblems()) // Сохранение
+    createAndSaveInputs(getThisProblems()) // Сохранение
+    createAndSaveSolution(getThisProblems())
 }
 
 

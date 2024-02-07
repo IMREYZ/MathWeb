@@ -15,8 +15,6 @@ function processCurrSubject(){
     const name = getLocalStorage('nameProblem') // Имя задания
     const thisSelect = getLocalStorage('select') // Забираем из LocalStr select
     const allProblems = problems[id] // Все задачи
-    console.log(allProblems, id)
-    
     const themeThisProblem = themeProblems[id] // Темы задачи
     const arrayCheckbox = getLocalStorage('checkbox') // Массив checkbox
 
@@ -180,7 +178,7 @@ function processCurrSubject(){
 
 
         
-    createAndSaveAll(allProblems)
+    createAndSaveAll()
 
 
     // if (true) DEMO()

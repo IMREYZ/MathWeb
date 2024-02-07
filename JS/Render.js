@@ -42,9 +42,7 @@ function renderStatsNumber() { // Отловка новых заданий и з
 
     if (!statsArray) return
 
-    const haveVectors = statsArray['2150'] === undefined 
-    console.log(haveVectors)
-    
+    const haveVectors = statsArray['2150'] === undefined
 
     if (haveVectors) { // Есть вектора
         allProblems.forEach(problem => {
