@@ -4,7 +4,6 @@ import { backgroundByCurr, closeToShow } from "./ChangeLayout.js"
 
 
 
-
 function currColor(thisProblems){ // Появление цвета в currSubject в случае обновления страницы
 
     // КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
