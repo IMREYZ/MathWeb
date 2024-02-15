@@ -164,4 +164,4 @@ function endVariant(){ // Конец варианта
     popUpSecond.classList.remove('active')
 }
 
-export {endVariant}
+export { endVariant }

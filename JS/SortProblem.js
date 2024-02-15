@@ -8,6 +8,7 @@ function sortProblem(thisSelect){ // Сортировка массива 'thisPr
     else if (thisSelect === 'newToOld') sortedArray = getThisProblems().sort((a, b) => b.id - a.id)
     else if (thisSelect === 'easyToHard')  sortedArray = getThisProblems().sort((a, b) => a.procent - b.procent)
     else if (thisSelect === 'hardToEasy') sortedArray = getThisProblems().sort((a, b) => b.procent - a.procent)
+    
     else if (thisSelect === 'userEasyToHard' || thisSelect === 'userHardToEasy') {
 
         const statsNumberLocalStr = getLocalStorage('statsNumber')

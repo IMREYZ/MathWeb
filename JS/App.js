@@ -11,7 +11,7 @@ import { processStress } from "./Stress.js"
 
 
 eventSolution() // Открытие/закрытие решения
-renderSpecial() // Рендер новых задач
+renderSpecial() // Отловка новых заданий
 renderStatsNumber() // Рендер новых задач
 eventClickOnStar() // Нажатие на звезду
 showRightAnswerHTML() // Открытие/закрытие правильного ответа

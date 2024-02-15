@@ -206,7 +206,6 @@ function processIndex(){
         const parent = event.target.closest('.fullProblem')
         const id = +parent.dataset.number
         const name = parent.querySelector('.nameProblem').innerHTML
-        console.log(id)
         
 
         // Записываем номер и имя задачи LocalStr
@@ -223,7 +222,7 @@ function processIndex(){
 
 
     // Нажатие на "+" или "-" 
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', event => {
 
         // Если есть дата-атрибута button нет, то выходим
         if (!event.target.dataset.button) return 

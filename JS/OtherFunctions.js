@@ -1,6 +1,8 @@
-import { getLocalStorage } from "./LocalStorage.js"
+import { getLocalStorage, setLocalStorage } from "./LocalStorage.js"
 import { allProblems } from "./Base.js"
-
+import { currAll } from "./CurrProblem.js"
+import { getThisProblems } from "./LocalStorage.js"
+import { problemHTMLcurr } from "./ProblemHTML.js"
 
 function randomStress() { // Рандомный индекс массива allProblems (для stress)
     const randomIndex = Math.floor(Math.random() * allProblems.length)
@@ -85,7 +87,7 @@ function getSpecialObject() { // Забираем избранные задач�
     return result
 }
 
-// function DEMO(){ СОРТИРОВКА НЕ ДОДЕЛАНА
+// function DEMO(){ //СОРТИРОВКА НЕ ДОДЕЛАНА
 //     document.addEventListener('click', event => {
 //         if (event.target.classList[0] !== 'submit' || window.location.pathname !== `/MathWeb/HTML/currSubject.html`) return
 
@@ -96,7 +98,7 @@ function getSpecialObject() { // Забираем избранные задач�
 //             const thisProblems = getThisProblems()
 
 //             thisProblems.forEach(problem => problem.stats = statsNumberLocalStr[problem.id])
-//             sortedArray = thisProblems.sort((a, b) => b.stats.procent - a.stats.procent)
+//             const sortedArray = thisProblems.sort((a, b) => b.stats.procent - a.stats.procent)
 
 //             setLocalStorage('thisProblems', sortedArray)
 
@@ -104,10 +106,7 @@ function getSpecialObject() { // Забираем избранные задач�
 //             allConteynerProblem.innerHTML = ''
 //             getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Выводим задания
 
-//             currColor(getThisProblems())
-//             currInput(getThisProblems())
-//             currInfoShowRightAnswer(getThisProblems())
-//             currSolution(getThisProblems())
+//             currAll()
 //         }
 //     })
 
@@ -121,7 +120,7 @@ function getSpecialObject() { // Забираем избранные задач�
 //             const thisProblems = getThisProblems()
 
 //             thisProblems.forEach(problem => problem.stats = statsNumberLocalStr[problem.id])
-//             sortedArray = thisProblems.sort((a, b) => b.stats.procent - a.stats.procent)
+//             const sortedArray = thisProblems.sort((a, b) => b.stats.procent - a.stats.procent)
 
 //             setLocalStorage('thisProblems', sortedArray)
 
@@ -129,10 +128,7 @@ function getSpecialObject() { // Забираем избранные задач�
 //             allConteynerProblem.innerHTML = ''
 //             getThisProblems().forEach(element => allConteynerProblem.innerHTML += problemHTMLcurr(element)) // Выводим задания
 
-//             currColor(getThisProblems())
-//             currInput(getThisProblems())
-//             currInfoShowRightAnswer(getThisProblems())
-//             currSolution(getThisProblems())
+//             currAll()
 //         }
 //     })
 // }

@@ -3,10 +3,10 @@ import { searchObjectByProblem } from "./OtherFunctions.js"
 
 // Объекты - задачи
 const allProblems =
-
+    // Прототип: [0, '1.1']
     [
-        { problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник', solution: [0, '1.2'] },
-        { problem: '1.2', answer: 0.9, procent: 35, type: 'Прямоугольный треугольник', solution: [1, 'https://t.me/c/1659326846/59']},
+        { problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник', solution: [1, 'https://t.me/c/1659326846/59'] },
+        { problem: '1.2', answer: 0.9, procent: 35, type: 'Прямоугольный треугольник'},
         { problem: '1.3', answer: 0.4, procent: 30, type: 'Прямоугольный треугольник' },
         { problem: '1.4', answer: 16.4, procent: 70, type: 'Прямоугольный треугольник' },
         { problem: '1.5', answer: 86, procent: 40, type: 'Прямоугольный треугольник' },
@@ -1549,9 +1549,7 @@ allProblems.forEach(element => { // Распределение по ключу n
     if (element.solution){
         
         if (element.solution[0] === 1){ // Если есть СВОЕ решение
-            console.log(allProblems[0].solution.objectPrototype.solution, allProblems[1].solution)
-            element.solution = {have: true, numberPrototype: element.solution[1]}
-            console.log(allProblems[0].solution.objectPrototype.solution, allProblems[1].solution)
+            element.solution = {have: true, link: element.solution[1]}
         }
 
         if (element.solution[0] === 0){  // Если есть ЧУЖОЕ решение

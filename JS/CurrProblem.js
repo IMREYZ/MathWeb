@@ -53,7 +53,7 @@ function currColor(thisProblems){ // Появление цвета в currSubjec
 function currInput(thisProblems){ // Появление input в currSubject в случае обновления страницы
     const inputAll = document.querySelectorAll('.input') // Берем все input со страницы, КОТОРЫЕ ЕСТЬ НА СТРАНИЦЕ
     const inputLocalStr = getLocalStorage('inputCurr')
-    const colorLocalStr = getLocalStorage('color')
+    const colorLocalStr = getLocalStorage('color')    
 
     if (inputLocalStr){ // Если до этого были введены ответы 
         thisProblems.forEach((problem, count) => {

@@ -181,8 +181,8 @@ function processCurrSubject(){
     createAndSaveAll()
 
 
-    // if (true) DEMO()
-    // Мгновенное обновление или нет 
+    //if (true) DEMO()
+    //Мгновенное обновление или нет 
     
     
 

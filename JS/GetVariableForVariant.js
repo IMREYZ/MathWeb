@@ -4,7 +4,7 @@ import { specialVariants } from "./Base.js"
 import { getSpecialObject } from "./OtherFunctions.js"
 
 
-function getMyVariantPrevious(){
+function getMyVariantPrevious(){ 
     let myVariantPrevious = null
     const idPreviousVariant = getLocalStorage('idVariant') // id Варианта (прошлый вариант)
     const allStats = getLocalStorage('stats') // Вся статистика
@@ -44,29 +44,32 @@ function getArrayCountProblem(){
 
 function getAllProblemMain(){
     let allProblemsMain
-    const myVariantPrevious = getMyVariantPrevious()
-    const arrayCountProblem = getArrayCountProblem()
-    const numberVariant = getLocalStorage('numberVariant')
-
+    const myVariantPrevious = getMyVariantPrevious() // Предыдущий вариант (будет не null, если кликнули по прошлому варианту)
+    const arrayCountProblem = getArrayCountProblem() // ["-",1,1,1,1,1,1,1,1,1,1,1,1]
+    const numberVariant = getLocalStorage('numberVariant') // номер варианта
+    // 0 - рандомный вариант (через кнопку "создать вариант")
+    // -1 - вариант из избранных заданий
+    // >0 - вариант прошлых лет
 
 
     if (getLocalStorage('variant')){ // Если уже есть вариант
 
-        allProblemsMain = getLocalStorage('variant') // Массив заданий при обновлении   
+        allProblemsMain = getLocalStorage('variant') // Берем тот же вариант 
         if (getLocalStorage('againVariant') === 'afk' && (getLocalStorage('endVariant') + getLocalStorage('fromStats') === 0)) removeLocalStorage('answers') // Стирание ответов при новом старом вариате
     
     } else { // Создание варианта
-        if (getLocalStorage('fromStats') !== null) { // Если только создался (просматриванием варианта)
-            allProblemsMain = myVariantPrevious.problems
+        if (getLocalStorage('fromStats') !== null) { // Если находимся в просмотре варианта
+            allProblemsMain = myVariantPrevious.problems // Берем вариант, на который нажали
         } else {
-            if (numberVariant === 0) allProblemsMain = randomVariant(arrayCountProblem) // Если только создался (кнопкой создания варианта)
-            if (numberVariant === -1) allProblemsMain = getSpecialObject()
-            if (numberVariant > 0) allProblemsMain = getArrayObjectForSpecialVariants(numberVariant) // Если специальный вариант
+            if (numberVariant === 0) allProblemsMain = randomVariant(arrayCountProblem) // Создаем рандомный вариант
+            if (numberVariant === -1) allProblemsMain = getSpecialObject() // Создаем вариант из избранных заданий
+            if (numberVariant > 0) allProblemsMain = getArrayObjectForSpecialVariants(numberVariant) // Создаем вариант из вариантов прошлых лет
         }
     }
     
     return allProblemsMain
 }
+
 
 
 
@@ -110,6 +113,7 @@ function getNameVariant(){
 
 function getIsVariant(){
     const arrayCountProblem = getArrayCountProblem()
+    
 
     return arrayCountProblem.every(element => element === '-' || element === 1)
 }
