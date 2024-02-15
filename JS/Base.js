@@ -5,6 +5,7 @@ import { searchObjectByProblem } from "./OtherFunctions.js"
 const allProblems =
     // Прототип: [0, '1.1']
     [
+        
         { problem: '1.1', answer: 106, procent: 20, type: 'Равнобедненный треугольник', solution: [1, 'https://t.me/c/1659326846/59'] },
         { problem: '1.2', answer: 0.9, procent: 35, type: 'Прямоугольный треугольник'},
         { problem: '1.3', answer: 0.4, procent: 30, type: 'Прямоугольный треугольник' },
