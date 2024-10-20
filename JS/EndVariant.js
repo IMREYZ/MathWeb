@@ -91,8 +91,32 @@ function endVariant(){ // Конец варианта
 
         setLocalStorage('colors', arrayColors) // Добавляем цвета в LocalSte
     }
-    
 
+    const arr = ['PP26QE8CBA', 'PP26QE9CBA', 'PP26QRQCBA', 'PP26QRWCBA', 'PP26QRECBA', 'PP26QRRCBA', 'PP26QRTCBA', 'PP26QRYCBA', 'PP26QRUCBA', 'PP26QRICBA', 'PP26QROCBA', 'PP26QRPCBA', 'PP26QRSCBA', 'PP26QRDCBA', 'PP26QRFCBA', 'PP26QRGCBA', 'PP26QRHCBA', 'PP26QRJCBA', 'PP26QRKCBA', 'PP26QRLCBA', 'PP26QRXCBA', 'PP26QRCCBA', 'PP26QRVCBA', 'PP26QRBCBA', 'PP26QRNCBA', 'PP26QRMCBA', 'PP26QR0CBA', 'PP26QR1CBA', 'PP26QR2CBA', 'PP26QR3CBA', 'PP26QR4CBA', 'PP26QR5CBA', 'PP26QR6CBA', 'PP26QR7CBA', 'PP26QR8CBA', 'PP26QR9CBA', 'PP26QTQCBA', 'PP26QTWCBA', 'PP26QTECBA', 'PP26QTRCBA', 'PP26QTTCBA', 'PP26QTYCBA', 'PP26QTUCBA', 'PP26QTICBA', 'PP26QTOCBA', 'PP26QTPCBA', 'PP26QTSCBA', 'PP26QTDCBA', 'PP26QTFCBA', 'PP26QTGCBA', 'PP26QTHCBA', 'PP26QTJCBA', 'PP26QTKCBA', 'PP26QTLCBA', 'PP26QTXCBA', 'PP26QTCCBA', 'PP26QTVCBA', 'PP26QTBCBA', 'PP26QTNCBA', 'PP26QTMCBA', 'PP26QT0CBA', 'PP26QT1CBA', 'PP26QT2CBA', 'PP26QT3CBA', 'PP26QT4CBA', 'PP26QT5CBA', 'PP26QT6CBA', 'PP26QT7CBA', 'PP26QT8CBA', 'PP26QT9CBA', 'PP26QYQCBA', 'PP26QYWCBA', 'PP26QYECBA', 'PP26QYRCBA', 'PP26QYTCBA', 'PP26QYYCBA', 'PP26QYUCBA', 'PP26QYICBA', 'PP26QYOCBA', 'PP26QYPCBA', 'PP26QYSCBA', 'PP26QYDCBA', 'PP26QYFCBA', 'PP26QYGCBA', 'PP26QYHCBA', 'PP26QYJCBA', 'PP26QYKCBA', 'PP26QYLCBA', 'PP26QYXCBA', 'PP26QYCCBA', 'PP26QYVCBA', 'PP26QYBCBA', 'PP26QYNCBA', 'PP26QYMCBA', 'PP26QY0CBA', 'PP26QY1CBA', 'PP26QY2CBA', 'PP26QY3CBA', 'PP26QY4CBA', 'PP26QY5CBA']
+
+    const a = document.querySelector('.components__InputTag-sc-o0azsc-2')
+    const b = document.querySelector('.Button-sc-zdin7l-0')
+    let i = 0
+    setInterval(() => { // setInterval раз в секунду
+        a.value = arr[i] + ' ' 
+        i ++;
+        console.log(i)
+
+        }
+    ,2500)
+
+    // let text = ''
+    // const array = text.split(' ')
+       
+    // const input = document.querySelector('#promocode_input')
+    // const btn = document.querySelector('.action_inprocess')
+    // let i = 0
+    // setInterval(() => { // setInterval раз в секунду
+    //     input.value = array[i]
+    //     btn.click()
+    //     i ++
+    //     if (i == array.length) {i = array.length - 1 }
+    // }, 2700)
 
     // Сохранение для stats
     function saveStats(){

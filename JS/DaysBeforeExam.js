@@ -23,7 +23,7 @@ function getFullDaysBeforeExam(day){ // осталось/остался дней
 
 
 function daysBeforeExam(){ // Дней до экзамена
-    const EXAM = {year: 2024, month: 6 - 1, day: 31} // Костанта - день экзамена
+    const EXAM = {year: 2025, month: 6 - 1, day: 31} // Костанта - день экзамена
     const thisDay = {year: getTime('y'), month: getTime('mo') + 1, day: getTime('d')} // Формируем текущий день
     const pogresh = 1
 
