@@ -92,7 +92,7 @@ function endVariant(){ // Конец варианта
         setLocalStorage('colors', arrayColors) // Добавляем цвета в LocalSte
     }
 
-
+    //
 
 
     // Сохранение для stats
