@@ -41,6 +41,11 @@ function searchObjectByProblem(searchProblem, array) { // Ищем объект-
 }
 
 
+function procentRight(right, all){
+    if (all === 0) return '-'
+
+    return parseInt(right / all * 100)
+}
 
 
 function weight900(node, boolean) { // add/remove w900
@@ -134,7 +139,5 @@ function getSpecialObject() { // Забираем избранные задач�
 // }
 
 
-export { getNormalClass, getSpecialClass, getSpecialObject, weight900, withOutBadZero, randomStress, addZero, rounded, summArray, searchObjectById, searchObjectByProblem }
-
-
+export { procentRight, getNormalClass, getSpecialClass, getSpecialObject, weight900, withOutBadZero, randomStress, addZero, rounded, summArray, searchObjectById, searchObjectByProblem }
 

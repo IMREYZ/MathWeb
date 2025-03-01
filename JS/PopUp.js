@@ -4,6 +4,7 @@ import { endVariant } from "./EndVariant.js"
 
 
 
+
 function addPopUp(thisTextPopUp, answer, rightAnswers, secondBall){ // Добавление PopUp на страницу
     const popUpBody = document.querySelector('.pop_up_body')
     const popUp = document.querySelector('.pop_up') 
@@ -34,6 +35,7 @@ function textPopUpFull(answer, rightAnswers, secondBallArray){ // HTML PopUp к�
 
 function textPopUp(answer, rightAnswers){ // HTML PopUp контент для НЕ "формата ЕГЭ"
     const solutionTime = timeForSolution(getTime('full'), getLocalStorage('startTime')) // Сколько решал вариант
+    const procentRight = procentRight(rightAnswers, answer.length)
 
     return `<div class='testEnd'> Тест завершен! </div> 
     <hr/>
@@ -41,7 +43,7 @@ function textPopUp(answer, rightAnswers){ // HTML PopUp контент для Н
     <div>Всего заданий: <span class='w900'>${answer.length}</span> </div> 
     <div>Решено верно: <span class='w900 greenColor'>${rightAnswers} </span></div>
     <div>Решено неверно: <span class='w900 redColor'>${answer.length - rightAnswers} </span></div>
-    <div>Процент выполнения: <span class='w900'>${parseInt(rightAnswers / answer.length * 100)}% </span></div>
+    <div>Процент выполнения: <span class='w900'>${procentRight}% </span></div>
     <div>Потраченное время: <span class='w900'> ${solutionTime}</span></div>
     `
 }

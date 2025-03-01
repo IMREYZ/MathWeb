@@ -1,5 +1,6 @@
 import { getCountProblemForVariant, getArrayObjectForSpecialVariants } from "./VariantFunctions.js"
 import { searchObjectByProblem } from "./OtherFunctions.js"
+import { searchObjectById } from "./OtherFunctions.js"
 
 // Объекты - задачи
 const allProblems =
@@ -1585,8 +1586,6 @@ allProblems.forEach(element => { // Распределение по ключу n
 
 
 
-
-
 const specialVariants = ['-', // Специальные варианты
     { variant: ['1.31', '3.21', '4.27', '5.23', '6.49', '7.7', '8.3', '9.32', '10.89', '11.57', '12.25'], name: 'Досрок 2023 - резервный день' },
     { variant: ['1.6', '3.46', '4.39', '5.25', '6.6', '7.70', '8.17', '9.20', '10.90', '11.18', '12.4'], name: 'Досрок 2023' },
@@ -1618,7 +1617,6 @@ const secondBallArray = { // Словарь перевода баллов из �
     6: 34, 7: 40, 8: 46, 9: 52, 10: 58,
     11: 64, 12: 68
 }
-
 
 
 

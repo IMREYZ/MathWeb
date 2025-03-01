@@ -28,6 +28,7 @@ function randomProblem(thisIndexProblem, thisCountProblem) { // thisCountProblem
     const {start, finish} = getLocalStorage('fromAndTo') // Min сложность
 
 
+
     function getRandomInt(numberIndex) { return Math.floor(Math.random() * Math.floor(numberIndex)) } // Рандомный индекс
 
     while (result.length !== thisCountProblem) { // Пока не хватает задач

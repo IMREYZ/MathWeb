@@ -8,8 +8,6 @@ import { processSpecial } from "./Special.js"
 import { processStress } from "./Stress.js"
 
 
-
-
 eventSolution() // Открытие/закрытие решения
 renderSpecial() // Отловка новых заданий
 renderStatsNumber() // Рендер новых задач

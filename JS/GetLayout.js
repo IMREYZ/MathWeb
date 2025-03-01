@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./LocalStorage.js"
+﻿import { getLocalStorage } from "./LocalStorage.js"
 import { getNormalClass } from "./OtherFunctions.js"
 
 

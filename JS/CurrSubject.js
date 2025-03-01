@@ -52,7 +52,7 @@ function processCurrSubject(){
 
     const allCheckbox = [...document.querySelectorAll('.checkbox')] // Все checkbox в HTML
     if (arrayCheckbox){ // Если в LocalStr был checkbox  (в случае обновления страницы)
-        allCheckbox.forEach(checkbox => { // Проходимся по всем checkbox HTML        
+        allCheckbox.g(checkbox => { // Проходимся по всем checkbox HTML        
             if (arrayCheckbox.includes(checkbox.id)) { // Если id in arrayCheckbox, то
                 checkbox.checked = true // Делаем checked = true
                 weight900(checkbox.id, true) // Добавляем w900
